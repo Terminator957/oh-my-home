@@ -18,6 +18,8 @@ const DISHES = [
 // 菜品图片（来源 Wikimedia Commons 自由版权图库，详见 images/dishes/CREDITS.md；缺图的用占位纹理）
 const IMGS = {
   '红烧肉': '/images/dishes/hongshaorou.jpg',
+  '凉拌木耳': '/images/dishes/liangbanmuer.jpg',
+  '番茄牛腩': '/images/dishes/fanqie-niunan.jpg',
   '酸菜鱼': '/images/dishes/suancaiyu.jpg',
   '白灼菜心': '/images/dishes/baizhuocaixin.jpg',
   '麻婆豆腐': '/images/dishes/mapodoufu.jpg',

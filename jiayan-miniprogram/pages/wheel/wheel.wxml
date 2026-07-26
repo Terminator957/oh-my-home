@@ -1,33 +1,47 @@
-<view class="pad col" style="gap:40rpx;align-items:center">
+<view class="pad col" style="gap:36rpx;align-items:center">
 
   <view style="font-size:26rpx;color:#6B6355;text-align:center;line-height:1.9">
     <view>从「想吃 + 常做」的 {{pool.length}} 道里抽</view>
-    <view>抽中不满意可以再抽</view>
+    <view>点中间的「转」,抽中不满意可以再抽</view>
   </view>
 
-  <view style="width:560rpx;height:560rpx;position:relative;display:flex;align-items:center;justify-content:center">
-    <view style="position:absolute;top:-12rpx;left:50%;margin-left:-12rpx;width:0;height:0;border-left:12rpx solid transparent;border-right:12rpx solid transparent;border-top:24rpx solid #A93226;z-index:2"></view>
-    <view style="width:520rpx;height:520rpx;border-radius:50%;border:2rpx solid #C9BFAC;background:{{wheelBg}};transform:rotate({{angle}}deg);transition:transform 2.4s cubic-bezier(.13,.86,.09,1);position:relative;overflow:hidden">
-      <view wx:for="{{pool}}" wx:key="name"
-        style="position:absolute;top:0;left:50%;width:2rpx;height:50%;transform-origin:bottom center;transform:rotate({{item.deg}}deg);background:#E0D8C6">
-        <view style="position:absolute;top:32rpx;left:8rpx;width:164rpx;font-size:24rpx;color:{{index === wheelIdx ? '#A93226' : '#5E574B'}};font-weight:{{index === wheelIdx ? 600 : 400}};transform:rotate({{halfStep}}deg);transform-origin:left top;white-space:nowrap">{{item.name}}</view>
+  <!-- 转盘 -->
+  <view style="width:600rpx;height:600rpx;position:relative;display:flex;align-items:center;justify-content:center">
+    <!-- 指针 -->
+    <view style="position:absolute;top:2rpx;left:50%;margin-left:-18rpx;z-index:4;filter:drop-shadow(0 4rpx 6rpx rgba(60,50,35,.35))">
+      <view style="width:0;height:0;border-left:18rpx solid transparent;border-right:18rpx solid transparent;border-top:34rpx solid #A93226"></view>
+    </view>
+    <!-- 外圈 -->
+    <view style="width:600rpx;height:600rpx;border-radius:50%;background:#FFFDF8;border:2rpx solid #C9BFAC;box-shadow:0 20rpx 46rpx rgba(60,50,35,.2);position:absolute"></view>
+    <!-- 盘面 -->
+    <view style="width:544rpx;height:544rpx;border-radius:50%;border:2rpx solid #D9CFBB;background:{{wheelBg}};transform:rotate({{angle}}deg);transition:transform 2.4s cubic-bezier(.13,.86,.09,1);position:relative;overflow:hidden;z-index:1">
+      <!-- 扇区分隔线 -->
+      <view wx:for="{{pool}}" wx:key="name" style="position:absolute;top:0;left:50%;width:2rpx;height:50%;margin-left:-1rpx;transform-origin:bottom center;transform:rotate({{item.deg}}deg);background:rgba(31,28,24,.1)"></view>
+      <!-- 径向菜名 -->
+      <view wx:for="{{pool}}" wx:key="name" style="position:absolute;inset:0;transform:rotate({{item.mid}}deg);pointer-events:none">
+        <view style="position:absolute;top:40rpx;left:50%;transform:translateX(-50%);font-size:25rpx;letter-spacing:1rpx;white-space:nowrap;color:{{index === wheelIdx ? '#A93226' : '#4A443A'}};font-weight:{{index === wheelIdx ? 700 : 500}}">{{item.name}}</view>
       </view>
+    </view>
+    <!-- 中心按钮 -->
+    <view hover-class="hv" bindtap="spin" style="position:absolute;z-index:3;width:132rpx;height:132rpx;border-radius:50%;background:#A93226;border:6rpx solid #FBF8F2;color:#FBF8F2;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2rpx;box-shadow:0 10rpx 24rpx rgba(169,50,38,.45)">
+      <view style="font-size:{{spinning ? 26 : 40}}rpx;font-weight:600;letter-spacing:2rpx">{{spinning ? '…' : '转'}}</view>
+      <view wx:if="{{!spinning}}" style="font-size:18rpx;opacity:.75;letter-spacing:2rpx">SPIN</view>
     </view>
   </view>
 
-  <view class="col" style="min-height:190rpx;align-items:center;justify-content:center">
+  <!-- 结果 -->
+  <view class="col" style="min-height:170rpx;align-items:center;justify-content:center">
     <view wx:if="{{spinning}}" class="label">转着呢，指针停在哪就吃哪</view>
-    <view wx:else class="col fade" style="align-items:center;gap:14rpx">
+    <view wx:else class="col fade" style="align-items:center;gap:12rpx">
       <view class="label">{{hint}}</view>
       <view class="row" style="gap:20rpx">
         <image wx:if="{{resultImg}}" src="{{resultImg}}" mode="aspectFill" style="width:88rpx;height:88rpx;border-radius:50%;border:3rpx solid #A93226;flex:none" />
-        <view style="font-size:60rpx;font-weight:600;letter-spacing:2rpx">{{result}}</view>
+        <view style="font-size:56rpx;font-weight:600;letter-spacing:2rpx">{{result}}</view>
       </view>
       <view style="font-size:24rpx;color:#6B6355">{{meta}}</view>
     </view>
   </view>
 
-  <view hover-class="hv" class="btn btn-red" style="width:100%;height:96rpx;font-size:32rpx;letter-spacing:8rpx" bindtap="spin">{{spinning ? '转着呢…' : '转一下'}}</view>
-  <view hover-class="hv" class="btn btn-ghost" style="width:100%" bindtap="confirm">就它了，记到今天</view>
+  <view hover-class="hv" class="btn {{wheelIdx >= 0 ? 'btn-red' : 'btn-ghost'}}" style="width:100%" bindtap="confirm">就它了，记到今天</view>
 
 </view>

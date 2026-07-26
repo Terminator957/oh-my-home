@@ -85,8 +85,17 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
     // ---------- 转盘 ----------
     page = await mini.reLaunch('/pages/wheel/wheel');
     await sleep(600);
-    const spinBtns = await page.$$('view.btn');
-    for (const b of spinBtns) { if ((await b.text()).includes('转一下')) { await b.tap(); break; } }
+    // 触发方式:点转盘中心的「转 / SPIN」圆钮(取最小命中节点,失败则直接调页面方法)
+    const spinViews = await page.$$('view');
+    let hub = null;
+    for (const b of spinViews) {
+      const t = await b.text().catch(() => '');
+      if (t.includes('SPIN')) hub = b;
+    }
+    if (hub) await hub.tap();
+    await sleep(200);
+    if (!(await page.data()).spinning) await page.callMethod('spin');
+    await sleep(100);
     ok('转盘开始旋转 (spinning=true)', (await page.data()).spinning === true);
     await sleep(2800);
     const wd = await page.data();

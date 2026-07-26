@@ -13,3 +13,5 @@ fanqie-niunan.jpg | File:红烧牛腩肉酱米线（2025年6月28日）.jpg | CC
 liangbanmuer.jpg | File:HK KT 啟德 Kai Tak 啟晴邨 Kai Ching Estate 晴朗商場 街市 Ching Long Shopping Centre market December 2020 SSG 23.jpg | CC BY-SA 4.0 | VeeTura Madousonu
 baizhuocaixin.jpg | File:Chinese Broccoli with Oyster Sauce -breakfast (16402541421).jpg | CC BY 2.0 | Arnold Gatilao from Oakland, CA, USA
 fanqie-niunan.jpg | File:Argentine Tirabuzón Molto pasta stew with ground beef and tomato sauce.jpg | CC BY-SA 3.0 | Horacio Cambeiro
+liangbanmuer.jpg | 木耳鸡丝 Chicken with Wood Ear Fungus - Dainty Sichuan (Openverse 7d475729) | CC BY-SA | Alpha
+fanqie-niunan.jpg | File:Taiwanese tomato beef noodle soup Taipei.jpg | CC BY-SA 4.0 | Wikimedia Commons
