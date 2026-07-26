@@ -10,7 +10,8 @@
 
 <view style="padding:0 36rpx 48rpx">
   <view class="row hr-t" style="gap:24rpx;padding:28rpx 0;align-items:flex-start" wx:for="{{list}}" wx:key="name" bindtap="openDish" data-name="{{item.name}}">
-    <view class="ph" style="width:156rpx;height:156rpx">照片</view>
+    <image wx:if="{{item.img}}" src="{{item.img}}" mode="aspectFill" style="width:156rpx;height:156rpx;flex:none" />
+    <view wx:else class="ph" style="width:156rpx;height:156rpx;flex:none">照片</view>
     <view class="col flex1" style="gap:8rpx">
       <view class="row" style="gap:16rpx">
         <view style="font-size:34rpx;font-weight:600">{{item.name}}</view>

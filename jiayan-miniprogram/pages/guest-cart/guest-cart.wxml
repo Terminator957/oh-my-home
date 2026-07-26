@@ -6,7 +6,8 @@
   </view>
 
   <view class="row" wx:for="{{list}}" wx:key="name" style="gap:24rpx;padding-bottom:26rpx;border-bottom:2rpx solid #DCD3C2">
-    <view class="ph" style="width:112rpx;height:112rpx"></view>
+    <image wx:if="{{item.img}}" src="{{item.img}}" mode="aspectFill" style="width:112rpx;height:112rpx;flex:none" />
+    <view wx:else class="ph" style="width:112rpx;height:112rpx;flex:none"></view>
     <view class="col flex1" style="gap:6rpx">
       <view style="font-size:32rpx;font-weight:600">{{item.name}}</view>
       <view style="font-size:22rpx;color:#8A8072">{{item.kcal}} 千卡 / 份</view>

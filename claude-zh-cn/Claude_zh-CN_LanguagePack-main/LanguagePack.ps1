@@ -484,10 +484,17 @@ function Get-RequiredTranslationFiles {
     $required = @(
         [pscustomobject]@{ Name = "ion-dist"; Path = (Join-Path $packDir "ion-dist\zh-CN.json") },
         [pscustomobject]@{ Name = "desktop-shell"; Path = (Join-Path $packDir "desktop-shell\zh-CN.json") },
-        [pscustomobject]@{ Name = "statsig"; Path = (Join-Path $packDir "statsig\zh-CN.json") }
+        [pscustomobject]@{ Name = "dynamic"; Path = (Join-Path $packDir "dynamic\zh-CN.json") }
     )
 
     foreach ($item in $required) {
+        if (-not (Test-Path -LiteralPath $item.Path -PathType Leaf) -and $item.Name -eq "dynamic") {
+            $legacyDynamic = Join-Path $packDir "statsig\zh-CN.json"
+            if (Test-Path -LiteralPath $legacyDynamic -PathType Leaf) {
+                $item.Path = $legacyDynamic
+            }
+        }
+
         if (-not (Test-Path -LiteralPath $item.Path -PathType Leaf)) {
             $legacyPath = Join-Path $scriptDir "$($item.Name)\zh-CN.json"
             if (Test-Path -LiteralPath $legacyPath -PathType Leaf) {
@@ -554,6 +561,7 @@ function Install-LanguagePack {
         (Join-Path $resolved.ResourcesPath "ion-dist"),
         (Join-Path $resolved.ResourcesPath "ion-dist\i18n"),
         (Join-Path $resolved.ResourcesPath "ion-dist\i18n\statsig"),
+        (Join-Path $resolved.ResourcesPath "ion-dist\i18n\dynamic"),
         (Join-Path $resolved.ResourcesPath "ion-dist\assets"),
         (Join-Path $resolved.ResourcesPath "ion-dist\assets\v1")
     )
@@ -584,9 +592,9 @@ function Install-LanguagePack {
             Target = (Join-Path $resolved.ResourcesPath "zh-CN.json")
         },
         [pscustomobject]@{
-            Name   = "statsig"
+            Name   = "dynamic"
             Source = $required[2].Path
-            Target = (Join-Path $resolved.ResourcesPath "ion-dist\i18n\statsig\zh-CN.json")
+            Target = (Join-Path $resolved.ResourcesPath "ion-dist\i18n\dynamic\zh-CN.json")
         }
     )
 
@@ -645,7 +653,8 @@ function Uninstall-LanguagePack {
             (Join-Path $resolved.ResourcesPath "ion-dist\i18n\zh-CN.json"),
             (Join-Path $resolved.ResourcesPath "ion-dist\i18n\zh-CN.overrides.json"),
             (Join-Path $resolved.ResourcesPath "zh-CN.json"),
-            (Join-Path $resolved.ResourcesPath "ion-dist\i18n\statsig\zh-CN.json")
+            (Join-Path $resolved.ResourcesPath "ion-dist\i18n\statsig\zh-CN.json"),
+            (Join-Path $resolved.ResourcesPath "ion-dist\i18n\dynamic\zh-CN.json")
         )) {
         if (Test-Path -LiteralPath $path -PathType Leaf) {
             Grant-WriteAccess -Path $path
@@ -688,6 +697,7 @@ function Extract-EnglishFiles {
     $targets = @(
         [pscustomobject]@{ Name = "ion-dist"; Source = (Join-Path $resolved.ResourcesPath "ion-dist\i18n\en-US.json") },
         [pscustomobject]@{ Name = "desktop-shell"; Source = (Join-Path $resolved.ResourcesPath "en-US.json") },
+        [pscustomobject]@{ Name = "dynamic"; Source = (Join-Path $resolved.ResourcesPath "ion-dist\i18n\dynamic\en-US.json") },
         [pscustomobject]@{ Name = "statsig"; Source = (Join-Path $resolved.ResourcesPath "ion-dist\i18n\statsig\en-US.json") }
     )
 

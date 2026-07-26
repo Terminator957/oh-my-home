@@ -10,7 +10,8 @@
 
   <view class="col" style="gap:24rpx">
     <view class="row" style="gap:24rpx" wx:for="{{list}}" wx:key="name" bindtap="openDish" data-name="{{item.name}}">
-      <view class="ph" style="width:132rpx;height:132rpx"></view>
+      <image wx:if="{{item.img}}" src="{{item.img}}" mode="aspectFill" style="width:132rpx;height:132rpx;flex:none" />
+      <view wx:else class="ph" style="width:132rpx;height:132rpx;flex:none"></view>
       <view class="col flex1" style="gap:8rpx">
         <view style="font-size:34rpx;font-weight:600">{{item.name}}</view>
         <view style="font-size:22rpx;color:#8A8072">{{item.tag}} · {{item.kcal}} 千卡</view>

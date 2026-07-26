@@ -6,7 +6,7 @@
       <view class="ph" style="width:104rpx;height:104rpx;border-radius:50%;margin-left:-48rpx"></view>
     </view>
     <view class="col flex1" style="gap:8rpx">
-      <view style="font-size:34rpx;font-weight:600">阿宁 · 小周</view>
+      <view style="font-size:34rpx;font-weight:600">WXJ · WJ</view>
       <view style="font-size:24rpx;color:#8A8072">一起记了 81 道菜</view>
     </view>
   </view>

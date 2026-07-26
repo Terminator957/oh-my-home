@@ -15,6 +15,21 @@ const DISHES = [
   { name: '椰子鸡', status: '想吃', cat: '汤', ing: '椰青 · 鸡 · 玉米', ingFull: '椰青 2 个 ｜ 鸡半只 ｜ 玉米 1 根 ｜ 马蹄 6 个', time: '55 分钟', level: '简单', made: '还没做过', stars: 0, kcal: 340, flavor: '想喝汤', log: [] }
 ];
 
+// 菜品图片（来源 Wikimedia Commons 自由版权图库，详见 images/dishes/CREDITS.md；缺图的用占位纹理）
+const IMGS = {
+  '红烧肉': '/images/dishes/hongshaorou.jpg',
+  '酸菜鱼': '/images/dishes/suancaiyu.jpg',
+  '白灼菜心': '/images/dishes/baizhuocaixin.jpg',
+  '麻婆豆腐': '/images/dishes/mapodoufu.jpg',
+  '冬瓜排骨汤': '/images/dishes/donggua-paigu.jpg',
+  '蒜蓉粉丝虾': '/images/dishes/suanrong-xia.jpg',
+  '口水鸡': '/images/dishes/koushuiji.jpg',
+  '干煸豆角': '/images/dishes/ganbian-doujiao.jpg',
+  '葱油面': '/images/dishes/congyoumian.jpg',
+  '椰子鸡': '/images/dishes/yeziji.jpg'
+};
+DISHES.forEach(d => { d.img = IMGS[d.name] || ''; });
+
 const MOOD_MAP = {
   '想喝汤': ['冬瓜排骨汤', '番茄牛腩', '椰子鸡'],
   '想吃辣': ['麻婆豆腐', '酸菜鱼', '口水鸡'],

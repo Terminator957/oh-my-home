@@ -8,9 +8,10 @@
   <view class="flex1" style="position:relative;min-height:520rpx">
     <view style="position:absolute;left:20rpx;right:20rpx;top:28rpx;bottom:-12rpx;border:2rpx solid #DCD3C2;background:#F0EADE"></view>
     <view style="position:absolute;left:10rpx;right:10rpx;top:14rpx;bottom:0;border:2rpx solid #DCD3C2;background:#F6F1E7"></view>
-    <view style="position:absolute;inset:0;border:2rpx solid #C9BFAC;background:#FBF8F2;display:flex;flex-direction:column;transform:translateX({{fly}}rpx) rotate({{tilt}}deg);opacity:{{fly ? 0 : 1}};transition:transform .22s ease,opacity .22s ease"
-      bindtouchstart="touchStart" bindtouchend="touchEnd">
-      <view class="ph flex1" style="font-size:22rpx">菜品照片</view>
+    <view style="position:absolute;inset:0;border:2rpx solid #C9BFAC;background:#FBF8F2;display:flex;flex-direction:column;transform:translateX({{dragX}}px) rotate({{dragX / 18}}deg);opacity:{{gone ? 0 : 1}};transition:{{dragging ? 'none' : 'transform .28s ease, opacity .28s ease'}}"
+      bindtouchstart="touchStart" catchtouchmove="touchMove" bindtouchend="touchEnd">
+      <image wx:if="{{cur.img}}" src="{{cur.img}}" mode="aspectFill" class="flex1" style="width:100%" />
+      <view wx:else class="ph flex1" style="font-size:22rpx">菜品照片</view>
       <view class="col" style="padding:32rpx;gap:14rpx">
         <view class="row" style="justify-content:space-between;align-items:baseline">
           <view style="font-size:48rpx;font-weight:600">{{cur.name}}</view>
@@ -19,6 +20,8 @@
         <view style="font-size:24rpx;color:#6B6355;line-height:1.8">{{cur.ing}} ｜ {{cur.time}} · {{cur.level}}</view>
         <view style="font-size:24rpx;color:#3A342B">{{cur.kcal}} 千卡 / 份 · {{cur.starText}}</view>
       </view>
+      <view style="position:absolute;top:28rpx;left:28rpx;border:4rpx solid #A93226;color:#A93226;background:rgba(251,248,242,.85);padding:8rpx 20rpx;font-size:32rpx;font-weight:600;transform:rotate(-12deg);opacity:{{dragX > 0 ? (dragX > 90 ? 1 : dragX / 90) : 0}}">想吃</view>
+      <view style="position:absolute;top:28rpx;right:28rpx;border:4rpx solid #8A8072;color:#8A8072;background:rgba(251,248,242,.85);padding:8rpx 20rpx;font-size:32rpx;font-weight:600;transform:rotate(12deg);opacity:{{dragX < 0 ? (dragX < -90 ? 1 : -dragX / 90) : 0}}">跳过</view>
     </view>
   </view>
 

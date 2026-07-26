@@ -1,6 +1,6 @@
 <view style="padding:8rpx 36rpx 24rpx;display:flex;flex-direction:column;gap:20rpx;border-bottom:2rpx solid #DCD3C2">
   <view class="row" style="justify-content:space-between;align-items:baseline">
-    <view style="font-size:40rpx;font-weight:600">阿宁和小周的家宴</view>
+    <view style="font-size:40rpx;font-weight:600">WXJ和WJ的家宴</view>
     <view style="font-size:22rpx;color:#A93226;border:2rpx solid #A93226;padding:4rpx 12rpx">客人</view>
   </view>
   <view style="font-size:24rpx;color:#6B6355">周六 18:00 · 你点的菜他们会看到，忌口写在备注里就好</view>
@@ -11,7 +11,8 @@
 
 <view style="padding:0 36rpx 200rpx">
   <view class="row" style="gap:24rpx;padding:26rpx 0;border-bottom:2rpx solid #DCD3C2" wx:for="{{menu}}" wx:key="name">
-    <view class="ph" style="width:140rpx;height:140rpx">照片</view>
+    <image wx:if="{{item.img}}" src="{{item.img}}" mode="aspectFill" style="width:140rpx;height:140rpx;flex:none" />
+    <view wx:else class="ph" style="width:140rpx;height:140rpx;flex:none">照片</view>
     <view class="col flex1" style="gap:8rpx">
       <view style="font-size:32rpx;font-weight:600">{{item.name}}</view>
       <view style="font-size:22rpx;color:#8A8072">{{item.note}}</view>

@@ -4,17 +4,26 @@
   align-items: center;
   justify-content: space-between;
   font-size: 30rpx;
-}
-.cell-btn {
-  background: transparent;
-  padding: 0;
-  margin: 0;
-  border-radius: 0;
+  color: #1F1C18;
   font-weight: normal;
+}
+/* 真机上 button 会带默认边框/圆角/字号/行高/内边距,全部重置为普通行样式 */
+.cell-btn {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
   text-align: left;
   font-size: 30rpx;
+  font-weight: normal;
+  font-family: inherit;
   line-height: inherit;
   color: inherit;
-  width: 100%;
+  overflow: visible;
 }
-.cell-btn::after { border: none; }
+.cell-btn::after { display: none; border: none; }
+.cell-btn.button-hover { background: rgba(22, 19, 15, .04); }

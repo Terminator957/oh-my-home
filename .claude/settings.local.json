@@ -17,7 +17,8 @@
       "PowerShell(Get-NetTCPConnection -State Listen | Where-Object { $_.LocalPort -in 9420, 13019 } | Select-Object LocalAddress, LocalPort, OwningProcess | Out-String; Test-NetConnection -ComputerName 127.0.0.1 -Port 9420 -InformationLevel Quiet 2>$null)",
       "PowerShell(& \"C:\\\\Program Files \\(x86\\)\\\\Tencent\\\\΢��web�����߹���\\\\cli.bat\" upload --project \"D:\\\\Coding\\\\workplace\\\\Claude\\\\jiayan-miniprogram\" -v 1.0.0 -d \"���²���С���򡸼���С���ӡ��װ�:С����/���׿�/��һ��/�����Ĵ�Tab,��Ʒ��������,��������,���˵������,�����ʲô�����淨\\(ת��/����/����\\)����ͨ����Ԫ/�ӿ�/UI���Թ�25��\" 2>&1)",
       "Bash(git init *)",
-      "Bash(git add *)"
+      "Bash(git add *)",
+      "Bash(git commit -m '初始提交:家宴小本子微信小程序 + 美味家常Web原型 + 测试工程 *)"
     ]
   }
 }

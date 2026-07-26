@@ -14,7 +14,7 @@ Page({
       { name: '番茄牛腩', date: '7.21', starText: starText(4) },
       { name: '蒜蓉粉丝虾', date: '7.18', starText: starText(5) },
       { name: '干煸豆角', date: '7.15', starText: starText(3) }
-    ],
+    ].map(r => Object.assign(r, { img: (DISHES.find(d => d.name === r.name) || {}).img || '' })),
     bars: [
       { h: 40 }, { h: 62 }, { h: 34 }, { h: 78, hot: true }, { h: 52 }, { h: 66 }, { h: 20 }
     ]
@@ -43,6 +43,6 @@ Page({
   goMood() { wx.navigateTo({ url: '/pages/mood/mood' }); },
   openDish(e) { wx.navigateTo({ url: '/pages/dish/dish?name=' + e.currentTarget.dataset.name }); },
   onShareAppMessage() {
-    return { title: '阿宁和小周的家宴菜单', path: '/pages/guest/guest' };
+    return { title: 'WXJ和WJ的家宴菜单', path: '/pages/guest/guest' };
   }
 });

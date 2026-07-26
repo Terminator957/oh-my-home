@@ -11,7 +11,7 @@ Page({
       const d = findDish(n);
       if (!d) return null;
       const tag = d.status === '想吃' ? '她想吃' : d.status === '常做' ? '常做' : '快手';
-      return { name: d.name, kcal: d.kcal, tag, time: parseInt(d.time) || 30, ing: d.ing };
+      return { name: d.name, img: d.img, kcal: d.kcal, tag, time: parseInt(d.time) || 30, ing: d.ing };
     }).filter(Boolean);
     const totalKcal = list.reduce((a, d) => a + d.kcal, 0);
     const minutes = Math.max.apply(null, list.map(d => d.time).concat([0])) + 15;

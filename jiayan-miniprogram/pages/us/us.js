@@ -10,6 +10,6 @@ Page({
   goOrders() { wx.navigateTo({ url: '/pages/host-order/host-order' }); },
   todo() { wx.showToast({ title: '体验版暂未开放', icon: 'none' }); },
   onShareAppMessage() {
-    return { title: '阿宁和小周的家宴菜单', path: '/pages/guest/guest' };
+    return { title: 'WXJ和WJ的家宴菜单', path: '/pages/guest/guest' };
   }
 });

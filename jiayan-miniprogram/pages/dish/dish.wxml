@@ -1,5 +1,6 @@
-<view class="ph" style="height:520rpx;position:relative;font-size:22rpx">
-  菜品主图
+<view style="height:520rpx;position:relative">
+  <image wx:if="{{d.img}}" src="{{d.img}}" mode="aspectFill" style="width:100%;height:520rpx" />
+  <view wx:else class="ph" style="height:520rpx;font-size:22rpx">菜品主图</view>
   <view wx:if="{{d.status === '常做'}}" style="position:absolute;bottom:28rpx;right:32rpx;width:104rpx;height:104rpx;border:3rpx solid #A93226;border-radius:50%;color:#A93226;display:flex;align-items:center;justify-content:center;font-size:26rpx;background:rgba(244,239,229,.75);transform:rotate(-8deg)">常做</view>
 </view>
 

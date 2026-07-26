@@ -8,6 +8,7 @@ Page({
     const pool = this.data.cat === '全部' ? DISHES : DISHES.filter(d => d.cat === this.data.cat);
     const menu = pool.map(d => ({
       name: d.name,
+      img: d.img,
       note: d.status === '想吃' ? '主厨还没做过，可以试试' : '主厨' + d.made,
       kcal: d.kcal,
       starText: starText(d.stars),
@@ -29,6 +30,6 @@ Page({
   },
   goCart() { wx.navigateTo({ url: '/pages/guest-cart/guest-cart' }); },
   onShareAppMessage() {
-    return { title: '阿宁和小周的家宴菜单', path: '/pages/guest/guest' };
+    return { title: 'WXJ和WJ的家宴菜单', path: '/pages/guest/guest' };
   }
 });

@@ -11,9 +11,10 @@
     <view style="font-size:22rpx;color:#8A8072">{{list.length}} 道</view>
   </view>
 
-  <view class="col" style="gap:24rpx">
-    <view class="row card" style="gap:24rpx;padding:20rpx" wx:for="{{list}}" wx:key="name" bindtap="choose" data-name="{{item.name}}">
-      <view class="ph" style="width:124rpx;height:124rpx"></view>
+  <view class="col" style="gap:24rpx" wx:if="{{showList}}">
+    <view class="row card fade" style="gap:24rpx;padding:20rpx;animation-delay:{{index * 70}}ms" wx:for="{{list}}" wx:key="name" bindtap="choose" data-name="{{item.name}}">
+      <image wx:if="{{item.img}}" src="{{item.img}}" mode="aspectFill" style="width:124rpx;height:124rpx;flex:none" />
+      <view wx:else class="ph" style="width:124rpx;height:124rpx;flex:none"></view>
       <view class="col flex1" style="gap:8rpx">
         <view style="font-size:32rpx;font-weight:600">{{item.name}}</view>
         <view style="font-size:22rpx;color:#8A8072">{{item.meta}}</view>
