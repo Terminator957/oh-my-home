@@ -1,0 +1,41 @@
+<view class="pad col" style="gap:32rpx;padding-bottom:200rpx">
+
+  <view wx:if="{{!list.length}}" style="border:2rpx dashed #C0B5A0;padding:56rpx;text-align:center;color:#8A8072;font-size:26rpx;line-height:1.9">
+    <view>还没点菜</view>
+    <view>回上一页挑几道吧</view>
+  </view>
+
+  <view class="row" wx:for="{{list}}" wx:key="name" style="gap:24rpx;padding-bottom:26rpx;border-bottom:2rpx solid #DCD3C2">
+    <view class="ph" style="width:112rpx;height:112rpx"></view>
+    <view class="col flex1" style="gap:6rpx">
+      <view style="font-size:32rpx;font-weight:600">{{item.name}}</view>
+      <view style="font-size:22rpx;color:#8A8072">{{item.kcal}} 千卡 / 份</view>
+    </view>
+    <view style="font-size:26rpx;color:#A93226" bindtap="remove" data-name="{{item.name}}">移除</view>
+  </view>
+
+  <view class="col" style="gap:16rpx">
+    <view class="label">给主厨的话</view>
+    <textarea style="min-height:140rpx;border:2rpx solid #DCD3C2;background:#FBF8F2;padding:24rpx;font-size:28rpx;line-height:1.8;width:auto;box-sizing:border-box"
+      value="{{note}}" bindinput="onNote" placeholder="忌口、人数、想吃辣不辣…" placeholder-style="color:#9A9082"></textarea>
+  </view>
+
+  <view class="card col" style="padding:28rpx;gap:20rpx" wx:if="{{list.length}}">
+    <view class="label">这一桌的热量</view>
+    <view class="row" style="align-items:flex-end;gap:12rpx">
+      <view style="font-size:60rpx;font-weight:600;line-height:1">{{kcal}}</view>
+      <view style="font-size:24rpx;color:#6B6355;padding-bottom:8rpx">千卡 · 四人分约 {{perPerson}} 千卡 / 人</view>
+    </view>
+    <view class="row" style="height:16rpx">
+      <view style="width:38%;background:#1F1C18"></view>
+      <view style="width:29%;background:#6B6355"></view>
+      <view style="width:33%;background:#A93226"></view>
+    </view>
+    <view style="font-size:22rpx;color:#8A8072">荤素比偏荤，建议再点一道清炒</view>
+  </view>
+
+</view>
+
+<view style="position:fixed;left:0;right:0;bottom:0;border-top:2rpx solid #DCD3C2;background:#FBF8F2;padding:28rpx 36rpx calc(28rpx + env(safe-area-inset-bottom))">
+  <view hover-class="hv" class="btn btn-red" bindtap="submit">提交给主厨</view>
+</view>

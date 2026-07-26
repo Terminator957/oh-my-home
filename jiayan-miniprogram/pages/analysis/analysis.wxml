@@ -1,0 +1,59 @@
+<view class="pad col" style="gap:32rpx;padding-bottom:200rpx">
+
+  <view class="row" style="gap:28rpx">
+    <view class="ph" style="width:176rpx;height:176rpx">照片</view>
+    <view class="col flex1" style="gap:12rpx">
+      <view style="font-size:40rpx;font-weight:600">{{name}}</view>
+      <view style="font-size:24rpx;color:#6B6355;line-height:1.7">
+        <view>照片识别 + {{ingCount}} 项食材</view>
+        <view>置信度 高</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="card col" style="padding:36rpx;gap:32rpx">
+    <view class="row" style="align-items:flex-end;justify-content:space-between">
+      <view class="row" style="align-items:flex-end;gap:12rpx">
+        <view style="font-size:88rpx;font-weight:600;line-height:.95">{{kcal}}</view>
+        <view style="font-size:26rpx;color:#6B6355;padding-bottom:12rpx">千卡 / 份</view>
+      </view>
+      <view style="font-size:24rpx;color:#6B6355;text-align:right;line-height:1.7">
+        <view>全锅 {{kcal * 2}} 千卡</view>
+        <view>两人份</view>
+      </view>
+    </view>
+    <view class="row" style="height:20rpx;width:100%">
+      <view style="width:41%;background:#1F1C18"></view>
+      <view style="width:23%;background:#6B6355"></view>
+      <view style="width:36%;background:#A93226"></view>
+    </view>
+    <view class="row" style="justify-content:space-between;font-size:24rpx;color:#5E574B">
+      <view class="col" style="gap:6rpx"><text>蛋白 40g</text><text style="color:#8A8072;font-size:22rpx">41%</text></view>
+      <view class="col" style="gap:6rpx"><text>碳水 22g</text><text style="color:#8A8072;font-size:22rpx">23%</text></view>
+      <view class="col" style="gap:6rpx"><text>脂肪 15g</text><text style="color:#8A8072;font-size:22rpx">36%</text></view>
+    </view>
+  </view>
+
+  <view class="col" style="gap:20rpx">
+    <view class="label">各食材贡献</view>
+    <view class="row" style="gap:20rpx" wx:for="{{contrib}}" wx:key="name">
+      <view style="width:148rpx;font-size:26rpx">{{item.name}}</view>
+      <view class="flex1" style="height:28rpx;background:#E6DFD1"><view class="bar-fill" style="width:{{item.pct}};height:28rpx;background:#C9BFAC"></view></view>
+      <view style="width:104rpx;text-align:right;font-size:22rpx;font-family:monospace;color:#3A342B">{{item.kcal}}</view>
+    </view>
+  </view>
+
+  <view class="card col" style="padding:28rpx;gap:16rpx">
+    <view style="font-size:26rpx;font-weight:600;color:#A93226">小提醒</view>
+    <view style="font-size:26rpx;line-height:1.9;color:#5E574B">
+      <view>油用了 2 勺，占了 24% 的热量。少半勺，一份就降到 340 千卡左右。</view>
+      <view>本周脂肪已略高，配一份白灼菜心刚好。</view>
+    </view>
+  </view>
+
+</view>
+
+<view style="position:fixed;left:0;right:0;bottom:0;border-top:2rpx solid #DCD3C2;background:#FBF8F2;padding:28rpx 36rpx calc(28rpx + env(safe-area-inset-bottom));display:flex;gap:20rpx">
+  <view hover-class="hv" class="btn btn-ghost flex1" bindtap="fix">手动修正</view>
+  <view hover-class="hv" class="btn btn-red flex1" bindtap="save">存进小本子</view>
+</view>

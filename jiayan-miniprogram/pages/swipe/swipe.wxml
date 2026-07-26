@@ -1,0 +1,40 @@
+<view class="pad col" style="gap:28rpx;height:calc(100vh - env(safe-area-inset-bottom));box-sizing:border-box">
+
+  <view class="row" style="justify-content:space-between">
+    <view style="font-size:24rpx;color:#6B6355">两个人各滑一轮，重合的菜会一起出现在下面</view>
+    <view style="font-size:24rpx;color:#8A8072">{{counter}}</view>
+  </view>
+
+  <view class="flex1" style="position:relative;min-height:520rpx">
+    <view style="position:absolute;left:20rpx;right:20rpx;top:28rpx;bottom:-12rpx;border:2rpx solid #DCD3C2;background:#F0EADE"></view>
+    <view style="position:absolute;left:10rpx;right:10rpx;top:14rpx;bottom:0;border:2rpx solid #DCD3C2;background:#F6F1E7"></view>
+    <view style="position:absolute;inset:0;border:2rpx solid #C9BFAC;background:#FBF8F2;display:flex;flex-direction:column;transform:translateX({{fly}}rpx) rotate({{tilt}}deg);opacity:{{fly ? 0 : 1}};transition:transform .22s ease,opacity .22s ease"
+      bindtouchstart="touchStart" bindtouchend="touchEnd">
+      <view class="ph flex1" style="font-size:22rpx">菜品照片</view>
+      <view class="col" style="padding:32rpx;gap:14rpx">
+        <view class="row" style="justify-content:space-between;align-items:baseline">
+          <view style="font-size:48rpx;font-weight:600">{{cur.name}}</view>
+          <view style="font-size:24rpx;color:#A93226">{{cur.status}}</view>
+        </view>
+        <view style="font-size:24rpx;color:#6B6355;line-height:1.8">{{cur.ing}} ｜ {{cur.time}} · {{cur.level}}</view>
+        <view style="font-size:24rpx;color:#3A342B">{{cur.kcal}} 千卡 / 份 · {{cur.starText}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="row" style="gap:28rpx;justify-content:center">
+    <view bindtap="skip" style="width:128rpx;height:128rpx;border:2rpx solid #C9BFAC;border-radius:50%;background:#FBF8F2;display:flex;align-items:center;justify-content:center;font-size:40rpx;color:#8A8072">×</view>
+    <view bindtap="like" style="width:128rpx;height:128rpx;border:2rpx solid #A93226;border-radius:50%;background:#A93226;display:flex;align-items:center;justify-content:center;font-size:36rpx;color:#FBF8F2">想</view>
+  </view>
+
+  <view class="hr-t col" style="padding-top:24rpx;gap:16rpx;padding-bottom:24rpx">
+    <view class="row" style="justify-content:space-between;align-items:baseline">
+      <view class="label">你想吃的（{{liked.length}}）</view>
+      <view wx:if="{{liked.length}}" style="font-size:24rpx;color:#A93226" bindtap="settle">记到今天 ›</view>
+    </view>
+    <view class="row" style="gap:16rpx;flex-wrap:wrap;min-height:52rpx">
+      <text wx:for="{{liked}}" wx:key="*this" style="font-size:26rpx;border:2rpx solid #A93226;color:#A93226;padding:6rpx 18rpx">{{item}}</text>
+    </view>
+  </view>
+
+</view>

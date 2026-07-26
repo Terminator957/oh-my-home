@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>美味家常 · 家庭晚餐食谱与食材加购</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&family=Baloo+Bhaijaan+2:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --acc:#FF4416; --acc-dark:#D9330C; --ink:#16130F;
+  --paper:#FCFBF9; --sand:#F1EEE9; --peach:#FFEFE9; --peach-ink:#C7350F;
+}
+*{box-sizing:border-box}
+body{margin:0;background:#E7E4DE;font-family:"Noto Sans SC","PingFang SC",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--acc);text-decoration:none}a:hover{color:var(--acc-dark)}
+@keyframes fly{0%{transform:translate(0,0) scale(1);opacity:1}70%{opacity:1}100%{transform:translate(90px,330px) scale(.4);opacity:0}}
+@keyframes toastin{0%{transform:translateY(18px);opacity:0}18%{transform:translateY(0);opacity:1}82%{transform:translateY(0);opacity:1}100%{transform:translateY(-8px);opacity:0}}
+@keyframes pop{0%{transform:scale(1)}40%{transform:scale(1.28)}100%{transform:scale(1)}}
+@keyframes pulse{0%{opacity:.35}50%{opacity:1}100%{opacity:.35}}
+::-webkit-scrollbar{width:0;height:0}
+
+.stage{min-height:100vh;display:flex;flex-direction:column;align-items:center;gap:18px;padding:34px 20px 60px}
+.brandrow{display:flex;align-items:baseline;gap:12px;max-width:430px;width:100%}
+.brand{font:800 19px/1.1 'Baloo Bhaijaan 2','Noto Sans SC',sans-serif;color:var(--ink)}
+.brandsub{font:500 11px/1.3 'Noto Sans SC',sans-serif;color:rgba(22,19,15,.45)}
+.modes{display:flex;gap:8px;max-width:430px;width:100%;flex-wrap:wrap}
+.mode{cursor:pointer;padding:9px 13px;border-radius:12px;font:700 12px/1 'Noto Sans SC',sans-serif;border:1.5px solid rgba(22,19,15,.14);background:#FFF;color:rgba(22,19,15,.6)}
+.mode.on{background:var(--acc);color:#FFF;border-color:var(--acc)}
+.footnote{max-width:430px;width:100%;font:500 11.5px/1.7 'Noto Sans SC',sans-serif;color:rgba(22,19,15,.45);text-wrap:pretty}
+
+.phone{position:relative;width:390px;height:844px;border-radius:46px;background:#141210;padding:9px;box-shadow:0 30px 70px -20px rgba(20,18,16,.55),0 2px 0 rgba(255,255,255,.5) inset}
+.screen{position:relative;width:100%;height:100%;border-radius:38px;overflow:hidden;background:var(--paper);display:flex;flex-direction:column}
+
+.chrome{flex:none;background:#EDEBE7;padding:12px 16px 0;border-bottom:1px solid rgba(22,19,15,.08)}
+.statusbar{display:flex;justify-content:space-between;align-items:center;font:600 12px/1 'Noto Sans SC',sans-serif;color:var(--ink);opacity:.75}
+.batt{display:inline-block;width:22px;height:11px;border:1.4px solid var(--ink);border-radius:3px;position:relative}
+.batt i{position:absolute;left:1.4px;top:1.4px;bottom:1.4px;width:14px;background:var(--ink);border-radius:1.5px;display:block}
+.navbar{display:flex;align-items:center;justify-content:space-between;height:46px}
+.navback{cursor:pointer;width:26px;height:26px;display:grid;place-items:center;font:700 17px/1 sans-serif;color:var(--ink)}
+.navtitle{font:700 15px/1.2 'Noto Sans SC',sans-serif;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.capsule{display:flex;align-items:center;gap:2px;background:rgba(22,19,15,.06);border:1px solid rgba(22,19,15,.1);border-radius:16px;padding:5px 10px}
+.capsule .dots{font:700 13px/1 sans-serif;letter-spacing:1.5px;color:var(--ink);opacity:.7}
+.capsule .div{width:1px;height:13px;background:rgba(22,19,15,.16);margin:0 7px}
+.capsule .ring{width:12px;height:12px;border:1.6px solid rgba(22,19,15,.7);border-radius:50%;display:block}
+
+.content{flex:1;min-height:0;overflow-y:auto;background:var(--paper)}
+
+.photo{background:repeating-linear-gradient(135deg,#E4DFD7 0 12px,#EDE9E2 12px 24px);display:grid;place-items:center}
+.photo small{font:500 10.5px/1.4 ui-monospace,Menlo,monospace;color:rgba(22,19,15,.42);text-align:center}
+.thumb{background:repeating-linear-gradient(135deg,#E4DFD7 0 10px,#EDE9E2 10px 20px)}
+
+.h1{font:800 27px/1.2 'Noto Sans SC',sans-serif;color:var(--ink);letter-spacing:-.5px}
+.h2{font:800 17px/1 'Noto Sans SC',sans-serif;color:var(--ink)}
+.sub{font:500 13px/1.5 'Noto Sans SC',sans-serif;color:rgba(22,19,15,.5)}
+.price{font-family:'Baloo Bhaijaan 2',sans-serif;font-weight:800;color:var(--acc)}
+
+.searchbar{cursor:pointer;display:flex;align-items:center;gap:9px;background:var(--sand);border-radius:16px;padding:13px 15px}
+.searchbar .lens{width:14px;height:14px;border:2px solid rgba(22,19,15,.4);border-radius:50%;display:block;flex:none}
+.searchbar .ph{font:500 14px/1 'Noto Sans SC',sans-serif;color:rgba(22,19,15,.42)}
+.searchbar input{flex:1;border:0;outline:0;background:transparent;font:600 14px/1 'Noto Sans SC',sans-serif;color:var(--ink)}
+
+.chip{cursor:pointer;padding:9px 12px;border-radius:12px;font:700 12px/1 'Noto Sans SC',sans-serif;background:#FFF;color:rgba(22,19,15,.6);border:1.5px solid rgba(22,19,15,.14)}
+.chip.on{background:var(--acc);color:#FFF;border-color:var(--acc)}
+.mood{cursor:pointer;flex:none;padding:10px 14px;border-radius:14px;background:var(--peach);color:var(--peach-ink);font:700 12.5px/1 'Noto Sans SC',sans-serif;white-space:nowrap}
+
+.card{background:#FFF;border:1px solid rgba(22,19,15,.08);border-radius:18px}
+.btn-acc{cursor:pointer;font:700 11.5px/1 'Noto Sans SC',sans-serif;color:#FFF;background:var(--acc);padding:7px 11px;border-radius:11px}
+.btn-dark{cursor:pointer;text-align:center;background:var(--ink);border-radius:16px;padding:16px;font:800 15px/1 'Noto Sans SC',sans-serif;color:#FFF}
+.roundbtn{cursor:pointer;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font:700 17px/1 sans-serif}
+
+.checkbox{cursor:pointer;flex:none;width:22px;height:22px;border-radius:7px;display:grid;place-items:center;background:transparent;border:1.8px solid rgba(22,19,15,.2);color:#FFF;font:800 12px/1 sans-serif}
+.checkbox.on{background:var(--acc);border-color:var(--acc)}
+
+.sticky{position:absolute;left:14px;right:14px;bottom:76px;cursor:pointer;display:flex;align-items:center;gap:12px;background:var(--ink);border-radius:20px;padding:13px 16px;box-shadow:0 12px 30px -8px rgba(22,19,15,.45)}
+.sticky .icon{position:relative;flex:none;width:38px;height:38px;border-radius:13px;background:var(--acc);display:grid;place-items:center}
+.sticky .icon i{width:16px;height:16px;border-radius:5px;background:#FFF;display:block}
+.sticky .icon i.pop{animation:pop .45s ease}
+
+.tabbar{flex:none;display:flex;background:#FFF;border-top:1px solid rgba(22,19,15,.08);padding:9px 6px 16px}
+.tab{flex:1;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:6px}
+.tab .ic{width:20px;height:20px;border-radius:7px;background:rgba(22,19,15,.2)}
+.tab .lb{font:700 10.5px/1 'Noto Sans SC',sans-serif;color:rgba(22,19,15,.35)}
+.tab.on .ic{background:var(--acc)}
+.tab.on .lb{color:var(--ink)}
+
+.flychip{position:absolute;right:34px;top:300px;width:34px;height:34px;border-radius:12px;background:var(--acc);color:#fff;display:grid;place-items:center;font:800 14px/1 'Baloo Bhaijaan 2',sans-serif;pointer-events:none;z-index:30;animation:fly .7s cubic-bezier(.4,0,.5,1) forwards}
+.toast{position:absolute;left:50%;transform:translateX(-50%);bottom:150px;background:rgba(22,19,15,.92);color:#fff;padding:11px 16px;border-radius:14px;font:700 12.5px/1 'Noto Sans SC',sans-serif;white-space:nowrap;pointer-events:none;z-index:31;animation:toastin 2s ease forwards}
+
+@media (max-width:430px){
+  .stage{padding:0}
+  .brandrow,.modes{padding:14px 16px 0;max-width:none}
+  .phone{width:100%;height:100vh;height:100dvh;border-radius:0;padding:0;box-shadow:none}
+  .screen{border-radius:0}
+  .footnote{padding:14px 16px}
+}
+</style>
+</head>
+<body>
+<div class="stage">
+
+  <div class="brandrow">
+    <div class="brand">美味家常</div>
+    <div class="brandsub">家庭晚餐食谱与食材加购</div>
+  </div>
+
+  <div class="modes" id="modes">
+    <div class="mode" data-act="mode" data-arg="A">A · 按食材勾选</div>
+    <div class="mode" data-act="mode" data-arg="B">B · 整套一键加购</div>
+    <div class="mode" data-act="mode" data-arg="C">C · 一周餐单合并</div>
+  </div>
+
+  <div class="phone">
+    <div class="screen">
+      <div class="chrome">
+        <div class="statusbar">
+          <span>9:41</span>
+          <div style="display:flex;gap:5px;align-items:center"><span style="font-size:10px">5G</span><span class="batt"><i></i></span></div>
+        </div>
+        <div class="navbar">
+          <div style="display:flex;align-items:center;gap:10px;min-width:0">
+            <div class="navback" data-act="go" data-arg="home">‹</div>
+            <div class="navtitle" id="navTitle">美味家常</div>
+          </div>
+          <div class="capsule"><span class="dots">•••</span><span class="div"></span><span class="ring"></span></div>
+        </div>
+      </div>
+
+      <div class="content" id="content"></div>
+
+      <div id="stickyHost"></div>
+      <div id="overlay"></div>
+
+      <div class="tabbar" id="tabbar"></div>
+    </div>
+  </div>
+
+  <div class="footnote">
+    三种加购方式在顶部切换：A 逐个食材勾选加购；B 整套食材包一键加购；C 排一周餐单后合并去重成一份清单。
+  </div>
+</div>
+
+<script>
+'use strict';
+/* ============ 数据 ============ */
+const FREE_SHIP = 79;
+const RECIPES = [
+  {id:'r1',name:'番茄牛腩煲',meta:'炖菜 · 75 分钟 · 微酸甜',cuisine:'家常',time:75,spice:0,
+   ing:[{n:'牛腩',q:'600g',p:48},{n:'番茄',q:'4 个',p:9.9},{n:'洋葱',q:'1 个',p:2.5},{n:'土豆',q:'2 个',p:4.5},{n:'姜片',q:'适量',p:1.5}],
+   steps:['牛腩冷水下锅，加姜片焯水 5 分钟，捞出冲净浮沫。','番茄去皮切块，一半炒成酱底，另一半留到后段放。','牛腩与番茄酱底同炒上色，加热水没过，小火炖 50 分钟。','放土豆、剩余番茄再炖 15 分钟，收汁前调盐即可。']},
+  {id:'r2',name:'蒜香排骨饭',meta:'一锅出 · 45 分钟 · 咸香',cuisine:'家常',time:45,spice:0,
+   ing:[{n:'肋排',q:'500g',p:39},{n:'蒜',q:'1 头',p:2},{n:'东北米',q:'300g',p:6.5},{n:'生抽',q:'2 勺',p:3},{n:'香葱',q:'2 根',p:1.5}],
+   steps:['排骨用蒜末、生抽、少许糖抓匀腌 20 分钟。','大米洗净铺入砂锅，水略少于平时。','排骨连汁摊在米上，中小火焖 25 分钟。','关火焖 5 分钟，撒葱花拌开。']},
+  {id:'r3',name:'酸辣土豆丝',meta:'快手 · 12 分钟 · 微辣',cuisine:'川味',time:12,spice:1,
+   ing:[{n:'土豆',q:'2 个',p:4.5},{n:'干辣椒',q:'4 个',p:1.5},{n:'白醋',q:'1 勺',p:2},{n:'青椒',q:'1 个',p:2.5}],
+   steps:['土豆切细丝，冲水去淀粉后沥干。','热油爆香干辣椒，下土豆丝大火快炒。','沿锅边淋醋，加盐炒 30 秒出锅。']},
+  {id:'r4',name:'虾仁豆腐羹',meta:'汤羹 · 20 分钟 · 清淡',cuisine:'清淡',time:20,spice:0,
+   ing:[{n:'鲜虾仁',q:'200g',p:32},{n:'嫩豆腐',q:'1 盒',p:3.5},{n:'鸡蛋',q:'1 个',p:1.2},{n:'玉米淀粉',q:'1 勺',p:1.5}],
+   steps:['豆腐切小块，虾仁开背去线。','水开下豆腐，转小火煮 2 分钟后下虾仁。','淀粉水勾薄芡，淋蛋液成花，点香油。']},
+  {id:'r5',name:'孜然羊肉小炒',meta:'快手 · 18 分钟 · 香辣',cuisine:'西北',time:18,spice:2,
+   ing:[{n:'羊后腿肉',q:'400g',p:52},{n:'孜然',q:'1 勺',p:3},{n:'洋葱',q:'1 个',p:2.5},{n:'香菜',q:'1 把',p:2}],
+   steps:['羊肉逆纹切片，用少许淀粉抓匀。','大火热锅滑炒羊肉至变色立即盛出。','洋葱炒软，回锅羊肉，撒孜然辣椒面翻匀，最后放香菜。']},
+  {id:'r6',name:'可乐鸡翅',meta:'孩子最爱 · 30 分钟 · 甜咸',cuisine:'家常',time:30,spice:0,
+   ing:[{n:'鸡中翅',q:'10 个',p:26},{n:'可乐',q:'1 罐',p:3.5},{n:'姜片',q:'适量',p:1.5},{n:'生抽',q:'2 勺',p:3}],
+   steps:['鸡翅两面划刀，煎至两面金黄。','倒可乐没过鸡翅，加生抽姜片。','中火收汁到浓稠亮泽。']}
+];
+const DAYS = ['周一','周二','周三','周四','周五','周六','周日'];
+const FILTERS = [
+  {k:'fast', label:'30 分钟内'}, {k:'kid', label:'小孩爱吃'}, {k:'nospice', label:'不辣'},
+  {k:'soup', label:'汤羹'}, {k:'meat', label:'有肉'}, {k:'cheap', label:'¥40 以内'}
+];
+const TRACK_STEPS = [
+  {label:'已下单', time:'18:02 · 已支付'},
+  {label:'门店拣货中', time:'18:05 · 冷链分装'},
+  {label:'配送中', time:'18:18 · 预计 18:40 送达'},
+  {label:'已送达', time:'放在门口，请及时冷藏'}
+];
+const SLOTS = ['今天 17:30–18:00', '今天 18:00–18:30', '明天 09:00–10:00'];
+const TABS = [
+  {k:'home', label:'菜谱'}, {k:'search', label:'搜索'}, {k:'plan', label:'餐单'},
+  {k:'cart', label:'购物篮'}, {k:'me', label:'我的'}
+];
+const TITLES = {home:'美味家常', search:'搜索菜谱', plan:'本周餐单', cart:'购物篮', checkout:'确认订单', track:'订单追踪', me:'我的厨房'};
+
+const yuan = n => '¥' + (Math.round(n * 10) / 10).toString().replace(/\.0$/, '');
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+/* ============ 状态 ============ */
+const state = {
+  mode: 'A', screen: 'home', recipeId: 'r1', serves: 4,
+  checked: {}, cart: [], query: '', activeFilters: {}, slot: 1,
+  plan: {'周一':'r2', '周三':'r1', '周六':'r6'},
+  trackStage: 1, orderItems: [],
+  history: [
+    {title:'番茄牛腩煲 · 整套食材', price:'¥66', date:'7月18日 18:20', status:'已完成'},
+    {title:'酸辣土豆丝 + 可乐鸡翅', price:'¥38', date:'7月14日 17:05', status:'已完成'},
+    {title:'虾仁豆腐羹 · 整套食材', price:'¥38', date:'7月09日 18:40', status:'已完成'}
+  ]
+};
+let trackTimer = null;
+let lastScreen = null;
+
+const $ = sel => document.querySelector(sel);
+const recipe = () => RECIPES.find(r => r.id === state.recipeId) || RECIPES[0];
+const factor = () => state.serves / 4;
+const recipeSum = r => r.ing.reduce((a, i) => a + i.p, 0);
+const cartCount = () => state.cart.reduce((a, c) => a + c.qty, 0);
+const subtotal = () => state.cart.reduce((a, c) => a + c.price * c.qty, 0);
+const fee = () => subtotal() > FREE_SHIP ? 0 : 5;
+
+function set(patch){ Object.assign(state, patch); render(); }
+
+/* ============ 动效 ============ */
+function fx(msg){
+  const ov = $('#overlay');
+  const fly = document.createElement('div');
+  fly.className = 'flychip'; fly.textContent = '+1';
+  ov.appendChild(fly); setTimeout(() => fly.remove(), 750);
+  if (msg){
+    const t = document.createElement('div');
+    t.className = 'toast'; t.textContent = msg;
+    ov.appendChild(t); setTimeout(() => t.remove(), 2050);
+  }
+  const icon = document.querySelector('.sticky .icon i');
+  if (icon){ icon.classList.remove('pop'); void icon.offsetWidth; icon.classList.add('pop'); }
+}
+function toastOnly(msg){
+  const t = document.createElement('div');
+  t.className = 'toast'; t.textContent = msg;
+  $('#overlay').appendChild(t); setTimeout(() => t.remove(), 2050);
+}
+
+/* ============ 购物篮 ============ */
+function addItems(items, msg){
+  items.forEach(it => {
+    const found = state.cart.find(c => c.name === it.name);
+    if (found) found.qty += 1;
+    else state.cart.push(Object.assign({qty: 1}, it));
+  });
+  render();
+  fx(msg);
+}
+
+/* ============ 订单追踪 ============ */
+function startTracking(){
+  clearInterval(trackTimer);
+  state.trackStage = 1;
+  trackTimer = setInterval(() => {
+    if (state.trackStage >= 4){ clearInterval(trackTimer); return; }
+    state.trackStage += 1;
+    if (state.screen === 'track') render();
+  }, 2600);
+}
+
+/* ============ 搜索过滤 ============ */
+function passFilters(x){
+  const a = state.activeFilters, sum = recipeSum(x);
+  if (a.fast && x.time > 30) return false;
+  if (a.kid && !['r6','r2','r1'].includes(x.id)) return false;
+  if (a.nospice && x.spice > 0) return false;
+  if (a.soup && x.id !== 'r4') return false;
+  if (a.meat && !['r1','r2','r5','r6'].includes(x.id)) return false;
+  if (a.cheap && sum > 40) return false;
+  if (state.query && !(x.name + x.meta + x.ing.map(i => i.n).join('')).includes(state.query)) return false;
+  return true;
+}
+
+/* ============ 页面模板 ============ */
+function recipeCardV(x){ // 竖卡（首页网格）
+  return `<div data-act="open" data-arg="${x.id}" style="cursor:pointer;border-radius:18px;overflow:hidden;background:#FFF;border:1px solid rgba(22,19,15,.08)">
+    <div class="photo" style="height:104px"><small style="font-size:9.5px">菜品照片</small></div>
+    <div style="padding:10px 11px 12px">
+      <div style="font:700 14px/1.3 'Noto Sans SC',sans-serif;color:var(--ink)">${esc(x.name)}</div>
+      <div style="margin-top:4px;font:500 11px/1 'Noto Sans SC',sans-serif;color:rgba(22,19,15,.45)">${esc(x.meta)}</div>
+      <div style="margin-top:9px;display:flex;align-items:baseline;justify-content:space-between">
+        <span class="price" style="font-size:19px">${yuan(recipeSum(x))}</span>
+        <span style="font:700 11px/1 'Noto Sans SC',sans-serif;color:var(--peach-ink);background:var(--peach);padding:5px 8px;border-radius:9px">加购</span>
+      </div>
+    </div>
+  </div>`;
+}
+
+function viewHome(){
+  return `<div style="padding:18px 16px 24px">
+    <div class="h1">今晚吃什么？</div>
+    <div class="sub" style="margin-top:6px">四口之家 · 45 分钟内搞定 · 食材直送到家</div>
+
+    <div class="searchbar" data-act="go" data-arg="search" style="margin-top:16px">
+      <span class="lens"></span><span class="ph">搜菜名、食材或口味</span>
+    </div>
+
+    <div style="margin-top:20px;display:flex;gap:9px;overflow-x:auto;padding-bottom:2px">
+      <div class="mood" data-act="mood" data-arg="soup">想吃热汤</div>
+      <div class="mood" data-act="mood" data-arg="fast">半小时开饭</div>
+      <div class="mood" data-act="mood" data-arg="kid">小孩爱吃</div>
+      <div class="mood" data-act="mood" data-arg="nospice">清淡少油</div>
+    </div>
+
+    <div style="margin-top:24px;display:flex;align-items:baseline;justify-content:space-between">
+      <div class="h2">今日主推</div>
+      <div style="font:500 12px/1 'Noto Sans SC',sans-serif;color:rgba(22,19,15,.4)">全家都爱吃</div>
+    </div>
+
+    <div data-act="open" data-arg="r1" style="cursor:pointer;margin-top:12px;border-radius:22px;overflow:hidden;background:var(--sand);border:1px solid rgba(22,19,15,.07)">
+      <div class="photo" style="height:186px"><small>菜品照片<br>番茄牛腩煲 · 4:3</small></div>
+      <div style="padding:14px 16px 16px;background:#FFF">
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px">
+          <div>
+            <div style="font:800 20px/1.25 'Noto Sans SC',sans-serif;color:var(--ink)">番茄牛腩煲</div>
+            <div style="margin-top:5px;font:500 12px/1 'Noto Sans SC',sans-serif;color:rgba(22,19,15,.5)">炖菜 · 75 分钟 · 4 人份</div>
+          </div>
+          <div style="flex:none;text-align:right">
+            <div class="price" style="font-size:26px">${yuan(recipeSum(RECIPES[0]))}</div>
+            <div style="font:500 10.5px/1.4 'Noto Sans SC',sans-serif;color:rgba(22,19,15,.4)">整套食材</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="h2" style="margin-top:26px">下饭快手菜</div>
+    <div style="margin-top:12px;display:grid;grid-template-columns:1fr 1fr;gap:12px">
+      ${RECIPES.slice(1, 5).map(recipeCardV).join('')}
+    </div>
+  </div>`;
+}
+
+function searchResultsHtml(){
+  const list = RECIPES.filter(passFilters);
+  return list.map(x => `<div data-act="open" data-arg="${x.id}" style="cursor:pointer;display:flex;gap:12px;background:#FFF;border:1px solid rgba(22,19,15,.08);border-radius:18px;padding:11px">
+    <div class="thumb" style="flex:none;width:82px;height:82px;border-radius:13px"></div>
+    <div style="flex:1;min-width:0;display:flex;flex-direction:column;justify-content:space-between">
+      <div>
+        <div style="font:700 15px/1.3 'Noto Sans SC',sans-serif;color:var(--ink)">${esc(x.name)}</div>
+        <div style="margin-top:4px;font:500 11.5px/1.4 'Noto Sans SC',sans-serif;color:rgba(22,19,15,.45)">${esc(x.meta)}</div>
+      </div>
+      <div style="display:flex;align-items:baseline;justify-content:space-between">
+        <span class="price" style="font-size:20px">${yuan(recipeSum(x))}</span>
+        <span class="btn-acc" data-act="quickAdd" data-arg="${x.id}">加购</span>
+      </div>
+    </div>
+  </div>`).join('');
+}
+
+function viewSearch(){
+  const count = RECIPES.filter(passFilters).length;
+  return `<div style="padding:16px 16px 24px">
+    <div class="searchbar" style="cursor:default;padding:12px 14px">
+      <span class="lens" style="width:13px;height:13px"></span>
+      <input id="q" value="${esc(state.query)}" placeholder="搜菜名、食材或口味">
+    </div>
+    <div style="margin-top:14px;display:flex;flex-wrap:wrap;gap:8px">
+      ${FILTERS.map(f => `<div class="chip${state.activeFilters[f.k] ? ' on' : ''}" data-act="filter" data-arg="${f.k}">${f.label}</div>`).join('')}
+    </div>
+    <div id="resultLabel" style="margin-top:16px;font:600 12px/1 'Noto Sans SC',sans-serif;color:rgba(22,19,15,.42)">${count} 道菜符合条件</div>
+    <div id="results" style="margin-top:12px;display:flex;flex-direction:column;gap:11px">${searchResultsHtml()}</div>
+  </div>`;
+}
+
+function viewDetail(){
+  const r = recipe(), f = factor();
+  const total = r.ing.reduce((a, i) => a + i.p * f, 0);
+  const checkedCount = r.ing.filter(i => state.checked[r.id + i.n]).length;
+  const servesLabel = state.serves + ' 人份';
+
+  const modeB = state.mode === 'B' ? `
+    <div style="margin-top:16px;border-radius:20px;background:var(--ink);padding:16px 17px;color:#FFF">
+      <div style="font:800 16px/1.3 'Noto Sans SC',sans-serif">整套食材包</div>
+      <div style="margin-top:6px;font:500 12px/1.6 'Noto Sans SC',sans-serif;opacity:.7">${r.ing.length} 种食材已按 ${state.serves} 人份配好，缺一样都不用自己算。</div>
+      <div data-act="addBundle" style="cursor:pointer;margin-top:14px;display:flex;align-items:center;justify-content:space-between;background:var(--acc);border-radius:14px;padding:13px 16px">
+        <span style="font:800 14px/1 'Noto Sans SC',sans-serif">一键加购整套</span>
+        <span style="font:800 20px/1 'Baloo Bhaijaan 2',sans-serif">${yuan(total)}</span>
+      </div>
+    </div>` : '';
+
+  const modeC = state.mode === 'C' ? `
+    <div style="margin-top:16px;border-radius:20px;background:var(--peach);padding:16px 17px">
+      <div style="font:800 16px/1.3 'Noto Sans SC',sans-serif;color:var(--peach-ink)">加入本周餐单</div>
+      <div style="margin-top:6px;font:500 12px/1.6 'Noto Sans SC',sans-serif;color:rgba(22,19,15,.6)">排进哪一天？到日子前一天自动提醒补货。</div>
+      <div style="margin-top:13px;display:flex;flex-wrap:wrap;gap:7px">
+        ${DAYS.map(d => {
+          const on = state.plan[d] === r.id;
+          return `<div data-act="pickDay" data-arg="${d}" style="cursor:pointer;padding:9px 12px;border-radius:12px;font:700 12px/1 'Noto Sans SC',sans-serif;background:${on ? 'var(--acc)' : '#FFF'};color:${on ? '#FFF' : 'rgba(22,19,15,.6)'}">${d.slice(1)}</div>`;
+        }).join('')}
+      </div>
+    </div>` : '';
+
+  return `<div>
+    <div class="photo" style="height:230px"><small>菜品照片<br>${esc(r.name)}</small></div>
+    <div style="padding:18px 16px 26px">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px">
+        <div>
+          <div style="font:800 25px/1.2 'Noto Sans SC',sans-serif;color:var(--ink);letter-spacing:-.4px">${esc(r.name)}</div>
+          <div style="margin-top:6px;font:500 12.5px/1 'Noto Sans SC',sans-serif;color:rgba(22,19,15,.5)">${esc(r.meta)}</div>
+        </div>
+        <div style="flex:none;text-align:right">
+          <div class="price" style="font-size:30px">${yuan(total)}</div>
+          <div style="font:500 10.5px/1.4 'Noto Sans SC',sans-serif;color:rgba(22,19,15,.4)">${servesLabel}</div>
+        </div>
+      </div>
+
+      <div style="margin-top:16px;display:flex;align-items:center;justify-content:space-between;background:var(--sand);border-radius:16px;padding:12px 14px">
+        <div style="font:700 13px/1 'Noto Sans SC',sans-serif;color:var(--ink)">份量</div>
+        <div style="display:flex;align-items:center;gap:14px">
+          <div class="roundbtn" data-act="decServ" style="background:#FFF;color:var(--ink);box-shadow:0 1px 2px rgba(22,19,15,.12)">−</div>
+          <div style="font:800 16px/1 'Noto Sans SC',sans-serif;color:var(--ink);min-width:44px;text-align:center">${servesLabel}</div>
+          <div class="roundbtn" data-act="incServ" style="background:var(--acc);color:#FFF">+</div>
+        </div>
+      </div>
+
+      ${modeB}${modeC}
+
+      <div style="margin-top:24px;display:flex;align-items:baseline;justify-content:space-between">
+        <div class="h2">食材清单</div>
+        ${state.mode === 'A' ? `<div data-act="addAllChecked" style="cursor:pointer;font:700 12px/1 'Noto Sans SC',sans-serif;color:var(--acc)">加购已勾选 ${checkedCount}</div>` : ''}
+      </div>
+
+      <div style="margin-top:12px;display:flex;flex-direction:column;gap:8px">
+        ${r.ing.map((i, idx) => {
+          const on = !!state.checked[r.id + i.n];
+          return `<div style="display:flex;align-items:center;gap:12px;background:#FFF;border:1px solid rgba(22,19,15,.08);border-radius:15px;padding:12px 13px">
+            <div class="checkbox${on ? ' on' : ''}" data-act="toggleIng" data-arg="${idx}">${on ? '✓' : ''}</div>
+            <div style="flex:1;min-width:0">
+              <div style="font:700 14px/1.2 'Noto Sans SC',sans-serif;color:var(--ink)">${esc(i.n)}</div>
+              <div style="margin-top:3px;font:500 11px/1 'Noto Sans SC',sans-serif;color:rgba(22,19,15,.45)">${esc(i.q)}${state.serves === 4 ? '' : ' · 按 ' + state.serves + ' 人份'}</div>
+            </div>
+            <div style="flex:none;font:800 17px/1 'Baloo Bhaijaan 2',sans-serif;color:var(--ink)">${yuan(i.p * f)}</div>
+            <div data-act="addIng" data-arg="${idx}" style="cursor:pointer;flex:none;width:28px;height:28px;border-radius:9px;background:var(--acc);display:grid;place-items:center;color:#FFF;font:700 16px/1 sans-serif">+</div>
+          </div>`;
+        }).join('')}
+      </div>
+
+      <div class="h2" style="margin-top:26px">做法</div>
+      <div style="margin-top:12px;display:flex;flex-direction:column;gap:12px">
+        ${r.steps.map((t, i) => `<div style="display:flex;gap:12px">
+          <div style="flex:none;width:26px;height:26px;border-radius:50%;background:var(--peach);color:var(--peach-ink);display:grid;place-items:center;font:800 12px/1 'Baloo Bhaijaan 2',sans-serif">${i + 1}</div>
+          <div style="flex:1;font:500 13.5px/1.65 'Noto Sans SC',sans-serif;color:rgba(22,19,15,.75);text-wrap:pretty">${esc(t)}</div>
+        </div>`).join('')}
+      </div>
+      <div style="height:70px"></div>
+    </div>
+  </div>`;
+}
+
+function viewPlan(){
+  const planDays = DAYS.filter(d => state.plan[d]);
+  const planTotal = planDays.reduce((a, d) => {
+    const r = RECIPES.find(x => x.id === state.plan[d]);
+    return a + (r ? recipeSum(r) : 0);
+  }, 0);
+  return `<div style="padding:18px 16px 26px">
+    <div style="font:800 24px/1.2 'Noto Sans SC',sans-serif;color:var(--ink)">本周餐单</div>
+    <div style="margin-top:6px;font:500 12.5px/1.5 'Noto Sans SC',sans-serif;color:rgba(22,19,15,.5)">${planDays.length} 天已排菜 · 合并后自动去重</div>
+    <div style="margin-top:16px;display:flex;flex-direction:column;gap:9px">
+      ${DAYS.map(d => {
+        const rec = RECIPES.find(x => x.id === state.plan[d]);
+        return `<div style="display:flex;align-items:center;gap:12px;background:${rec ? '#FFF' : '#F7F5F1'};border:1px solid rgba(22,19,15,.08);border-radius:16px;padding:13px 14px">
+          <div style="flex:none;width:38px;font:800 13px/1 'Noto Sans SC',sans-serif;color:${rec ? 'var(--ink)' : 'rgba(22,19,15,.35)'}">${d}</div>
+          <div style="flex:1;min-width:0;font:700 14px/1.3 'Noto Sans SC',sans-serif;color:var(--ink)">${rec ? esc(rec.name) : '未安排'}</div>
+          <div style="flex:none;font:800 16px/1 'Baloo Bhaijaan 2',sans-serif;color:${rec ? 'var(--acc)' : 'rgba(22,19,15,.3)'}">${rec ? yuan(recipeSum(rec)) : '—'}</div>
+        </div>`;
+      }).join('')}
+    </div>
+    <div data-act="mergePlan" style="cursor:pointer;margin-top:18px;display:flex;align-items:center;justify-content:space-between;background:var(--ink);border-radius:18px;padding:15px 17px;color:#FFF">
+      <div>
+        <div style="font:800 14px/1 'Noto Sans SC',sans-serif">合并为一份购物清单</div>
+        <div style="margin-top:5px;font:500 11px/1 'Noto Sans SC',sans-serif;opacity:.65">重复食材自动合并去重</div>
+      </div>
+      <div style="font:800 22px/1 'Baloo Bhaijaan 2',sans-serif;color:#FF7A54">${yuan(planTotal)}</div>
+    </div>
+  </div>`;
+}
+
+function summaryBlock(payLabel){
+  return `<div style="margin-top:18px;background:var(--sand);border-radius:18px;padding:15px 16px">
+    <div style="display:flex;justify-content:space-between;font:500 12.5px/1 'Noto Sans SC',sans-serif;color:rgba(22,19,15,.6)"><span>${payLabel === '应付' ? '共 ' + cartCount() + ' 件食材' : '食材小计'}</span><span>${yuan(subtotal())}</span></div>
+    <div style="margin-top:9px;display:flex;justify-content:space-between;font:500 12.5px/1 'Noto Sans SC',sans-serif;color:rgba(22,19,15,.6)"><span>冷链配送费</span><span>${fee() === 0 ? '免配送费' : '¥5'}</span></div>
+    <div style="margin-top:12px;padding-top:12px;border-top:1px dashed rgba(22,19,15,.18);display:flex;align-items:baseline;justify-content:space-between">
+      <span style="font:800 14px/1 'Noto Sans SC',sans-serif;color:var(--ink)">${payLabel}</span>
+      <span class="price" style="font-size:${payLabel === '应付' ? 28 : 26}px">${yuan(subtotal() + fee())}</span>
+    </div>
+  </div>`;
+}
+
+function viewCart(){
+  if (state.cart.length === 0){
+    return `<div style="padding:18px 16px 26px">
+      <div style="font:800 24px/1.2 'Noto Sans SC',sans-serif;color:var(--ink)">购物篮</div>
+      <div style="margin-top:60px;text-align:center">
+        <div style="width:72px;height:72px;margin:0 auto;border-radius:24px;background:var(--sand)"></div>
+        <div style="margin-top:16px;font:700 14px/1 'Noto Sans SC',sans-serif;color:rgba(22,19,15,.5)">还没有食材</div>
+        <div data-act="go" data-arg="home" style="cursor:pointer;margin-top:14px;display:inline-block;font:700 13px/1 'Noto Sans SC',sans-serif;color:#FFF;background:var(--acc);padding:12px 20px;border-radius:14px">去看看菜谱</div>
+      </div>
+    </div>`;
+  }
+  return `<div style="padding:18px 16px 26px">
+    <div style="font:800 24px/1.2 'Noto Sans SC',sans-serif;color:var(--ink)">购物篮</div>
+    <div style="margin-top:14px;display:flex;flex-direction:column;gap:9px">
+      ${state.cart.map((c, idx) => `<div style="display:flex;align-items:center;gap:12px;background:#FFF;border:1px solid rgba(22,19,15,.08);border-radius:16px;padding:12px 13px">
+        <div class="thumb" style="flex:none;width:54px;height:54px;border-radius:12px"></div>
+        <div style="flex:1;min-width:0">
+          <div style="font:700 14px/1.25 'Noto Sans SC',sans-serif;color:var(--ink)">${esc(c.name)}</div>
+          <div style="margin-top:3px;font:500 11px/1 'Noto Sans SC',sans-serif;color:rgba(22,19,15,.45)">${esc(c.sub)}</div>
+          <div class="price" style="margin-top:6px;font-size:17px">${yuan(c.price * c.qty)}</div>
+        </div>
+        <div style="flex:none;display:flex;align-items:center;gap:10px">
+          <div class="roundbtn" data-act="cartDec" data-arg="${idx}" style="width:27px;height:27px;font-size:15px;background:var(--sand);color:var(--ink)">−</div>
+          <div style="font:800 14px/1 'Noto Sans SC',sans-serif;min-width:14px;text-align:center">${c.qty}</div>
+          <div class="roundbtn" data-act="cartInc" data-arg="${idx}" style="width:27px;height:27px;font-size:15px;background:var(--acc);color:#FFF">+</div>
+        </div>
+      </div>`).join('')}
+    </div>
+    ${summaryBlock('合计')}
+    <div data-act="go" data-arg="checkout" style="cursor:pointer;margin-top:16px;text-align:center;background:var(--acc);border-radius:16px;padding:15px;font:800 15px/1 'Noto Sans SC',sans-serif;color:#FFF">去结算</div>
+  </div>`;
+}
+
+function viewCheckout(){
+  return `<div style="padding:18px 16px 26px">
+    <div style="font:800 24px/1.2 'Noto Sans SC',sans-serif;color:var(--ink)">确认订单</div>
+    <div class="card" style="margin-top:16px;padding:15px 16px">
+      <div style="font:500 11px/1 'Noto Sans SC',sans-serif;color:rgba(22,19,15,.42)">配送到</div>
+      <div style="margin-top:7px;font:700 15px/1.4 'Noto Sans SC',sans-serif;color:var(--ink)">王女士 · 138****6621</div>
+      <div style="margin-top:3px;font:500 12.5px/1.5 'Noto Sans SC',sans-serif;color:rgba(22,19,15,.55)">朝阳区望京东园四区 12 号楼 3 单元 801</div>
+    </div>
+    <div class="card" style="margin-top:12px;padding:15px 16px">
+      <div style="font:500 11px/1 'Noto Sans SC',sans-serif;color:rgba(22,19,15,.42)">送达时间</div>
+      <div style="margin-top:11px;display:flex;gap:8px;flex-wrap:wrap">
+        ${SLOTS.map((label, i) => `<div class="chip${state.slot === i ? ' on' : ''}" data-act="pickSlot" data-arg="${i}" style="padding:10px 13px;border-radius:13px;font-size:12.5px">${label}</div>`).join('')}
+      </div>
+    </div>
+    ${summaryBlock('应付')}
+    <div class="btn-dark" data-act="submitOrder" style="margin-top:18px">提交订单 · ${yuan(subtotal() + fee())}</div>
+    <div style="margin-top:11px;text-align:center;font:500 11px/1.5 'Noto Sans SC',sans-serif;color:rgba(22,19,15,.4)">支持全程冷链 · 不满意可退</div>
+  </div>`;
+}
+
+function viewTrack(){
+  const stage = state.trackStage;
+  const items = state.orderItems.length ? state.orderItems : [{name:'牛腩', qty:'×1'}, {name:'番茄', qty:'×1'}, {name:'土豆', qty:'×1'}];
+  return `<div style="padding:18px 16px 26px">
+    <div style="font:800 24px/1.2 'Noto Sans SC',sans-serif;color:var(--ink)">${stage >= 4 ? '食材已送达' : '预计 18:40 送达'}</div>
+    <div style="margin-top:6px;font:500 12.5px/1.5 'Noto Sans SC',sans-serif;color:rgba(22,19,15,.5)">${stage >= 4 ? '记得先把牛腩和虾仁放进冷藏' : '冷链保温箱配送中 · 全程 4℃'}</div>
+    <div class="card" style="margin-top:18px;border-radius:20px;padding:18px 16px">
+      ${TRACK_STEPS.map((t, i) => {
+        const done = i < stage, cur = i === stage - 1;
+        return `<div style="display:flex;gap:13px">
+          <div style="flex:none;display:flex;flex-direction:column;align-items:center;width:22px">
+            <div style="width:14px;height:14px;border-radius:50%;background:${done ? 'var(--acc)' : '#FFF'};border:2px solid ${done ? 'var(--acc)' : 'rgba(22,19,15,.18)'};${cur && stage < 4 ? 'animation:pulse 1.4s ease-in-out infinite' : ''}"></div>
+            ${i < TRACK_STEPS.length - 1 ? `<div style="flex:1;width:2px;background:${i < stage - 1 ? 'var(--acc)' : 'rgba(22,19,15,.12)'};min-height:24px"></div>` : ''}
+          </div>
+          <div style="flex:1;padding-bottom:16px">
+            <div style="font:700 14px/1.2 'Noto Sans SC',sans-serif;color:${done ? 'var(--ink)' : 'rgba(22,19,15,.38)'}">${t.label}</div>
+            <div style="margin-top:4px;font:500 11.5px/1.5 'Noto Sans SC',sans-serif;color:rgba(22,19,15,.45)">${t.time}</div>
+          </div>
+        </div>`;
+      }).join('')}
+    </div>
+    <div style="margin-top:14px;display:flex;align-items:center;gap:12px;background:var(--peach);border-radius:18px;padding:14px 15px">
+      <div class="thumb" style="flex:none;width:42px;height:42px;border-radius:50%"></div>
+      <div style="flex:1">
+        <div style="font:700 13.5px/1.2 'Noto Sans SC',sans-serif;color:var(--ink)">配送员 · 老陈</div>
+        <div style="margin-top:4px;font:500 11.5px/1 'Noto Sans SC',sans-serif;color:rgba(22,19,15,.5)">京A·骑手 3721</div>
+      </div>
+      <div style="flex:none;font:700 12px/1 'Noto Sans SC',sans-serif;color:#FFF;background:var(--acc);padding:10px 13px;border-radius:12px">联系</div>
+    </div>
+    <div class="card" style="margin-top:14px;padding:15px 16px">
+      <div style="font:800 14px/1 'Noto Sans SC',sans-serif;color:var(--ink)">本单食材</div>
+      <div style="margin-top:11px;display:flex;flex-direction:column;gap:8px">
+        ${items.map(o => `<div style="display:flex;justify-content:space-between;font:500 12.5px/1 'Noto Sans SC',sans-serif;color:rgba(22,19,15,.65)"><span>${esc(o.name)}</span><span>${esc(o.qty)}</span></div>`).join('')}
+      </div>
+    </div>
+    <div data-act="go" data-arg="home" style="cursor:pointer;margin-top:16px;text-align:center;background:var(--sand);border-radius:16px;padding:14px;font:800 14px/1 'Noto Sans SC',sans-serif;color:var(--ink)">再逛逛菜谱</div>
+  </div>`;
+}
+
+function viewMe(){
+  const stats = [{v:'128', k:'累计做过的菜'}, {v:'23', k:'收藏菜谱'}, {v:'¥1,482', k:'今年食材支出'}];
+  return `<div style="padding:18px 16px 26px">
+    <div style="display:flex;align-items:center;gap:14px">
+      <div class="thumb" style="flex:none;width:58px;height:58px;border-radius:20px"></div>
+      <div>
+        <div style="font:800 19px/1.2 'Noto Sans SC',sans-serif;color:var(--ink)">王女士家的厨房</div>
+        <div style="margin-top:5px;font:500 12px/1 'Noto Sans SC',sans-serif;color:rgba(22,19,15,.45)">四口之家 · 已做 128 道菜</div>
+      </div>
+    </div>
+    <div style="margin-top:18px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px">
+      ${stats.map(s => `<div style="background:var(--sand);border-radius:16px;padding:14px 12px">
+        <div class="price" style="font-size:22px">${s.v}</div>
+        <div style="margin-top:6px;font:600 11px/1.3 'Noto Sans SC',sans-serif;color:rgba(22,19,15,.5)">${s.k}</div>
+      </div>`).join('')}
+    </div>
+    <div class="h2" style="margin-top:24px">历史订单</div>
+    <div style="margin-top:12px;display:flex;flex-direction:column;gap:10px">
+      ${state.history.map(h => `<div class="card" data-act="openHistory" style="cursor:pointer;padding:14px 15px">
+        <div style="display:flex;justify-content:space-between;align-items:baseline">
+          <div style="font:700 14.5px/1.3 'Noto Sans SC',sans-serif;color:var(--ink)">${esc(h.title)}</div>
+          <div style="font:800 18px/1 'Baloo Bhaijaan 2',sans-serif;color:var(--ink)">${esc(h.price)}</div>
+        </div>
+        <div style="margin-top:6px;display:flex;justify-content:space-between;font:500 11.5px/1 'Noto Sans SC',sans-serif;color:rgba(22,19,15,.45)"><span>${esc(h.date)}</span><span>${esc(h.status)}</span></div>
+      </div>`).join('')}
+    </div>
+  </div>`;
+}
+
+const VIEWS = {home: viewHome, search: viewSearch, detail: viewDetail, plan: viewPlan, cart: viewCart, checkout: viewCheckout, track: viewTrack, me: viewMe};
+
+/* ============ 渲染 ============ */
+function render(){
+  $('#navTitle').textContent = state.screen === 'detail' ? recipe().name : (TITLES[state.screen] || '美味家常');
+
+  const content = $('#content');
+  const scrollTop = content.scrollTop;
+  content.innerHTML = VIEWS[state.screen]();
+  content.scrollTop = state.screen === lastScreen ? scrollTop : 0;
+  lastScreen = state.screen;
+
+  document.querySelectorAll('#modes .mode').forEach(el => el.classList.toggle('on', el.dataset.arg === state.mode));
+
+  const showSticky = cartCount() > 0 && ['home','search','detail','plan'].includes(state.screen);
+  $('#stickyHost').innerHTML = showSticky ? `<div class="sticky" data-act="go" data-arg="cart">
+      <div class="icon"><i></i></div>
+      <div style="flex:1;min-width:0">
+        <div style="font:800 13.5px/1 'Noto Sans SC',sans-serif;color:#FFF">共 ${cartCount()} 件食材</div>
+        <div style="margin-top:5px;font:500 11px/1 'Noto Sans SC',sans-serif;color:rgba(255,255,255,.6)">${subtotal() > FREE_SHIP ? '已免冷链配送费' : '再买 ' + yuan(FREE_SHIP - subtotal()) + ' 免配送费'}</div>
+      </div>
+      <div style="flex:none;display:flex;align-items:center;gap:10px">
+        <div style="font:800 21px/1 'Baloo Bhaijaan 2',sans-serif;color:#FF7A54">${yuan(subtotal())}</div>
+        <div style="font:800 13px/1 'Noto Sans SC',sans-serif;color:#FFF;background:var(--acc);padding:10px 13px;border-radius:12px">结算</div>
+      </div>
+    </div>` : '';
+
+  $('#tabbar').innerHTML = TABS.map(t => `<div class="tab${state.screen === t.k ? ' on' : ''}" data-act="go" data-arg="${t.k}">
+      <div class="ic"></div><div class="lb">${t.label}</div>
+    </div>`).join('');
+
+  const q = $('#q');
+  if (q && !q._bound){ q._bound = true; q.addEventListener('input', onQuery); }
+}
+
+function onQuery(e){
+  state.query = e.target.value;
+  const label = $('#resultLabel'), results = $('#results');
+  if (label) label.textContent = RECIPES.filter(passFilters).length + ' 道菜符合条件';
+  if (results) results.innerHTML = searchResultsHtml();
+}
+
+/* ============ 交互 ============ */
+const ACTIONS = {
+  go: arg => set({screen: arg}),
+  mode: arg => set({mode: arg}),
+  mood: arg => set({screen: 'search', query: '', activeFilters: {[arg]: 1}}),
+  open: arg => set({screen: 'detail', recipeId: arg, serves: 4, checked: {}}),
+  quickAdd: arg => {
+    const x = RECIPES.find(r => r.id === arg);
+    addItems(x.ing.map(i => ({name: i.n, sub: x.name + ' · ' + i.q, price: i.p})), '已加入整套「' + x.name + '」');
+  },
+  filter: arg => {
+    if (state.activeFilters[arg]) delete state.activeFilters[arg];
+    else state.activeFilters[arg] = 1;
+    render();
+  },
+  incServ: () => set({serves: Math.min(10, state.serves + 1)}),
+  decServ: () => set({serves: Math.max(1, state.serves - 1)}),
+  addBundle: () => {
+    const r = recipe(), f = factor();
+    addItems(r.ing.map(i => ({name: i.n, sub: r.name + ' · ' + i.q, price: i.p * f})), '整套已加入购物篮');
+  },
+  pickDay: arg => {
+    if (state.plan[arg] === state.recipeId) delete state.plan[arg];
+    else state.plan[arg] = state.recipeId;
+    set({screen: 'plan'});
+  },
+  toggleIng: arg => {
+    const r = recipe(), key = r.id + r.ing[+arg].n;
+    state.checked[key] = !state.checked[key];
+    render();
+  },
+  addIng: arg => {
+    const r = recipe(), f = factor(), i = r.ing[+arg];
+    addItems([{name: i.n, sub: r.name + ' · ' + i.q, price: i.p * f}], i.n + ' 已加入购物篮');
+  },
+  addAllChecked: () => {
+    const r = recipe(), f = factor();
+    const picked = r.ing.filter(i => state.checked[r.id + i.n]);
+    if (!picked.length){ toastOnly('先勾选要买的食材'); return; }
+    state.checked = {};
+    addItems(picked.map(i => ({name: i.n, sub: r.name + ' · ' + i.q, price: i.p * f})), '已加入 ' + picked.length + ' 样食材');
+  },
+  mergePlan: () => {
+    const items = [];
+    const planDays = DAYS.filter(d => state.plan[d]);
+    planDays.forEach(d => {
+      const rec = RECIPES.find(x => x.id === state.plan[d]);
+      rec.ing.forEach(i => items.push({name: i.n, sub: rec.name + ' · ' + i.q, price: i.p}));
+    });
+    if (!items.length){ toastOnly('先给某一天排一道菜'); return; }
+    state.screen = 'cart';
+    addItems(items, '已合并 ' + planDays.length + ' 天的食材');
+  },
+  cartInc: arg => { state.cart[+arg].qty += 1; render(); },
+  cartDec: arg => {
+    const idx = +arg;
+    if (state.cart[idx].qty <= 1) state.cart.splice(idx, 1);
+    else state.cart[idx].qty -= 1;
+    render();
+  },
+  pickSlot: arg => set({slot: +arg}),
+  submitOrder: () => {
+    state.orderItems = state.cart.map(c => ({name: c.name, qty: '×' + c.qty}));
+    state.cart = [];
+    state.screen = 'track';
+    startTracking();
+    render();
+  },
+  openHistory: () => set({screen: 'track'})
+};
+
+document.addEventListener('click', e => {
+  const el = e.target.closest('[data-act]');
+  if (!el) return;
+  const fn = ACTIONS[el.dataset.act];
+  if (fn) fn(el.dataset.arg);
+});
+
+render();
+</script>
+</body>
+</html>

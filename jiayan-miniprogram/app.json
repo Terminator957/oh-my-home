@@ -1,0 +1,38 @@
+{
+  "pages": [
+    "pages/home/home",
+    "pages/library/library",
+    "pages/add/add",
+    "pages/us/us",
+    "pages/dish/dish",
+    "pages/analysis/analysis",
+    "pages/guest/guest",
+    "pages/guest-cart/guest-cart",
+    "pages/host-order/host-order",
+    "pages/wheel/wheel",
+    "pages/swipe/swipe",
+    "pages/mood/mood",
+    "pages/today/today"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#F4EFE5",
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "家宴小本子",
+    "backgroundColor": "#F4EFE5"
+  },
+  "tabBar": {
+    "color": "#8A8072",
+    "selectedColor": "#A93226",
+    "backgroundColor": "#FBF8F2",
+    "borderStyle": "black",
+    "list": [
+      { "pagePath": "pages/home/home", "text": "小本子" },
+      { "pagePath": "pages/library/library", "text": "菜谱库" },
+      { "pagePath": "pages/add/add", "text": "添一道" },
+      { "pagePath": "pages/us/us", "text": "我们" }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

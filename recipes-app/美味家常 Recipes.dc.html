@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&family=Baloo+Bhaijaan+2:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#E7E4DE;font-family:"Noto Sans SC","PingFang SC",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#FF4416;text-decoration:none}a:hover{color:#D9330C}
+@keyframes fly{0%{transform:translate(0,0) scale(1);opacity:1}70%{opacity:1}100%{transform:translate(90px,330px) scale(.4);opacity:0}}
+@keyframes toastin{0%{transform:translateY(18px);opacity:0}18%{transform:translateY(0);opacity:1}82%{transform:translateY(0);opacity:1}100%{transform:translateY(-8px);opacity:0}}
+@keyframes pop{0%{transform:scale(1)}40%{transform:scale(1.28)}100%{transform:scale(1)}}
+@keyframes pulse{0%{opacity:.35}50%{opacity:1}100%{opacity:.35}}
+::-webkit-scrollbar{width:0;height:0}
+</style>
+</helmet>
+
+<div style="min-height:100vh;display:flex;flex-direction:column;align-items:center;gap:18px;padding:34px 20px 60px;box-sizing:border-box">
+
+  <div style="display:flex;align-items:baseline;gap:12px;max-width:430px;width:100%">
+    <div style="font:800 19px/1.1 'Baloo Bhaijaan 2','Noto Sans SC',sans-serif;color:#16130F">美味家常</div>
+    <div style="font:500 11px/1.3 'Noto Sans SC',sans-serif;color:rgba(22,19,15,.45)">小程序原型 · 家庭晚餐食谱与食材加购</div>
+  </div>
+
+  <!-- 加购方式切换 -->
+  <div style="display:flex;gap:8px;max-width:430px;width:100%;flex-wrap:wrap">
+    <div onClick="{{ setModeA }}" style="cursor:pointer;padding:9px 13px;border-radius:12px;background:{{ mAbg }};color:{{ mAfg }};font:700 12px/1 'Noto Sans SC',sans-serif;border:1.5px solid {{ mAbd }}">A · 按食材勾选</div>
+    <div onClick="{{ setModeB }}" style="cursor:pointer;padding:9px 13px;border-radius:12px;background:{{ mBbg }};color:{{ mBfg }};font:700 12px/1 'Noto Sans SC',sans-serif;border:1.5px solid {{ mBbd }}">B · 整套一键加购</div>
+    <div onClick="{{ setModeC }}" style="cursor:pointer;padding:9px 13px;border-radius:12px;background:{{ mCbg }};color:{{ mCfg }};font:700 12px/1 'Noto Sans SC',sans-serif;border:1.5px solid {{ mCbd }}">C · 一周餐单合并</div>
+  </div>
+
+  <!-- 手机 + 聊天壳 -->
+  <div style="position:relative;width:390px;height:844px;border-radius:46px;background:#141210;padding:9px;box-sizing:border-box;box-shadow:0 30px 70px -20px rgba(20,18,16,.55),0 2px 0 rgba(255,255,255,.5) inset">
+    <div style="position:relative;width:100%;height:100%;border-radius:38px;overflow:hidden;background:#FCFBF9;display:flex;flex-direction:column">
+
+      <!-- 聊天宿主导航条 -->
+      <div style="flex:none;background:#EDEBE7;padding:12px 16px 0;border-bottom:1px solid rgba(22,19,15,.08)">
+        <div style="display:flex;justify-content:space-between;align-items:center;font:600 12px/1 'Noto Sans SC',sans-serif;color:#16130F;opacity:.75">
+          <span>9:41</span>
+          <div style="display:flex;gap:5px;align-items:center"><span style="font-size:10px">5G</span><span style="display:inline-block;width:22px;height:11px;border:1.4px solid #16130F;border-radius:3px;position:relative"><span style="position:absolute;left:1.4px;top:1.4px;bottom:1.4px;width:14px;background:#16130F;border-radius:1.5px;display:block"></span></span></div>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;height:46px">
+          <div style="display:flex;align-items:center;gap:10px;min-width:0">
+            <div onClick="{{ goBack }}" style="cursor:pointer;width:26px;height:26px;display:grid;place-items:center;font:700 17px/1 sans-serif;color:#16130F">‹</div>
+            <div style="font:700 15px/1.2 'Noto Sans SC',sans-serif;color:#16130F;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ navTitle }}</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:2px;background:rgba(22,19,15,.06);border:1px solid rgba(22,19,15,.1);border-radius:16px;padding:5px 10px">
+            <span style="font:700 13px/1 sans-serif;letter-spacing:1.5px;color:#16130F;opacity:.7">•••</span>
+            <span style="width:1px;height:13px;background:rgba(22,19,15,.16);margin:0 7px"></span>
+            <span style="width:12px;height:12px;border:1.6px solid rgba(22,19,15,.7);border-radius:50%;display:block"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 内容区 -->
+      <div style="flex:1;min-height:0;overflow-y:auto;background:#FCFBF9">
+
+        <!-- 首页 -->
+        <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+          <div style="padding:18px 16px 24px">
+            <div style="font:800 27px/1.2 'Noto Sans SC',sans-serif;color:#16130F;letter-spacing:-.5px">今晚吃什么？</div>
+            <div style="margin-top:6px;font:500 13px/1.5 'Noto Sans SC',sans-serif;color:rgba(22,19,15,.5)">四口之家 · 45 分钟内搞定 · 食材直送到家</div>
+
+            <div onClick="{{ goSearch }}" style="cursor:pointer;margin-top:16px;display:flex;align-items:center;gap:9px;background:#F1EEE9;border-radius:16px;padding:13px 15px">
+              <span style="width:14px;height:14px;border:2px solid rgba(22,19,15,.4);border-radius:50%;display:block"></span>
+              <span style="font:500 14px/1 'Noto Sans SC',sans-serif;color:rgba(22,19,15,.42)">搜菜名、食材或口味</span>
+            </div>
+
+            <div style="margin-top:20px;display:flex;gap:9px;overflow-x:auto;padding-bottom:2px">
+              <sc-for list="{{ moods }}" as="m" hint-placeholder-count="4">
+                <div onClick="{{ m.go }}" style="cursor:pointer;flex:none;padding:10px 14px;border-radius:14px;background:#FFEFE9;color:#C7350F;font:700 12.5px/1 'Noto Sans SC',sans-serif;white-space:nowrap">{{ m.label }}</div>
+              </sc-for>
+            </div>
+
+            <div style="margin-top:24px;display:flex;align-items:baseline;justify-content:space-between">
+              <div style="font:800 17px/1 'Noto Sans SC',sans-serif;color:#16130F">今日主推</div>
+              <div style="font:500 12px/1 'Noto Sans SC',sans-serif;color:rgba(22,19,15,.4)">全家都爱吃</div>
+            </div>
+
+            <div onClick="{{ openFeatured }}" style="cursor:pointer;margin-top:12px;border-radius:22px;overflow:hidden;background:#F1EEE9;border:1px solid rgba(22,19,15,.07)">
+              <div style="height:186px;background:repeating-linear-gradient(135deg,#E4DFD7 0 12px,#EDE9E2 12px 24px);display:grid;place-items:center">
+                <div style="font:500 10.5px/1.4 ui-monospace,Menlo,monospace;color:rgba(22,19,15,.42);text-align:center">菜品照片<br>番茄牛腩煲 · 4:3</div>
+              </div>
+              <div style="padding:14px 16px 16px;background:#FFFFFF">
+                <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px">
+                  <div>
+                    <div style="font:800 20px/1.25 'Noto Sans SC',sans-serif;color:#16130F">番茄牛腩煲</div>
+                    <div style="margin-top:5px;font:500 12px/1 'Noto Sans SC',sans-serif;color:rgba(22,19,15,.5)">炖菜 · 75 分钟 · 4 人份</div>
+                  </div>
+                  <div style="flex:none;text-align:right">
+                    <div style="font:800 26px/1 'Baloo Bhaijaan 2',sans-serif;color:#FF4416">{{ featuredPrice }}</div>
+                    <div style="font:500 10.5px/1.4 'Noto Sans SC',sans-serif;color:rgba(22,19,15,.4)">整套食材</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div style="margin-top:26px;font:800 17px/1 'Noto Sans SC',sans-serif;color:#16130F">下饭快手菜</div>
+            <div style="margin-top:12px;display:grid;grid-template-columns:1fr 1fr;gap:12px">
+              <sc-for list="{{ feed }}" as="r" hint-placeholder-count="4">
+                <div onClick="{{ r.open }}" style="cursor:pointer;border-radius:18px;overflow:hidden;background:#FFF;border:1px solid rgba(22,19,15,.08)">
+                  <div style="height:104px;background:repeating-linear-gradient(135deg,#E4DFD7 0 10px,#EDE9E2 10px 20px);display:grid;place-items:center">
+                    <div style="font:500 9.5px/1 ui-monospace,Menlo,monospace;color:rgba(22,19,15,.4)">菜品照片</div>
+                  </div>
+                  <div style="padding:10px 11px 12px">
+                    <div style="font:700 14px/1.3 'Noto Sans SC',sans-serif;color:#16130F">{{ r.name }}</div>
+                    <div style="margin-top:4px;font:500 11px/1 'Noto Sans SC',sans-serif;color:rgba(22,19,15,.45)">{{ r.meta }}</div>
+                    <div style="margin-top:9px;display:flex;align-items:baseline;justify-content:space-between">
+                      <span style="font:800 19px/1 'Baloo Bhaijaan 2',sans-serif;color:#FF4416">{{ r.priceLabel }}</span>
+                      <span style="font:700 11px/1 'Noto Sans SC',sans-serif;color:#C7350F;background:#FFEFE9;padding:5px 8px;border-radius:9px">加购</span>
+                    </div>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </sc-if>
+
+        <!-- 搜索 -->
+        <sc-if value="{{ isSearch }}">
+          <div style="padding:16px 16px 24px">
+            <div style="display:flex;align-items:center;gap:9px;background:#F1EEE9;border-radius:16px;padding:12px 14px">
+              <span style="width:13px;height:13px;border:2px solid rgba(22,19,15,.4);border-radius:50%;display:block;flex:none"></span>
+              <input value="{{ query }}" onChange="{{ onQuery }}" placeholder="搜菜名、食材或口味" style="flex:1;border:0;outline:0;background:transparent;font:600 14px/1 'Noto Sans SC',sans-serif;color:#16130F">
+            </div>
+            <div style="margin-top:14px;display:flex;flex-wrap:wrap;gap:8px">
+              <sc-for list="{{ filters }}" as="f" hint-placeholder-count="6">
+                <div onClick="{{ f.toggle }}" style="cursor:pointer;padding:9px 12px;border-radius:12px;font:700 12px/1 'Noto Sans SC',sans-serif;background:{{ f.bg }};color:{{ f.fg }};border:1.5px solid {{ f.bd }}">{{ f.label }}</div>
+              </sc-for>
+            </div>
+            <div style="margin-top:16px;font:600 12px/1 'Noto Sans SC',sans-serif;color:rgba(22,19,15,.42)">{{ resultLabel }}</div>
+            <div style="margin-top:12px;display:flex;flex-direction:column;gap:11px">
+              <sc-for list="{{ results }}" as="r" hint-placeholder-count="3">
+                <div onClick="{{ r.open }}" style="cursor:pointer;display:flex;gap:12px;background:#FFF;border:1px solid rgba(22,19,15,.08);border-radius:18px;padding:11px">
+                  <div style="flex:none;width:82px;height:82px;border-radius:13px;background:repeating-linear-gradient(135deg,#E4DFD7 0 10px,#EDE9E2 10px 20px)"></div>
+                  <div style="flex:1;min-width:0;display:flex;flex-direction:column;justify-content:space-between">
+                    <div>
+                      <div style="font:700 15px/1.3 'Noto Sans SC',sans-serif;color:#16130F">{{ r.name }}</div>
+                      <div style="margin-top:4px;font:500 11.5px/1.4 'Noto Sans SC',sans-serif;color:rgba(22,19,15,.45)">{{ r.meta }}</div>
+                    </div>
+                    <div style="display:flex;align-items:baseline;justify-content:space-between">
+                      <span style="font:800 20px/1 'Baloo Bhaijaan 2',sans-serif;color:#FF4416">{{ r.priceLabel }}</span>
+                      <span onClick="{{ r.quickAdd }}" style="cursor:pointer;font:700 11.5px/1 'Noto Sans SC',sans-serif;color:#FFF;background:#FF4416;padding:7px 11px;border-radius:11px">加购</span>
+                    </div>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </sc-if>
+
+        <!-- 菜谱详情 -->
+        <sc-if value="{{ isDetail }}">
+          <div>
+            <div style="height:230px;background:repeating-linear-gradient(135deg,#E4DFD7 0 12px,#EDE9E2 12px 24px);display:grid;place-items:center">
+              <div style="font:500 10.5px/1.5 ui-monospace,Menlo,monospace;color:rgba(22,19,15,.42);text-align:center">菜品照片<br>{{ recipeName }}</div>
+            </div>
+            <div style="padding:18px 16px 26px">
+              <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px">
+                <div>
+                  <div style="font:800 25px/1.2 'Noto Sans SC',sans-serif;color:#16130F;letter-spacing:-.4px">{{ recipeName }}</div>
+                  <div style="margin-top:6px;font:500 12.5px/1 'Noto Sans SC',sans-serif;color:rgba(22,19,15,.5)">{{ recipeMeta }}</div>
+                </div>
+                <div style="flex:none;text-align:right">
+                  <div style="font:800 30px/1 'Baloo Bhaijaan 2',sans-serif;color:#FF4416">{{ recipeTotal }}</div>
+                  <div style="font:500 10.5px/1.4 'Noto Sans SC',sans-serif;color:rgba(22,19,15,.4)">{{ servesLabel }}</div>
+                </div>
+              </div>
+
+              <div style="margin-top:16px;display:flex;align-items:center;justify-content:space-between;background:#F1EEE9;border-radius:16px;padding:12px 14px">
+                <div style="font:700 13px/1 'Noto Sans SC',sans-serif;color:#16130F">份量</div>
+                <div style="display:flex;align-items:center;gap:14px">
+                  <div onClick="{{ decServ }}" style="cursor:pointer;width:30px;height:30px;border-radius:50%;background:#FFF;display:grid;place-items:center;font:700 17px/1 sans-serif;color:#16130F;box-shadow:0 1px 2px rgba(22,19,15,.12)">−</div>
+                  <div style="font:800 16px/1 'Noto Sans SC',sans-serif;color:#16130F;min-width:44px;text-align:center">{{ servesLabel }}</div>
+                  <div onClick="{{ incServ }}" style="cursor:pointer;width:30px;height:30px;border-radius:50%;background:#FF4416;display:grid;place-items:center;font:700 17px/1 sans-serif;color:#FFF">+</div>
+                </div>
+              </div>
+
+              <!-- 模式 B：整套加购 -->
+              <sc-if value="{{ modeB }}">
+                <div style="margin-top:16px;border-radius:20px;background:#16130F;padding:16px 17px;color:#FFF">
+                  <div style="font:800 16px/1.3 'Noto Sans SC',sans-serif">整套食材包</div>
+                  <div style="margin-top:6px;font:500 12px/1.6 'Noto Sans SC',sans-serif;opacity:.7">{{ bundleLine }}</div>
+                  <div onClick="{{ addBundle }}" style="cursor:pointer;margin-top:14px;display:flex;align-items:center;justify-content:space-between;background:#FF4416;border-radius:14px;padding:13px 16px">
+                    <span style="font:800 14px/1 'Noto Sans SC',sans-serif">一键加购整套</span>
+                    <span style="font:800 20px/1 'Baloo Bhaijaan 2',sans-serif">{{ recipeTotal }}</span>
+                  </div>
+                </div>
+              </sc-if>
+
+              <!-- 模式 C：加入周餐单 -->
+              <sc-if value="{{ modeC }}">
+                <div style="margin-top:16px;border-radius:20px;background:#FFEFE9;padding:16px 17px">
+                  <div style="font:800 16px/1.3 'Noto Sans SC',sans-serif;color:#C7350F">加入本周餐单</div>
+                  <div style="margin-top:6px;font:500 12px/1.6 'Noto Sans SC',sans-serif;color:rgba(22,19,15,.6)">{{ planHint }}</div>
+                  <div style="margin-top:13px;display:flex;flex-wrap:wrap;gap:7px">
+                    <sc-for list="{{ days }}" as="d" hint-placeholder-count="7">
+                      <div onClick="{{ d.pick }}" style="cursor:pointer;padding:9px 12px;border-radius:12px;font:700 12px/1 'Noto Sans SC',sans-serif;background:{{ d.bg }};color:{{ d.fg }}">{{ d.label }}</div>
+                    </sc-for>
+                  </div>
+                </div>
+              </sc-if>
+
+              <div style="margin-top:24px;display:flex;align-items:baseline;justify-content:space-between">
+                <div style="font:800 17px/1 'Noto Sans SC',sans-serif;color:#16130F">食材清单</div>
+                <sc-if value="{{ modeA }}">
+                  <div onClick="{{ addAllChecked }}" style="cursor:pointer;font:700 12px/1 'Noto Sans SC',sans-serif;color:#FF4416">加购已勾选 {{ checkedCount }}</div>
+                </sc-if>
+              </div>
+
+              <div style="margin-top:12px;display:flex;flex-direction:column;gap:8px">
+                <sc-for list="{{ ingredients }}" as="g" hint-placeholder-count="5">
+                  <div style="display:flex;align-items:center;gap:12px;background:#FFF;border:1px solid rgba(22,19,15,.08);border-radius:15px;padding:12px 13px">
+                    <div onClick="{{ g.toggle }}" style="cursor:pointer;flex:none;width:22px;height:22px;border-radius:7px;display:grid;place-items:center;background:{{ g.boxBg }};border:1.8px solid {{ g.boxBd }};color:#FFF;font:800 12px/1 sans-serif">{{ g.mark }}</div>
+                    <div style="flex:1;min-width:0">
+                      <div style="font:700 14px/1.2 'Noto Sans SC',sans-serif;color:#16130F">{{ g.name }}</div>
+                      <div style="margin-top:3px;font:500 11px/1 'Noto Sans SC',sans-serif;color:rgba(22,19,15,.45)">{{ g.qty }}</div>
+                    </div>
+                    <div style="flex:none;font:800 17px/1 'Baloo Bhaijaan 2',sans-serif;color:#16130F">{{ g.priceLabel }}</div>
+                    <div onClick="{{ g.add }}" style="cursor:pointer;flex:none;width:28px;height:28px;border-radius:9px;background:#FF4416;display:grid;place-items:center;color:#FFF;font:700 16px/1 sans-serif">+</div>
+                  </div>
+                </sc-for>
+              </div>
+
+              <div style="margin-top:26px;font:800 17px/1 'Noto Sans SC',sans-serif;color:#16130F">做法</div>
+              <div style="margin-top:12px;display:flex;flex-direction:column;gap:12px">
+                <sc-for list="{{ steps }}" as="s" hint-placeholder-count="4">
+                  <div style="display:flex;gap:12px">
+                    <div style="flex:none;width:26px;height:26px;border-radius:50%;background:#FFEFE9;color:#C7350F;display:grid;place-items:center;font:800 12px/1 'Baloo Bhaijaan 2',sans-serif">{{ s.n }}</div>
+                    <div style="flex:1;font:500 13.5px/1.65 'Noto Sans SC',sans-serif;color:rgba(22,19,15,.75);text-wrap:pretty">{{ s.text }}</div>
+                  </div>
+                </sc-for>
+              </div>
+              <div style="height:70px"></div>
+            </div>
+          </div>
+        </sc-if>
+
+        <!-- 周餐单 -->
+        <sc-if value="{{ isPlan }}">
+          <div style="padding:18px 16px 26px">
+            <div style="font:800 24px/1.2 'Noto Sans SC',sans-serif;color:#16130F">本周餐单</div>
+            <div style="margin-top:6px;font:500 12.5px/1.5 'Noto Sans SC',sans-serif;color:rgba(22,19,15,.5)">{{ planSummary }}</div>
+            <div style="margin-top:16px;display:flex;flex-direction:column;gap:9px">
+              <sc-for list="{{ planRows }}" as="p" hint-placeholder-count="7">
+                <div style="display:flex;align-items:center;gap:12px;background:{{ p.bg }};border:1px solid rgba(22,19,15,.08);border-radius:16px;padding:13px 14px">
+                  <div style="flex:none;width:38px;font:800 13px/1 'Noto Sans SC',sans-serif;color:{{ p.dayFg }}">{{ p.day }}</div>
+                  <div style="flex:1;min-width:0;font:700 14px/1.3 'Noto Sans SC',sans-serif;color:#16130F">{{ p.name }}</div>
+                  <div style="flex:none;font:800 16px/1 'Baloo Bhaijaan 2',sans-serif;color:{{ p.priceFg }}">{{ p.price }}</div>
+                </div>
+              </sc-for>
+            </div>
+            <div onClick="{{ mergePlan }}" style="cursor:pointer;margin-top:18px;display:flex;align-items:center;justify-content:space-between;background:#16130F;border-radius:18px;padding:15px 17px;color:#FFF">
+              <div>
+                <div style="font:800 14px/1 'Noto Sans SC',sans-serif">合并为一份购物清单</div>
+                <div style="margin-top:5px;font:500 11px/1 'Noto Sans SC',sans-serif;opacity:.65">重复食材自动合并去重</div>
+              </div>
+              <div style="font:800 22px/1 'Baloo Bhaijaan 2',sans-serif;color:#FF7A54">{{ planTotal }}</div>
+            </div>
+          </div>
+        </sc-if>
+
+        <!-- 购物篮 -->
+        <sc-if value="{{ isCart }}">
+          <div style="padding:18px 16px 26px">
+            <div style="font:800 24px/1.2 'Noto Sans SC',sans-serif;color:#16130F">购物篮</div>
+            <sc-if value="{{ cartEmpty }}">
+              <div style="margin-top:60px;text-align:center">
+                <div style="width:72px;height:72px;margin:0 auto;border-radius:24px;background:#F1EEE9"></div>
+                <div style="margin-top:16px;font:700 14px/1 'Noto Sans SC',sans-serif;color:rgba(22,19,15,.5)">还没有食材</div>
+                <div onClick="{{ goHome }}" style="cursor:pointer;margin-top:14px;display:inline-block;font:700 13px/1 'Noto Sans SC',sans-serif;color:#FFF;background:#FF4416;padding:12px 20px;border-radius:14px">去看看菜谱</div>
+              </div>
+            </sc-if>
+            <div style="margin-top:14px;display:flex;flex-direction:column;gap:9px">
+              <sc-for list="{{ cart }}" as="c" hint-placeholder-count="0">
+                <div style="display:flex;align-items:center;gap:12px;background:#FFF;border:1px solid rgba(22,19,15,.08);border-radius:16px;padding:12px 13px">
+                  <div style="flex:none;width:54px;height:54px;border-radius:12px;background:repeating-linear-gradient(135deg,#E4DFD7 0 8px,#EDE9E2 8px 16px)"></div>
+                  <div style="flex:1;min-width:0">
+                    <div style="font:700 14px/1.25 'Noto Sans SC',sans-serif;color:#16130F">{{ c.name }}</div>
+                    <div style="margin-top:3px;font:500 11px/1 'Noto Sans SC',sans-serif;color:rgba(22,19,15,.45)">{{ c.sub }}</div>
+                    <div style="margin-top:6px;font:800 17px/1 'Baloo Bhaijaan 2',sans-serif;color:#FF4416">{{ c.priceLabel }}</div>
+                  </div>
+                  <div style="flex:none;display:flex;align-items:center;gap:10px">
+                    <div onClick="{{ c.dec }}" style="cursor:pointer;width:27px;height:27px;border-radius:50%;background:#F1EEE9;display:grid;place-items:center;font:700 15px/1 sans-serif;color:#16130F">−</div>
+                    <div style="font:800 14px/1 'Noto Sans SC',sans-serif;min-width:14px;text-align:center">{{ c.qty }}</div>
+                    <div onClick="{{ c.inc }}" style="cursor:pointer;width:27px;height:27px;border-radius:50%;background:#FF4416;display:grid;place-items:center;font:700 15px/1 sans-serif;color:#FFF">+</div>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+            <sc-if value="{{ cartHasItems }}">
+              <div style="margin-top:18px;background:#F1EEE9;border-radius:18px;padding:15px 16px">
+                <div style="display:flex;justify-content:space-between;font:500 12.5px/1 'Noto Sans SC',sans-serif;color:rgba(22,19,15,.6)"><span>食材小计</span><span>{{ subtotalLabel }}</span></div>
+                <div style="margin-top:9px;display:flex;justify-content:space-between;font:500 12.5px/1 'Noto Sans SC',sans-serif;color:rgba(22,19,15,.6)"><span>冷链配送费</span><span>{{ feeLabel }}</span></div>
+                <div style="margin-top:12px;padding-top:12px;border-top:1px dashed rgba(22,19,15,.18);display:flex;align-items:baseline;justify-content:space-between">
+                  <span style="font:800 14px/1 'Noto Sans SC',sans-serif;color:#16130F">合计</span>
+                  <span style="font:800 26px/1 'Baloo Bhaijaan 2',sans-serif;color:#FF4416">{{ totalLabel }}</span>
+                </div>
+              </div>
+              <div onClick="{{ goCheckout }}" style="cursor:pointer;margin-top:16px;text-align:center;background:#FF4416;border-radius:16px;padding:15px;font:800 15px/1 'Noto Sans SC',sans-serif;color:#FFF">去结算</div>
+            </sc-if>
+          </div>
+        </sc-if>
+
+        <!-- 结算 -->
+        <sc-if value="{{ isCheckout }}">
+          <div style="padding:18px 16px 26px">
+            <div style="font:800 24px/1.2 'Noto Sans SC',sans-serif;color:#16130F">确认订单</div>
+            <div style="margin-top:16px;background:#FFF;border:1px solid rgba(22,19,15,.08);border-radius:18px;padding:15px 16px">
+              <div style="font:500 11px/1 'Noto Sans SC',sans-serif;color:rgba(22,19,15,.42)">配送到</div>
+              <div style="margin-top:7px;font:700 15px/1.4 'Noto Sans SC',sans-serif;color:#16130F">王女士 · 138****6621</div>
+              <div style="margin-top:3px;font:500 12.5px/1.5 'Noto Sans SC',sans-serif;color:rgba(22,19,15,.55)">朝阳区望京东园四区 12 号楼 3 单元 801</div>
+            </div>
+            <div style="margin-top:12px;background:#FFF;border:1px solid rgba(22,19,15,.08);border-radius:18px;padding:15px 16px">
+              <div style="font:500 11px/1 'Noto Sans SC',sans-serif;color:rgba(22,19,15,.42)">送达时间</div>
+              <div style="margin-top:11px;display:flex;gap:8px;flex-wrap:wrap">
+                <sc-for list="{{ slots }}" as="s" hint-placeholder-count="3">
+                  <div onClick="{{ s.pick }}" style="cursor:pointer;padding:10px 13px;border-radius:13px;font:700 12.5px/1 'Noto Sans SC',sans-serif;background:{{ s.bg }};color:{{ s.fg }};border:1.5px solid {{ s.bd }}">{{ s.label }}</div>
+                </sc-for>
+              </div>
+            </div>
+            <div style="margin-top:12px;background:#F1EEE9;border-radius:18px;padding:15px 16px">
+              <div style="display:flex;justify-content:space-between;font:500 12.5px/1 'Noto Sans SC',sans-serif;color:rgba(22,19,15,.6)"><span>{{ itemCountLabel }}</span><span>{{ subtotalLabel }}</span></div>
+              <div style="margin-top:9px;display:flex;justify-content:space-between;font:500 12.5px/1 'Noto Sans SC',sans-serif;color:rgba(22,19,15,.6)"><span>冷链配送费</span><span>{{ feeLabel }}</span></div>
+              <div style="margin-top:12px;padding-top:12px;border-top:1px dashed rgba(22,19,15,.18);display:flex;align-items:baseline;justify-content:space-between">
+                <span style="font:800 14px/1 'Noto Sans SC',sans-serif;color:#16130F">应付</span>
+                <span style="font:800 28px/1 'Baloo Bhaijaan 2',sans-serif;color:#FF4416">{{ totalLabel }}</span>
+              </div>
+            </div>
+            <div onClick="{{ submitOrder }}" style="cursor:pointer;margin-top:18px;text-align:center;background:#16130F;border-radius:16px;padding:16px;font:800 15px/1 'Noto Sans SC',sans-serif;color:#FFF">提交订单 · {{ totalLabel }}</div>
+            <div style="margin-top:11px;text-align:center;font:500 11px/1.5 'Noto Sans SC',sans-serif;color:rgba(22,19,15,.4)">支持全程冷链 · 不满意可退</div>
+          </div>
+        </sc-if>
+
+        <!-- 订单追踪 -->
+        <sc-if value="{{ isTrack }}">
+          <div style="padding:18px 16px 26px">
+            <div style="font:800 24px/1.2 'Noto Sans SC',sans-serif;color:#16130F">{{ trackTitle }}</div>
+            <div style="margin-top:6px;font:500 12.5px/1.5 'Noto Sans SC',sans-serif;color:rgba(22,19,15,.5)">{{ trackSub }}</div>
+            <div style="margin-top:18px;background:#FFF;border:1px solid rgba(22,19,15,.08);border-radius:20px;padding:18px 16px">
+              <div style="display:flex;flex-direction:column;gap:0">
+                <sc-for list="{{ trackSteps }}" as="t" hint-placeholder-count="4">
+                  <div style="display:flex;gap:13px">
+                    <div style="flex:none;display:flex;flex-direction:column;align-items:center;width:22px">
+                      <div style="width:14px;height:14px;border-radius:50%;background:{{ t.dotBg }};border:2px solid {{ t.dotBd }};animation:{{ t.dotAnim }}"></div>
+                      <sc-if value="{{ t.hasLine }}" hint-placeholder-val="{{ true }}"><div style="flex:1;width:2px;background:{{ t.lineBg }};min-height:{{ t.lineH }}"></div></sc-if>
+                    </div>
+                    <div style="flex:1;padding-bottom:16px">
+                      <div style="font:700 14px/1.2 'Noto Sans SC',sans-serif;color:{{ t.fg }}">{{ t.label }}</div>
+                      <div style="margin-top:4px;font:500 11.5px/1.5 'Noto Sans SC',sans-serif;color:rgba(22,19,15,.45)">{{ t.time }}</div>
+                    </div>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+            <div style="margin-top:14px;display:flex;align-items:center;gap:12px;background:#FFEFE9;border-radius:18px;padding:14px 15px">
+              <div style="flex:none;width:42px;height:42px;border-radius:50%;background:repeating-linear-gradient(135deg,#E4DFD7 0 8px,#EDE9E2 8px 16px)"></div>
+              <div style="flex:1">
+                <div style="font:700 13.5px/1.2 'Noto Sans SC',sans-serif;color:#16130F">配送员 · 老陈</div>
+                <div style="margin-top:4px;font:500 11.5px/1 'Noto Sans SC',sans-serif;color:rgba(22,19,15,.5)">京A·骑手 3721</div>
+              </div>
+              <div style="flex:none;font:700 12px/1 'Noto Sans SC',sans-serif;color:#FFF;background:#FF4416;padding:10px 13px;border-radius:12px">联系</div>
+            </div>
+            <div style="margin-top:14px;background:#FFF;border:1px solid rgba(22,19,15,.08);border-radius:18px;padding:15px 16px">
+              <div style="font:800 14px/1 'Noto Sans SC',sans-serif;color:#16130F">本单食材</div>
+              <div style="margin-top:11px;display:flex;flex-direction:column;gap:8px">
+                <sc-for list="{{ lastOrderItems }}" as="o" hint-placeholder-count="3">
+                  <div style="display:flex;justify-content:space-between;font:500 12.5px/1 'Noto Sans SC',sans-serif;color:rgba(22,19,15,.65)"><span>{{ o.name }}</span><span>{{ o.qty }}</span></div>
+                </sc-for>
+              </div>
+            </div>
+            <div onClick="{{ goHome }}" style="cursor:pointer;margin-top:16px;text-align:center;background:#F1EEE9;border-radius:16px;padding:14px;font:800 14px/1 'Noto Sans SC',sans-serif;color:#16130F">再逛逛菜谱</div>
+          </div>
+        </sc-if>
+
+        <!-- 我的 -->
+        <sc-if value="{{ isMe }}">
+          <div style="padding:18px 16px 26px">
+            <div style="display:flex;align-items:center;gap:14px">
+              <div style="flex:none;width:58px;height:58px;border-radius:20px;background:repeating-linear-gradient(135deg,#E4DFD7 0 9px,#EDE9E2 9px 18px)"></div>
+              <div>
+                <div style="font:800 19px/1.2 'Noto Sans SC',sans-serif;color:#16130F">王女士家的厨房</div>
+                <div style="margin-top:5px;font:500 12px/1 'Noto Sans SC',sans-serif;color:rgba(22,19,15,.45)">四口之家 · 已做 128 道菜</div>
+              </div>
+            </div>
+            <div style="margin-top:18px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px">
+              <sc-for list="{{ stats }}" as="s" hint-placeholder-count="3">
+                <div style="background:#F1EEE9;border-radius:16px;padding:14px 12px">
+                  <div style="font:800 22px/1 'Baloo Bhaijaan 2',sans-serif;color:#FF4416">{{ s.v }}</div>
+                  <div style="margin-top:6px;font:600 11px/1.3 'Noto Sans SC',sans-serif;color:rgba(22,19,15,.5)">{{ s.k }}</div>
+                </div>
+              </sc-for>
+            </div>
+            <div style="margin-top:24px;font:800 17px/1 'Noto Sans SC',sans-serif;color:#16130F">历史订单</div>
+            <div style="margin-top:12px;display:flex;flex-direction:column;gap:10px">
+              <sc-for list="{{ history }}" as="h" hint-placeholder-count="3">
+                <div onClick="{{ h.open }}" style="cursor:pointer;background:#FFF;border:1px solid rgba(22,19,15,.08);border-radius:18px;padding:14px 15px">
+                  <div style="display:flex;justify-content:space-between;align-items:baseline">
+                    <div style="font:700 14.5px/1.3 'Noto Sans SC',sans-serif;color:#16130F">{{ h.title }}</div>
+                    <div style="font:800 18px/1 'Baloo Bhaijaan 2',sans-serif;color:#16130F">{{ h.price }}</div>
+                  </div>
+                  <div style="margin-top:6px;display:flex;justify-content:space-between;font:500 11.5px/1 'Noto Sans SC',sans-serif;color:rgba(22,19,15,.45)"><span>{{ h.date }}</span><span>{{ h.status }}</span></div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </sc-if>
+
+      </div>
+
+      <!-- 吸底购物篮 -->
+      <sc-if value="{{ showStickyCart }}">
+        <div onClick="{{ goCart }}" style="position:absolute;left:14px;right:14px;bottom:76px;cursor:pointer;display:flex;align-items:center;gap:12px;background:#16130F;border-radius:20px;padding:13px 16px;box-shadow:0 12px 30px -8px rgba(22,19,15,.45)">
+          <div style="position:relative;flex:none;width:38px;height:38px;border-radius:13px;background:#FF4416;display:grid;place-items:center">
+            {{ cartIcon }}
+          </div>
+          <div style="flex:1;min-width:0">
+            <div style="font:800 13.5px/1 'Noto Sans SC',sans-serif;color:#FFF">{{ itemCountLabel }}</div>
+            <div style="margin-top:5px;font:500 11px/1 'Noto Sans SC',sans-serif;color:rgba(255,255,255,.6)">{{ stickyHint }}</div>
+          </div>
+          <div style="flex:none;display:flex;align-items:center;gap:10px">
+            <div style="font:800 21px/1 'Baloo Bhaijaan 2',sans-serif;color:#FF7A54">{{ subtotalLabel }}</div>
+            <div style="font:800 13px/1 'Noto Sans SC',sans-serif;color:#FFF;background:#FF4416;padding:10px 13px;border-radius:12px">结算</div>
+          </div>
+        </div>
+      </sc-if>
+
+      {{ flyChip }}
+      {{ toast }}
+
+      <!-- 底部标签栏 -->
+      <div style="flex:none;display:flex;background:#FFFFFF;border-top:1px solid rgba(22,19,15,.08);padding:9px 6px 16px">
+        <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="5">
+          <div onClick="{{ t.go }}" style="flex:1;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:6px">
+            <div style="width:20px;height:20px;border-radius:7px;background:{{ t.icon }}"></div>
+            <div style="font:700 10.5px/1 'Noto Sans SC',sans-serif;color:{{ t.fg }}">{{ t.label }}</div>
+          </div>
+        </sc-for>
+      </div>
+
+    </div>
+  </div>
+
+  <div style="max-width:430px;width:100%;font:500 11.5px/1.7 'Noto Sans SC',sans-serif;color:rgba(22,19,15,.45);text-wrap:pretty">
+    三种加购方式在顶部切换：A 逐个食材勾选加购；B 整套食材包一键加购；C 排一周餐单后合并去重成一份清单。下一步可以做：真实菜谱与图片替换、家庭成员口味/忌口过滤、剩余食材复用推荐。
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#E8362B&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#FF4416&quot;,&quot;#E8362B&quot;,&quot;#F2711C&quot;,&quot;#D6452F&quot;],&quot;section&quot;:&quot;品牌&quot;},&quot;freeShipThreshold&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:79,&quot;min&quot;:0,&quot;max&quot;:200,&quot;step&quot;:10,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;规则&quot;}}">
+const ACC = '#FF4416';
+const RECIPES = [
+  {id:'r1',name:'番茄牛腩煲',meta:'炖菜 · 75 分钟 · 微酸甜',cuisine:'家常',time:75,spice:0,
+   ing:[{n:'牛腩',q:'600g',p:48},{n:'番茄',q:'4 个',p:9.9},{n:'洋葱',q:'1 个',p:2.5},{n:'土豆',q:'2 个',p:4.5},{n:'姜片',q:'适量',p:1.5}],
+   steps:['牛腩冷水下锅，加姜片焯水 5 分钟，捞出冲净浮沫。','番茄去皮切块，一半炒成酱底，另一半留到后段放。','牛腩与番茄酱底同炒上色，加热水没过，小火炖 50 分钟。','放土豆、剩余番茄再炖 15 分钟，收汁前调盐即可。']},
+  {id:'r2',name:'蒜香排骨饭',meta:'一锅出 · 45 分钟 · 咸香',cuisine:'家常',time:45,spice:0,
+   ing:[{n:'肋排',q:'500g',p:39},{n:'蒜',q:'1 头',p:2},{n:'东北米',q:'300g',p:6.5},{n:'生抽',q:'2 勺',p:3},{n:'香葱',q:'2 根',p:1.5}],
+   steps:['排骨用蒜末、生抽、少许糖抓匀腌 20 分钟。','大米洗净铺入砂锅，水略少于平时。','排骨连汁摊在米上，中小火焖 25 分钟。','关火焖 5 分钟，撒葱花拌开。']},
+  {id:'r3',name:'酸辣土豆丝',meta:'快手 · 12 分钟 · 微辣',cuisine:'川味',time:12,spice:1,
+   ing:[{n:'土豆',q:'2 个',p:4.5},{n:'干辣椒',q:'4 个',p:1.5},{n:'白醋',q:'1 勺',p:2},{n:'青椒',q:'1 个',p:2.5}],
+   steps:['土豆切细丝，冲水去淀粉后沥干。','热油爆香干辣椒，下土豆丝大火快炒。','沿锅边淋醋，加盐炒 30 秒出锅。']},
+  {id:'r4',name:'虾仁豆腐羹',meta:'汤羹 · 20 分钟 · 清淡',cuisine:'清淡',time:20,spice:0,
+   ing:[{n:'鲜虾仁',q:'200g',p:32},{n:'嫩豆腐',q:'1 盒',p:3.5},{n:'鸡蛋',q:'1 个',p:1.2},{n:'玉米淀粉',q:'1 勺',p:1.5}],
+   steps:['豆腐切小块，虾仁开背去线。','水开下豆腐，转小火煮 2 分钟后下虾仁。','淀粉水勾薄芡，淋蛋液成花，点香油。']},
+  {id:'r5',name:'孜然羊肉小炒',meta:'快手 · 18 分钟 · 香辣',cuisine:'西北',time:18,spice:2,
+   ing:[{n:'羊后腿肉',q:'400g',p:52},{n:'孜然',q:'1 勺',p:3},{n:'洋葱',q:'1 个',p:2.5},{n:'香菜',q:'1 把',p:2}],
+   steps:['羊肉逆纹切片，用少许淀粉抓匀。','大火热锅滑炒羊肉至变色立即盛出。','洋葱炒软，回锅羊肉，撒孜然辣椒面翻匀，最后放香菜。']},
+  {id:'r6',name:'可乐鸡翅',meta:'孩子最爱 · 30 分钟 · 甜咸',cuisine:'家常',time:30,spice:0,
+   ing:[{n:'鸡中翅',q:'10 个',p:26},{n:'可乐',q:'1 罐',p:3.5},{n:'姜片',q:'适量',p:1.5},{n:'生抽',q:'2 勺',p:3}],
+   steps:['鸡翅两面划刀，煎至两面金黄。','倒可乐没过鸡翅，加生抽姜片。','中火收汁到浓稠亮泽。']}
+];
+const DAYS = ['周一','周二','周三','周四','周五','周六','周日'];
+const yuan = n => '¥' + (Math.round(n * 10) / 10).toString().replace(/\.0$/, '');
+
+class Component extends DCLogic {
+  state = {
+    mode: 'A', screen: 'home', recipeId: 'r1', serves: 4,
+    checked: {}, cart: [], query: '', activeFilters: {}, slot: 1,
+    plan: {周一:'r2', 周三:'r1', 周六:'r6'}, planPickDay: null,
+    trackStage: 1, fly: 0, toastMsg: '', toastKey: 0, orderItems: [], history: [
+      {title:'番茄牛腩煲 · 整套食材', price:'¥66', date:'7月18日 18:20', status:'已完成'},
+      {title:'酸辣土豆丝 + 可乐鸡翅', price:'¥38', date:'7月14日 17:05', status:'已完成'},
+      {title:'虾仁豆腐羹 · 整套食材', price:'¥38', date:'7月09日 18:40', status:'已完成'}
+    ]
+  };
+  componentWillUnmount(){ clearInterval(this._t); }
+  recipe(){ return RECIPES.find(r => r.id === this.state.recipeId) || RECIPES[0]; }
+  factor(){ return this.state.serves / 4; }
+  go(screen){ return () => this.setState({screen}); }
+  toast(msg){ this.setState(s => ({toastMsg: msg, toastKey: s.toastKey + 1, fly: s.fly + 1})); }
+  addItems(items, msg){
+    this.setState(s => {
+      const cart = s.cart.slice();
+      items.forEach(it => {
+        const i = cart.findIndex(c => c.name === it.name);
+        if (i >= 0) cart[i] = Object.assign({}, cart[i], {qty: cart[i].qty + 1});
+        else cart.push(Object.assign({qty: 1}, it));
+      });
+      return {cart, toastMsg: msg, toastKey: s.toastKey + 1, fly: s.fly + 1};
+    });
+  }
+  cartCount(){ return this.state.cart.reduce((a, c) => a + c.qty, 0); }
+  subtotal(){ return this.state.cart.reduce((a, c) => a + c.price * c.qty, 0); }
+  startTracking(){
+    clearInterval(this._t);
+    this.setState({trackStage: 1});
+    this._t = setInterval(() => this.setState(s => {
+      if (s.trackStage >= 4) { clearInterval(this._t); return {}; }
+      return {trackStage: s.trackStage + 1};
+    }), 2600);
+  }
+  planTotalNum(){
+    return Object.keys(this.state.plan).reduce((a, d) => {
+      const r = RECIPES.find(x => x.id === this.state.plan[d]);
+      return a + (r ? r.ing.reduce((b, i) => b + i.p, 0) : 0);
+    }, 0);
+  }
+
+  renderVals(){
+    const s = this.state, acc = this.props.accent ?? ACC;
+    const FREE = this.props.freeShipThreshold ?? 79;
+    const r = this.recipe(), f = this.factor();
+    const total = r.ing.reduce((a, i) => a + i.p * f, 0);
+    const chip = (on) => on
+      ? {bg: acc, fg: '#FFF', bd: acc}
+      : {bg: '#FFF', fg: 'rgba(22,19,15,.6)', bd: 'rgba(22,19,15,.14)'};
+    const mA = chip(s.mode === 'A'), mB = chip(s.mode === 'B'), mC = chip(s.mode === 'C');
+    const titles = {home:'美味家常', search:'搜索菜谱', detail: r.name, plan:'本周餐单', cart:'购物篮', checkout:'确认订单', track:'订单追踪', me:'我的厨房'};
+    const filterDefs = [
+      {k:'fast', label:'30 分钟内'}, {k:'kid', label:'小孩爱吃'}, {k:'nospice', label:'不辣'},
+      {k:'soup', label:'汤羹'}, {k:'meat', label:'有肉'}, {k:'cheap', label:'¥40 以内'}
+    ];
+    const pass = (x) => {
+      const a = s.activeFilters, sum = x.ing.reduce((b, i) => b + i.p, 0);
+      if (a.fast && x.time > 30) return false;
+      if (a.kid && !['r6','r2','r1'].includes(x.id)) return false;
+      if (a.nospice && x.spice > 0) return false;
+      if (a.soup && x.id !== 'r4') return false;
+      if (a.meat && !['r1','r2','r5','r6'].includes(x.id)) return false;
+      if (a.cheap && sum > 40) return false;
+      if (s.query && !(x.name + x.meta + x.ing.map(i => i.n).join('')).includes(s.query)) return false;
+      return true;
+    };
+    const card = (x) => ({
+      name: x.name, meta: x.meta,
+      priceLabel: yuan(x.ing.reduce((a, i) => a + i.p, 0)),
+      open: () => this.setState({screen: 'detail', recipeId: x.id, serves: 4, checked: {}}),
+      quickAdd: (e) => { if (e && e.stopPropagation) e.stopPropagation(); this.addItems(x.ing.map(i => ({name: i.n, sub: x.name + ' · ' + i.q, price: i.p})), '已加入整套「' + x.name + '」'); }
+    });
+    const trackDefs = [
+      {label:'已下单', time:'18:02 · 已支付'},
+      {label:'门店拣货中', time:'18:05 · 冷链分装'},
+      {label:'配送中', time:'18:18 · 预计 18:40 送达'},
+      {label:'已送达', time:'放在门口，请及时冷藏'}
+    ];
+    const tabDefs = [
+      {k:'home', label:'菜谱'}, {k:'search', label:'搜索'}, {k:'plan', label:'餐单'},
+      {k:'cart', label:'购物篮'}, {k:'me', label:'我的'}
+    ];
+    const slotDefs = ['今天 17:30–18:00', '今天 18:00–18:30', '明天 09:00–10:00'];
+    const planDays = DAYS.filter(d => s.plan[d]);
+
+    return {
+      navTitle: titles[s.screen] || '美味家常',
+      isHome: s.screen === 'home', isSearch: s.screen === 'search', isDetail: s.screen === 'detail',
+      isPlan: s.screen === 'plan', isCart: s.screen === 'cart', isCheckout: s.screen === 'checkout',
+      isTrack: s.screen === 'track', isMe: s.screen === 'me',
+      goBack: () => this.setState({screen: s.screen === 'home' ? 'home' : 'home'}),
+      goHome: this.go('home'), goSearch: this.go('search'), goCart: this.go('cart'),
+      goCheckout: this.go('checkout'),
+      setModeA: () => this.setState({mode: 'A'}), setModeB: () => this.setState({mode: 'B'}), setModeC: () => this.setState({mode: 'C'}),
+      mAbg: mA.bg, mAfg: mA.fg, mAbd: mA.bd, mBbg: mB.bg, mBfg: mB.fg, mBbd: mB.bd, mCbg: mC.bg, mCfg: mC.fg, mCbd: mC.bd,
+      modeA: s.mode === 'A', modeB: s.mode === 'B', modeC: s.mode === 'C',
+
+      moods: [
+        {label:'🍲 想吃热汤', go: () => this.setState({screen:'search', query:'', activeFilters:{soup:1}})},
+        {label:'半小时开饭', go: () => this.setState({screen:'search', query:'', activeFilters:{fast:1}})},
+        {label:'小孩爱吃', go: () => this.setState({screen:'search', query:'', activeFilters:{kid:1}})},
+        {label:'清淡少油', go: () => this.setState({screen:'search', query:'', activeFilters:{nospice:1}})}
+      ].map(m => ({label: m.label.replace('🍲 ', ''), go: m.go})),
+      openFeatured: () => this.setState({screen: 'detail', recipeId: 'r1', serves: 4, checked: {}}),
+      feed: RECIPES.slice(1, 5).map(card),
+      featuredPrice: yuan(RECIPES[0].ing.reduce((a, i) => a + i.p, 0)),
+
+      query: s.query,
+      onQuery: (e) => this.setState({query: e.target.value}),
+      filters: filterDefs.map(d => {
+        const on = !!s.activeFilters[d.k], c = chip(on);
+        return {label: d.label, bg: c.bg, fg: c.fg, bd: c.bd,
+          toggle: () => this.setState(st => {
+            const a = Object.assign({}, st.activeFilters);
+            if (a[d.k]) delete a[d.k]; else a[d.k] = 1;
+            return {activeFilters: a};
+          })};
+      }),
+      results: RECIPES.filter(pass).map(card),
+      resultLabel: RECIPES.filter(pass).length + ' 道菜符合条件',
+
+      recipeName: r.name, recipeMeta: r.meta, recipeTotal: yuan(total),
+      servesLabel: s.serves + ' 人份',
+      incServ: () => this.setState(st => ({serves: Math.min(10, st.serves + 1)})),
+      decServ: () => this.setState(st => ({serves: Math.max(1, st.serves - 1)})),
+      bundleLine: r.ing.length + ' 种食材已按 ' + s.serves + ' 人份配好，缺一样都不用自己算。',
+      addBundle: () => this.addItems(r.ing.map(i => ({name: i.n, sub: r.name + ' · ' + i.q, price: i.p * f})), '整套已加入购物篮'),
+      planHint: '排进哪一天？到日子前一天自动提醒补货。',
+      days: DAYS.map(d => {
+        const on = s.plan[d] === r.id;
+        return {label: d.slice(1), bg: on ? acc : '#FFF', fg: on ? '#FFF' : 'rgba(22,19,15,.6)',
+          pick: () => this.setState(st => {
+            const plan = Object.assign({}, st.plan);
+            if (plan[d] === r.id) delete plan[d]; else plan[d] = r.id;
+            return {plan, screen: 'plan'};
+          })};
+      }),
+      checkedCount: Object.keys(s.checked).filter(k => s.checked[k]).length,
+      addAllChecked: () => {
+        const picked = r.ing.filter(i => s.checked[r.id + i.n]);
+        if (!picked.length) { this.toast('先勾选要买的食材'); return; }
+        this.addItems(picked.map(i => ({name: i.n, sub: r.name + ' · ' + i.q, price: i.p * f})), '已加入 ' + picked.length + ' 样食材');
+        this.setState({checked: {}});
+      },
+      ingredients: r.ing.map(i => {
+        const key = r.id + i.n, on = !!s.checked[key];
+        return {
+          name: i.n, qty: i.q + (s.serves === 4 ? '' : ' · 按 ' + s.serves + ' 人份'),
+          priceLabel: yuan(i.p * f), mark: on ? '✓' : '',
+          boxBg: on ? acc : 'transparent', boxBd: on ? acc : 'rgba(22,19,15,.2)',
+          toggle: () => this.setState(st => ({checked: Object.assign({}, st.checked, {[key]: !st.checked[key]})})),
+          add: () => this.addItems([{name: i.n, sub: r.name + ' · ' + i.q, price: i.p * f}], i.n + ' 已加入购物篮')
+        };
+      }),
+      steps: r.steps.map((t, i) => ({n: i + 1, text: t})),
+
+      planSummary: planDays.length + ' 天已排菜 · 合并后自动去重',
+      planRows: DAYS.map(d => {
+        const rid = s.plan[d], rec = RECIPES.find(x => x.id === rid);
+        return {day: d, name: rec ? rec.name : '未安排', price: rec ? yuan(rec.ing.reduce((a, i) => a + i.p, 0)) : '—',
+          bg: rec ? '#FFF' : '#F7F5F1', dayFg: rec ? '#16130F' : 'rgba(22,19,15,.35)',
+          priceFg: rec ? acc : 'rgba(22,19,15,.3)'};
+      }),
+      planTotal: yuan(this.planTotalNum()),
+      mergePlan: () => {
+        const items = [];
+        planDays.forEach(d => {
+          const rec = RECIPES.find(x => x.id === s.plan[d]);
+          rec.ing.forEach(i => items.push({name: i.n, sub: rec.name + ' · ' + i.q, price: i.p}));
+        });
+        if (!items.length) { this.toast('先给某一天排一道菜'); return; }
+        this.addItems(items, '已合并 ' + planDays.length + ' 天的食材');
+        this.setState({screen: 'cart'});
+      },
+
+      cart: s.cart.map((c, idx) => ({
+        name: c.name, sub: c.sub, qty: c.qty, priceLabel: yuan(c.price * c.qty),
+        inc: () => this.setState(st => { const cart = st.cart.slice(); cart[idx] = Object.assign({}, cart[idx], {qty: cart[idx].qty + 1}); return {cart}; }),
+        dec: () => this.setState(st => {
+          const cart = st.cart.slice();
+          if (cart[idx].qty <= 1) cart.splice(idx, 1);
+          else cart[idx] = Object.assign({}, cart[idx], {qty: cart[idx].qty - 1});
+          return {cart};
+        })
+      })),
+      cartEmpty: s.cart.length === 0, cartHasItems: s.cart.length > 0,
+      subtotalLabel: yuan(this.subtotal()), feeLabel: this.subtotal() > FREE ? '免配送费' : '¥5',
+      totalLabel: yuan(this.subtotal() + (this.subtotal() > FREE ? 0 : 5)),
+      itemCountLabel: '共 ' + this.cartCount() + ' 件食材',
+      showStickyCart: this.cartCount() > 0 && ['home','search','detail','plan'].includes(s.screen),
+      stickyHint: this.subtotal() > FREE ? '已免冷链配送费' : '再买 ' + yuan(FREE - this.subtotal()) + ' 免配送费',
+      cartIcon: React.createElement('div', {key: s.fly, style: {width: 16, height: 16, borderRadius: 5, background: '#FFF', animation: s.fly ? 'pop .45s ease' : 'none'}}),
+
+      slots: slotDefs.map((label, i) => {
+        const c = chip(s.slot === i);
+        return {label, bg: c.bg, fg: c.fg, bd: c.bd, pick: () => this.setState({slot: i})};
+      }),
+      submitOrder: () => {
+        this.setState({screen: 'track', orderItems: s.cart.map(c => ({name: c.name, qty: '×' + c.qty})), cart: []});
+        this.startTracking();
+      },
+
+      trackTitle: s.trackStage >= 4 ? '食材已送达' : '预计 18:40 送达',
+      trackSub: s.trackStage >= 4 ? '记得先把牛腩和虾仁放进冷藏' : '冷链保温箱配送中 · 全程 4℃',
+      trackSteps: trackDefs.map((t, i) => {
+        const done = i < s.trackStage, cur = i === s.trackStage - 1;
+        return {label: t.label, time: t.time,
+          dotBg: done ? acc : '#FFF', dotBd: done ? acc : 'rgba(22,19,15,.18)',
+          dotAnim: cur && s.trackStage < 4 ? 'pulse 1.4s ease-in-out infinite' : 'none',
+          lineBg: i < s.trackStage - 1 ? acc : 'rgba(22,19,15,.12)',
+          lineH: '24px', hasLine: i < trackDefs.length - 1,
+          fg: done ? '#16130F' : 'rgba(22,19,15,.38)'};
+      }),
+      lastOrderItems: s.orderItems.length ? s.orderItems : [{name:'牛腩', qty:'×1'}, {name:'番茄', qty:'×1'}, {name:'土豆', qty:'×1'}],
+
+      stats: [{v:'128', k:'累计做过的菜'}, {v:'23', k:'收藏菜谱'}, {v:'¥1,482', k:'今年食材支出'}],
+      history: s.history.map(h => Object.assign({}, h, {open: () => this.setState({screen: 'track'})})),
+
+      tabs: tabDefs.map(t => ({
+        label: t.label, go: this.go(t.k),
+        fg: s.screen === t.k ? '#16130F' : 'rgba(22,19,15,.35)',
+        icon: s.screen === t.k ? acc : 'rgba(22,19,15,.2)'
+      })),
+
+      flyChip: s.fly ? React.createElement('div', {key: 'fly' + s.fly, style: {
+        position: 'absolute', right: 34, top: 300, width: 34, height: 34, borderRadius: 12,
+        background: acc, color: '#fff', display: 'grid', placeItems: 'center',
+        font: "800 14px/1 'Baloo Bhaijaan 2',sans-serif", pointerEvents: 'none', zIndex: 30,
+        animation: 'fly .7s cubic-bezier(.4,0,.5,1) forwards'
+      }}, '+1') : null,
+      toast: s.toastMsg ? React.createElement('div', {key: 'toast' + s.toastKey, style: {
+        position: 'absolute', left: '50%', transform: 'translateX(-50%)', bottom: 150,
+        background: 'rgba(22,19,15,.92)', color: '#fff', padding: '11px 16px', borderRadius: 14,
+        font: "700 12.5px/1 'Noto Sans SC',sans-serif", whiteSpace: 'nowrap', pointerEvents: 'none', zIndex: 31,
+        animation: 'toastin 2s ease forwards'
+      }}, s.toastMsg) : null
+    };
+  }
+}
+</script>
+</body>
+</html>

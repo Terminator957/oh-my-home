@@ -1,0 +1,31 @@
+<view style="padding:8rpx 36rpx 24rpx;display:flex;flex-direction:column;gap:20rpx;border-bottom:2rpx solid #DCD3C2">
+  <view class="row" style="justify-content:space-between;align-items:baseline">
+    <view style="font-size:40rpx;font-weight:600">阿宁和小周的家宴</view>
+    <view style="font-size:22rpx;color:#A93226;border:2rpx solid #A93226;padding:4rpx 12rpx">客人</view>
+  </view>
+  <view style="font-size:24rpx;color:#6B6355">周六 18:00 · 你点的菜他们会看到，忌口写在备注里就好</view>
+  <view class="row" style="gap:16rpx;flex-wrap:wrap">
+    <view hover-class="hv" class="chip {{cat === item ? 'on' : ''}}" wx:for="{{cats}}" wx:key="*this" bindtap="pickCat" data-c="{{item}}">{{item}}</view>
+  </view>
+</view>
+
+<view style="padding:0 36rpx 200rpx">
+  <view class="row" style="gap:24rpx;padding:26rpx 0;border-bottom:2rpx solid #DCD3C2" wx:for="{{menu}}" wx:key="name">
+    <view class="ph" style="width:140rpx;height:140rpx">照片</view>
+    <view class="col flex1" style="gap:8rpx">
+      <view style="font-size:32rpx;font-weight:600">{{item.name}}</view>
+      <view style="font-size:22rpx;color:#8A8072">{{item.note}}</view>
+      <view style="font-size:22rpx;color:#6B6355">{{item.kcal}} 千卡 / 份 · {{item.starText}}</view>
+    </view>
+    <view bindtap="toggle" data-name="{{item.name}}" hover-class="hv"
+      style="width:120rpx;height:60rpx;border:2rpx solid {{item.inCart ? '#A93226' : '#C9BFAC'}};background:{{item.inCart ? '#A93226' : '#FBF8F2'}};color:{{item.inCart ? '#FBF8F2' : '#3A342B'}};display:flex;align-items:center;justify-content:center;font-size:26rpx;transition:background .18s ease,color .18s ease,border-color .18s ease">{{item.inCart ? '已点' : '＋ 点'}}</view>
+  </view>
+</view>
+
+<view style="position:fixed;left:0;right:0;bottom:0;border-top:2rpx solid #C9BFAC;background:#FBF8F2;padding:24rpx 36rpx calc(24rpx + env(safe-area-inset-bottom));display:flex;align-items:center;gap:24rpx">
+  <view class="col flex1" style="gap:4rpx" bindtap="goCart">
+    <view style="font-size:28rpx;font-weight:600">已点 {{cartCount}} 道</view>
+    <view style="font-size:22rpx;color:#8A8072">合计约 {{cartKcal}} 千卡 · 点这里看清单</view>
+  </view>
+  <view bindtap="goCart" style="height:84rpx;padding:0 44rpx;background:{{cartCount ? '#A93226' : '#C4BAA7'}};color:#FBF8F2;display:flex;align-items:center;justify-content:center;font-size:30rpx;letter-spacing:4rpx">提交给主厨</view>
+</view>

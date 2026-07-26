@@ -1,0 +1,13 @@
+{
+  "name": "jiayan-tests",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "test:unit": "node --test unit.test.js",
+    "test:interface": "node --test interface.test.js",
+    "test:ui": "node ui.test.js"
+  },
+  "dependencies": {
+    "miniprogram-automator": "^0.12.1"
+  }
+}

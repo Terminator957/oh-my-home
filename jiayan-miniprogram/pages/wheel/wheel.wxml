@@ -1,0 +1,30 @@
+<view class="pad col" style="gap:40rpx;align-items:center">
+
+  <view style="font-size:26rpx;color:#6B6355;text-align:center;line-height:1.9">
+    <view>从「想吃 + 常做」的 {{pool.length}} 道里抽</view>
+    <view>抽中不满意可以再抽</view>
+  </view>
+
+  <view style="width:560rpx;height:560rpx;position:relative;display:flex;align-items:center;justify-content:center">
+    <view style="position:absolute;top:-12rpx;left:50%;margin-left:-12rpx;width:0;height:0;border-left:12rpx solid transparent;border-right:12rpx solid transparent;border-top:24rpx solid #A93226;z-index:2"></view>
+    <view style="width:520rpx;height:520rpx;border-radius:50%;border:2rpx solid #C9BFAC;background:#FBF8F2;transform:rotate({{angle}}deg);transition:transform 2.4s cubic-bezier(.13,.86,.09,1);position:relative;overflow:hidden">
+      <view wx:for="{{pool}}" wx:key="name"
+        style="position:absolute;top:0;left:50%;width:2rpx;height:50%;transform-origin:bottom center;transform:rotate({{item.deg}}deg);background:#E0D8C6">
+        <view style="position:absolute;top:32rpx;left:8rpx;width:164rpx;font-size:24rpx;color:{{index === wheelIdx ? '#A93226' : '#5E574B'}};font-weight:{{index === wheelIdx ? 600 : 400}};transform:rotate({{halfStep}}deg);transform-origin:left top;white-space:nowrap">{{item.name}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="col" style="min-height:190rpx;align-items:center;justify-content:center">
+    <view wx:if="{{spinning}}" class="label">转着呢，指针停在哪就吃哪</view>
+    <view wx:else class="col fade" style="align-items:center;gap:14rpx">
+      <view class="label">{{hint}}</view>
+      <view style="font-size:60rpx;font-weight:600;letter-spacing:2rpx">{{result}}</view>
+      <view style="font-size:24rpx;color:#6B6355">{{meta}}</view>
+    </view>
+  </view>
+
+  <view hover-class="hv" class="btn btn-red" style="width:100%;height:96rpx;font-size:32rpx;letter-spacing:8rpx" bindtap="spin">{{spinning ? '转着呢…' : '转一下'}}</view>
+  <view hover-class="hv" class="btn btn-ghost" style="width:100%" bindtap="confirm">就它了，记到今天</view>
+
+</view>

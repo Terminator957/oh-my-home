@@ -1,0 +1,27 @@
+<view class="pad col" style="gap:24rpx;padding-bottom:24rpx">
+  <view class="row card" style="height:72rpx;padding:0 24rpx;gap:16rpx;color:#9A9082;font-size:26rpx">
+    <text>⌕</text>
+    <input class="flex1" style="font-size:26rpx;color:#1F1C18" placeholder="搜菜名、食材" placeholder-style="color:#9A9082" bindinput="onSearch" value="{{query}}" />
+  </view>
+  <view class="row" style="gap:16rpx;flex-wrap:wrap">
+    <view hover-class="hv" class="chip {{tab === item.key ? 'on' : ''}}" wx:for="{{tabs}}" wx:key="key" bindtap="pickTab" data-key="{{item.key}}">{{item.label}}</view>
+  </view>
+</view>
+
+<view style="padding:0 36rpx 48rpx">
+  <view class="row hr-t" style="gap:24rpx;padding:28rpx 0;align-items:flex-start" wx:for="{{list}}" wx:key="name" bindtap="openDish" data-name="{{item.name}}">
+    <view class="ph" style="width:156rpx;height:156rpx">照片</view>
+    <view class="col flex1" style="gap:8rpx">
+      <view class="row" style="gap:16rpx">
+        <view style="font-size:34rpx;font-weight:600">{{item.name}}</view>
+        <view style="font-size:20rpx;color:{{item.tagColor}};border:2rpx solid {{item.tagColor}};padding:2rpx 10rpx">{{item.status}}</view>
+      </view>
+      <view style="font-size:24rpx;color:#6B6355">{{item.ing}} ｜ {{item.time}} · {{item.level}}</view>
+      <view class="row" style="justify-content:space-between;align-items:baseline">
+        <view style="font-size:24rpx;color:#8A8072">{{item.made}}</view>
+        <view style="font-size:24rpx;color:#3A342B">{{item.starText}} 约 {{item.kcal}} 千卡</view>
+      </view>
+    </view>
+  </view>
+  <view wx:if="{{!list.length}}" style="border:2rpx dashed #C0B5A0;padding:56rpx;text-align:center;color:#8A8072;font-size:26rpx;margin-top:24rpx">没有符合条件的菜</view>
+</view>

@@ -1,0 +1,80 @@
+<view class="pad col" style="gap:32rpx">
+
+  <view class="row hr-t" style="border-top:none;align-items:flex-end;justify-content:space-between;border-bottom:2rpx solid #DCD3C2;padding-bottom:24rpx">
+    <view class="col" style="gap:10rpx">
+      <view style="font-size:24rpx;color:#8A8072;letter-spacing:4rpx">{{dateLabel}}</view>
+      <view style="font-size:44rpx;font-weight:600;letter-spacing:2rpx">晚上吃点什么？</view>
+    </view>
+    <view bindtap="goGuest" style="width:72rpx;height:72rpx;border:2rpx solid #A93226;color:#A93226;display:flex;align-items:center;justify-content:center;font-size:24rpx;line-height:1.1;text-align:center">家宴</view>
+  </view>
+
+  <view class="card col" style="padding:32rpx;gap:24rpx">
+    <view class="label">今日推荐</view>
+    <view wx:if="{{showRec}}" class="row fade" style="gap:28rpx;align-items:flex-start;min-height:184rpx">
+      <view class="ph" style="width:184rpx;height:184rpx;text-align:center">菜品照片</view>
+      <view class="col flex1" style="gap:14rpx">
+        <view style="font-size:38rpx;font-weight:600">{{rec.name}}</view>
+        <view style="font-size:24rpx;color:#6B6355;line-height:1.7">
+          <view>{{rec.made}}</view>
+          <view>她想吃 · 你会做</view>
+        </view>
+        <view class="row" style="gap:12rpx">
+          <text class="tag">{{rec.flavor}}</text>
+          <text class="tag">{{rec.cat}}</text>
+          <text class="tag">{{rec.time}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="row" style="gap:20rpx">
+      <view hover-class="hv" class="btn btn-red flex1" style="height:76rpx;font-size:28rpx" bindtap="pickRec">就做这个</view>
+      <view hover-class="hv" class="btn btn-ghost flex1" style="height:76rpx;font-size:28rpx" bindtap="nextRec">换一个</view>
+    </view>
+  </view>
+
+  <view class="row" style="gap:20rpx">
+    <view class="card col flex1" style="padding:24rpx 20rpx;gap:12rpx" bindtap="goWant">
+      <view style="font-size:30rpx;font-weight:600">想吃</view>
+      <view class="label">{{wantCount}} 道</view>
+    </view>
+    <view class="card col flex1" style="padding:24rpx 20rpx;gap:12rpx" bindtap="goMade">
+      <view style="font-size:30rpx;font-weight:600">做过</view>
+      <view class="label">{{madeCount}} 道</view>
+    </view>
+    <view class="col flex1" style="background:#FBF8F2;border:2rpx solid #A93226;padding:24rpx 20rpx;gap:12rpx" bindtap="goGuest">
+      <view style="font-size:30rpx;font-weight:600;color:#A93226">请客</view>
+      <view class="label" style="color:#A93226">开菜单</view>
+    </view>
+  </view>
+
+  <view style="border:2rpx solid #A93226;padding:24rpx 28rpx" class="row">
+    <view style="font-size:30rpx;font-weight:600;color:#A93226" class="flex1">不知道吃什么？</view>
+    <view class="row" style="gap:24rpx;font-size:26rpx;color:#A93226">
+      <text bindtap="goWheel">转一转</text>
+      <text bindtap="goSwipe">滑一滑</text>
+      <text bindtap="goMood">按心情</text>
+    </view>
+  </view>
+
+  <view class="col" style="gap:20rpx">
+    <view class="row" style="justify-content:space-between;align-items:baseline">
+      <view class="label">最近做过</view>
+      <view style="font-size:24rpx;color:#A93226" bindtap="goMade">全部 ›</view>
+    </view>
+    <view class="row" style="gap:24rpx;align-items:flex-start">
+      <view class="col flex1" style="gap:12rpx" wx:for="{{recent}}" wx:key="name" bindtap="openDish" data-name="{{item.name}}">
+        <view class="ph" style="height:148rpx">照片</view>
+        <view style="font-size:26rpx">{{item.name}}</view>
+        <view style="font-size:22rpx;color:#8A8072">{{item.date}} · {{item.starText}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="hr-t col" style="padding-top:16rpx;gap:10rpx">
+    <view class="label">本周热量</view>
+    <view class="row" style="align-items:flex-end;gap:10rpx;height:68rpx">
+      <view wx:for="{{bars}}" wx:key="index" class="flex1" style="height:{{item.h}}%;background:{{item.hot ? '#A93226' : '#E0D8C6'}}"></view>
+    </view>
+    <view style="font-size:22rpx;color:#8A8072">日均 1,880 千卡 · 周四偏高</view>
+  </view>
+
+</view>

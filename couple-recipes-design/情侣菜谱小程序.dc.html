@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  body { margin:0; background:#E4DDCE; }
+  a { color:#A93226; text-decoration:none; }
+  a:hover { color:#7E2519; }
+</style>
+</helmet>
+
+<div style="padding:64px;background:#E4DDCE;font-family:'Noto Serif SC',serif;color:#1F1C18;display:flex;flex-direction:column;gap:56px">
+
+<section style="display:flex;flex-direction:column;gap:48px">
+
+  <div style="display:flex;flex-direction:column;gap:8px;max-width:920px">
+    <div style="font:400 12px ui-monospace,monospace;letter-spacing:.2em;color:#8A8072">TURN 1 · 家宴小本子</div>
+    <div style="font-size:34px;font-weight:600;letter-spacing:.04em">两个人的菜谱，也是给客人的菜单</div>
+    <div style="font-size:15px;line-height:1.9;color:#5E574B;text-wrap:pretty"><a href="#1a">1a</a> 情侣端主流程 · <a href="#1b">1b</a> 客人点菜流程 · <a href="#1c">1c</a> 首页信息架构对比 · <a href="#1d">1d</a>「今天吃什么」三种玩法。转盘、滑卡、加菜识别、评分、客人购物车都能真点。</div>
+  </div>
+
+  <!-- ================= 1a ================= -->
+  <div id="1a" style="display:flex;flex-direction:column;gap:20px">
+    <div style="display:flex;align-items:center;gap:14px">
+      <div style="font:500 12px ui-monospace,monospace;color:#FBF8F2;background:#A93226;padding:5px 10px;letter-spacing:.1em">1a</div>
+      <div style="font-size:20px;font-weight:600;letter-spacing:.06em">情侣端主流程</div>
+      <div style="flex:1;height:1px;background:#CFC6B4"></div>
+    </div>
+
+    <div style="display:flex;flex-wrap:wrap;gap:36px">
+
+      <!-- S01 首页 -->
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="width:375px;height:812px;background:#F4EFE5;border:1px solid #D3CAB8;box-shadow:0 18px 40px rgba(60,50,35,.13);display:flex;flex-direction:column;overflow:hidden">
+          <div style="height:44px;display:flex;align-items:center;justify-content:space-between;padding:0 18px;font-size:12px;color:#3A342B"><span>9:41</span><span style="display:flex;align-items:center;gap:6px"><span style="font-size:10px">●●●</span><span style="width:22px;height:11px;border:1px solid #3A342B;border-radius:2px;display:inline-block"></span></span></div>
+          <div style="height:46px;display:flex;align-items:center;justify-content:center;position:relative"><div style="font-size:16px;font-weight:500;letter-spacing:.1em">小本子</div><div style="position:absolute;right:14px;width:76px;height:28px;border:1px solid #D3CAB8;border-radius:14px;background:#FBF8F2;display:flex;align-items:center;justify-content:space-around;color:#6B6355;font-size:13px"><span>···</span><span style="width:1px;height:12px;background:#DCD3C2"></span><span>⊙</span></div></div>
+          <div style="flex:1;overflow:hidden;padding:6px 18px 0;display:flex;flex-direction:column;gap:16px">
+            <div style="display:flex;align-items:flex-end;justify-content:space-between;border-bottom:1px solid #DCD3C2;padding-bottom:12px">
+              <div style="display:flex;flex-direction:column;gap:5px">
+                <div style="font-size:12px;color:#8A8072;letter-spacing:.14em">七月二十六 · 小暑</div>
+                <div style="font-size:22px;font-weight:600;letter-spacing:.05em">晚上吃点什么？</div>
+              </div>
+              <div style="width:36px;height:36px;border:1px solid #A93226;color:#A93226;display:flex;align-items:center;justify-content:center;font-size:12px;line-height:1.1;text-align:center">家宴</div>
+            </div>
+
+            <div style="background:#FBF8F2;border:1px solid #DCD3C2;padding:16px;display:flex;flex-direction:column;gap:12px">
+              <div style="font:400 11px ui-monospace,monospace;color:#8A8072;letter-spacing:.18em">今日推荐</div>
+              <div style="display:flex;gap:14px">
+                <div style="width:92px;height:92px;background:repeating-linear-gradient(45deg,#E6DFD1 0 6px,#EFE9DD 6px 12px);display:flex;align-items:center;justify-content:center;color:#9A9082;font:10px ui-monospace,monospace;text-align:center">菜品照片</div>
+                <div style="flex:1;display:flex;flex-direction:column;gap:8px">
+                  <div style="font-size:19px;font-weight:600;letter-spacing:.04em">冬瓜排骨汤</div>
+                  <div style="font-size:12px;color:#6B6355;line-height:1.7">上次是 5 月 12 日做的<br>她想吃 · 你会做</div>
+                  <div style="display:flex;gap:6px"><span style="font-size:11px;border:1px solid #DCD3C2;padding:2px 7px;color:#6B6355">清淡</span><span style="font-size:11px;border:1px solid #DCD3C2;padding:2px 7px;color:#6B6355">汤</span><span style="font-size:11px;border:1px solid #DCD3C2;padding:2px 7px;color:#6B6355">40 分钟</span></div>
+                </div>
+              </div>
+              <div style="display:flex;gap:10px">
+                <div style="flex:1;height:38px;background:#A93226;color:#FBF8F2;display:flex;align-items:center;justify-content:center;font-size:14px;letter-spacing:.1em">就做这个</div>
+                <div style="flex:1;height:38px;border:1px solid #C9BFAC;color:#3A342B;display:flex;align-items:center;justify-content:center;font-size:14px;letter-spacing:.1em">换一个</div>
+              </div>
+            </div>
+
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px">
+              <div style="background:#FBF8F2;border:1px solid #DCD3C2;padding:12px 10px;display:flex;flex-direction:column;gap:6px"><div style="font-size:15px;font-weight:600">想吃</div><div style="font:400 11px ui-monospace,monospace;color:#8A8072">18 道</div></div>
+              <div style="background:#FBF8F2;border:1px solid #DCD3C2;padding:12px 10px;display:flex;flex-direction:column;gap:6px"><div style="font-size:15px;font-weight:600">做过</div><div style="font:400 11px ui-monospace,monospace;color:#8A8072">63 道</div></div>
+              <div style="background:#FBF8F2;border:1px solid #A93226;padding:12px 10px;display:flex;flex-direction:column;gap:6px"><div style="font-size:15px;font-weight:600;color:#A93226">请客</div><div style="font:400 11px ui-monospace,monospace;color:#A93226">开菜单</div></div>
+            </div>
+
+            <div style="display:flex;flex-direction:column;gap:10px">
+              <div style="display:flex;justify-content:space-between;align-items:baseline"><div style="font:400 11px ui-monospace,monospace;color:#8A8072;letter-spacing:.18em">最近做过</div><div style="font-size:12px;color:#A93226">全部 ›</div></div>
+              <div style="display:flex;gap:12px">
+                <div style="flex:1;display:flex;flex-direction:column;gap:6px"><div style="height:74px;background:repeating-linear-gradient(45deg,#E6DFD1 0 6px,#EFE9DD 6px 12px);display:flex;align-items:center;justify-content:center;color:#9A9082;font:9px ui-monospace,monospace">照片</div><div style="font-size:13px">番茄牛腩</div><div style="font-size:11px;color:#8A8072">7.21 · ★★★★☆</div></div>
+                <div style="flex:1;display:flex;flex-direction:column;gap:6px"><div style="height:74px;background:repeating-linear-gradient(45deg,#E6DFD1 0 6px,#EFE9DD 6px 12px);display:flex;align-items:center;justify-content:center;color:#9A9082;font:9px ui-monospace,monospace">照片</div><div style="font-size:13px">蒜蓉粉丝虾</div><div style="font-size:11px;color:#8A8072">7.18 · ★★★★★</div></div>
+                <div style="flex:1;display:flex;flex-direction:column;gap:6px"><div style="height:74px;background:repeating-linear-gradient(45deg,#E6DFD1 0 6px,#EFE9DD 6px 12px);display:flex;align-items:center;justify-content:center;color:#9A9082;font:9px ui-monospace,monospace">照片</div><div style="font-size:13px">干煸豆角</div><div style="font-size:11px;color:#8A8072">7.15 · ★★★☆☆</div></div>
+              </div>
+            </div>
+
+            <div style="border-top:1px solid #DCD3C2;padding-top:8px;display:flex;flex-direction:column;gap:5px">
+              <div style="font:400 11px ui-monospace,monospace;color:#8A8072;letter-spacing:.18em">本周热量</div>
+              <div style="display:flex;align-items:flex-end;gap:5px;height:34px">
+                <div style="flex:1;height:40%;background:#E0D8C6"></div><div style="flex:1;height:62%;background:#E0D8C6"></div><div style="flex:1;height:34%;background:#E0D8C6"></div><div style="flex:1;height:78%;background:#A93226"></div><div style="flex:1;height:52%;background:#E0D8C6"></div><div style="flex:1;height:66%;background:#E0D8C6"></div><div style="flex:1;height:20%;background:#E0D8C6"></div>
+              </div>
+              <div style="font-size:11px;color:#8A8072">日均 1,880 千卡 · 周四偏高</div>
+            </div>
+          </div>
+          <div style="height:64px;border-top:1px solid #DCD3C2;background:#FBF8F2;display:flex;align-items:center;padding:0 8px">
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;color:#A93226"><div style="font-size:16px">◈</div><div style="font-size:11px">小本子</div></div>
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;color:#8A8072"><div style="font-size:16px">▤</div><div style="font-size:11px">菜谱库</div></div>
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;color:#8A8072"><div style="font-size:16px">＋</div><div style="font-size:11px">添一道</div></div>
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;color:#8A8072"><div style="font-size:16px">◇</div><div style="font-size:11px">我们</div></div>
+          </div>
+        </div>
+        <div style="font:400 11px ui-monospace,monospace;color:#7E7566;letter-spacing:.12em">S01 · 首页「小本子」</div>
+      </div>
+
+      <!-- S02 菜谱库 -->
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="width:375px;height:812px;background:#F4EFE5;border:1px solid #D3CAB8;box-shadow:0 18px 40px rgba(60,50,35,.13);display:flex;flex-direction:column;overflow:hidden">
+          <div style="height:44px;display:flex;align-items:center;justify-content:space-between;padding:0 18px;font-size:12px;color:#3A342B"><span>9:41</span><span style="display:flex;align-items:center;gap:6px"><span style="font-size:10px">●●●</span><span style="width:22px;height:11px;border:1px solid #3A342B;border-radius:2px;display:inline-block"></span></span></div>
+          <div style="height:46px;display:flex;align-items:center;justify-content:center;position:relative"><div style="font-size:16px;font-weight:500;letter-spacing:.1em">菜谱库</div><div style="position:absolute;right:14px;width:76px;height:28px;border:1px solid #D3CAB8;border-radius:14px;background:#FBF8F2;display:flex;align-items:center;justify-content:space-around;color:#6B6355;font-size:13px"><span>···</span><span style="width:1px;height:12px;background:#DCD3C2"></span><span>⊙</span></div></div>
+          <div style="padding:6px 18px 12px;display:flex;flex-direction:column;gap:12px">
+            <div style="height:36px;border:1px solid #DCD3C2;background:#FBF8F2;display:flex;align-items:center;padding:0 12px;gap:8px;color:#9A9082;font-size:13px"><span>⌕</span><span>搜菜名、食材</span></div>
+            <div style="display:flex;gap:8px">
+              <sc-for list="{{ libTabs }}" as="t" hint-placeholder-count="4">
+                <div onClick="{{ t.pick }}" style="font-size:13px;padding:5px 12px;border:1px solid {{ t.border }};background:{{ t.bg }};color:{{ t.fg }};cursor:pointer">{{ t.label }}</div>
+              </sc-for>
+            </div>
+          </div>
+          <div style="flex:1;overflow:hidden;padding:0 18px;display:flex;flex-direction:column">
+            <sc-for list="{{ libList }}" as="d" hint-placeholder-count="5">
+              <div style="display:flex;gap:12px;padding:14px 0;border-top:1px solid #DCD3C2">
+                <div style="width:78px;height:78px;background:repeating-linear-gradient(45deg,#E6DFD1 0 6px,#EFE9DD 6px 12px);display:flex;align-items:center;justify-content:center;color:#9A9082;font:9px ui-monospace,monospace">照片</div>
+                <div style="flex:1;display:flex;flex-direction:column;gap:5px">
+                  <div style="display:flex;align-items:center;gap:8px"><div style="font-size:17px;font-weight:600">{{ d.name }}</div><div style="font-size:10px;color:{{ d.tagColor }};border:1px solid {{ d.tagColor }};padding:1px 5px">{{ d.status }}</div></div>
+                  <div style="font-size:12px;color:#6B6355">{{ d.ing }} ｜ {{ d.time }} · {{ d.level }}</div>
+                  <div style="display:flex;justify-content:space-between;align-items:baseline"><div style="font-size:12px;color:#8A8072">{{ d.made }}</div><div style="font-size:12px;color:#3A342B">{{ d.stars }} 约 {{ d.kcal }} 千卡</div></div>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+          <div style="height:64px;border-top:1px solid #DCD3C2;background:#FBF8F2;display:flex;align-items:center;padding:0 8px">
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;color:#8A8072"><div style="font-size:16px">◈</div><div style="font-size:11px">小本子</div></div>
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;color:#A93226"><div style="font-size:16px">▤</div><div style="font-size:11px">菜谱库</div></div>
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;color:#8A8072"><div style="font-size:16px">＋</div><div style="font-size:11px">添一道</div></div>
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;color:#8A8072"><div style="font-size:16px">◇</div><div style="font-size:11px">我们</div></div>
+          </div>
+        </div>
+        <div style="font:400 11px ui-monospace,monospace;color:#7E7566;letter-spacing:.12em">S02 · 菜谱库（筛选可点）</div>
+      </div>
+
+      <!-- S03 菜品详情 -->
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="width:375px;height:812px;background:#F4EFE5;border:1px solid #D3CAB8;box-shadow:0 18px 40px rgba(60,50,35,.13);display:flex;flex-direction:column;overflow:hidden">
+          <div style="height:260px;background:repeating-linear-gradient(45deg,#E6DFD1 0 8px,#EFE9DD 8px 16px);position:relative;display:flex;align-items:center;justify-content:center;color:#9A9082;font:11px ui-monospace,monospace">
+            菜品主图 375×260
+            <div style="position:absolute;top:52px;left:16px;width:30px;height:30px;background:rgba(251,248,242,.9);border:1px solid #D3CAB8;display:flex;align-items:center;justify-content:center;color:#3A342B">‹</div>
+            <div style="position:absolute;bottom:14px;right:16px;width:52px;height:52px;border:1.5px solid #A93226;border-radius:50%;color:#A93226;display:flex;align-items:center;justify-content:center;font-size:13px;background:rgba(244,239,229,.75);transform:rotate(-8deg)">常做</div>
+          </div>
+          <div style="flex:1;overflow:hidden;padding:18px;display:flex;flex-direction:column;gap:14px">
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <div style="display:flex;align-items:baseline;justify-content:space-between">
+                <div style="font-size:26px;font-weight:600;letter-spacing:.04em">红烧肉</div>
+                <div style="display:flex;align-items:baseline;gap:6px">
+                  <sc-for list="{{ starRow }}" as="s" hint-placeholder-count="5">
+                    <div onClick="{{ s.set }}" style="font-size:16px;color:{{ s.color }};cursor:pointer">★</div>
+                  </sc-for>
+                  <div style="font-size:12px;color:#8A8072">{{ ratingLabel }}</div>
+                </div>
+              </div>
+              <div style="display:flex;gap:6px;flex-wrap:wrap">
+                <span style="font-size:11px;border:1px solid #DCD3C2;padding:2px 8px;color:#6B6355;background:#FBF8F2">咸鲜</span>
+                <span style="font-size:11px;border:1px solid #DCD3C2;padding:2px 8px;color:#6B6355;background:#FBF8F2">下饭</span>
+                <span style="font-size:11px;border:1px solid #DCD3C2;padding:2px 8px;color:#6B6355;background:#FBF8F2">90 分钟</span>
+                <span style="font-size:11px;border:1px solid #DCD3C2;padding:2px 8px;color:#6B6355;background:#FBF8F2">中等</span>
+                <span style="font-size:11px;border:1px solid #DCD3C2;padding:2px 8px;color:#6B6355;background:#FBF8F2">他会做</span>
+              </div>
+            </div>
+
+            <div style="background:#FBF8F2;border:1px solid #DCD3C2;padding:14px;display:flex;flex-direction:column;gap:12px">
+              <div style="display:flex;justify-content:space-between;align-items:baseline">
+                <div style="font:400 11px ui-monospace,monospace;color:#8A8072;letter-spacing:.18em">热量与营养 / 每份</div>
+                <div style="font-size:11px;color:#A93226">按食材估算 ›</div>
+              </div>
+              <div style="display:flex;align-items:flex-end;gap:6px"><div style="font-size:34px;font-weight:600;line-height:1">520</div><div style="font-size:13px;color:#6B6355;padding-bottom:5px">千卡 · 约占两人晚餐 42%</div></div>
+              <div style="display:flex;flex-direction:column;gap:8px">
+                <div style="display:flex;align-items:center;gap:10px"><div style="width:34px;font-size:12px;color:#6B6355">蛋白</div><div style="flex:1;height:6px;background:#E6DFD1"><div style="width:34%;height:6px;background:#1F1C18"></div></div><div style="width:42px;text-align:right;font:400 11px ui-monospace,monospace">21 g</div></div>
+                <div style="display:flex;align-items:center;gap:10px"><div style="width:34px;font-size:12px;color:#6B6355">碳水</div><div style="flex:1;height:6px;background:#E6DFD1"><div style="width:22%;height:6px;background:#6B6355"></div></div><div style="width:42px;text-align:right;font:400 11px ui-monospace,monospace">12 g</div></div>
+                <div style="display:flex;align-items:center;gap:10px"><div style="width:34px;font-size:12px;color:#6B6355">脂肪</div><div style="flex:1;height:6px;background:#E6DFD1"><div style="width:72%;height:6px;background:#A93226"></div></div><div style="width:42px;text-align:right;font:400 11px ui-monospace,monospace">41 g</div></div>
+              </div>
+            </div>
+
+            <div style="display:flex;flex-direction:column;gap:6px">
+              <div style="font:400 11px ui-monospace,monospace;color:#8A8072;letter-spacing:.18em">食材</div>
+              <div style="font-size:14px;line-height:2;color:#3A342B;text-wrap:pretty">五花肉 500g ｜ 冰糖 25g ｜ 生姜 3 片 ｜ 八角 2 颗 ｜ 老抽 1 勺 ｜ 黄酒 半碗</div>
+            </div>
+
+            <div style="display:flex;flex-direction:column;gap:8px;border-top:1px solid #DCD3C2;padding-top:12px">
+              <div style="font:400 11px ui-monospace,monospace;color:#8A8072;letter-spacing:.18em">做过 14 次</div>
+              <div style="font-size:13px;color:#6B6355;line-height:1.9">6.28 · 火收得刚好，她说比上次好<br>5.30 · 糖多了一点，下次减 5g<br>4.19 · 第一次用铸铁锅</div>
+            </div>
+          </div>
+          <div style="height:72px;border-top:1px solid #DCD3C2;background:#FBF8F2;display:flex;align-items:center;gap:10px;padding:0 18px">
+            <div style="width:56px;height:40px;border:1px solid #C9BFAC;display:flex;align-items:center;justify-content:center;font-size:13px;color:#6B6355">想吃</div>
+            <div style="flex:1;height:40px;background:#A93226;color:#FBF8F2;display:flex;align-items:center;justify-content:center;font-size:15px;letter-spacing:.12em">今天做这道</div>
+            <div style="width:56px;height:40px;border:1px solid #C9BFAC;display:flex;align-items:center;justify-content:center;font-size:13px;color:#6B6355">编辑</div>
+          </div>
+        </div>
+        <div style="font:400 11px ui-monospace,monospace;color:#7E7566;letter-spacing:.12em">S03 · 菜品详情（星星可点）</div>
+      </div>
+
+      <!-- S04 添加菜品 -->
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="width:375px;height:812px;background:#F4EFE5;border:1px solid #D3CAB8;box-shadow:0 18px 40px rgba(60,50,35,.13);display:flex;flex-direction:column;overflow:hidden">
+          <div style="height:44px;display:flex;align-items:center;justify-content:space-between;padding:0 18px;font-size:12px;color:#3A342B"><span>9:41</span><span style="display:flex;align-items:center;gap:6px"><span style="font-size:10px">●●●</span><span style="width:22px;height:11px;border:1px solid #3A342B;border-radius:2px;display:inline-block"></span></span></div>
+          <div style="height:46px;display:flex;align-items:center;justify-content:center;position:relative"><div style="font-size:16px;font-weight:500;letter-spacing:.1em">添一道菜</div><div style="position:absolute;left:16px;font-size:13px;color:#6B6355">取消</div></div>
+          <div style="flex:1;overflow:hidden;padding:6px 18px;display:flex;flex-direction:column;gap:14px">
+            <div style="height:150px;border:1px dashed #C0B5A0;background:#FBF8F2;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:#8A8072">
+              <div style="font-size:22px">＋</div>
+              <div style="font-size:13px">拍照 / 从相册选</div>
+              <div style="font:400 10px ui-monospace,monospace;color:#A39887">上传后自动识别菜名与热量</div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:6px">
+              <div style="font:400 11px ui-monospace,monospace;color:#8A8072;letter-spacing:.18em">菜名</div>
+              <div style="height:40px;border-bottom:1px solid #C9BFAC;display:flex;align-items:center;justify-content:space-between;font-size:17px">香菇滑鸡<span style="font-size:11px;color:#A93226">识别所得 · 可改</span></div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <div style="font:400 11px ui-monospace,monospace;color:#8A8072;letter-spacing:.18em">状态</div>
+              <div style="display:flex;gap:8px">
+                <sc-for list="{{ statusOpts }}" as="o" hint-placeholder-count="3">
+                  <div onClick="{{ o.pick }}" style="flex:1;height:36px;border:1px solid {{ o.border }};background:{{ o.bg }};color:{{ o.fg }};display:flex;align-items:center;justify-content:center;font-size:14px;cursor:pointer">{{ o.label }}</div>
+                </sc-for>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <div style="display:flex;justify-content:space-between;align-items:baseline"><div style="font:400 11px ui-monospace,monospace;color:#8A8072;letter-spacing:.18em">食材（填得越全，估算越准）</div><div onClick="{{ addIng }}" style="font-size:12px;color:#A93226;cursor:pointer">＋ 加一项</div></div>
+              <sc-for list="{{ ingRows }}" as="r" hint-placeholder-count="3">
+                <div style="display:flex;align-items:center;gap:10px;border-bottom:1px solid #E0D8C6;padding-bottom:7px">
+                  <div style="flex:1;font-size:14px">{{ r.name }}</div>
+                  <div style="font-size:13px;color:#6B6355">{{ r.amount }}</div>
+                  <div onClick="{{ r.remove }}" style="font-size:13px;color:#B6AB98;cursor:pointer">×</div>
+                </div>
+              </sc-for>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <div style="font:400 11px ui-monospace,monospace;color:#8A8072;letter-spacing:.18em">口味 · 耗时 · 难度</div>
+              <div style="display:flex;gap:6px;flex-wrap:wrap">
+                <sc-for list="{{ flavorOpts }}" as="f" hint-placeholder-count="6">
+                  <div onClick="{{ f.toggle }}" style="font-size:12px;padding:4px 10px;border:1px solid {{ f.border }};background:{{ f.bg }};color:{{ f.fg }};cursor:pointer">{{ f.label }}</div>
+                </sc-for>
+              </div>
+            </div>
+          </div>
+          <div style="border-top:1px solid #DCD3C2;background:#FBF8F2;padding:14px 18px;display:flex;flex-direction:column;gap:10px">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <div style="font-size:13px;color:#6B6355">估算热量 <span style="font-size:20px;font-weight:600;color:#1F1C18">{{ estKcal }}</span> 千卡 / 份</div>
+              <div style="font:400 10px ui-monospace,monospace;color:#A39887">{{ estNote }}</div>
+            </div>
+            <div onClick="{{ analyze }}" style="height:44px;background:#A93226;color:#FBF8F2;display:flex;align-items:center;justify-content:center;font-size:15px;letter-spacing:.14em;cursor:pointer">{{ analyzeLabel }}</div>
+          </div>
+        </div>
+        <div style="font:400 11px ui-monospace,monospace;color:#7E7566;letter-spacing:.12em">S04 · 添加菜品（可加减食材、重算热量）</div>
+      </div>
+
+      <!-- S05 热量分析结果 -->
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="width:375px;height:812px;background:#F4EFE5;border:1px solid #D3CAB8;box-shadow:0 18px 40px rgba(60,50,35,.13);display:flex;flex-direction:column;overflow:hidden">
+          <div style="height:44px;display:flex;align-items:center;justify-content:space-between;padding:0 18px;font-size:12px;color:#3A342B"><span>9:41</span><span style="display:flex;align-items:center;gap:6px"><span style="font-size:10px">●●●</span><span style="width:22px;height:11px;border:1px solid #3A342B;border-radius:2px;display:inline-block"></span></span></div>
+          <div style="height:46px;display:flex;align-items:center;justify-content:center;position:relative"><div style="font-size:16px;font-weight:500;letter-spacing:.1em">热量分析</div><div style="position:absolute;left:16px;font-size:13px;color:#6B6355">‹</div></div>
+          <div style="flex:1;overflow:hidden;padding:10px 18px;display:flex;flex-direction:column;gap:16px">
+            <div style="display:flex;gap:14px;align-items:center">
+              <div style="width:88px;height:88px;background:repeating-linear-gradient(45deg,#E6DFD1 0 6px,#EFE9DD 6px 12px);display:flex;align-items:center;justify-content:center;color:#9A9082;font:9px ui-monospace,monospace">照片</div>
+              <div style="flex:1;display:flex;flex-direction:column;gap:6px">
+                <div style="font-size:20px;font-weight:600">香菇滑鸡</div>
+                <div style="font-size:12px;color:#6B6355;line-height:1.7">照片识别 + 6 项食材<br>置信度 高</div>
+              </div>
+            </div>
+
+            <div style="background:#FBF8F2;border:1px solid #DCD3C2;padding:18px;display:flex;flex-direction:column;gap:16px">
+              <div style="display:flex;align-items:flex-end;justify-content:space-between">
+                <div style="display:flex;align-items:flex-end;gap:6px"><div style="font-size:44px;font-weight:600;line-height:.95">386</div><div style="font-size:13px;color:#6B6355;padding-bottom:6px">千卡 / 份</div></div>
+                <div style="font-size:12px;color:#6B6355;text-align:right;line-height:1.7">全锅 772 千卡<br>两人份</div>
+              </div>
+              <div style="display:flex;height:10px;width:100%">
+                <div style="width:41%;background:#1F1C18"></div><div style="width:23%;background:#6B6355"></div><div style="width:36%;background:#A93226"></div>
+              </div>
+              <div style="display:flex;justify-content:space-between;font-size:12px;color:#5E574B">
+                <div style="display:flex;flex-direction:column;gap:3px"><span>蛋白 40g</span><span style="color:#8A8072;font-size:11px">41%</span></div>
+                <div style="display:flex;flex-direction:column;gap:3px"><span>碳水 22g</span><span style="color:#8A8072;font-size:11px">23%</span></div>
+                <div style="display:flex;flex-direction:column;gap:3px"><span>脂肪 15g</span><span style="color:#8A8072;font-size:11px">36%</span></div>
+              </div>
+            </div>
+
+            <div style="display:flex;flex-direction:column;gap:10px">
+              <div style="font:400 11px ui-monospace,monospace;color:#8A8072;letter-spacing:.18em">各食材贡献</div>
+              <sc-for list="{{ contrib }}" as="c" hint-placeholder-count="6">
+                <div style="display:flex;align-items:center;gap:10px">
+                  <div style="width:74px;font-size:13px">{{ c.name }}</div>
+                  <div style="flex:1;height:14px;background:#E6DFD1"><div style="width:{{ c.pct }};height:14px;background:#C9BFAC"></div></div>
+                  <div style="width:52px;text-align:right;font:400 11px ui-monospace,monospace;color:#3A342B">{{ c.kcal }}</div>
+                </div>
+              </sc-for>
+            </div>
+
+            <div style="border:1px solid #DCD3C2;background:#FBF8F2;padding:14px;display:flex;flex-direction:column;gap:8px">
+              <div style="font-size:13px;font-weight:600;color:#A93226">小提醒</div>
+              <div style="font-size:13px;line-height:1.9;color:#5E574B;text-wrap:pretty">油用了 2 勺，占了 24% 的热量。少半勺，一份就降到 340 千卡左右。<br>本周脂肪已略高，配一份白灼菜心刚好。</div>
+            </div>
+          </div>
+          <div style="border-top:1px solid #DCD3C2;background:#FBF8F2;padding:14px 18px;display:flex;gap:10px">
+            <div style="flex:1;height:44px;border:1px solid #C9BFAC;color:#3A342B;display:flex;align-items:center;justify-content:center;font-size:14px">手动修正</div>
+            <div style="flex:1;height:44px;background:#A93226;color:#FBF8F2;display:flex;align-items:center;justify-content:center;font-size:15px;letter-spacing:.12em">存进小本子</div>
+          </div>
+        </div>
+        <div style="font:400 11px ui-monospace,monospace;color:#7E7566;letter-spacing:.12em">S05 · 热量分析结果</div>
+      </div>
+
+      <!-- S06 我们 -->
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="width:375px;height:812px;background:#F4EFE5;border:1px solid #D3CAB8;box-shadow:0 18px 40px rgba(60,50,35,.13);display:flex;flex-direction:column;overflow:hidden">
+          <div style="height:44px;display:flex;align-items:center;justify-content:space-between;padding:0 18px;font-size:12px;color:#3A342B"><span>9:41</span><span style="display:flex;align-items:center;gap:6px"><span style="font-size:10px">●●●</span><span style="width:22px;height:11px;border:1px solid #3A342B;border-radius:2px;display:inline-block"></span></span></div>
+          <div style="height:46px;display:flex;align-items:center;justify-content:center"><div style="font-size:16px;font-weight:500;letter-spacing:.1em">我们</div></div>
+          <div style="flex:1;overflow:hidden;padding:10px 18px;display:flex;flex-direction:column;gap:18px">
+            <div style="display:flex;align-items:center;gap:14px;border-bottom:1px solid #DCD3C2;padding-bottom:16px">
+              <div style="width:52px;height:52px;border-radius:50%;background:repeating-linear-gradient(45deg,#E6DFD1 0 5px,#EFE9DD 5px 10px)"></div>
+              <div style="width:52px;height:52px;border-radius:50%;background:repeating-linear-gradient(45deg,#E6DFD1 0 5px,#EFE9DD 5px 10px);margin-left:-24px"></div>
+              <div style="flex:1;display:flex;flex-direction:column;gap:4px"><div style="font-size:17px;font-weight:600">阿宁 · 小周</div><div style="font-size:12px;color:#8A8072">一起记了 81 道菜</div></div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+              <div style="background:#FBF8F2;border:1px solid #DCD3C2;padding:14px;display:flex;flex-direction:column;gap:6px"><div style="font-size:26px;font-weight:600">63</div><div style="font-size:12px;color:#6B6355">做过的菜</div></div>
+              <div style="background:#FBF8F2;border:1px solid #DCD3C2;padding:14px;display:flex;flex-direction:column;gap:6px"><div style="font-size:26px;font-weight:600">218</div><div style="font-size:12px;color:#6B6355">下厨次数</div></div>
+              <div style="background:#FBF8F2;border:1px solid #DCD3C2;padding:14px;display:flex;flex-direction:column;gap:6px"><div style="font-size:26px;font-weight:600">14</div><div style="font-size:12px;color:#6B6355">请客场次</div></div>
+              <div style="background:#FBF8F2;border:1px solid #DCD3C2;padding:14px;display:flex;flex-direction:column;gap:6px"><div style="font-size:26px;font-weight:600">红烧肉</div><div style="font-size:12px;color:#6B6355">最常做</div></div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:2px">
+              <div style="height:52px;border-top:1px solid #DCD3C2;display:flex;align-items:center;justify-content:space-between;font-size:15px">分享菜单给客人<span style="color:#A93226;font-size:13px">生成卡片 ›</span></div>
+              <div style="height:52px;border-top:1px solid #DCD3C2;display:flex;align-items:center;justify-content:space-between;font-size:15px">客人点过的菜<span style="color:#8A8072;font-size:13px">14 场 ›</span></div>
+              <div style="height:52px;border-top:1px solid #DCD3C2;display:flex;align-items:center;justify-content:space-between;font-size:15px">每日热量目标<span style="color:#8A8072;font-size:13px">1,900 千卡 ›</span></div>
+              <div style="height:52px;border-top:1px solid #DCD3C2;display:flex;align-items:center;justify-content:space-between;font-size:15px">忌口与过敏<span style="color:#8A8072;font-size:13px">香菜、花生 ›</span></div>
+              <div style="height:52px;border-top:1px solid #DCD3C2;border-bottom:1px solid #DCD3C2;display:flex;align-items:center;justify-content:space-between;font-size:15px">导出这本菜谱<span style="color:#8A8072;font-size:13px">›</span></div>
+            </div>
+          </div>
+          <div style="height:64px;border-top:1px solid #DCD3C2;background:#FBF8F2;display:flex;align-items:center;padding:0 8px">
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;color:#8A8072"><div style="font-size:16px">◈</div><div style="font-size:11px">小本子</div></div>
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;color:#8A8072"><div style="font-size:16px">▤</div><div style="font-size:11px">菜谱库</div></div>
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;color:#8A8072"><div style="font-size:16px">＋</div><div style="font-size:11px">添一道</div></div>
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;color:#A93226"><div style="font-size:16px">◇</div><div style="font-size:11px">我们</div></div>
+          </div>
+        </div>
+        <div style="font:400 11px ui-monospace,monospace;color:#7E7566;letter-spacing:.12em">S06 · 我们</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ================= 1b 客人流程 ================= -->
+  <div id="1b" style="display:flex;flex-direction:column;gap:20px">
+    <div style="display:flex;align-items:center;gap:14px">
+      <div style="font:500 12px ui-monospace,monospace;color:#FBF8F2;background:#A93226;padding:5px 10px;letter-spacing:.1em">1b</div>
+      <div style="font-size:20px;font-weight:600;letter-spacing:.06em">客人点菜流程 · 从分享卡片进入</div>
+      <div style="flex:1;height:1px;background:#CFC6B4"></div>
+    </div>
+
+    <div style="display:flex;flex-wrap:wrap;gap:36px">
+
+      <!-- S07 分享卡片 -->
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="width:375px;height:812px;background:#EDEDED;border:1px solid #D3CAB8;box-shadow:0 18px 40px rgba(60,50,35,.13);display:flex;flex-direction:column;overflow:hidden">
+          <div style="height:44px;display:flex;align-items:center;justify-content:space-between;padding:0 18px;font-size:12px;color:#3A342B"><span>9:41</span><span style="display:flex;align-items:center;gap:6px"><span style="font-size:10px">●●●</span><span style="width:22px;height:11px;border:1px solid #3A342B;border-radius:2px;display:inline-block"></span></span></div>
+          <div style="height:46px;display:flex;align-items:center;justify-content:center;background:#EDEDED;border-bottom:1px solid #DADADA"><div style="font-size:16px;font-weight:500">周末聚餐 (4)</div></div>
+          <div style="flex:1;padding:18px;display:flex;flex-direction:column;gap:18px">
+            <div style="display:flex;gap:10px">
+              <div style="width:34px;height:34px;border-radius:4px;background:#C9C2B4"></div>
+              <div style="max-width:230px;background:#FFFFFF;border-radius:4px;padding:10px 12px;font-size:14px;line-height:1.7;color:#1F1C18">周六六点来家里吃饭，先点菜</div>
+            </div>
+            <div style="display:flex;gap:10px">
+              <div style="width:34px;height:34px;border-radius:4px;background:#C9C2B4"></div>
+              <div style="width:250px;background:#FBF8F2;border:1px solid #DCD3C2;padding:14px;display:flex;flex-direction:column;gap:12px">
+                <div style="font-size:16px;font-weight:600;letter-spacing:.04em">阿宁和小周的家宴菜单</div>
+                <div style="height:120px;background:repeating-linear-gradient(45deg,#E6DFD1 0 7px,#EFE9DD 7px 14px);display:flex;align-items:center;justify-content:center;color:#9A9082;font:10px ui-monospace,monospace">菜单封面图</div>
+                <div style="font-size:12px;color:#6B6355">81 道可点 · 周六 18:00</div>
+                <div style="display:flex;align-items:center;gap:6px;border-top:1px solid #E0D8C6;padding-top:8px"><div style="width:14px;height:14px;background:#A93226"></div><div style="font-size:11px;color:#8A8072">小程序 · 家宴小本子</div></div>
+              </div>
+            </div>
+            <div style="align-self:center;font-size:11px;color:#8A8072;background:#E2E0DA;padding:3px 8px;border-radius:2px">点开卡片即可点菜，不用登录</div>
+          </div>
+        </div>
+        <div style="font:400 11px ui-monospace,monospace;color:#7E7566;letter-spacing:.12em">S07 · 情侣分享小程序卡片</div>
+      </div>
+
+      <!-- S08 客人点菜 -->
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="width:375px;height:812px;background:#F4EFE5;border:1px solid #D3CAB8;box-shadow:0 18px 40px rgba(60,50,35,.13);display:flex;flex-direction:column;overflow:hidden;position:relative">
+          <div style="height:44px;display:flex;align-items:center;justify-content:space-between;padding:0 18px;font-size:12px;color:#3A342B"><span>9:41</span><span style="display:flex;align-items:center;gap:6px"><span style="font-size:10px">●●●</span><span style="width:22px;height:11px;border:1px solid #3A342B;border-radius:2px;display:inline-block"></span></span></div>
+          <div style="padding:4px 18px 12px;display:flex;flex-direction:column;gap:10px;border-bottom:1px solid #DCD3C2">
+            <div style="display:flex;align-items:baseline;justify-content:space-between">
+              <div style="font-size:20px;font-weight:600;letter-spacing:.04em">阿宁和小周的家宴</div>
+              <div style="font-size:11px;color:#A93226;border:1px solid #A93226;padding:2px 6px">客人</div>
+            </div>
+            <div style="font-size:12px;color:#6B6355">周六 18:00 · 你点的菜他们会看到，忌口写在备注里就好</div>
+            <div style="display:flex;gap:8px">
+              <sc-for list="{{ guestCats }}" as="c" hint-placeholder-count="5">
+                <div onClick="{{ c.pick }}" style="font-size:13px;padding:5px 11px;border:1px solid {{ c.border }};background:{{ c.bg }};color:{{ c.fg }};cursor:pointer">{{ c.label }}</div>
+              </sc-for>
+            </div>
+          </div>
+          <div style="flex:1;overflow:hidden;padding:0 18px">
+            <sc-for list="{{ guestMenu }}" as="m" hint-placeholder-count="5">
+              <div style="display:flex;gap:12px;padding:13px 0;border-bottom:1px solid #DCD3C2;align-items:center">
+                <div style="width:70px;height:70px;background:repeating-linear-gradient(45deg,#E6DFD1 0 6px,#EFE9DD 6px 12px);display:flex;align-items:center;justify-content:center;color:#9A9082;font:9px ui-monospace,monospace">照片</div>
+                <div style="flex:1;display:flex;flex-direction:column;gap:5px">
+                  <div style="font-size:16px;font-weight:600">{{ m.name }}</div>
+                  <div style="font-size:11px;color:#8A8072">{{ m.note }}</div>
+                  <div style="font-size:11px;color:#6B6355">{{ m.kcal }} 千卡 / 份 · {{ m.stars }}</div>
+                </div>
+                <div onClick="{{ m.toggle }}" style="width:60px;height:30px;border:1px solid {{ m.btnBorder }};background:{{ m.btnBg }};color:{{ m.btnFg }};display:flex;align-items:center;justify-content:center;font-size:13px;cursor:pointer">{{ m.btnLabel }}</div>
+              </div>
+            </sc-for>
+          </div>
+          <div style="border-top:1px solid #C9BFAC;background:#FBF8F2;padding:12px 18px;display:flex;align-items:center;gap:12px">
+            <div style="flex:1;display:flex;flex-direction:column;gap:3px">
+              <div style="font-size:14px;font-weight:600">已点 {{ cartCount }} 道</div>
+              <div style="font-size:11px;color:#8A8072">合计约 {{ cartKcal }} 千卡</div>
+            </div>
+            <div style="height:42px;padding:0 22px;background:{{ submitBg }};color:#FBF8F2;display:flex;align-items:center;justify-content:center;font-size:15px;letter-spacing:.12em">提交给主厨</div>
+          </div>
+        </div>
+        <div style="font:400 11px ui-monospace,monospace;color:#7E7566;letter-spacing:.12em">S08 · 客人点菜（可加可减）</div>
+      </div>
+
+      <!-- S09 已点清单 -->
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="width:375px;height:812px;background:#F4EFE5;border:1px solid #D3CAB8;box-shadow:0 18px 40px rgba(60,50,35,.13);display:flex;flex-direction:column;overflow:hidden">
+          <div style="height:44px;display:flex;align-items:center;justify-content:space-between;padding:0 18px;font-size:12px;color:#3A342B"><span>9:41</span><span style="display:flex;align-items:center;gap:6px"><span style="font-size:10px">●●●</span><span style="width:22px;height:11px;border:1px solid #3A342B;border-radius:2px;display:inline-block"></span></span></div>
+          <div style="height:46px;display:flex;align-items:center;justify-content:center;position:relative"><div style="font-size:16px;font-weight:500;letter-spacing:.1em">我点的菜</div><div style="position:absolute;left:16px;font-size:13px;color:#6B6355">‹</div></div>
+          <div style="flex:1;padding:10px 18px;display:flex;flex-direction:column;gap:16px">
+            <sc-if value="{{ cartEmpty }}" hint-placeholder-val="{{ false }}">
+              <div style="border:1px dashed #C0B5A0;padding:28px;text-align:center;color:#8A8072;font-size:13px;line-height:1.9">还没点菜<br>回上一页挑几道吧</div>
+            </sc-if>
+            <sc-for list="{{ cartList }}" as="c" hint-placeholder-count="3">
+              <div style="display:flex;gap:12px;align-items:center;padding-bottom:13px;border-bottom:1px solid #DCD3C2">
+                <div style="width:56px;height:56px;background:repeating-linear-gradient(45deg,#E6DFD1 0 6px,#EFE9DD 6px 12px)"></div>
+                <div style="flex:1;display:flex;flex-direction:column;gap:4px"><div style="font-size:16px;font-weight:600">{{ c.name }}</div><div style="font-size:11px;color:#8A8072">{{ c.kcal }} 千卡 / 份</div></div>
+                <div onClick="{{ c.remove }}" style="font-size:13px;color:#A93226;cursor:pointer">移除</div>
+              </div>
+            </sc-for>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <div style="font:400 11px ui-monospace,monospace;color:#8A8072;letter-spacing:.18em">给主厨的话</div>
+              <div style="min-height:70px;border:1px solid #DCD3C2;background:#FBF8F2;padding:12px;font-size:14px;color:#3A342B;line-height:1.8">老王不吃香菜，我们四个人，辣的可以来两道</div>
+            </div>
+            <div style="background:#FBF8F2;border:1px solid #DCD3C2;padding:14px;display:flex;flex-direction:column;gap:10px">
+              <div style="font:400 11px ui-monospace,monospace;color:#8A8072;letter-spacing:.18em">这一桌的热量</div>
+              <div style="display:flex;align-items:flex-end;gap:6px"><div style="font-size:30px;font-weight:600;line-height:1">{{ cartKcal }}</div><div style="font-size:12px;color:#6B6355;padding-bottom:4px">千卡 · 四人分约 {{ perPerson }} 千卡 / 人</div></div>
+              <div style="display:flex;height:8px"><div style="width:38%;background:#1F1C18"></div><div style="width:29%;background:#6B6355"></div><div style="width:33%;background:#A93226"></div></div>
+              <div style="font-size:11px;color:#8A8072">荤素比偏荤，建议再点一道清炒</div>
+            </div>
+          </div>
+          <div style="border-top:1px solid #DCD3C2;background:#FBF8F2;padding:14px 18px"><div style="height:44px;background:#A93226;color:#FBF8F2;display:flex;align-items:center;justify-content:center;font-size:15px;letter-spacing:.14em">提交给主厨</div></div>
+        </div>
+        <div style="font:400 11px ui-monospace,monospace;color:#7E7566;letter-spacing:.12em">S09 · 客人已点清单</div>
+      </div>
+
+      <!-- S10 主厨收单 -->
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="width:375px;height:812px;background:#F4EFE5;border:1px solid #D3CAB8;box-shadow:0 18px 40px rgba(60,50,35,.13);display:flex;flex-direction:column;overflow:hidden">
+          <div style="height:44px;display:flex;align-items:center;justify-content:space-between;padding:0 18px;font-size:12px;color:#3A342B"><span>9:41</span><span style="display:flex;align-items:center;gap:6px"><span style="font-size:10px">●●●</span><span style="width:22px;height:11px;border:1px solid #3A342B;border-radius:2px;display:inline-block"></span></span></div>
+          <div style="height:46px;display:flex;align-items:center;justify-content:center;position:relative"><div style="font-size:16px;font-weight:500;letter-spacing:.1em">周六这一桌</div><div style="position:absolute;left:16px;font-size:13px;color:#6B6355">‹</div></div>
+          <div style="flex:1;padding:10px 18px;display:flex;flex-direction:column;gap:16px;overflow:hidden">
+            <div style="border:1px solid #A93226;background:#FBF8F2;padding:14px;display:flex;flex-direction:column;gap:6px">
+              <div style="font-size:15px;font-weight:600;color:#A93226">3 位客人已点完</div>
+              <div style="font-size:12px;color:#6B6355;line-height:1.8">共 9 道 · 忌口：香菜、花生<br>预估下厨 2 小时 10 分</div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:10px">
+              <div style="font:400 11px ui-monospace,monospace;color:#8A8072;letter-spacing:.18em">菜单（按上菜顺序）</div>
+              <div style="display:flex;flex-direction:column;gap:2px">
+                <div style="display:flex;align-items:center;gap:10px;padding:11px 0;border-top:1px solid #DCD3C2"><div style="width:20px;font:400 11px ui-monospace,monospace;color:#A39887">01</div><div style="flex:1;font-size:15px">凉拌木耳</div><div style="font-size:11px;color:#8A8072">小李</div></div>
+                <div style="display:flex;align-items:center;gap:10px;padding:11px 0;border-top:1px solid #DCD3C2"><div style="width:20px;font:400 11px ui-monospace,monospace;color:#A39887">02</div><div style="flex:1;font-size:15px">口水鸡</div><div style="font-size:11px;color:#8A8072">小李</div></div>
+                <div style="display:flex;align-items:center;gap:10px;padding:11px 0;border-top:1px solid #DCD3C2"><div style="width:20px;font:400 11px ui-monospace,monospace;color:#A39887">03</div><div style="flex:1;font-size:15px">红烧肉</div><div style="font-size:11px;color:#8A8072">老王 · 阿May</div></div>
+                <div style="display:flex;align-items:center;gap:10px;padding:11px 0;border-top:1px solid #DCD3C2"><div style="width:20px;font:400 11px ui-monospace,monospace;color:#A39887">04</div><div style="flex:1;font-size:15px">酸菜鱼</div><div style="font-size:11px;color:#8A8072">老王</div></div>
+                <div style="display:flex;align-items:center;gap:10px;padding:11px 0;border-top:1px solid #DCD3C2"><div style="width:20px;font:400 11px ui-monospace,monospace;color:#A39887">05</div><div style="flex:1;font-size:15px">蒜蓉粉丝虾</div><div style="font-size:11px;color:#8A8072">阿May</div></div>
+                <div style="display:flex;align-items:center;gap:10px;padding:11px 0;border-top:1px solid #DCD3C2;border-bottom:1px solid #DCD3C2"><div style="flex:1;font-size:13px;color:#A93226">展开其余 4 道</div></div>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <div style="font:400 11px ui-monospace,monospace;color:#8A8072;letter-spacing:.18em">合并采购清单</div>
+              <div style="font-size:13px;line-height:2;color:#3A342B;text-wrap:pretty">五花肉 500g · 黑鱼 1 条 · 鸡腿 4 只 · 虾 500g · 黑木耳 60g · 酸菜 200g · 粉丝 2 把 · 蒜 2 头</div>
+            </div>
+          </div>
+          <div style="border-top:1px solid #DCD3C2;background:#FBF8F2;padding:14px 18px;display:flex;gap:10px">
+            <div style="flex:1;height:44px;border:1px solid #C9BFAC;display:flex;align-items:center;justify-content:center;font-size:14px;color:#3A342B">导出采购单</div>
+            <div style="flex:1;height:44px;background:#A93226;color:#FBF8F2;display:flex;align-items:center;justify-content:center;font-size:15px;letter-spacing:.12em">接单开工</div>
+          </div>
+        </div>
+        <div style="font:400 11px ui-monospace,monospace;color:#7E7566;letter-spacing:.12em">S10 · 主厨侧收单</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ================= 1c 首页 IA 对比 ================= -->
+  <div id="1c" style="display:flex;flex-direction:column;gap:20px">
+    <div style="display:flex;align-items:center;gap:14px">
+      <div style="font:500 12px ui-monospace,monospace;color:#FBF8F2;background:#A93226;padding:5px 10px;letter-spacing:.1em">1c</div>
+      <div style="font-size:20px;font-weight:600;letter-spacing:.06em">首页信息架构 · 两种取向</div>
+      <div style="flex:1;height:1px;background:#CFC6B4"></div>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:36px">
+
+      <!-- S11 决策优先 -->
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="width:375px;height:812px;background:#F4EFE5;border:1px solid #D3CAB8;box-shadow:0 18px 40px rgba(60,50,35,.13);display:flex;flex-direction:column;overflow:hidden">
+          <div style="height:44px;display:flex;align-items:center;justify-content:space-between;padding:0 18px;font-size:12px;color:#3A342B"><span>9:41</span><span style="font-size:10px">●●●</span></div>
+          <div style="flex:1;padding:18px;display:flex;flex-direction:column;gap:18px">
+            <div style="font-size:12px;color:#8A8072;letter-spacing:.14em">取向 A · 决策优先</div>
+            <div style="font-size:28px;font-weight:600;line-height:1.5;letter-spacing:.03em">今晚<br>要不要我来定？</div>
+            <div style="flex:1;display:flex;flex-direction:column;gap:12px;justify-content:center">
+              <div style="border:1px solid #A93226;background:#A93226;color:#FBF8F2;padding:22px;display:flex;flex-direction:column;gap:8px"><div style="font-size:20px;font-weight:600">转一转，听天由命</div><div style="font-size:12px;opacity:.85">从 18 道想吃的里随机</div></div>
+              <div style="border:1px solid #C9BFAC;background:#FBF8F2;padding:22px;display:flex;flex-direction:column;gap:8px"><div style="font-size:20px;font-weight:600">按心情挑</div><div style="font-size:12px;color:#6B6355">清淡 / 想吃辣 / 想喝汤 / 快手</div></div>
+              <div style="border:1px solid #C9BFAC;background:#FBF8F2;padding:22px;display:flex;flex-direction:column;gap:8px"><div style="font-size:20px;font-weight:600">左右滑着看</div><div style="font-size:12px;color:#6B6355">两个人各滑一轮，取交集</div></div>
+              <div style="border:1px solid #C9BFAC;background:#FBF8F2;padding:22px;display:flex;flex-direction:column;gap:8px"><div style="font-size:20px;font-weight:600">冰箱里有什么</div><div style="font-size:12px;color:#6B6355">按现有食材推荐 6 道</div></div>
+            </div>
+            <div style="font-size:12px;color:#8A8072;border-top:1px solid #DCD3C2;padding-top:12px">菜谱库、添菜、请客都收在底 Tab</div>
+          </div>
+          <div style="height:64px;border-top:1px solid #DCD3C2;background:#FBF8F2;display:flex;align-items:center;padding:0 8px">
+            <div style="flex:1;text-align:center;font-size:11px;color:#A93226">决定</div><div style="flex:1;text-align:center;font-size:11px;color:#8A8072">菜谱库</div><div style="flex:1;text-align:center;font-size:11px;color:#8A8072">添一道</div><div style="flex:1;text-align:center;font-size:11px;color:#8A8072">我们</div>
+          </div>
+        </div>
+        <div style="font:400 11px ui-monospace,monospace;color:#7E7566;letter-spacing:.12em">S11 · 取向 A：进门就帮你决定</div>
+      </div>
+
+      <!-- S12 记录优先 -->
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="width:375px;height:812px;background:#F4EFE5;border:1px solid #D3CAB8;box-shadow:0 18px 40px rgba(60,50,35,.13);display:flex;flex-direction:column;overflow:hidden">
+          <div style="height:44px;display:flex;align-items:center;justify-content:space-between;padding:0 18px;font-size:12px;color:#3A342B"><span>9:41</span><span style="font-size:10px">●●●</span></div>
+          <div style="flex:1;padding:18px;display:flex;flex-direction:column;gap:16px;overflow:hidden">
+            <div style="font-size:12px;color:#8A8072;letter-spacing:.14em">取向 B · 记录优先</div>
+            <div style="font-size:24px;font-weight:600;letter-spacing:.03em">这本子记了 81 道</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+              <div style="height:132px;background:repeating-linear-gradient(45deg,#E6DFD1 0 6px,#EFE9DD 6px 12px);position:relative"><div style="position:absolute;bottom:0;left:0;right:0;background:rgba(251,248,242,.92);padding:7px 9px;font-size:13px">番茄牛腩 <span style="color:#8A8072;font-size:11px">7.21</span></div></div>
+              <div style="height:132px;background:repeating-linear-gradient(45deg,#E6DFD1 0 6px,#EFE9DD 6px 12px);position:relative"><div style="position:absolute;bottom:0;left:0;right:0;background:rgba(251,248,242,.92);padding:7px 9px;font-size:13px">蒜蓉粉丝虾 <span style="color:#8A8072;font-size:11px">7.18</span></div></div>
+              <div style="height:132px;background:repeating-linear-gradient(45deg,#E6DFD1 0 6px,#EFE9DD 6px 12px);position:relative"><div style="position:absolute;bottom:0;left:0;right:0;background:rgba(251,248,242,.92);padding:7px 9px;font-size:13px">干煸豆角 <span style="color:#8A8072;font-size:11px">7.15</span></div></div>
+              <div style="height:132px;background:repeating-linear-gradient(45deg,#E6DFD1 0 6px,#EFE9DD 6px 12px);position:relative"><div style="position:absolute;bottom:0;left:0;right:0;background:rgba(251,248,242,.92);padding:7px 9px;font-size:13px">冬瓜排骨汤 <span style="color:#8A8072;font-size:11px">7.11</span></div></div>
+            </div>
+            <div style="border-top:1px solid #DCD3C2;padding-top:14px;display:flex;flex-direction:column;gap:10px">
+              <div style="font:400 11px ui-monospace,monospace;color:#8A8072;letter-spacing:.18em">想吃清单 · 18</div>
+              <div style="display:flex;gap:8px;flex-wrap:wrap">
+                <span style="font-size:13px;border:1px solid #DCD3C2;background:#FBF8F2;padding:4px 10px">酸菜鱼</span><span style="font-size:13px;border:1px solid #DCD3C2;background:#FBF8F2;padding:4px 10px">佛跳墙</span><span style="font-size:13px;border:1px solid #DCD3C2;background:#FBF8F2;padding:4px 10px">葱油面</span><span style="font-size:13px;border:1px solid #DCD3C2;background:#FBF8F2;padding:4px 10px">腌笃鲜</span><span style="font-size:13px;border:1px solid #DCD3C2;background:#FBF8F2;padding:4px 10px">椰子鸡</span>
+              </div>
+            </div>
+            <div style="margin-top:auto;border:1px solid #A93226;padding:14px;display:flex;align-items:center;justify-content:space-between"><div style="font-size:15px;font-weight:600;color:#A93226">不知道吃什么？</div><div style="font-size:13px;color:#A93226">帮我选 ›</div></div>
+          </div>
+          <div style="height:64px;border-top:1px solid #DCD3C2;background:#FBF8F2;display:flex;align-items:center;padding:0 8px">
+            <div style="flex:1;text-align:center;font-size:11px;color:#A93226">小本子</div><div style="flex:1;text-align:center;font-size:11px;color:#8A8072">菜谱库</div><div style="flex:1;text-align:center;font-size:11px;color:#8A8072">添一道</div><div style="flex:1;text-align:center;font-size:11px;color:#8A8072">我们</div>
+          </div>
+        </div>
+        <div style="font:400 11px ui-monospace,monospace;color:#7E7566;letter-spacing:.12em">S12 · 取向 B：先看这本子攒了什么</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ================= 1d 今天吃什么 ================= -->
+  <div id="1d" style="display:flex;flex-direction:column;gap:20px">
+    <div style="display:flex;align-items:center;gap:14px">
+      <div style="font:500 12px ui-monospace,monospace;color:#FBF8F2;background:#A93226;padding:5px 10px;letter-spacing:.1em">1d</div>
+      <div style="font-size:20px;font-weight:600;letter-spacing:.06em">「今天吃什么」三种玩法（都能真点）</div>
+      <div style="flex:1;height:1px;background:#CFC6B4"></div>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:36px">
+
+      <!-- S13 转盘 -->
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="width:375px;height:812px;background:#F4EFE5;border:1px solid #D3CAB8;box-shadow:0 18px 40px rgba(60,50,35,.13);display:flex;flex-direction:column;overflow:hidden">
+          <div style="height:44px;display:flex;align-items:center;justify-content:space-between;padding:0 18px;font-size:12px;color:#3A342B"><span>9:41</span><span style="font-size:10px">●●●</span></div>
+          <div style="height:46px;display:flex;align-items:center;justify-content:center;position:relative"><div style="font-size:16px;font-weight:500;letter-spacing:.1em">抽一道</div><div style="position:absolute;left:16px;font-size:13px;color:#6B6355">‹</div></div>
+          <div style="flex:1;padding:18px;display:flex;flex-direction:column;gap:20px;align-items:center">
+            <div style="font-size:13px;color:#6B6355;text-align:center;line-height:1.9">从「想吃 + 常做」的 30 道里抽<br>抽中不满意可以再抽</div>
+            <div style="width:280px;height:280px;position:relative;display:flex;align-items:center;justify-content:center">
+              <div style="position:absolute;top:-6px;left:50%;margin-left:-6px;width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-top:12px solid #A93226;z-index:2"></div>
+              {{ wheel }}
+            </div>
+            <div style="min-height:96px;display:flex;flex-direction:column;align-items:center;gap:8px;justify-content:center">
+              <div style="font-size:11px;color:#8A8072;letter-spacing:.18em">{{ wheelHint }}</div>
+              <div style="font-size:30px;font-weight:600;letter-spacing:.04em">{{ wheelResult }}</div>
+              <div style="font-size:12px;color:#6B6355">{{ wheelMeta }}</div>
+            </div>
+            <div onClick="{{ spin }}" style="width:100%;height:48px;background:#A93226;color:#FBF8F2;display:flex;align-items:center;justify-content:center;font-size:16px;letter-spacing:.2em;cursor:pointer">{{ spinLabel }}</div>
+            <div style="width:100%;height:44px;border:1px solid #C9BFAC;color:#3A342B;display:flex;align-items:center;justify-content:center;font-size:14px">就它了，记到今天</div>
+          </div>
+        </div>
+        <div style="font:400 11px ui-monospace,monospace;color:#7E7566;letter-spacing:.12em">S13 · 玩法一：转盘抽签（可转）</div>
+      </div>
+
+      <!-- S14 滑卡 -->
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="width:375px;height:812px;background:#F4EFE5;border:1px solid #D3CAB8;box-shadow:0 18px 40px rgba(60,50,35,.13);display:flex;flex-direction:column;overflow:hidden">
+          <div style="height:44px;display:flex;align-items:center;justify-content:space-between;padding:0 18px;font-size:12px;color:#3A342B"><span>9:41</span><span style="font-size:10px">●●●</span></div>
+          <div style="height:46px;display:flex;align-items:center;justify-content:center;position:relative"><div style="font-size:16px;font-weight:500;letter-spacing:.1em">滑一滑</div><div style="position:absolute;right:16px;font-size:12px;color:#8A8072">{{ swipeCounter }}</div></div>
+          <div style="flex:1;padding:14px 18px;display:flex;flex-direction:column;gap:16px">
+            <div style="font-size:12px;color:#6B6355;text-align:center">两个人各滑一轮，重合的菜会一起出现在下面</div>
+            <div style="flex:1;position:relative">
+              <div style="position:absolute;inset:14px 10px -6px 10px;border:1px solid #DCD3C2;background:#F0EADE"></div>
+              <div style="position:absolute;inset:7px 5px 0 5px;border:1px solid #DCD3C2;background:#F6F1E7"></div>
+              <div style="position:absolute;inset:0;border:1px solid #C9BFAC;background:#FBF8F2;display:flex;flex-direction:column;transform:rotate({{ swipeTilt }});transition:transform .2s">
+                <div style="flex:1;background:repeating-linear-gradient(45deg,#E6DFD1 0 8px,#EFE9DD 8px 16px);display:flex;align-items:center;justify-content:center;color:#9A9082;font:11px ui-monospace,monospace">菜品照片</div>
+                <div style="padding:16px;display:flex;flex-direction:column;gap:8px">
+                  <div style="display:flex;align-items:baseline;justify-content:space-between"><div style="font-size:24px;font-weight:600">{{ swipeName }}</div><div style="font-size:12px;color:#A93226">{{ swipeStatus }}</div></div>
+                  <div style="font-size:12px;color:#6B6355;line-height:1.8">{{ swipeMeta }}</div>
+                  <div style="font-size:12px;color:#3A342B">{{ swipeKcal }} 千卡 / 份 · {{ swipeStars }}</div>
+                </div>
+              </div>
+            </div>
+            <div style="display:flex;gap:14px;justify-content:center">
+              <div onClick="{{ swipeSkip }}" style="width:64px;height:64px;border:1px solid #C9BFAC;border-radius:50%;background:#FBF8F2;display:flex;align-items:center;justify-content:center;font-size:20px;color:#8A8072;cursor:pointer">×</div>
+              <div onClick="{{ swipeLike }}" style="width:64px;height:64px;border:1px solid #A93226;border-radius:50%;background:#A93226;display:flex;align-items:center;justify-content:center;font-size:18px;color:#FBF8F2;cursor:pointer">想</div>
+            </div>
+            <div style="border-top:1px solid #DCD3C2;padding-top:12px;display:flex;flex-direction:column;gap:8px">
+              <div style="font:400 11px ui-monospace,monospace;color:#8A8072;letter-spacing:.18em">你想吃的（{{ likedCount }}）</div>
+              <div style="display:flex;gap:8px;flex-wrap:wrap;min-height:26px">
+                <sc-for list="{{ likedList }}" as="l" hint-placeholder-count="2">
+                  <span style="font-size:13px;border:1px solid #A93226;color:#A93226;padding:3px 9px">{{ l.name }}</span>
+                </sc-for>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="font:400 11px ui-monospace,monospace;color:#7E7566;letter-spacing:.12em">S14 · 玩法二：左右滑卡（可滑）</div>
+      </div>
+
+      <!-- S15 心情筛选 -->
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="width:375px;height:812px;background:#F4EFE5;border:1px solid #D3CAB8;box-shadow:0 18px 40px rgba(60,50,35,.13);display:flex;flex-direction:column;overflow:hidden">
+          <div style="height:44px;display:flex;align-items:center;justify-content:space-between;padding:0 18px;font-size:12px;color:#3A342B"><span>9:41</span><span style="font-size:10px">●●●</span></div>
+          <div style="height:46px;display:flex;align-items:center;justify-content:center;position:relative"><div style="font-size:16px;font-weight:500;letter-spacing:.1em">按心情挑</div><div style="position:absolute;left:16px;font-size:13px;color:#6B6355">‹</div></div>
+          <div style="flex:1;padding:14px 18px;display:flex;flex-direction:column;gap:16px;overflow:hidden">
+            <div style="font-size:20px;font-weight:600;letter-spacing:.03em">今晚是什么心情？</div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap">
+              <sc-for list="{{ moods }}" as="m" hint-placeholder-count="6">
+                <div onClick="{{ m.pick }}" style="font-size:14px;padding:8px 14px;border:1px solid {{ m.border }};background:{{ m.bg }};color:{{ m.fg }};cursor:pointer">{{ m.label }}</div>
+              </sc-for>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid #DCD3C2;padding-top:12px">
+              <div style="font:400 11px ui-monospace,monospace;color:#8A8072;letter-spacing:.18em">{{ moodTitle }}</div>
+              <div style="font-size:11px;color:#8A8072">{{ moodCount }}</div>
+            </div>
+            <div style="flex:1;display:flex;flex-direction:column;gap:12px;overflow:hidden">
+              <sc-for list="{{ moodList }}" as="d" hint-placeholder-count="4">
+                <div style="display:flex;gap:12px;align-items:center;background:#FBF8F2;border:1px solid #DCD3C2;padding:10px">
+                  <div style="width:62px;height:62px;background:repeating-linear-gradient(45deg,#E6DFD1 0 6px,#EFE9DD 6px 12px)"></div>
+                  <div style="flex:1;display:flex;flex-direction:column;gap:5px">
+                    <div style="font-size:16px;font-weight:600">{{ d.name }}</div>
+                    <div style="font-size:11px;color:#8A8072">{{ d.meta }}</div>
+                    <div style="font-size:11px;color:#3A342B">{{ d.kcal }} 千卡 · {{ d.stars }}</div>
+                  </div>
+                  <div style="font-size:12px;color:#A93226">选它</div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+        <div style="font:400 11px ui-monospace,monospace;color:#7E7566;letter-spacing:.12em">S15 · 玩法三：心情筛选（可切）</div>
+      </div>
+
+      <!-- S16 定下来 -->
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="width:375px;height:812px;background:#F4EFE5;border:1px solid #D3CAB8;box-shadow:0 18px 40px rgba(60,50,35,.13);display:flex;flex-direction:column;overflow:hidden">
+          <div style="height:44px;display:flex;align-items:center;justify-content:space-between;padding:0 18px;font-size:12px;color:#3A342B"><span>9:41</span><span style="font-size:10px">●●●</span></div>
+          <div style="height:46px;display:flex;align-items:center;justify-content:center"><div style="font-size:16px;font-weight:500;letter-spacing:.1em">今天就这样</div></div>
+          <div style="flex:1;padding:18px;display:flex;flex-direction:column;gap:18px">
+            <div style="display:flex;align-items:center;gap:12px;border-bottom:1px solid #DCD3C2;padding-bottom:14px">
+              <div style="width:44px;height:44px;border:1.5px solid #A93226;border-radius:50%;color:#A93226;display:flex;align-items:center;justify-content:center;font-size:12px;transform:rotate(-8deg)">定</div>
+              <div style="flex:1;display:flex;flex-direction:column;gap:3px"><div style="font-size:17px;font-weight:600">7 月 26 日 晚餐</div><div style="font-size:12px;color:#8A8072">两人 · 预计 55 分钟</div></div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:12px">
+              <div style="display:flex;gap:12px;align-items:center"><div style="width:66px;height:66px;background:repeating-linear-gradient(45deg,#E6DFD1 0 6px,#EFE9DD 6px 12px)"></div><div style="flex:1;display:flex;flex-direction:column;gap:4px"><div style="font-size:17px;font-weight:600">冬瓜排骨汤</div><div style="font-size:11px;color:#8A8072">她想吃 · 220 千卡</div></div></div>
+              <div style="display:flex;gap:12px;align-items:center"><div style="width:66px;height:66px;background:repeating-linear-gradient(45deg,#E6DFD1 0 6px,#EFE9DD 6px 12px)"></div><div style="flex:1;display:flex;flex-direction:column;gap:4px"><div style="font-size:17px;font-weight:600">麻婆豆腐</div><div style="font-size:11px;color:#8A8072">常做 · 320 千卡</div></div></div>
+              <div style="display:flex;gap:12px;align-items:center"><div style="width:66px;height:66px;background:repeating-linear-gradient(45deg,#E6DFD1 0 6px,#EFE9DD 6px 12px)"></div><div style="flex:1;display:flex;flex-direction:column;gap:4px"><div style="font-size:17px;font-weight:600">白灼菜心</div><div style="font-size:11px;color:#8A8072">快手 · 70 千卡</div></div></div>
+            </div>
+            <div style="background:#FBF8F2;border:1px solid #DCD3C2;padding:14px;display:flex;flex-direction:column;gap:10px">
+              <div style="font:400 11px ui-monospace,monospace;color:#8A8072;letter-spacing:.18em">这一餐合计</div>
+              <div style="display:flex;align-items:flex-end;gap:6px"><div style="font-size:32px;font-weight:600;line-height:1">610</div><div style="font-size:12px;color:#6B6355;padding-bottom:4px">千卡 · 每人约 305 千卡</div></div>
+              <div style="display:flex;height:8px"><div style="width:33%;background:#1F1C18"></div><div style="width:34%;background:#6B6355"></div><div style="width:33%;background:#A93226"></div></div>
+              <div style="font-size:11px;color:#8A8072">三大营养素挺均衡，今天可以放心吃</div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <div style="font:400 11px ui-monospace,monospace;color:#8A8072;letter-spacing:.18em">要买的</div>
+              <div style="font-size:13px;line-height:2;color:#3A342B">排骨 400g · 冬瓜半个 · 嫩豆腐 1 盒 · 牛肉末 100g · 菜心 1 把</div>
+            </div>
+            <div style="margin-top:auto;display:flex;gap:10px">
+              <div style="flex:1;height:44px;border:1px solid #C9BFAC;display:flex;align-items:center;justify-content:center;font-size:14px;color:#3A342B">再改改</div>
+              <div style="flex:1;height:44px;background:#A93226;color:#FBF8F2;display:flex;align-items:center;justify-content:center;font-size:15px;letter-spacing:.12em">开始做饭</div>
+            </div>
+          </div>
+        </div>
+        <div style="font:400 11px ui-monospace,monospace;color:#7E7566;letter-spacing:.12em">S16 · 定下今晚这一餐</div>
+      </div>
+
+    </div>
+  </div>
+
+</section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;}}">
+const DISHES = [
+  {name:'红烧肉', status:'常做', ing:'五花肉 · 冰糖 · 八角', time:'90 分钟', level:'中等', made:'做过 14 次 · 上次 6.28', stars:'★★★★★', kcal:520, flavor:'下饭'},
+  {name:'凉拌木耳', status:'做过', ing:'黑木耳 · 香菜 · 小米辣', time:'15 分钟', level:'简单', made:'做过 6 次 · 上次 7.09', stars:'★★★★☆', kcal:90, flavor:'清淡'},
+  {name:'酸菜鱼', status:'想吃', ing:'黑鱼 · 酸菜 · 泡椒', time:'50 分钟', level:'偏难', made:'还没做过', stars:'—', kcal:610, flavor:'想吃辣'},
+  {name:'白灼菜心', status:'做过', ing:'菜心 · 蒜 · 蚝油', time:'10 分钟', level:'简单', made:'做过 21 次 · 上次 7.22', stars:'★★★★☆', kcal:70, flavor:'快手'},
+  {name:'麻婆豆腐', status:'常做', ing:'嫩豆腐 · 牛肉末 · 豆瓣', time:'20 分钟', level:'简单', made:'做过 11 次 · 上次 7.06', stars:'★★★★★', kcal:320, flavor:'想吃辣'},
+  {name:'冬瓜排骨汤', status:'想吃', ing:'排骨 · 冬瓜 · 姜', time:'40 分钟', level:'简单', made:'上次 5.12', stars:'★★★★☆', kcal:220, flavor:'想喝汤'},
+  {name:'蒜蓉粉丝虾', status:'做过', ing:'虾 · 粉丝 · 蒜', time:'25 分钟', level:'中等', made:'做过 4 次 · 上次 7.18', stars:'★★★★★', kcal:280, flavor:'下饭'},
+  {name:'番茄牛腩', status:'常做', ing:'牛腩 · 番茄 · 洋葱', time:'100 分钟', level:'中等', made:'做过 9 次 · 上次 7.21', stars:'★★★★☆', kcal:430, flavor:'想喝汤'},
+  {name:'口水鸡', status:'做过', ing:'鸡腿 · 花椒 · 红油', time:'45 分钟', level:'中等', made:'做过 3 次 · 上次 6.14', stars:'★★★★☆', kcal:390, flavor:'想吃辣'},
+  {name:'干煸豆角', status:'做过', ing:'四季豆 · 肉末 · 干辣椒', time:'25 分钟', level:'简单', made:'做过 8 次 · 上次 7.15', stars:'★★★☆☆', kcal:210, flavor:'下饭'},
+  {name:'葱油面', status:'想吃', ing:'小葱 · 挂面 · 酱油', time:'20 分钟', level:'简单', made:'还没做过', stars:'—', kcal:460, flavor:'快手'},
+  {name:'椰子鸡', status:'想吃', ing:'椰青 · 鸡 · 玉米', time:'55 分钟', level:'简单', made:'还没做过', stars:'—', kcal:340, flavor:'想喝汤'}
+];
+
+const RED = '#A93226', BORDER = '#DCD3C2', PAPER = '#FBF8F2', INK = '#6B6355';
+
+class Component extends DCLogic {
+  state = {
+    libTab: '全部',
+    rating: 5,
+    addStatus: '做过',
+    ings: [
+      {name:'鸡腿肉', amount:'300 g'},
+      {name:'干香菇', amount:'8 朵'},
+      {name:'姜片', amount:'3 片'},
+      {name:'生抽', amount:'1 勺'},
+      {name:'食用油', amount:'2 勺'},
+      {name:'淀粉', amount:'1 小勺'}
+    ],
+    flavors: ['咸鲜'],
+    analyzed: false,
+    cart: ['红烧肉', '酸菜鱼', '蒜蓉粉丝虾'],
+    angle: 0,
+    spinning: false,
+    wheelIdx: -1,
+    swipeIdx: 0,
+    liked: ['冬瓜排骨汤'],
+    tilt: 0,
+    mood: '想喝汤',
+    guestCat: '全部'
+  };
+
+  chip(active) {
+    return active
+      ? {border: RED, bg: RED, fg: PAPER}
+      : {border: BORDER, bg: PAPER, fg: INK};
+  }
+
+  renderVals() {
+    const s = this.state;
+
+    const libCounts = {'全部': 81, '想吃': 18, '做过': 63, '常做': 12};
+    const libTabs = ['全部','想吃','做过','常做'].map(label => ({
+      label: label + ' ' + libCounts[label],
+      ...this.chip(s.libTab === label),
+      pick: () => this.setState({libTab: label})
+    }));
+    const libList = (s.libTab === '全部' ? DISHES : DISHES.filter(d => d.status === s.libTab))
+      .slice(0, 5)
+      .map(d => ({...d, tagColor: d.status === '做过' ? '#8A8072' : RED}));
+
+    const starRow = [1,2,3,4,5].map(n => ({
+      color: n <= s.rating ? RED : '#D3CAB8',
+      set: () => this.setState({rating: n})
+    }));
+
+    const statusOpts = ['做过','想吃','常做'].map(label => ({
+      label, ...this.chip(s.addStatus === label),
+      pick: () => this.setState({addStatus: label})
+    }));
+
+    const ingRows = s.ings.map((r, i) => ({
+      ...r,
+      remove: () => this.setState({ings: s.ings.filter((_, j) => j !== i), analyzed: false})
+    }));
+
+    const flavorOpts = ['咸鲜','清淡','辣','汤','快手','下饭'].map(label => ({
+      label, ...this.chip(s.flavors.includes(label)),
+      toggle: () => this.setState({
+        flavors: s.flavors.includes(label) ? s.flavors.filter(f => f !== label) : s.flavors.concat(label)
+      })
+    }));
+
+    const estKcal = s.analyzed ? Math.round(60 + s.ings.length * 54) : '—';
+
+    const CONTRIB = [
+      {name:'鸡腿肉', kcal:'167 千卡', pct:'62%'},
+      {name:'食用油', kcal:'92 千卡', pct:'34%'},
+      {name:'干香菇', kcal:'48 千卡', pct:'18%'},
+      {name:'淀粉', kcal:'42 千卡', pct:'16%'},
+      {name:'生抽', kcal:'22 千卡', pct:'8%'},
+      {name:'姜片', kcal:'15 千卡', pct:'6%'}
+    ];
+
+    const guestCats = ['全部','荤菜','素菜','汤','主食'].map(label => ({
+      label, ...this.chip(s.guestCat === label),
+      pick: () => this.setState({guestCat: label})
+    }));
+
+    const guestMenu = DISHES.slice(0, 6).map(d => {
+      const inCart = s.cart.includes(d.name);
+      return {
+        name: d.name,
+        note: d.status === '想吃' ? '主厨还没做过，可以试试' : '主厨' + d.made.replace('做过 ', '做过').replace(' · ', ' · 上次 ').slice(0, 12),
+        kcal: d.kcal,
+        stars: d.stars,
+        btnLabel: inCart ? '已点' : '＋ 点',
+        btnBorder: inCart ? RED : '#C9BFAC',
+        btnBg: inCart ? RED : PAPER,
+        btnFg: inCart ? PAPER : '#3A342B',
+        toggle: () => this.setState({
+          cart: inCart ? s.cart.filter(n => n !== d.name) : s.cart.concat(d.name)
+        })
+      };
+    });
+
+    const cartDishes = s.cart.map(n => DISHES.find(d => d.name === n)).filter(Boolean);
+    const cartKcal = cartDishes.reduce((a, d) => a + d.kcal, 0);
+    const cartList = cartDishes.map(d => ({
+      name: d.name, kcal: d.kcal,
+      remove: () => this.setState({cart: s.cart.filter(n => n !== d.name)})
+    }));
+
+    const wheelPool = DISHES.filter(d => d.status !== '做过');
+    const wheelDish = s.wheelIdx >= 0 ? wheelPool[s.wheelIdx] : null;
+
+    const wheel = React.createElement('div', {
+      style: {
+        width: 260, height: 260, borderRadius: '50%',
+        border: '1px solid #C9BFAC', background: PAPER,
+        transform: 'rotate(' + s.angle + 'deg)',
+        transition: 'transform 2.4s cubic-bezier(.13,.86,.09,1)',
+        position: 'relative', overflow: 'hidden'
+      }
+    }, wheelPool.map((d, i) => {
+      const step = 360 / wheelPool.length;
+      return React.createElement('div', {
+        key: d.name,
+        style: {
+          position: 'absolute', top: 0, left: '50%', width: 1, height: '50%',
+          transformOrigin: 'bottom center',
+          transform: 'rotate(' + (i * step) + 'deg)',
+          background: '#E0D8C6'
+        }
+      }, React.createElement('div', {
+        style: {
+          position: 'absolute', top: 16, left: 4, width: 82,
+          fontSize: 12, color: i === s.wheelIdx ? RED : '#5E574B',
+          fontWeight: i === s.wheelIdx ? 600 : 400,
+          transform: 'rotate(' + (step / 2) + 'deg)', transformOrigin: 'left top'
+        }
+      }, d.name));
+    }));
+
+    const spin = () => {
+      if (s.spinning) return;
+      const idx = Math.floor(Math.random() * wheelPool.length);
+      const step = 360 / wheelPool.length;
+      const target = s.angle + 360 * 4 + (360 - idx * step - step / 2) - (s.angle % 360);
+      this.setState({spinning: true, angle: target, wheelIdx: -1});
+      setTimeout(() => this.setState({spinning: false, wheelIdx: idx}), 2450);
+    };
+
+    const swipePool = DISHES;
+    const cur = swipePool[s.swipeIdx % swipePool.length];
+    const advance = (like) => {
+      this.setState({
+        tilt: like ? 14 : -14,
+        liked: like && !s.liked.includes(cur.name) ? s.liked.concat(cur.name) : s.liked
+      });
+      setTimeout(() => this.setState({swipeIdx: s.swipeIdx + 1, tilt: 0}), 190);
+    };
+
+    const moodMap = {
+      '想喝汤': ['冬瓜排骨汤','番茄牛腩','椰子鸡'],
+      '想吃辣': ['麻婆豆腐','酸菜鱼','口水鸡'],
+      '清淡': ['白灼菜心','凉拌木耳','冬瓜排骨汤'],
+      '快手': ['白灼菜心','葱油面','麻婆豆腐'],
+      '下饭': ['红烧肉','干煸豆角','蒜蓉粉丝虾'],
+      '想吃肉': ['红烧肉','番茄牛腩','口水鸡']
+    };
+    const moods = Object.keys(moodMap).map(label => ({
+      label, ...this.chip(s.mood === label),
+      pick: () => this.setState({mood: label})
+    }));
+    const moodList = moodMap[s.mood].map(n => {
+      const d = DISHES.find(x => x.name === n);
+      return {name: d.name, meta: d.ing + ' ｜ ' + d.time, kcal: d.kcal, stars: d.stars};
+    });
+
+    return {
+      libTabs, libList, starRow,
+      ratingLabel: s.rating.toFixed(1),
+      statusOpts, ingRows, flavorOpts,
+      estKcal,
+      estNote: s.analyzed ? '照片 + ' + s.ings.length + ' 项食材' : '填完食材点下方按钮',
+      analyzeLabel: s.analyzed ? '重新分析并保存' : '分析热量',
+      analyze: () => this.setState({analyzed: true}),
+      addIng: () => this.setState({ings: s.ings.concat({name:'新食材', amount:'适量'}), analyzed: false}),
+      contrib: CONTRIB,
+      guestCats, guestMenu,
+      cartCount: s.cart.length,
+      cartKcal,
+      cartList,
+      cartEmpty: s.cart.length === 0,
+      perPerson: Math.round(cartKcal / 4),
+      submitBg: s.cart.length ? RED : '#C4BAA7',
+      wheel, spin,
+      spinLabel: s.spinning ? '转着呢…' : '转一下',
+      wheelHint: wheelDish ? '今晚就这道' : '指针停在哪就吃哪',
+      wheelResult: wheelDish ? wheelDish.name : '· · ·',
+      wheelMeta: wheelDish ? wheelDish.time + ' · ' + wheelDish.level + ' · ' + wheelDish.kcal + ' 千卡' : '共 ' + wheelPool.length + ' 道候选',
+      swipeName: cur.name,
+      swipeStatus: cur.status,
+      swipeMeta: cur.ing + ' ｜ ' + cur.time + ' · ' + cur.level,
+      swipeKcal: cur.kcal,
+      swipeStars: cur.stars,
+      swipeTilt: s.tilt + 'deg',
+      swipeCounter: ((s.swipeIdx % swipePool.length) + 1) + ' / ' + swipePool.length,
+      swipeLike: () => advance(true),
+      swipeSkip: () => advance(false),
+      likedCount: s.liked.length,
+      likedList: s.liked.map(n => ({name: n})),
+      moods, moodList,
+      moodTitle: s.mood + ' · 推荐',
+      moodCount: moodMap[s.mood].length + ' 道'
+    };
+  }
+}
+</script>
+</body>
+</html>

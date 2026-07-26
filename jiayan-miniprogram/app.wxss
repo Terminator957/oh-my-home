@@ -1,0 +1,78 @@
+page {
+  background: #F4EFE5;
+  color: #1F1C18;
+  font-family: "Noto Serif SC", "Songti SC", "STSong", "SimSun", serif;
+  font-size: 28rpx;
+  line-height: 1.6;
+}
+.pad { padding: 20rpx 36rpx 48rpx; animation: fadeUp .4s ease both; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24rpx); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes pop {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.35); }
+  100% { transform: scale(1); }
+}
+.fade { animation: fadeUp .35s ease both; }
+.hv { opacity: .7; transform: scale(.985); }
+@keyframes growBar {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+.bar-fill { transform-origin: left; animation: growBar .6s ease both; }
+.star { display: inline-block; transition: color .15s ease; }
+.star.pop { animation: pop .3s ease; }
+.label {
+  font-size: 22rpx;
+  color: #8A8072;
+  letter-spacing: 6rpx;
+  font-family: ui-monospace, monospace;
+}
+.card { background: #FBF8F2; border: 2rpx solid #DCD3C2; }
+.chip {
+  font-size: 26rpx;
+  padding: 10rpx 24rpx;
+  border: 2rpx solid #DCD3C2;
+  background: #FBF8F2;
+  color: #6B6355;
+  transition: background .18s ease, color .18s ease, border-color .18s ease;
+}
+.chip.on { border-color: #A93226; background: #A93226; color: #FBF8F2; }
+.tag {
+  font-size: 22rpx;
+  border: 2rpx solid #DCD3C2;
+  padding: 4rpx 16rpx;
+  color: #6B6355;
+  background: #FBF8F2;
+}
+.btn {
+  height: 88rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30rpx;
+  letter-spacing: 6rpx;
+  transition: opacity .15s ease, transform .15s ease;
+}
+.btn-red { background: #A93226; color: #FBF8F2; }
+.btn-ghost { border: 2rpx solid #C9BFAC; color: #3A342B; }
+.ph {
+  background: repeating-linear-gradient(45deg, #E6DFD1 0 12rpx, #EFE9DD 12rpx 24rpx);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #9A9082;
+  font-size: 18rpx;
+  font-family: ui-monospace, monospace;
+}
+.row { display: flex; align-items: center; }
+.col { display: flex; flex-direction: column; }
+.flex1 { flex: 1; }
+.hr-t { border-top: 2rpx solid #DCD3C2; }
+.muted { color: #8A8072; }
+.sub { color: #6B6355; }
+.red { color: #A93226; }
+.title { font-size: 34rpx; font-weight: 600; }

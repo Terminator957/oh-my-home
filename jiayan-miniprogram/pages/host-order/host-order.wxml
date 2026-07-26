@@ -1,0 +1,36 @@
+<view class="pad col" style="gap:32rpx;padding-bottom:200rpx">
+
+  <view style="border:2rpx solid #A93226;background:#FBF8F2;padding:28rpx" class="col">
+    <view style="font-size:30rpx;font-weight:600;color:#A93226">3 位客人已点完</view>
+    <view style="font-size:24rpx;color:#6B6355;line-height:1.8;margin-top:8rpx">
+      <view>共 {{orders.length}} 道 · 忌口：香菜、花生</view>
+      <view>预估下厨 2 小时 10 分</view>
+    </view>
+  </view>
+
+  <view class="col" style="gap:20rpx">
+    <view class="label">菜单（按上菜顺序）</view>
+    <view class="col">
+      <view class="row hr-t" style="gap:20rpx;padding:22rpx 0" wx:for="{{shown}}" wx:key="name">
+        <view style="width:40rpx;font-size:22rpx;font-family:monospace;color:#A39887">{{item.no}}</view>
+        <view class="flex1" style="font-size:30rpx">{{item.name}}</view>
+        <view style="font-size:22rpx;color:#8A8072">{{item.by}}</view>
+      </view>
+      <view wx:if="{{!expanded}}" class="row hr-t" style="padding:22rpx 0;border-bottom:2rpx solid #DCD3C2" bindtap="expand">
+        <view style="font-size:26rpx;color:#A93226">展开其余 {{orders.length - 5}} 道</view>
+      </view>
+      <view wx:else class="hr-t" style="border-top-width:0;border-bottom:2rpx solid #DCD3C2"></view>
+    </view>
+  </view>
+
+  <view class="col" style="gap:16rpx">
+    <view class="label">合并采购清单</view>
+    <view style="font-size:26rpx;line-height:2;color:#3A342B">{{shopping}}</view>
+  </view>
+
+</view>
+
+<view style="position:fixed;left:0;right:0;bottom:0;border-top:2rpx solid #DCD3C2;background:#FBF8F2;padding:28rpx 36rpx calc(28rpx + env(safe-area-inset-bottom));display:flex;gap:20rpx">
+  <view hover-class="hv" class="btn btn-ghost flex1" bindtap="exportList">导出采购单</view>
+  <view hover-class="hv" class="btn btn-red flex1" bindtap="start">接单开工</view>
+</view>

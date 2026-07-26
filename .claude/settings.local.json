@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell($dir = \"D:\\\\Coding\\\\workplace\\\\Claude\\\\recipes-app\"; New-Item -ItemType Directory -Force $dir | Out-Null; $tr = \"C:\\\\Users\\\\14575\\\\.claude\\\\projects\\\\D--Coding-workplace-Claude\\\\2b0cd551-8927-47bd-9804-342178388f33\\\\tool-results\"; $a = Get-Content \"$tr\\\\toolu_017eprDQ6r3R2poFVGtouBe2.txt\" -Raw | ConvertFrom-Json; [IO.File]::WriteAllText\\(\"$dir\\\\美味家常 Recipes.dc.html\", $a.content\\); $b = Get-Content \"$tr\\\\toolu_01KCRMiiXvWpkiu6edeiN6vj.txt\" -Raw | ConvertFrom-Json; [IO.File]::WriteAllText\\(\"$dir\\\\support.js\", $b.content\\); Get-ChildItem $dir | Select-Object Name, Length)",
+      "PowerShell(winget search wechat 2>&1)",
+      "PowerShell(winget search weixin 2>&1)",
+      "PowerShell(Start-Process \"C:\\\\Program Files \\(x86\\)\\\\Tencent\\\\微信web开发者工具\\\\微信开发者工具.exe\"; Start-Sleep -Seconds 5; Get-Process | Where-Object { $_.Name -match 'wechat|微信|wxdev' } | Select-Object Name, Id, MainWindowTitle | Out-String)",
+      "PowerShell($dir = \"D:\\\\Coding\\\\workplace\\\\Claude\\\\couple-recipes-design\"; New-Item -ItemType Directory -Force $dir | Out-Null; $tr = \"C:\\\\Users\\\\14575\\\\.claude\\\\projects\\\\D--Coding-workplace-Claude\\\\2b0cd551-8927-47bd-9804-342178388f33\\\\tool-results\"; $a = Get-Content \"$tr\\\\toolu_01HTxsi6b4jamwNkmvMc571L.txt\" -Raw | ConvertFrom-Json; [IO.File]::WriteAllText\\(\"$dir\\\\情侣菜谱小程序.dc.html\", $a.content\\); \\(Get-Content \"$dir\\\\情侣菜谱小程序.dc.html\" | Measure-Object -Line\\).Lines)",
+      "PowerShell($size = \\(Get-ChildItem \"D:\\\\Coding\\\\workplace\\\\Claude\\\\jiayan-miniprogram\" -Recurse -File | Measure-Object -Sum Length\\).Sum; \"项目总大小: {0:N1} KB \\(主包限制 2048 KB\\)\" -f \\($size/1KB\\); node --version 2>&1; npm --version 2>&1)",
+      "PowerShell(& \"C:\\\\Program Files \\(x86\\)\\\\Tencent\\\\΢��web�����߹���\\\\cli.bat\" open --project \"D:\\\\Coding\\\\workplace\\\\Claude\\\\jiayan-miniprogram\" 2>&1)",
+      "PowerShell(cmd /c \"echo y | \"\"C:\\\\Program Files \\(x86\\)\\\\Tencent\\\\΢��web�����߹���\\\\cli.bat\"\" open --project \"\"D:\\\\Coding\\\\workplace\\\\Claude\\\\jiayan-miniprogram\"\"\" 2>&1)",
+      "PowerShell($d = \"$env:LOCALAPPDATA\\\\微信开发者工具\\\\User Data\\\\2ca4252ffa87560ea1fd48b913e45179\"; Get-ChildItem $d -Force | Select-Object Name; Get-ChildItem \"$d\\\\Default\" -Force -ErrorAction SilentlyContinue | Select-Object -First 30 Name)",
+      "PowerShell($d = \"$env:LOCALAPPDATA\\\\微信开发者工具\\\\User Data\\\\2ca4252ffa87560ea1fd48b913e45179\"; Get-Content \"$d\\\\.cli\" -Raw -ErrorAction SilentlyContinue; \"---Default---\"; Get-ChildItem \"$d\\\\Default\" -Force | Select-Object -First 40 Name, Length)",
+      "PowerShell($d = \"$env:LOCALAPPDATA\\\\微信开发者工具\\\\User Data\\\\2ca4252ffa87560ea1fd48b913e45179\"; \"root .cli: [{0}]\" -f \\(Get-Content \"$d\\\\.cli\" -Raw -ErrorAction SilentlyContinue\\); \"default .cli: [{0}]\" -f \\(Get-Content \"$d\\\\Default\\\\.cli\" -Raw -ErrorAction SilentlyContinue\\); Get-ChildItem \"$env:APPDATA\" -Directory -ErrorAction SilentlyContinue | Where-Object Name -match 'wechat|weixin|微信' | Select-Object Name)",
+      "PowerShell(Get-ChildItem \"$env:APPDATA\\\\微信开发者工具\" -Recurse -File -ErrorAction SilentlyContinue | Select-Object -First 30 FullName, Length | Out-String -Width 200)",
+      "PowerShell(& \"C:\\\\Program Files \\(x86\\)\\\\Tencent\\\\΢��web�����߹���\\\\cli.bat\" auto --project \"D:\\\\Coding\\\\workplace\\\\Claude\\\\jiayan-miniprogram\" --auto-port 9420 2>&1)",
+      "PowerShell(Get-NetTCPConnection -State Listen | Where-Object { $_.LocalPort -in 9420, 13019 } | Select-Object LocalAddress, LocalPort, OwningProcess | Out-String; Test-NetConnection -ComputerName 127.0.0.1 -Port 9420 -InformationLevel Quiet 2>$null)",
+      "PowerShell(& \"C:\\\\Program Files \\(x86\\)\\\\Tencent\\\\΢��web�����߹���\\\\cli.bat\" upload --project \"D:\\\\Coding\\\\workplace\\\\Claude\\\\jiayan-miniprogram\" -v 1.0.0 -d \"���²���С���򡸼���С���ӡ��װ�:С����/���׿�/��һ��/�����Ĵ�Tab,��Ʒ��������,��������,���˵������,�����ʲô�����淨\\(ת��/����/����\\)����ͨ����Ԫ/�ӿ�/UI���Թ�25��\" 2>&1)",
+      "Bash(git init *)",
+      "Bash(git add *)"
+    ]
+  }
+}
