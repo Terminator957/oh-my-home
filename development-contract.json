@@ -1,0 +1,117 @@
+{
+  "objective": "优化抽一道页面的转盘反馈，使抽取过程有清晰的加速、匀速和减速节奏，并在停下后突出展示已抽中的菜品。",
+  "expected_behavior": [
+    "REQ-001: 用户点击中心转盘按钮后，盘面必须有可见的完整旋转并在选中扇区正对固定指针时停止；旋转期间不得重复触发新的抽取。",
+    "REQ-002: 旋转期间必须给出进行中反馈；停止后必须以视觉动画突出选中菜名和结果区域。",
+    "REQ-003: 动画只能使用 transform、opacity 等合成属性；系统设置 prefers-reduced-motion 时必须缩短或取消装饰性动画，同时保持结果正确可用。",
+    "REQ-004: 原有随机范围、候选池、确认写入今日菜单、未抽取时确认提示和重新抽取能力必须保持。"
+  ],
+  "scope": {
+    "allowed": [
+      "wheel 页面及独立新增的转盘回归测试文件"
+    ],
+    "forbidden": [
+      "候选菜品池、随机选择规则和今日菜单存储逻辑",
+      "页面导航、全局主题、任务开始前已修改的 project.config.json 与 ui.test.js",
+      "新增第三方动画依赖或改变其他页面"
+    ]
+  },
+  "constraints": [
+    "不得编辑任务基线脏文件",
+    "不得新增第三方依赖",
+    "不得改变业务随机与存储逻辑",
+    "使用原生微信小程序能力"
+  ],
+  "acceptance": {
+    "ids": [
+      "ACC-001",
+      "ACC-002",
+      "ACC-003"
+    ],
+    "criteria": [
+      {
+        "id": "ACC-001",
+        "text": "转盘可启动、旋转时锁定、停止后给出有效结果，且目标角度仍与随机索引匹配。",
+        "method": "独立小程序自动化和人工源码检查",
+        "evidence": "wheel-spin.test.js、微信开发者工具运行时数据与截图",
+        "requirement_ids": [
+          "REQ-001",
+          "REQ-004"
+        ],
+        "evidence_level": "e2e",
+        "required_artifacts": [
+          "wheel-spin.test.js 输出",
+          "微信开发者工具转盘运行时数据"
+        ],
+        "substitution": "forbidden",
+        "critical": true,
+        "status": "passed"
+      },
+      {
+        "id": "ACC-002",
+        "text": "进行中、结果揭示和减少动态效果规则均存在，且动画只使用合成属性。",
+        "method": "WXSS/WXML 静态检查与微信模拟器截图",
+        "evidence": "源码定位和 375px 微信模拟器截图",
+        "requirement_ids": [
+          "REQ-002",
+          "REQ-003"
+        ],
+        "evidence_level": "visual",
+        "required_artifacts": [
+          "375px 空闲、旋转和结果截图"
+        ],
+        "substitution": "forbidden",
+        "critical": true,
+        "status": "passed"
+      },
+      {
+        "id": "ACC-003",
+        "text": "单元和接口回归通过，且未抽取确认不写入今日菜单。",
+        "method": "Node 测试",
+        "evidence": "npm run test:unit 与 npm run test:interface 输出",
+        "requirement_ids": [
+          "REQ-004"
+        ],
+        "evidence_level": "unit",
+        "required_artifacts": [
+          "测试输出"
+        ],
+        "substitution": "forbidden",
+        "critical": true,
+        "status": "passed"
+      }
+    ],
+    "commands": [
+      "cd jiayan-tests && npm run test:unit",
+      "cd jiayan-tests && npm run test:interface",
+      "cd jiayan-tests && npm run test:ui"
+    ]
+  },
+  "governance": {
+    "subject": {
+      "type": "feature",
+      "target": "微信小程序 pages/wheel 的抽菜转盘交互",
+      "boundary": "仅负责从点击“转”到结果可确认的前端呈现；随机结果和 addToday 持久化保持现有契约。"
+    },
+    "authority": true,
+    "supersedes": [],
+    "derived_contracts": [
+      "development-contract.json"
+    ],
+    "conflicts": [],
+    "change_policy": "merge-back-required",
+    "decision_rules": {
+      "failed_critical": "REWORK",
+      "blocked_or_not_run_critical": "BLOCKED",
+      "waiver_requires_human_authorization": true,
+      "lower_evidence_substitution_forbidden_by_default": true
+    }
+  },
+  "source": {
+    "project": "oh-my-home",
+    "feature": "wheel-spin-animation",
+    "sop_version": "1.0.2",
+    "sop_status": "approved",
+    "risk_level": "medium"
+  }
+}

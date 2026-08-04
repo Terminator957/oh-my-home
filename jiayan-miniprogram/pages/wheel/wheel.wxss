@@ -1,1 +1,73 @@
-/* 转盘样式复用 app.wxss */
+/* 转盘盘面：无 CSS transition，由 JS 逐帧驱动 */
+.wheel-disk {
+  width: 544rpx;
+  height: 544rpx;
+  border-radius: 50%;
+  border: 2rpx solid #D9CFBB;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  will-change: transform;
+}
+
+/* 旋转中提示：呼吸脉冲（仅使用 opacity 合成属性） */
+.spinning-hint {
+  animation: hintPulse 1.2s ease-in-out infinite;
+}
+
+@keyframes hintPulse {
+  0%, 100% { opacity: 0.55; }
+  50%      { opacity: 1.0; }
+}
+
+/* 结果弹出动画（仅 transform + opacity 合成属性） */
+.result-pop {
+  animation: resultReveal 0.5s ease both;
+}
+
+.result-pop .result-name {
+  animation: resultBounce 0.5s ease both;
+}
+
+@keyframes resultReveal {
+  0%   { opacity: 0; transform: translateY(18rpx); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes resultBounce {
+  0%   { transform: scale(0.5); }
+  55%  { transform: scale(1.18); }
+  100% { transform: scale(1); }
+}
+
+/* 选中菜名高亮 */
+.result-name {
+  font-size: 56rpx;
+  font-weight: 600;
+  letter-spacing: 2rpx;
+}
+
+/* 减少动画偏好：缩短装饰性动画，保持结果正确可用 */
+@media (prefers-reduced-motion: reduce) {
+  .spinning-hint {
+    animation: none;
+    opacity: 0.72;
+  }
+
+  .result-pop {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .result-pop .result-name {
+    animation: none;
+    transform: none;
+  }
+
+  .fade {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}

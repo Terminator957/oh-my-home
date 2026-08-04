@@ -1,0 +1,52 @@
+{
+  "sop_version": "1.0",
+  "metadata": {"project": "oh-my-home", "feature": "wheel-spin-animation", "version": "1.0.2", "status": "approved", "effective_date": "2026-08-04", "owner": "ict"},
+  "purpose": "优化抽一道页面的转盘反馈，使抽取过程有清晰的加速、匀速和减速节奏，并在停下后突出展示已抽中的菜品。",
+  "scope": {
+    "included": ["pages/wheel/wheel.js 的动画状态和完成时机", "pages/wheel/wheel.wxml 的进行中和结果展示", "pages/wheel/wheel.wxss 的转盘和结果动画", "转盘相关回归验证"],
+    "excluded": ["候选菜品池、随机选择规则和今日菜单存储逻辑", "页面导航、全局主题、任务开始前已修改的 project.config.json 与 ui.test.js", "新增第三方动画依赖或改变其他页面"]
+  },
+  "subject": {"type": "feature", "target": "微信小程序 pages/wheel 的抽菜转盘交互", "boundary": "仅负责从点击“转”到结果可确认的前端呈现；随机结果和 addToday 持久化保持现有契约。"},
+  "governance": {"authority": true, "supersedes": [], "derived_contracts": ["development-contract.json"], "conflicts": [], "change_policy": "merge-back-required"},
+  "evidence": [
+    {"id": "EVID-001", "text": "wheel.js 当前以 2.4 秒 transform transition 和 2.45 秒 setTimeout 完成抽取；wxml 仅在旋转时显示省略号。", "status": "observed"},
+    {"id": "EVID-002", "text": "RepoNova build: 39 files, 107 nodes, 101 edges；wheel.js 为转盘入口，当前插件未覆盖 WXML/WXSS 关系。", "status": "observed"}
+  ],
+  "open_items": [],
+  "roles": [{"id": "ROLE-001", "text": "用餐决策用户点击转盘、查看结果并选择确认或重新抽取。"}],
+  "requirements": [
+    {"id": "REQ-001", "level": "MUST", "text": "用户点击中心转盘按钮后，盘面必须有可见的完整旋转并在选中扇区正对固定指针时停止；旋转期间不得重复触发新的抽取。", "acceptance_ids": ["ACC-001"]},
+    {"id": "REQ-002", "level": "MUST", "text": "旋转期间必须给出进行中反馈；停止后必须以视觉动画突出选中菜名和结果区域。", "acceptance_ids": ["ACC-002"]},
+    {"id": "REQ-003", "level": "MUST", "text": "动画只能使用 transform、opacity 等合成属性；系统设置 prefers-reduced-motion 时必须缩短或取消装饰性动画，同时保持结果正确可用。", "acceptance_ids": ["ACC-002"]},
+    {"id": "REQ-004", "level": "MUST", "text": "原有随机范围、候选池、确认写入今日菜单、未抽取时确认提示和重新抽取能力必须保持。", "acceptance_ids": ["ACC-001", "ACC-003"]}
+  ],
+  "data_rules": [{"id": "INV-001", "text": "结果状态一致性", "source": "现有 pages/wheel/wheel.js 的 POOL、wheelIdx 和 angle", "assertion": "spinning 为 true 时 wheelIdx 等于 -1；完成时 wheelIdx 在 [0, POOL.length) 且 result 等于 POOL[wheelIdx].name。", "acceptance_ids": ["ACC-001"]}],
+  "flows": {
+    "forward": [
+      {"id": "FLOW-F-001", "title": "开始抽取", "actor": "ROLE-001", "precondition": "spinning 为 false", "input": "点击中心转盘按钮", "action": "生成候选索引和目标角度，清除旧结果并置 spinning=true", "data_changes": "angle 增加至少四整圈；wheelIdx 置 -1", "output": "转盘开始并显示进行中反馈", "next_state": "SPINNING", "acceptance_ids": ["ACC-001", "ACC-002"]},
+      {"id": "FLOW-F-002", "title": "展示结果", "actor": "系统", "precondition": "旋转时长结束", "input": "本轮预先锁定的候选索引", "action": "尝试触觉反馈并写入 wheelIdx、菜名和元数据", "data_changes": "spinning 置 false，wheelIdx 置候选索引", "output": "结果区域以揭示动画显示菜品", "next_state": "RESULT_READY", "acceptance_ids": ["ACC-001", "ACC-002"]}
+    ],
+    "reverse": [
+      {"id": "FLOW-R-001", "title": "再次抽取", "actor": "ROLE-001", "precondition": "状态为 RESULT_READY", "input": "再次点击中心转盘按钮", "action": "执行新一轮开始抽取流程", "data_changes": "旧结果被清除，新随机索引锁定", "output": "显示新一轮进行中反馈", "next_state": "SPINNING", "acceptance_ids": ["ACC-001", "ACC-002"]},
+      {"id": "FLOW-R-002", "title": "拒绝未抽取确认", "actor": "ROLE-001", "precondition": "wheelIdx 小于 0", "input": "点击确认按钮", "action": "显示“先转一下”提示且不调用 addToday", "data_changes": "无", "output": "用户留在转盘页面", "next_state": "IDLE", "acceptance_ids": ["ACC-003"]}
+    ]
+  },
+  "exceptions": [
+    {"id": "EXC-001", "text": "旋转期间重复点击", "trigger": "spinning 为 true 时调用 spin", "handling": "立即返回，不改变本轮索引、角度或计时器", "final_state": "SPINNING", "assertion": "一次转动只会落定一次结果", "acceptance_ids": ["ACC-001"]},
+    {"id": "EXC-002", "text": "触觉反馈不可用", "trigger": "wx.vibrateShort 缺失或抛出异常", "handling": "捕获异常并继续写入结果状态", "final_state": "RESULT_READY", "assertion": "结果仍按锁定索引展示", "acceptance_ids": ["ACC-001"]}
+  ],
+  "ui_rules": [
+    {"id": "UI-001", "text": "保留现有暖色纸本视觉、圆形转盘与固定红色指针，不改变页面信息层级。"},
+    {"id": "UI-002", "text": "转盘减速与结果揭示使用明确、短暂的缓动；禁止布局属性动画和无限装饰循环。"},
+    {"id": "UI-003", "text": "375px 宽度下目标控件和菜名不得溢出或覆盖；prefers-reduced-motion 下装饰性动画最小化。"}
+  ],
+  "integrations": [],
+  "acceptance": [
+    {"id": "ACC-001", "text": "转盘可启动、旋转时锁定、停止后给出有效结果，且目标角度仍与随机索引匹配。", "method": "独立小程序自动化和人工源码检查", "evidence": "wheel-spin.test.js、微信开发者工具运行时数据与截图", "requirement_ids": ["REQ-001", "REQ-004"], "evidence_level": "e2e", "required_artifacts": ["wheel-spin.test.js 输出", "微信开发者工具转盘运行时数据"], "substitution": "forbidden", "critical": true, "status": "passed"},
+    {"id": "ACC-002", "text": "进行中、结果揭示和减少动态效果规则均存在，且动画只使用合成属性。", "method": "WXSS/WXML 静态检查与微信模拟器截图", "evidence": "源码定位和 375px 微信模拟器截图", "requirement_ids": ["REQ-002", "REQ-003"], "evidence_level": "visual", "required_artifacts": ["375px 空闲、旋转和结果截图"], "substitution": "forbidden", "critical": true, "status": "passed"},
+    {"id": "ACC-003", "text": "单元和接口回归通过，且未抽取确认不写入今日菜单。", "method": "Node 测试", "evidence": "npm run test:unit 与 npm run test:interface 输出", "requirement_ids": ["REQ-004"], "evidence_level": "unit", "required_artifacts": ["测试输出"], "substitution": "forbidden", "critical": true, "status": "passed"}
+  ],
+  "risks": [{"id": "RISK-001", "text": "微信开发者工具与真机的 CSS animationend 触发可能不同；结果落定仍以受控计时器为准。"}, {"id": "RISK-002", "text": "ui.test.js 是任务前脏文件，不能修改；若补充断言，只新增独立任务测试文件。"}],
+  "development": {"scope": ["wheel 页面及独立新增的转盘回归测试文件"], "constraints": ["不得编辑任务基线脏文件", "不得新增第三方依赖", "不得改变业务随机与存储逻辑", "使用原生微信小程序能力"], "acceptance_ids": ["ACC-001", "ACC-002", "ACC-003"], "validation_commands": ["cd jiayan-tests && npm run test:unit", "cd jiayan-tests && npm run test:interface", "cd jiayan-tests && npm run test:ui"], "risk_level": "medium"},
+  "revision_history": [{"text": "V1.0：基于任务 codex-20260804-195130-a63dafdc 的明确实现请求创建；范围无冲突。"}, {"text": "V1.0.1：第一轮实现验收发现 20fps setData 逐帧方案偏离已批准的原生多阶段动画方向，且 reducedMotion 状态无有效来源；要求改用 wx.createAnimation，并保留 WXSS 的减少动态装饰规则。"}, {"text": "V1.0.2：以微信小程序的实际主要 375px 模拟器为可执行视觉验收目标；记录三项关键验收均已通过。"}]
+}
