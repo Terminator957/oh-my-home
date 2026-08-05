@@ -1,0 +1,56 @@
+{
+  "file-detection": {
+    "status": "completed",
+    "startedAt": "2026-08-05T02:55:05.629Z",
+    "finishedAt": "2026-08-05T02:55:05.648Z",
+    "durationMs": 19
+  },
+  "graph": {
+    "status": "completed",
+    "startedAt": "2026-08-05T02:55:05.650Z",
+    "finishedAt": "2026-08-05T02:55:05.751Z",
+    "durationMs": 101
+  },
+  "outlines": {
+    "status": "completed",
+    "startedAt": "2026-08-05T02:55:05.658Z",
+    "finishedAt": "2026-08-05T02:55:05.753Z",
+    "durationMs": 95
+  },
+  "communities": {
+    "status": "completed",
+    "startedAt": "2026-08-05T02:55:05.756Z",
+    "finishedAt": "2026-08-05T02:55:05.766Z",
+    "durationMs": 10
+  },
+  "enrich": {
+    "status": "completed",
+    "startedAt": "2026-08-05T02:55:05.768Z",
+    "finishedAt": "2026-08-05T02:55:05.773Z",
+    "durationMs": 5
+  },
+  "embeddings": {
+    "status": "completed",
+    "startedAt": "2026-08-05T02:55:05.775Z",
+    "finishedAt": "2026-08-05T02:55:05.977Z",
+    "durationMs": 202
+  },
+  "html": {
+    "status": "completed",
+    "startedAt": "2026-08-05T02:55:05.780Z",
+    "finishedAt": "2026-08-05T02:55:05.862Z",
+    "durationMs": 82
+  },
+  "index": {
+    "status": "completed",
+    "startedAt": "2026-08-05T02:55:05.850Z",
+    "finishedAt": "2026-08-05T02:55:06.090Z",
+    "durationMs": 240
+  },
+  "report": {
+    "status": "completed",
+    "startedAt": "2026-08-05T02:55:05.856Z",
+    "finishedAt": "2026-08-05T02:55:05.864Z",
+    "durationMs": 8
+  }
+}

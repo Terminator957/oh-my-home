@@ -1,0 +1,2155 @@
+{
+  "nodes": [
+    {
+      "id": "jiayan-miniprogram/app.js",
+      "label": "app.js",
+      "type": "module",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/app.js",
+      "community": "0",
+      "norm_label": "app.js",
+      "repo": "jiayan-miniprogram",
+      "start_line": 1
+    },
+    {
+      "id": "jiayan-miniprogram/app.json",
+      "label": "app.json",
+      "type": "module",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/app.json",
+      "community": "1",
+      "norm_label": "app.json",
+      "repo": "jiayan-miniprogram",
+      "start_line": 1
+    },
+    {
+      "id": "jiayan-miniprogram/images/dishes/CREDITS.md",
+      "label": "CREDITS.md",
+      "type": "document",
+      "file_type": "doc",
+      "source_file": "jiayan-miniprogram/images/dishes/CREDITS.md",
+      "community": "2",
+      "norm_label": "credits.md",
+      "repo": "jiayan-miniprogram",
+      "start_line": 1
+    },
+    {
+      "id": "jiayan-miniprogram/pages/add/add.js",
+      "label": "add.js",
+      "type": "module",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/pages/add/add.js",
+      "community": "3",
+      "norm_label": "add.js",
+      "repo": "jiayan-miniprogram",
+      "start_line": 1
+    },
+    {
+      "id": "jiayan-miniprogram/pages/add/add.json",
+      "label": "add.json",
+      "type": "module",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/pages/add/add.json",
+      "community": "4",
+      "norm_label": "add.json",
+      "repo": "jiayan-miniprogram",
+      "start_line": 1
+    },
+    {
+      "id": "jiayan-miniprogram/pages/analysis/analysis.js",
+      "label": "analysis.js",
+      "type": "module",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/pages/analysis/analysis.js",
+      "community": "5",
+      "norm_label": "analysis.js",
+      "repo": "jiayan-miniprogram",
+      "start_line": 1
+    },
+    {
+      "id": "jiayan-miniprogram/pages/analysis/analysis.json",
+      "label": "analysis.json",
+      "type": "module",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/pages/analysis/analysis.json",
+      "community": "6",
+      "norm_label": "analysis.json",
+      "repo": "jiayan-miniprogram",
+      "start_line": 1
+    },
+    {
+      "id": "jiayan-miniprogram/pages/dish/dish.js",
+      "label": "dish.js",
+      "type": "module",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/pages/dish/dish.js",
+      "community": "7",
+      "norm_label": "dish.js",
+      "repo": "jiayan-miniprogram",
+      "start_line": 1
+    },
+    {
+      "id": "jiayan-miniprogram/pages/dish/dish.json",
+      "label": "dish.json",
+      "type": "module",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/pages/dish/dish.json",
+      "community": "8",
+      "norm_label": "dish.json",
+      "repo": "jiayan-miniprogram",
+      "start_line": 1
+    },
+    {
+      "id": "jiayan-miniprogram/pages/guest-cart/guest-cart.js",
+      "label": "guest-cart.js",
+      "type": "module",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/pages/guest-cart/guest-cart.js",
+      "community": "9",
+      "norm_label": "guest-cart.js",
+      "repo": "jiayan-miniprogram",
+      "start_line": 1
+    },
+    {
+      "id": "jiayan-miniprogram/pages/guest-cart/guest-cart.json",
+      "label": "guest-cart.json",
+      "type": "module",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/pages/guest-cart/guest-cart.json",
+      "community": "10",
+      "norm_label": "guest-cart.json",
+      "repo": "jiayan-miniprogram",
+      "start_line": 1
+    },
+    {
+      "id": "jiayan-miniprogram/pages/guest/guest.js",
+      "label": "guest.js",
+      "type": "module",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/pages/guest/guest.js",
+      "community": "9",
+      "norm_label": "guest.js",
+      "repo": "jiayan-miniprogram",
+      "start_line": 1
+    },
+    {
+      "id": "jiayan-miniprogram/pages/guest/guest.json",
+      "label": "guest.json",
+      "type": "module",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/pages/guest/guest.json",
+      "community": "11",
+      "norm_label": "guest.json",
+      "repo": "jiayan-miniprogram",
+      "start_line": 1
+    },
+    {
+      "id": "jiayan-miniprogram/pages/home/home.js",
+      "label": "home.js",
+      "type": "module",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/pages/home/home.js",
+      "community": "9",
+      "norm_label": "home.js",
+      "repo": "jiayan-miniprogram",
+      "start_line": 1
+    },
+    {
+      "id": "jiayan-miniprogram/pages/home/home.json",
+      "label": "home.json",
+      "type": "module",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/pages/home/home.json",
+      "community": "12",
+      "norm_label": "home.json",
+      "repo": "jiayan-miniprogram",
+      "start_line": 1
+    },
+    {
+      "id": "jiayan-miniprogram/pages/host-order/host-order.js",
+      "label": "host-order.js",
+      "type": "module",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/pages/host-order/host-order.js",
+      "community": "13",
+      "norm_label": "host-order.js",
+      "repo": "jiayan-miniprogram",
+      "start_line": 1
+    },
+    {
+      "id": "jiayan-miniprogram/pages/host-order/host-order.json",
+      "label": "host-order.json",
+      "type": "module",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/pages/host-order/host-order.json",
+      "community": "14",
+      "norm_label": "host-order.json",
+      "repo": "jiayan-miniprogram",
+      "start_line": 1
+    },
+    {
+      "id": "jiayan-miniprogram/pages/library/library.js",
+      "label": "library.js",
+      "type": "module",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/pages/library/library.js",
+      "community": "9",
+      "norm_label": "library.js",
+      "repo": "jiayan-miniprogram",
+      "start_line": 1
+    },
+    {
+      "id": "jiayan-miniprogram/pages/library/library.json",
+      "label": "library.json",
+      "type": "module",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/pages/library/library.json",
+      "community": "15",
+      "norm_label": "library.json",
+      "repo": "jiayan-miniprogram",
+      "start_line": 1
+    },
+    {
+      "id": "jiayan-miniprogram/pages/mood/mood.js",
+      "label": "mood.js",
+      "type": "module",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/pages/mood/mood.js",
+      "community": "7",
+      "norm_label": "mood.js",
+      "repo": "jiayan-miniprogram",
+      "start_line": 1
+    },
+    {
+      "id": "jiayan-miniprogram/pages/mood/mood.json",
+      "label": "mood.json",
+      "type": "module",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/pages/mood/mood.json",
+      "community": "16",
+      "norm_label": "mood.json",
+      "repo": "jiayan-miniprogram",
+      "start_line": 1
+    },
+    {
+      "id": "jiayan-miniprogram/pages/swipe/swipe.js",
+      "label": "swipe.js",
+      "type": "module",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/pages/swipe/swipe.js",
+      "community": "9",
+      "norm_label": "swipe.js",
+      "repo": "jiayan-miniprogram",
+      "start_line": 1
+    },
+    {
+      "id": "jiayan-miniprogram/pages/swipe/swipe.json",
+      "label": "swipe.json",
+      "type": "module",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/pages/swipe/swipe.json",
+      "community": "17",
+      "norm_label": "swipe.json",
+      "repo": "jiayan-miniprogram",
+      "start_line": 1
+    },
+    {
+      "id": "jiayan-miniprogram/pages/today/today.js",
+      "label": "today.js",
+      "type": "module",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/pages/today/today.js",
+      "community": "7",
+      "norm_label": "today.js",
+      "repo": "jiayan-miniprogram",
+      "start_line": 1
+    },
+    {
+      "id": "jiayan-miniprogram/pages/today/today.json",
+      "label": "today.json",
+      "type": "module",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/pages/today/today.json",
+      "community": "18",
+      "norm_label": "today.json",
+      "repo": "jiayan-miniprogram",
+      "start_line": 1
+    },
+    {
+      "id": "jiayan-miniprogram/pages/us/us.js",
+      "label": "us.js",
+      "type": "module",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/pages/us/us.js",
+      "community": "19",
+      "norm_label": "us.js",
+      "repo": "jiayan-miniprogram",
+      "start_line": 1
+    },
+    {
+      "id": "jiayan-miniprogram/pages/us/us.json",
+      "label": "us.json",
+      "type": "module",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/pages/us/us.json",
+      "community": "20",
+      "norm_label": "us.json",
+      "repo": "jiayan-miniprogram",
+      "start_line": 1
+    },
+    {
+      "id": "jiayan-miniprogram/pages/wheel/wheel.js",
+      "label": "wheel.js",
+      "type": "module",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/pages/wheel/wheel.js",
+      "community": "7",
+      "norm_label": "wheel.js",
+      "repo": "jiayan-miniprogram",
+      "start_line": 1
+    },
+    {
+      "id": "jiayan-miniprogram/pages/wheel/wheel.json",
+      "label": "wheel.json",
+      "type": "module",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/pages/wheel/wheel.json",
+      "community": "21",
+      "norm_label": "wheel.json",
+      "repo": "jiayan-miniprogram",
+      "start_line": 1
+    },
+    {
+      "id": "jiayan-miniprogram/project.config.json",
+      "label": "project.config.json",
+      "type": "module",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/project.config.json",
+      "community": "22",
+      "norm_label": "project.config.json",
+      "repo": "jiayan-miniprogram",
+      "start_line": 1
+    },
+    {
+      "id": "jiayan-miniprogram/sitemap.json",
+      "label": "sitemap.json",
+      "type": "module",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/sitemap.json",
+      "community": "23",
+      "norm_label": "sitemap.json",
+      "repo": "jiayan-miniprogram",
+      "start_line": 1
+    },
+    {
+      "id": "jiayan-miniprogram/utils/data.js",
+      "label": "data.js",
+      "type": "module",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/utils/data.js",
+      "community": "7",
+      "norm_label": "data.js",
+      "repo": "jiayan-miniprogram",
+      "start_line": 1
+    },
+    {
+      "id": "jiayan-tests/TEST-REPORT.md",
+      "label": "TEST-REPORT.md",
+      "type": "document",
+      "file_type": "doc",
+      "source_file": "jiayan-tests/TEST-REPORT.md",
+      "community": "24",
+      "norm_label": "test-report.md",
+      "repo": "jiayan-tests",
+      "start_line": 1
+    },
+    {
+      "id": "jiayan-tests/interface.test.js",
+      "label": "interface.test.js",
+      "type": "module",
+      "file_type": "code",
+      "source_file": "jiayan-tests/interface.test.js",
+      "community": "7",
+      "norm_label": "interface.test.js",
+      "repo": "jiayan-tests",
+      "start_line": 1
+    },
+    {
+      "id": "jiayan-tests/package-lock.json",
+      "label": "package-lock.json",
+      "type": "module",
+      "file_type": "code",
+      "source_file": "jiayan-tests/package-lock.json",
+      "community": "25",
+      "norm_label": "package-lock.json",
+      "repo": "jiayan-tests",
+      "start_line": 1
+    },
+    {
+      "id": "jiayan-tests/package.json",
+      "label": "jiayan-tests",
+      "type": "module",
+      "file_type": "code",
+      "source_file": "jiayan-tests/package.json",
+      "community": "26",
+      "norm_label": "jiayan-tests",
+      "repo": "jiayan-tests",
+      "start_line": 1
+    },
+    {
+      "id": "jiayan-tests/unit.test.js",
+      "label": "unit.test.js",
+      "type": "module",
+      "file_type": "code",
+      "source_file": "jiayan-tests/unit.test.js",
+      "community": "7",
+      "norm_label": "unit.test.js",
+      "repo": "jiayan-tests",
+      "start_line": 1
+    },
+    {
+      "id": "jiayan-tests/wheel-spin.test.js",
+      "label": "wheel-spin.test.js",
+      "type": "module",
+      "file_type": "code",
+      "source_file": "jiayan-tests/wheel-spin.test.js",
+      "community": "7",
+      "norm_label": "wheel-spin.test.js",
+      "repo": "jiayan-tests",
+      "start_line": 1
+    },
+    {
+      "id": "jiayan-tests/wx-mock.js",
+      "label": "wx-mock.js",
+      "type": "module",
+      "file_type": "code",
+      "source_file": "jiayan-tests/wx-mock.js",
+      "community": "27",
+      "norm_label": "wx-mock.js",
+      "repo": "jiayan-tests",
+      "start_line": 1
+    },
+    {
+      "id": "jiayan-tests/ui.test.js",
+      "label": "ui.test.js",
+      "type": "module",
+      "file_type": "code",
+      "source_file": "jiayan-tests/ui.test.js",
+      "community": "28",
+      "norm_label": "ui.test.js",
+      "repo": "jiayan-tests",
+      "start_line": 1
+    },
+    {
+      "id": "jiayan-miniprogram.app.pages",
+      "label": "pages",
+      "type": "variable",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/app.json",
+      "community": "1",
+      "norm_label": "pages",
+      "repo": "jiayan-miniprogram",
+      "start_line": 2,
+      "end_line": 16
+    },
+    {
+      "id": "jiayan-miniprogram.app.window",
+      "label": "window",
+      "type": "variable",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/app.json",
+      "community": "1",
+      "norm_label": "window",
+      "repo": "jiayan-miniprogram",
+      "start_line": 17,
+      "end_line": 22
+    },
+    {
+      "id": "jiayan-miniprogram.app.tabBar",
+      "label": "tabBar",
+      "type": "variable",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/app.json",
+      "community": "1",
+      "norm_label": "tabbar",
+      "repo": "jiayan-miniprogram",
+      "start_line": 23,
+      "end_line": 34
+    },
+    {
+      "id": "jiayan-miniprogram.app.style",
+      "label": "style",
+      "type": "variable",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/app.json",
+      "community": "1",
+      "norm_label": "style",
+      "repo": "jiayan-miniprogram",
+      "start_line": 35,
+      "end_line": 35
+    },
+    {
+      "id": "jiayan-miniprogram.app.sitemapLocation",
+      "label": "sitemapLocation",
+      "type": "variable",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/app.json",
+      "community": "1",
+      "norm_label": "sitemaplocation",
+      "repo": "jiayan-miniprogram",
+      "start_line": 36,
+      "end_line": 36
+    },
+    {
+      "id": "jiayan-miniprogram.app.lazyCodeLoading",
+      "label": "lazyCodeLoading",
+      "type": "variable",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/app.json",
+      "community": "1",
+      "norm_label": "lazycodeloading",
+      "repo": "jiayan-miniprogram",
+      "start_line": 37,
+      "end_line": 37
+    },
+    {
+      "id": "jiayan-miniprogram.pages.add.add.navigationBarTitleText",
+      "label": "navigationBarTitleText",
+      "type": "variable",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/pages/add/add.json",
+      "community": "4",
+      "norm_label": "navigationbartitletext",
+      "repo": "jiayan-miniprogram",
+      "start_line": 1,
+      "end_line": 1
+    },
+    {
+      "id": "jiayan-miniprogram.pages.analysis.analysis.navigationBarTitleText",
+      "label": "navigationBarTitleText",
+      "type": "variable",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/pages/analysis/analysis.json",
+      "community": "6",
+      "norm_label": "navigationbartitletext",
+      "repo": "jiayan-miniprogram",
+      "start_line": 1,
+      "end_line": 1
+    },
+    {
+      "id": "jiayan-miniprogram.pages.dish.dish.navigationBarTitleText",
+      "label": "navigationBarTitleText",
+      "type": "variable",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/pages/dish/dish.json",
+      "community": "8",
+      "norm_label": "navigationbartitletext",
+      "repo": "jiayan-miniprogram",
+      "start_line": 1,
+      "end_line": 1
+    },
+    {
+      "id": "jiayan-miniprogram.pages.guest-cart.guest-cart.navigationBarTitleText",
+      "label": "navigationBarTitleText",
+      "type": "variable",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/pages/guest-cart/guest-cart.json",
+      "community": "10",
+      "norm_label": "navigationbartitletext",
+      "repo": "jiayan-miniprogram",
+      "start_line": 1,
+      "end_line": 1
+    },
+    {
+      "id": "jiayan-miniprogram.pages.guest.guest.navigationBarTitleText",
+      "label": "navigationBarTitleText",
+      "type": "variable",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/pages/guest/guest.json",
+      "community": "11",
+      "norm_label": "navigationbartitletext",
+      "repo": "jiayan-miniprogram",
+      "start_line": 1,
+      "end_line": 1
+    },
+    {
+      "id": "jiayan-miniprogram.pages.home.home.RECS",
+      "label": "RECS",
+      "type": "constant",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/pages/home/home.js",
+      "community": "9",
+      "norm_label": "recs",
+      "repo": "jiayan-miniprogram",
+      "start_line": 3,
+      "end_line": 3
+    },
+    {
+      "id": "jiayan-miniprogram.pages.home.home.navigationBarTitleText",
+      "label": "navigationBarTitleText",
+      "type": "variable",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/pages/home/home.json",
+      "community": "12",
+      "norm_label": "navigationbartitletext",
+      "repo": "jiayan-miniprogram",
+      "start_line": 1,
+      "end_line": 1
+    },
+    {
+      "id": "jiayan-miniprogram.pages.host-order.host-order.ORDERS",
+      "label": "ORDERS",
+      "type": "constant",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/pages/host-order/host-order.js",
+      "community": "13",
+      "norm_label": "orders",
+      "repo": "jiayan-miniprogram",
+      "start_line": 1,
+      "end_line": 11
+    },
+    {
+      "id": "jiayan-miniprogram.pages.host-order.host-order.SHOPPING",
+      "label": "SHOPPING",
+      "type": "constant",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/pages/host-order/host-order.js",
+      "community": "13",
+      "norm_label": "shopping",
+      "repo": "jiayan-miniprogram",
+      "start_line": 12,
+      "end_line": 12
+    },
+    {
+      "id": "jiayan-miniprogram.pages.host-order.host-order.navigationBarTitleText",
+      "label": "navigationBarTitleText",
+      "type": "variable",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/pages/host-order/host-order.json",
+      "community": "14",
+      "norm_label": "navigationbartitletext",
+      "repo": "jiayan-miniprogram",
+      "start_line": 1,
+      "end_line": 1
+    },
+    {
+      "id": "jiayan-miniprogram.pages.library.library.navigationBarTitleText",
+      "label": "navigationBarTitleText",
+      "type": "variable",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/pages/library/library.json",
+      "community": "15",
+      "norm_label": "navigationbartitletext",
+      "repo": "jiayan-miniprogram",
+      "start_line": 1,
+      "end_line": 1
+    },
+    {
+      "id": "jiayan-miniprogram.pages.mood.mood.navigationBarTitleText",
+      "label": "navigationBarTitleText",
+      "type": "variable",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/pages/mood/mood.json",
+      "community": "16",
+      "norm_label": "navigationbartitletext",
+      "repo": "jiayan-miniprogram",
+      "start_line": 1,
+      "end_line": 1
+    },
+    {
+      "id": "jiayan-miniprogram.pages.swipe.swipe.THRESHOLD",
+      "label": "THRESHOLD",
+      "type": "constant",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/pages/swipe/swipe.js",
+      "community": "9",
+      "norm_label": "threshold",
+      "repo": "jiayan-miniprogram",
+      "start_line": 3,
+      "end_line": 3
+    },
+    {
+      "id": "jiayan-miniprogram.pages.swipe.swipe.navigationBarTitleText",
+      "label": "navigationBarTitleText",
+      "type": "variable",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/pages/swipe/swipe.json",
+      "community": "17",
+      "norm_label": "navigationbartitletext",
+      "repo": "jiayan-miniprogram",
+      "start_line": 1,
+      "end_line": 1
+    },
+    {
+      "id": "jiayan-miniprogram.pages.today.today.DEFAULT_MENU",
+      "label": "DEFAULT_MENU",
+      "type": "constant",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/pages/today/today.js",
+      "community": "7",
+      "norm_label": "default_menu",
+      "repo": "jiayan-miniprogram",
+      "start_line": 3,
+      "end_line": 3
+    },
+    {
+      "id": "jiayan-miniprogram.pages.today.today.navigationBarTitleText",
+      "label": "navigationBarTitleText",
+      "type": "variable",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/pages/today/today.json",
+      "community": "18",
+      "norm_label": "navigationbartitletext",
+      "repo": "jiayan-miniprogram",
+      "start_line": 1,
+      "end_line": 1
+    },
+    {
+      "id": "jiayan-miniprogram.pages.us.us.navigationBarTitleText",
+      "label": "navigationBarTitleText",
+      "type": "variable",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/pages/us/us.json",
+      "community": "20",
+      "norm_label": "navigationbartitletext",
+      "repo": "jiayan-miniprogram",
+      "start_line": 1,
+      "end_line": 1
+    },
+    {
+      "id": "jiayan-miniprogram.pages.wheel.wheel.POOL",
+      "label": "POOL",
+      "type": "constant",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/pages/wheel/wheel.js",
+      "community": "7",
+      "norm_label": "pool",
+      "repo": "jiayan-miniprogram",
+      "start_line": 3,
+      "end_line": 3
+    },
+    {
+      "id": "jiayan-miniprogram.pages.wheel.wheel.STEP",
+      "label": "STEP",
+      "type": "constant",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/pages/wheel/wheel.js",
+      "community": "7",
+      "norm_label": "step",
+      "repo": "jiayan-miniprogram",
+      "start_line": 4,
+      "end_line": 4
+    },
+    {
+      "id": "jiayan-miniprogram.pages.wheel.wheel.navigationBarTitleText",
+      "label": "navigationBarTitleText",
+      "type": "variable",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/pages/wheel/wheel.json",
+      "community": "21",
+      "norm_label": "navigationbartitletext",
+      "repo": "jiayan-miniprogram",
+      "start_line": 1,
+      "end_line": 1
+    },
+    {
+      "id": "jiayan-miniprogram.project.config.compileType",
+      "label": "compileType",
+      "type": "variable",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/project.config.json",
+      "community": "22",
+      "norm_label": "compiletype",
+      "repo": "jiayan-miniprogram",
+      "start_line": 2,
+      "end_line": 2
+    },
+    {
+      "id": "jiayan-miniprogram.project.config.packOptions",
+      "label": "packOptions",
+      "type": "variable",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/project.config.json",
+      "community": "22",
+      "norm_label": "packoptions",
+      "repo": "jiayan-miniprogram",
+      "start_line": 3,
+      "end_line": 10
+    },
+    {
+      "id": "jiayan-miniprogram.project.config.appid",
+      "label": "appid",
+      "type": "variable",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/project.config.json",
+      "community": "22",
+      "norm_label": "appid",
+      "repo": "jiayan-miniprogram",
+      "start_line": 11,
+      "end_line": 11
+    },
+    {
+      "id": "jiayan-miniprogram.project.config.projectname",
+      "label": "projectname",
+      "type": "variable",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/project.config.json",
+      "community": "22",
+      "norm_label": "projectname",
+      "repo": "jiayan-miniprogram",
+      "start_line": 12,
+      "end_line": 12
+    },
+    {
+      "id": "jiayan-miniprogram.project.config.setting",
+      "label": "setting",
+      "type": "variable",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/project.config.json",
+      "community": "22",
+      "norm_label": "setting",
+      "repo": "jiayan-miniprogram",
+      "start_line": 13,
+      "end_line": 24
+    },
+    {
+      "id": "jiayan-miniprogram.project.config.libVersion",
+      "label": "libVersion",
+      "type": "variable",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/project.config.json",
+      "community": "22",
+      "norm_label": "libversion",
+      "repo": "jiayan-miniprogram",
+      "start_line": 25,
+      "end_line": 25
+    },
+    {
+      "id": "jiayan-miniprogram.project.config.condition",
+      "label": "condition",
+      "type": "variable",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/project.config.json",
+      "community": "22",
+      "norm_label": "condition",
+      "repo": "jiayan-miniprogram",
+      "start_line": 26,
+      "end_line": 26
+    },
+    {
+      "id": "jiayan-miniprogram.project.config.editorSetting",
+      "label": "editorSetting",
+      "type": "variable",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/project.config.json",
+      "community": "22",
+      "norm_label": "editorsetting",
+      "repo": "jiayan-miniprogram",
+      "start_line": 27,
+      "end_line": 30
+    },
+    {
+      "id": "jiayan-miniprogram.sitemap.desc",
+      "label": "desc",
+      "type": "variable",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/sitemap.json",
+      "community": "23",
+      "norm_label": "desc",
+      "repo": "jiayan-miniprogram",
+      "start_line": 2,
+      "end_line": 2
+    },
+    {
+      "id": "jiayan-miniprogram.sitemap.rules",
+      "label": "rules",
+      "type": "variable",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/sitemap.json",
+      "community": "23",
+      "norm_label": "rules",
+      "repo": "jiayan-miniprogram",
+      "start_line": 3,
+      "end_line": 3
+    },
+    {
+      "id": "jiayan-miniprogram.utils.data.DISHES",
+      "label": "DISHES",
+      "type": "constant",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/utils/data.js",
+      "community": "9",
+      "norm_label": "dishes",
+      "repo": "jiayan-miniprogram",
+      "start_line": 2,
+      "end_line": 16
+    },
+    {
+      "id": "jiayan-miniprogram.utils.data.IMGS",
+      "label": "IMGS",
+      "type": "constant",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/utils/data.js",
+      "community": "7",
+      "norm_label": "imgs",
+      "repo": "jiayan-miniprogram",
+      "start_line": 19,
+      "end_line": 32
+    },
+    {
+      "id": "jiayan-miniprogram.utils.data.MOOD_MAP",
+      "label": "MOOD_MAP",
+      "type": "constant",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/utils/data.js",
+      "community": "7",
+      "norm_label": "mood_map",
+      "repo": "jiayan-miniprogram",
+      "start_line": 35,
+      "end_line": 42
+    },
+    {
+      "id": "jiayan-miniprogram.utils.data.starText",
+      "label": "starText",
+      "type": "function",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/utils/data.js",
+      "community": "9",
+      "norm_label": "startext",
+      "repo": "jiayan-miniprogram",
+      "start_line": 44,
+      "end_line": 47
+    },
+    {
+      "id": "jiayan-miniprogram.utils.data.findDish",
+      "label": "findDish",
+      "type": "function",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/utils/data.js",
+      "community": "7",
+      "norm_label": "finddish",
+      "repo": "jiayan-miniprogram",
+      "start_line": 49,
+      "end_line": 51
+    },
+    {
+      "id": "jiayan-miniprogram.utils.data.getToday",
+      "label": "getToday",
+      "type": "function",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/utils/data.js",
+      "community": "7",
+      "norm_label": "gettoday",
+      "repo": "jiayan-miniprogram",
+      "start_line": 54,
+      "end_line": 56
+    },
+    {
+      "id": "jiayan-miniprogram.utils.data.setToday",
+      "label": "setToday",
+      "type": "function",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/utils/data.js",
+      "community": "7",
+      "norm_label": "settoday",
+      "repo": "jiayan-miniprogram",
+      "start_line": 57,
+      "end_line": 59
+    },
+    {
+      "id": "jiayan-miniprogram.utils.data.addToday",
+      "label": "addToday",
+      "type": "function",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/utils/data.js",
+      "community": "7",
+      "norm_label": "addtoday",
+      "repo": "jiayan-miniprogram",
+      "start_line": 60,
+      "end_line": 64
+    },
+    {
+      "id": "jiayan-miniprogram.utils.data.getGuestCart",
+      "label": "getGuestCart",
+      "type": "function",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/utils/data.js",
+      "community": "9",
+      "norm_label": "getguestcart",
+      "repo": "jiayan-miniprogram",
+      "start_line": 67,
+      "end_line": 70
+    },
+    {
+      "id": "jiayan-miniprogram.utils.data.setGuestCart",
+      "label": "setGuestCart",
+      "type": "function",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/utils/data.js",
+      "community": "9",
+      "norm_label": "setguestcart",
+      "repo": "jiayan-miniprogram",
+      "start_line": 71,
+      "end_line": 73
+    },
+    {
+      "id": "jiayan-miniprogram.utils.data.getRating",
+      "label": "getRating",
+      "type": "function",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/utils/data.js",
+      "community": "7",
+      "norm_label": "getrating",
+      "repo": "jiayan-miniprogram",
+      "start_line": 76,
+      "end_line": 81
+    },
+    {
+      "id": "jiayan-miniprogram.utils.data.setRating",
+      "label": "setRating",
+      "type": "function",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/utils/data.js",
+      "community": "7",
+      "norm_label": "setrating",
+      "repo": "jiayan-miniprogram",
+      "start_line": 82,
+      "end_line": 86
+    },
+    {
+      "id": "jiayan-tests.TEST-REPORT.__",
+      "label": "",
+      "type": "section",
+      "file_type": "doc",
+      "source_file": "jiayan-tests/TEST-REPORT.md",
+      "community": "24",
+      "norm_label": "",
+      "repo": "jiayan-tests",
+      "start_line": 1,
+      "end_line": 67
+    },
+    {
+      "id": "jiayan-tests.TEST-REPORT.",
+      "label": "",
+      "type": "section",
+      "file_type": "doc",
+      "source_file": "jiayan-tests/TEST-REPORT.md",
+      "community": "24",
+      "norm_label": "",
+      "repo": "jiayan-tests",
+      "start_line": 5,
+      "end_line": 67
+    },
+    {
+      "id": "jiayan-tests.TEST-REPORT.7_nodetest",
+      "label": "7 nodetest",
+      "type": "section",
+      "file_type": "doc",
+      "source_file": "jiayan-tests/TEST-REPORT.md",
+      "community": "24",
+      "norm_label": "7 nodetest",
+      "repo": "jiayan-tests",
+      "start_line": 9,
+      "end_line": 22
+    },
+    {
+      "id": "jiayan-tests.TEST-REPORT.5_nodetest__wx_storage_mock",
+      "label": "5 nodetest  wx storage mock",
+      "type": "section",
+      "file_type": "doc",
+      "source_file": "jiayan-tests/TEST-REPORT.md",
+      "community": "24",
+      "norm_label": "5 nodetest  wx storage mock",
+      "repo": "jiayan-tests",
+      "start_line": 23,
+      "end_line": 34
+    },
+    {
+      "id": "jiayan-tests.TEST-REPORT.UI_13_miniprogram-automator_",
+      "label": "UI 13 miniprogram-automator",
+      "type": "section",
+      "file_type": "doc",
+      "source_file": "jiayan-tests/TEST-REPORT.md",
+      "community": "24",
+      "norm_label": "ui 13 miniprogram-automator",
+      "repo": "jiayan-tests",
+      "start_line": 35,
+      "end_line": 54
+    },
+    {
+      "id": "jiayan-tests.TEST-REPORT._2",
+      "label": "",
+      "type": "section",
+      "file_type": "doc",
+      "source_file": "jiayan-tests/TEST-REPORT.md",
+      "community": "24",
+      "norm_label": "",
+      "repo": "jiayan-tests",
+      "start_line": 55,
+      "end_line": 67
+    },
+    {
+      "id": "jiayan-tests.TEST-REPORT._3",
+      "label": "",
+      "type": "section",
+      "file_type": "doc",
+      "source_file": "jiayan-tests/TEST-REPORT.md",
+      "community": "24",
+      "norm_label": "",
+      "repo": "jiayan-tests",
+      "start_line": 64,
+      "end_line": 67
+    },
+    {
+      "id": "jiayan-tests.package-lock.name",
+      "label": "name",
+      "type": "variable",
+      "file_type": "code",
+      "source_file": "jiayan-tests/package-lock.json",
+      "community": "25",
+      "norm_label": "name",
+      "repo": "jiayan-tests",
+      "start_line": 2,
+      "end_line": 2
+    },
+    {
+      "id": "jiayan-tests.package-lock.version",
+      "label": "version",
+      "type": "variable",
+      "file_type": "code",
+      "source_file": "jiayan-tests/package-lock.json",
+      "community": "25",
+      "norm_label": "version",
+      "repo": "jiayan-tests",
+      "start_line": 3,
+      "end_line": 3
+    },
+    {
+      "id": "jiayan-tests.package-lock.lockfileVersion",
+      "label": "lockfileVersion",
+      "type": "variable",
+      "file_type": "code",
+      "source_file": "jiayan-tests/package-lock.json",
+      "community": "25",
+      "norm_label": "lockfileversion",
+      "repo": "jiayan-tests",
+      "start_line": 4,
+      "end_line": 4
+    },
+    {
+      "id": "jiayan-tests.package-lock.requires",
+      "label": "requires",
+      "type": "variable",
+      "file_type": "code",
+      "source_file": "jiayan-tests/package-lock.json",
+      "community": "25",
+      "norm_label": "requires",
+      "repo": "jiayan-tests",
+      "start_line": 5,
+      "end_line": 5
+    },
+    {
+      "id": "jiayan-tests.package-lock.packages",
+      "label": "packages",
+      "type": "variable",
+      "file_type": "code",
+      "source_file": "jiayan-tests/package-lock.json",
+      "community": "25",
+      "norm_label": "packages",
+      "repo": "jiayan-tests",
+      "start_line": 6,
+      "end_line": 883
+    },
+    {
+      "id": "jiayan-tests.package.scripts.test:unit",
+      "label": "test:unit",
+      "type": "function",
+      "file_type": "code",
+      "source_file": "jiayan-tests/package.json",
+      "community": "26",
+      "norm_label": "test:unit",
+      "repo": "jiayan-tests",
+      "start_line": 6,
+      "end_line": 6
+    },
+    {
+      "id": "jiayan-tests.package.scripts.test:interface",
+      "label": "test:interface",
+      "type": "function",
+      "file_type": "code",
+      "source_file": "jiayan-tests/package.json",
+      "community": "26",
+      "norm_label": "test:interface",
+      "repo": "jiayan-tests",
+      "start_line": 7,
+      "end_line": 7
+    },
+    {
+      "id": "jiayan-tests.package.scripts.test:ui",
+      "label": "test:ui",
+      "type": "function",
+      "file_type": "code",
+      "source_file": "jiayan-tests/package.json",
+      "community": "26",
+      "norm_label": "test:ui",
+      "repo": "jiayan-tests",
+      "start_line": 8,
+      "end_line": 8
+    },
+    {
+      "id": "jiayan-tests.package.name",
+      "label": "jiayan-tests",
+      "type": "constant",
+      "file_type": "code",
+      "source_file": "jiayan-tests/package.json",
+      "community": "26",
+      "norm_label": "jiayan-tests",
+      "repo": "jiayan-tests",
+      "start_line": 2,
+      "end_line": 2
+    },
+    {
+      "id": "jiayan-tests.ui.test.CLI",
+      "label": "CLI",
+      "type": "constant",
+      "file_type": "code",
+      "source_file": "jiayan-tests/ui.test.js",
+      "community": "28",
+      "norm_label": "cli",
+      "repo": "jiayan-tests",
+      "start_line": 13,
+      "end_line": 13
+    },
+    {
+      "id": "jiayan-tests.ui.test.PROJECT",
+      "label": "PROJECT",
+      "type": "constant",
+      "file_type": "code",
+      "source_file": "jiayan-tests/ui.test.js",
+      "community": "28",
+      "norm_label": "project",
+      "repo": "jiayan-tests",
+      "start_line": 14,
+      "end_line": 14
+    },
+    {
+      "id": "jiayan-tests.ui.test.ok",
+      "label": "ok",
+      "type": "function",
+      "file_type": "code",
+      "source_file": "jiayan-tests/ui.test.js",
+      "community": "28",
+      "norm_label": "ok",
+      "repo": "jiayan-tests",
+      "start_line": 17,
+      "end_line": 20
+    },
+    {
+      "id": "jiayan-tests.ui.test.sleep",
+      "label": "sleep",
+      "type": "function",
+      "file_type": "code",
+      "source_file": "jiayan-tests/ui.test.js",
+      "community": "28",
+      "norm_label": "sleep",
+      "repo": "jiayan-tests",
+      "start_line": 21,
+      "end_line": 21
+    },
+    {
+      "id": "jiayan-tests.ui.test.getAvailablePort",
+      "label": "getAvailablePort",
+      "type": "function",
+      "file_type": "code",
+      "source_file": "jiayan-tests/ui.test.js",
+      "community": "28",
+      "norm_label": "getavailableport",
+      "repo": "jiayan-tests",
+      "start_line": 23,
+      "end_line": 32
+    },
+    {
+      "id": "jiayan-tests.ui.test.launchAutomator",
+      "label": "launchAutomator",
+      "type": "function",
+      "file_type": "code",
+      "source_file": "jiayan-tests/ui.test.js",
+      "community": "28",
+      "norm_label": "launchautomator",
+      "repo": "jiayan-tests",
+      "start_line": 34,
+      "end_line": 48
+    }
+  ],
+  "edges": [
+    {
+      "source": "jiayan-miniprogram/app.json",
+      "target": "jiayan-miniprogram.app.pages",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/app.json",
+      "target": "jiayan-miniprogram.app.window",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/app.json",
+      "target": "jiayan-miniprogram.app.tabBar",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/app.json",
+      "target": "jiayan-miniprogram.app.style",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/app.json",
+      "target": "jiayan-miniprogram.app.sitemapLocation",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/app.json",
+      "target": "jiayan-miniprogram.app.lazyCodeLoading",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/pages/add/add.json",
+      "target": "jiayan-miniprogram.pages.add.add.navigationBarTitleText",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/pages/analysis/analysis.json",
+      "target": "jiayan-miniprogram.pages.analysis.analysis.navigationBarTitleText",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/pages/dish/dish.json",
+      "target": "jiayan-miniprogram.pages.dish.dish.navigationBarTitleText",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/pages/guest-cart/guest-cart.json",
+      "target": "jiayan-miniprogram.pages.guest-cart.guest-cart.navigationBarTitleText",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/pages/guest/guest.json",
+      "target": "jiayan-miniprogram.pages.guest.guest.navigationBarTitleText",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/pages/home/home.js",
+      "target": "jiayan-miniprogram.pages.home.home.RECS",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/pages/home/home.json",
+      "target": "jiayan-miniprogram.pages.home.home.navigationBarTitleText",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/pages/host-order/host-order.js",
+      "target": "jiayan-miniprogram.pages.host-order.host-order.ORDERS",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/pages/host-order/host-order.js",
+      "target": "jiayan-miniprogram.pages.host-order.host-order.SHOPPING",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/pages/host-order/host-order.json",
+      "target": "jiayan-miniprogram.pages.host-order.host-order.navigationBarTitleText",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/pages/library/library.json",
+      "target": "jiayan-miniprogram.pages.library.library.navigationBarTitleText",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/pages/mood/mood.json",
+      "target": "jiayan-miniprogram.pages.mood.mood.navigationBarTitleText",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/pages/swipe/swipe.js",
+      "target": "jiayan-miniprogram.pages.swipe.swipe.THRESHOLD",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/pages/swipe/swipe.json",
+      "target": "jiayan-miniprogram.pages.swipe.swipe.navigationBarTitleText",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/pages/today/today.js",
+      "target": "jiayan-miniprogram.pages.today.today.DEFAULT_MENU",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/pages/today/today.json",
+      "target": "jiayan-miniprogram.pages.today.today.navigationBarTitleText",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/pages/us/us.json",
+      "target": "jiayan-miniprogram.pages.us.us.navigationBarTitleText",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/pages/wheel/wheel.js",
+      "target": "jiayan-miniprogram.pages.wheel.wheel.POOL",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/pages/wheel/wheel.js",
+      "target": "jiayan-miniprogram.pages.wheel.wheel.STEP",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/pages/wheel/wheel.json",
+      "target": "jiayan-miniprogram.pages.wheel.wheel.navigationBarTitleText",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/project.config.json",
+      "target": "jiayan-miniprogram.project.config.compileType",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/project.config.json",
+      "target": "jiayan-miniprogram.project.config.packOptions",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/project.config.json",
+      "target": "jiayan-miniprogram.project.config.appid",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/project.config.json",
+      "target": "jiayan-miniprogram.project.config.projectname",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/project.config.json",
+      "target": "jiayan-miniprogram.project.config.setting",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/project.config.json",
+      "target": "jiayan-miniprogram.project.config.libVersion",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/project.config.json",
+      "target": "jiayan-miniprogram.project.config.condition",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/project.config.json",
+      "target": "jiayan-miniprogram.project.config.editorSetting",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/sitemap.json",
+      "target": "jiayan-miniprogram.sitemap.desc",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/sitemap.json",
+      "target": "jiayan-miniprogram.sitemap.rules",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/utils/data.js",
+      "target": "jiayan-miniprogram.utils.data.DISHES",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/utils/data.js",
+      "target": "jiayan-miniprogram.utils.data.IMGS",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/utils/data.js",
+      "target": "jiayan-miniprogram.utils.data.MOOD_MAP",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/utils/data.js",
+      "target": "jiayan-miniprogram.utils.data.starText",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/utils/data.js",
+      "target": "jiayan-miniprogram.utils.data.findDish",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/utils/data.js",
+      "target": "jiayan-miniprogram.utils.data.getToday",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/utils/data.js",
+      "target": "jiayan-miniprogram.utils.data.setToday",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/utils/data.js",
+      "target": "jiayan-miniprogram.utils.data.addToday",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/utils/data.js",
+      "target": "jiayan-miniprogram.utils.data.getGuestCart",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/utils/data.js",
+      "target": "jiayan-miniprogram.utils.data.setGuestCart",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/utils/data.js",
+      "target": "jiayan-miniprogram.utils.data.getRating",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/utils/data.js",
+      "target": "jiayan-miniprogram.utils.data.setRating",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-tests/TEST-REPORT.md",
+      "target": "jiayan-tests.TEST-REPORT.__",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-tests/TEST-REPORT.md",
+      "target": "jiayan-tests.TEST-REPORT.",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-tests/TEST-REPORT.md",
+      "target": "jiayan-tests.TEST-REPORT.7_nodetest",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-tests/TEST-REPORT.md",
+      "target": "jiayan-tests.TEST-REPORT.5_nodetest__wx_storage_mock",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-tests/TEST-REPORT.md",
+      "target": "jiayan-tests.TEST-REPORT.UI_13_miniprogram-automator_",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-tests/TEST-REPORT.md",
+      "target": "jiayan-tests.TEST-REPORT._2",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-tests/TEST-REPORT.md",
+      "target": "jiayan-tests.TEST-REPORT._3",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-tests/package-lock.json",
+      "target": "jiayan-tests.package-lock.name",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-tests/package-lock.json",
+      "target": "jiayan-tests.package-lock.version",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-tests/package-lock.json",
+      "target": "jiayan-tests.package-lock.lockfileVersion",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-tests/package-lock.json",
+      "target": "jiayan-tests.package-lock.requires",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-tests/package-lock.json",
+      "target": "jiayan-tests.package-lock.packages",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-tests/package.json",
+      "target": "jiayan-tests.package.scripts.test:unit",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-tests/package.json",
+      "target": "jiayan-tests.package.scripts.test:interface",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-tests/package.json",
+      "target": "jiayan-tests.package.scripts.test:ui",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-tests/package.json",
+      "target": "jiayan-tests.package.name",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-tests/ui.test.js",
+      "target": "jiayan-tests.ui.test.CLI",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-tests/ui.test.js",
+      "target": "jiayan-tests.ui.test.PROJECT",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-tests/ui.test.js",
+      "target": "jiayan-tests.ui.test.ok",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-tests/ui.test.js",
+      "target": "jiayan-tests.ui.test.sleep",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-tests/ui.test.js",
+      "target": "jiayan-tests.ui.test.getAvailablePort",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-tests/ui.test.js",
+      "target": "jiayan-tests.ui.test.launchAutomator",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/pages/dish/dish.js",
+      "target": "jiayan-miniprogram.utils.data.findDish",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/pages/dish/dish.js",
+      "target": "jiayan-miniprogram.utils.data.getRating",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/pages/dish/dish.js",
+      "target": "jiayan-miniprogram.utils.data.setRating",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/pages/dish/dish.js",
+      "target": "jiayan-miniprogram.utils.data.addToday",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/pages/guest-cart/guest-cart.js",
+      "target": "jiayan-miniprogram.utils.data.DISHES",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/pages/guest-cart/guest-cart.js",
+      "target": "jiayan-miniprogram.utils.data.getGuestCart",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/pages/guest-cart/guest-cart.js",
+      "target": "jiayan-miniprogram.utils.data.setGuestCart",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/pages/guest/guest.js",
+      "target": "jiayan-miniprogram.utils.data.DISHES",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/pages/guest/guest.js",
+      "target": "jiayan-miniprogram.utils.data.starText",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/pages/guest/guest.js",
+      "target": "jiayan-miniprogram.utils.data.getGuestCart",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/pages/guest/guest.js",
+      "target": "jiayan-miniprogram.utils.data.setGuestCart",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/pages/home/home.js",
+      "target": "jiayan-miniprogram.utils.data.DISHES",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/pages/home/home.js",
+      "target": "jiayan-miniprogram.utils.data.starText",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/pages/home/home.js",
+      "target": "jiayan-miniprogram.utils.data.addToday",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/pages/library/library.js",
+      "target": "jiayan-miniprogram.utils.data.DISHES",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/pages/library/library.js",
+      "target": "jiayan-miniprogram.utils.data.starText",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/pages/mood/mood.js",
+      "target": "jiayan-miniprogram.utils.data.MOOD_MAP",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/pages/mood/mood.js",
+      "target": "jiayan-miniprogram.utils.data.findDish",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/pages/mood/mood.js",
+      "target": "jiayan-miniprogram.utils.data.starText",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/pages/mood/mood.js",
+      "target": "jiayan-miniprogram.utils.data.addToday",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/pages/swipe/swipe.js",
+      "target": "jiayan-miniprogram.utils.data.DISHES",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/pages/swipe/swipe.js",
+      "target": "jiayan-miniprogram.utils.data.starText",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/pages/swipe/swipe.js",
+      "target": "jiayan-miniprogram.utils.data.setToday",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/pages/today/today.js",
+      "target": "jiayan-miniprogram.utils.data.findDish",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/pages/today/today.js",
+      "target": "jiayan-miniprogram.utils.data.getToday",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/pages/today/today.js",
+      "target": "jiayan-miniprogram.utils.data.setToday",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/pages/wheel/wheel.js",
+      "target": "jiayan-miniprogram.utils.data.DISHES",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/pages/wheel/wheel.js",
+      "target": "jiayan-miniprogram.utils.data.addToday",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-tests/interface.test.js",
+      "target": "jiayan-miniprogram/utils/data.js",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-tests/unit.test.js",
+      "target": "jiayan-miniprogram/utils/data.js",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-tests/wheel-spin.test.js",
+      "target": "jiayan-miniprogram/pages/wheel/wheel.js",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram.utils.data.addToday",
+      "target": "jiayan-miniprogram.utils.data.getToday",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram.utils.data.addToday",
+      "target": "jiayan-miniprogram.utils.data.setToday",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram.utils.data.getRating",
+      "target": "jiayan-miniprogram.utils.data.findDish",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-tests.ui.test.launchAutomator",
+      "target": "jiayan-tests.ui.test.getAvailablePort",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-tests.ui.test.launchAutomator",
+      "target": "jiayan-tests.ui.test.sleep",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    }
+  ],
+  "metadata": {
+    "reponova_version": "0.7.1",
+    "built_at": "2026-08-05T02:55:05.765Z",
+    "config_dir": "..",
+    "repos": [
+      {
+        "name": "jiayan-miniprogram",
+        "path": "./jiayan-miniprogram"
+      },
+      {
+        "name": "jiayan-tests",
+        "path": "./jiayan-tests"
+      }
+    ],
+    "mode": "multi",
+    "build_config": {
+      "embeddings": {
+        "enabled": true
+      }
+    }
+  }
+}

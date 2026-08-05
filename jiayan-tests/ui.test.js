@@ -1,5 +1,7 @@
 // UI 功能测试：通过微信开发者工具 automator 驱动真实模拟器
 const automator = require('miniprogram-automator');
+const { spawn } = require('node:child_process');
+const { createServer } = require('node:net');
 
 // 兼容补丁：新版开发者工具不返回 SDK 版本号，automator 0.12 的 checkVersion 会崩溃，跳过它
 try {
@@ -18,15 +20,36 @@ function ok(name, cond) {
 }
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 
-(async () => {
-  console.log('连接开发者工具自动化端口…');
-  let mini;
-  try {
-    mini = await automator.connect({ wsEndpoint: 'ws://localhost:9420' });
-  } catch (e) {
-    console.log('直连失败，尝试 launch…');
-    mini = await automator.launch({ cliPath: CLI, projectPath: PROJECT, timeout: 120000 });
+async function getAvailablePort() {
+  const server = createServer();
+  await new Promise((resolve, reject) => {
+    server.once('error', reject);
+    server.listen(0, '127.0.0.1', resolve);
+  });
+  const { port } = server.address();
+  await new Promise(resolve => server.close(resolve));
+  return port;
+}
+
+async function launchAutomator() {
+  const port = await getAvailablePort();
+  spawn(CLI, ['auto', '--project', PROJECT, '--auto-port', String(port), '--trust-project'], {
+    detached: true,
+    stdio: 'ignore'
+  }).unref();
+
+  const wsEndpoint = 'ws://127.0.0.1:' + port;
+  let lastError;
+  for (let attempt = 0; attempt < 30; attempt++) {
+    try { return await automator.connect({ wsEndpoint }); }
+    catch (error) { lastError = error; await sleep(1000); }
   }
+  throw lastError;
+}
+
+(async () => {
+  console.log('通过 CLI 启动开发者工具自动化端口…');
+  const mini = await launchAutomator();
   try {
     // ---------- 首页 ----------
     let page = await mini.reLaunch('/pages/home/home');

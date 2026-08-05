@@ -1,0 +1,81 @@
+{
+  "file_path": "jiayan-tests/ui.test.js",
+  "line_count": 165,
+  "imports": [
+    {
+      "module": "miniprogram-automator",
+      "names": [
+        "automator"
+      ],
+      "line": 2
+    },
+    {
+      "module": "node:child_process",
+      "names": [
+        "spawn"
+      ],
+      "line": 3
+    },
+    {
+      "module": "node:net",
+      "names": [
+        "createServer"
+      ],
+      "line": 4
+    }
+  ],
+  "functions": [
+    {
+      "name": "ok",
+      "signature": "ok(name, cond)",
+      "decorators": [],
+      "start_line": 17,
+      "end_line": 20,
+      "calls": [
+        "console.log"
+      ]
+    },
+    {
+      "name": "sleep",
+      "signature": "sleep()",
+      "decorators": [],
+      "start_line": 21,
+      "end_line": 21,
+      "calls": [
+        "Promise",
+        "setTimeout"
+      ]
+    },
+    {
+      "name": "getAvailablePort",
+      "signature": "getAvailablePort()",
+      "decorators": [],
+      "start_line": 23,
+      "end_line": 32,
+      "calls": [
+        "createServer",
+        "Promise",
+        "server.once",
+        "server.listen",
+        "server.address",
+        "server.close"
+      ]
+    },
+    {
+      "name": "launchAutomator",
+      "signature": "launchAutomator()",
+      "decorators": [],
+      "start_line": 34,
+      "end_line": 48,
+      "calls": [
+        "getAvailablePort",
+        "spawn(CLI, ['auto', '--project', PROJECT, '--auto-port', String(port), '--trust-project'], {\n    detached: true,\n    stdio: 'ignore'\n  }).unref",
+        "spawn",
+        "String",
+        "automator.connect",
+        "sleep"
+      ]
+    }
+  ],
+  "classes": []
+}

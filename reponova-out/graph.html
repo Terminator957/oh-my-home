@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Code Knowledge Graph</title>
+<script src="https://cdn.jsdelivr.net/npm/graphology@0.25.4/dist/graphology.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sigma@3.0.3/dist/sigma.min.js"></script>
+<style>
+  :root {
+    --bg-primary: #0d1117;
+    --bg-secondary: #161b22;
+    --bg-tertiary: #21262d;
+    --border: #30363d;
+    --text-primary: #e6edf3;
+    --text-secondary: #8b949e;
+    --text-muted: #484f58;
+    --accent: #6366f1;
+    --accent-glow: rgba(99, 102, 241, 0.15);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    overflow: hidden;
+    height: 100vh;
+  }
+
+  /* ─── Top Bar ─── */
+  #toolbar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    height: 52px;
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: 12px;
+    padding: 0 16px;
+  }
+  #toolbar .logo {
+    font-weight: 600; font-size: 14px; color: var(--text-primary);
+    white-space: nowrap; margin-right: 8px;
+  }
+  #search-box {
+    position: relative; flex: 0 1 320px;
+  }
+  #search-box input {
+    width: 100%; padding: 6px 12px 6px 32px;
+    border-radius: 6px; border: 1px solid var(--border);
+    background: var(--bg-primary); color: var(--text-primary);
+    font-size: 13px; outline: none; transition: border-color 0.15s;
+  }
+  #search-box input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-glow); }
+  #search-box::before {
+    content: '\1F50D'; position: absolute; left: 10px; top: 50%;
+    transform: translateY(-50%); font-size: 12px; pointer-events: none;
+  }
+  .filter-chips {
+    display: flex; gap: 4px; flex-wrap: nowrap; overflow-x: auto;
+    scrollbar-width: none; padding: 2px 0;
+  }
+  .filter-chips::-webkit-scrollbar { display: none; }
+  .chip {
+    padding: 4px 10px; border-radius: 20px; font-size: 11px;
+    border: 1px solid var(--border); background: var(--bg-primary);
+    color: var(--text-secondary); cursor: pointer; white-space: nowrap;
+    transition: all 0.15s; user-select: none;
+  }
+  .chip:hover { border-color: var(--text-secondary); color: var(--text-primary); }
+  .chip.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .stats {
+    margin-left: auto; font-size: 12px; color: var(--text-muted);
+    white-space: nowrap;
+  }
+
+  /* ─── Graph Container ─── */
+  #sigma-container {
+    position: fixed; top: 52px; left: 0; right: 0; bottom: 0;
+    background: var(--bg-primary);
+  }
+
+  /* ─── Info Panel ─── */
+  #info-panel {
+    position: fixed; bottom: 16px; left: 16px; z-index: 100;
+    max-width: 340px; min-width: 240px;
+    background: var(--bg-secondary); border: 1px solid var(--border);
+    border-radius: 10px; padding: 14px 16px;
+    font-size: 12px; line-height: 1.6;
+    opacity: 0; transform: translateY(8px);
+    transition: opacity 0.2s, transform 0.2s;
+    pointer-events: none;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+  }
+  #info-panel.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+  #info-panel .node-label {
+    font-size: 14px; font-weight: 600; color: var(--text-primary);
+    margin-bottom: 6px; word-break: break-word;
+  }
+  #info-panel .detail-row {
+    display: flex; justify-content: space-between; gap: 8px;
+    color: var(--text-secondary); padding: 2px 0;
+  }
+  #info-panel .detail-row .label { color: var(--text-muted); }
+  #info-panel .detail-row .value { color: var(--text-primary); text-align: right; word-break: break-all; }
+
+  /* ─── Legend ─── */
+  #legend {
+    position: fixed; bottom: 16px; right: 16px; z-index: 100;
+    background: var(--bg-secondary); border: 1px solid var(--border);
+    border-radius: 10px; padding: 12px 14px;
+    font-size: 11px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+  }
+  #legend h4 { font-size: 11px; color: var(--text-muted); margin-bottom: 6px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; }
+  .legend-item { display: flex; align-items: center; gap: 6px; padding: 2px 0; color: var(--text-secondary); }
+  .legend-dot { width: 10px; height: 3px; border-radius: 2px; }
+</style>
+</head>
+<body>
+<div id="toolbar">
+  <div class="logo">Code Knowledge Graph</div>
+  <div id="search-box"><input type="text" id="search" placeholder="Search nodes..." autocomplete="off" /></div>
+  <div class="filter-chips" id="type-filters">
+    <div class="chip active" data-type="all">All</div>
+    <div class="chip" data-type="constant">constant</div>
+    <div class="chip" data-type="document">document</div>
+    <div class="chip" data-type="function">function</div>
+    <div class="chip" data-type="module">module</div>
+    <div class="chip" data-type="section">section</div>
+    <div class="chip" data-type="variable">variable</div>
+  </div>
+  <div class="stats">110 nodes &middot; 106 edges &middot; 29 communities</div>
+</div>
+<div id="sigma-container"></div>
+<div id="info-panel">
+  <div class="node-label" id="info-label"></div>
+  <div id="info-details"></div>
+</div>
+<div id="legend">
+  <h4>Edge Types</h4>
+  <div class="legend-item"><div class="legend-dot" style="background:rgba(251,113,133,0.8)"></div>calls</div>
+  <div class="legend-item"><div class="legend-dot" style="background:rgba(45,212,191,0.8)"></div>imports</div>
+  <div class="legend-item"><div class="legend-dot" style="background:rgba(129,140,248,0.8)"></div>extends</div>
+  <div class="legend-item"><div class="legend-dot" style="background:rgba(250,204,21,0.8)"></div>references</div>
+  <div class="legend-item"><div class="legend-dot" style="background:rgba(148,163,184,0.5)"></div>contains</div>
+</div>
+<script id="graph-data" type="application/json">{"nodes":[{"key":"jiayan-miniprogram/app.js","attributes":{"x":53.547245025634766,"y":5.05549430847168,"size":3,"color":"#6366f1","label":"app.js","nodeType":"module","sourceFile":"jiayan-miniprogram/app.js","community":0,"communityLabel":"Community 0","degree":0}},{"key":"jiayan-miniprogram/app.json","attributes":{"x":3.9242148399353027,"y":41.754512786865234,"size":7.898979485566356,"color":"#22d3ee","label":"app.json","nodeType":"module","sourceFile":"jiayan-miniprogram/app.json","community":1,"communityLabel":"Community 1","degree":6}},{"key":"jiayan-miniprogram/images/dishes/CREDITS.md","attributes":{"x":52.931976318359375,"y":10.217226028442383,"size":3,"color":"#f472b6","label":"CREDITS.md","nodeType":"document","sourceFile":"jiayan-miniprogram/images/dishes/CREDITS.md","community":2,"communityLabel":"Community 2","degree":0}},{"key":"jiayan-miniprogram/pages/add/add.js","attributes":{"x":54.9367561340332,"y":-1.6087716817855835,"size":3,"color":"#34d399","label":"add.js","nodeType":"module","sourceFile":"jiayan-miniprogram/pages/add/add.js","community":3,"communityLabel":"Community 3","degree":0}},{"key":"jiayan-miniprogram/pages/add/add.json","attributes":{"x":31.805994033813477,"y":41.10818099975586,"size":5,"color":"#fbbf24","label":"add.json","nodeType":"module","sourceFile":"jiayan-miniprogram/pages/add/add.json","community":4,"communityLabel":"Community 4","degree":1}},{"key":"jiayan-miniprogram/pages/analysis/analysis.js","attributes":{"x":52.3050422668457,"y":17.49894905090332,"size":3,"color":"#a78bfa","label":"analysis.js","nodeType":"module","sourceFile":"jiayan-miniprogram/pages/analysis/analysis.js","community":5,"communityLabel":"Community 5","degree":0}},{"key":"jiayan-miniprogram/pages/analysis/analysis.json","attributes":{"x":24.59454917907715,"y":47.210418701171875,"size":5,"color":"#fb923c","label":"analysis.json","nodeType":"module","sourceFile":"jiayan-miniprogram/pages/analysis/analysis.json","community":6,"communityLabel":"Community 6","degree":1}},{"key":"jiayan-miniprogram/pages/dish/dish.js","attributes":{"x":11.560556411743164,"y":-28.528627395629883,"size":7,"color":"#2dd4bf","label":"dish.js","nodeType":"module","sourceFile":"jiayan-miniprogram/pages/dish/dish.js","community":7,"communityLabel":"Community 7","degree":4}},{"key":"jiayan-miniprogram/pages/dish/dish.json","attributes":{"x":12.936250686645508,"y":27.48136329650879,"size":5,"color":"#f87171","label":"dish.json","nodeType":"module","sourceFile":"jiayan-miniprogram/pages/dish/dish.json","community":8,"communityLabel":"Community 8","degree":1}},{"key":"jiayan-miniprogram/pages/guest-cart/guest-cart.js","attributes":{"x":17.503814697265625,"y":15.593825340270996,"size":6.464101615137754,"color":"#38bdf8","label":"guest-cart.js","nodeType":"module","sourceFile":"jiayan-miniprogram/pages/guest-cart/guest-cart.js","community":9,"communityLabel":"Community 9","degree":3}},{"key":"jiayan-miniprogram/pages/guest-cart/guest-cart.json","attributes":{"x":21.613168716430664,"y":32.35490417480469,"size":5,"color":"#c084fc","label":"guest-cart.json","nodeType":"module","sourceFile":"jiayan-miniprogram/pages/guest-cart/guest-cart.json","community":10,"communityLabel":"Community 10","degree":1}},{"key":"jiayan-miniprogram/pages/guest/guest.js","attributes":{"x":9.366902351379395,"y":11.112369537353516,"size":7,"color":"#38bdf8","label":"guest.js","nodeType":"module","sourceFile":"jiayan-miniprogram/pages/guest/guest.js","community":9,"communityLabel":"Community 9","degree":4}},{"key":"jiayan-miniprogram/pages/guest/guest.json","attributes":{"x":-5.851274490356445,"y":53.16659927368164,"size":5,"color":"#4ade80","label":"guest.json","nodeType":"module","sourceFile":"jiayan-miniprogram/pages/guest/guest.json","community":11,"communityLabel":"Community 11","degree":1}},{"key":"jiayan-miniprogram/pages/home/home.js","attributes":{"x":-14.23427677154541,"y":8.043359756469727,"size":7,"color":"#38bdf8","label":"home.js","nodeType":"module","sourceFile":"jiayan-miniprogram/pages/home/home.js","community":9,"communityLabel":"Community 9","degree":4}},{"key":"jiayan-miniprogram/pages/home/home.json","attributes":{"x":-17.37371063232422,"y":48.9863395690918,"size":5,"color":"#e879f9","label":"home.json","nodeType":"module","sourceFile":"jiayan-miniprogram/pages/home/home.json","community":12,"communityLabel":"Community 12","degree":1}},{"key":"jiayan-miniprogram/pages/host-order/host-order.js","attributes":{"x":-15.413958549499512,"y":32.94990921020508,"size":5.82842712474619,"color":"#facc15","label":"host-order.js","nodeType":"module","sourceFile":"jiayan-miniprogram/pages/host-order/host-order.js","community":13,"communityLabel":"Community 13","degree":2}},{"key":"jiayan-miniprogram/pages/host-order/host-order.json","attributes":{"x":-47.025611877441406,"y":15.225672721862793,"size":5,"color":"#67e8f9","label":"host-order.json","nodeType":"module","sourceFile":"jiayan-miniprogram/pages/host-order/host-order.json","community":14,"communityLabel":"Community 14","degree":1}},{"key":"jiayan-miniprogram/pages/library/library.js","attributes":{"x":-7.450942516326904,"y":19.95582389831543,"size":5.82842712474619,"color":"#38bdf8","label":"library.js","nodeType":"module","sourceFile":"jiayan-miniprogram/pages/library/library.js","community":9,"communityLabel":"Community 9","degree":2}},{"key":"jiayan-miniprogram/pages/library/library.json","attributes":{"x":-26.968698501586914,"y":34.0729866027832,"size":5,"color":"#fb7185","label":"library.json","nodeType":"module","sourceFile":"jiayan-miniprogram/pages/library/library.json","community":15,"communityLabel":"Community 15","degree":1}},{"key":"jiayan-miniprogram/pages/mood/mood.js","attributes":{"x":-1.8598791360855103,"y":-17.8671817779541,"size":7,"color":"#2dd4bf","label":"mood.js","nodeType":"module","sourceFile":"jiayan-miniprogram/pages/mood/mood.js","community":7,"communityLabel":"Community 7","degree":4}},{"key":"jiayan-miniprogram/pages/mood/mood.json","attributes":{"x":-27.856224060058594,"y":44.432804107666016,"size":5,"color":"#a3e635","label":"mood.json","nodeType":"module","sourceFile":"jiayan-miniprogram/pages/mood/mood.json","community":16,"communityLabel":"Community 16","degree":1}},{"key":"jiayan-miniprogram/pages/swipe/swipe.js","attributes":{"x":-19.990068435668945,"y":-3.9358372688293457,"size":7,"color":"#38bdf8","label":"swipe.js","nodeType":"module","sourceFile":"jiayan-miniprogram/pages/swipe/swipe.js","community":9,"communityLabel":"Community 9","degree":4}},{"key":"jiayan-miniprogram/pages/swipe/swipe.json","attributes":{"x":-22.87523078918457,"y":25.76688003540039,"size":5,"color":"#818cf8","label":"swipe.json","nodeType":"module","sourceFile":"jiayan-miniprogram/pages/swipe/swipe.json","community":17,"communityLabel":"Community 17","degree":1}},{"key":"jiayan-miniprogram/pages/today/today.js","attributes":{"x":-15.66617202758789,"y":-34.86611557006836,"size":7,"color":"#2dd4bf","label":"today.js","nodeType":"module","sourceFile":"jiayan-miniprogram/pages/today/today.js","community":7,"communityLabel":"Community 7","degree":4}},{"key":"jiayan-miniprogram/pages/today/today.json","attributes":{"x":-37.01841735839844,"y":23.22486114501953,"size":5,"color":"#f97316","label":"today.json","nodeType":"module","sourceFile":"jiayan-miniprogram/pages/today/today.json","community":18,"communityLabel":"Community 18","degree":1}},{"key":"jiayan-miniprogram/pages/us/us.js","attributes":{"x":15.325072288513184,"y":52.84639358520508,"size":3,"color":"#14b8a6","label":"us.js","nodeType":"module","sourceFile":"jiayan-miniprogram/pages/us/us.js","community":19,"communityLabel":"Community 19","degree":0}},{"key":"jiayan-miniprogram/pages/us/us.json","attributes":{"x":-47.419166564941406,"y":7.241302967071533,"size":5,"color":"#6366f1","label":"us.json","nodeType":"module","sourceFile":"jiayan-miniprogram/pages/us/us.json","community":20,"communityLabel":"Community 20","degree":1}},{"key":"jiayan-miniprogram/pages/wheel/wheel.js","attributes":{"x":-26.616912841796875,"y":6.415683269500732,"size":7.47213595499958,"color":"#2dd4bf","label":"wheel.js","nodeType":"module","sourceFile":"jiayan-miniprogram/pages/wheel/wheel.js","community":7,"communityLabel":"Community 7","degree":5}},{"key":"jiayan-miniprogram/pages/wheel/wheel.json","attributes":{"x":-41.08109664916992,"y":31.614274978637695,"size":5,"color":"#22d3ee","label":"wheel.json","nodeType":"module","sourceFile":"jiayan-miniprogram/pages/wheel/wheel.json","community":21,"communityLabel":"Community 21","degree":1}},{"key":"jiayan-miniprogram/project.config.json","attributes":{"x":-37.93890380859375,"y":-25.038698196411133,"size":8.65685424949238,"color":"#f472b6","label":"project.config.json","nodeType":"module","sourceFile":"jiayan-miniprogram/project.config.json","community":22,"communityLabel":"Community 22","degree":8}},{"key":"jiayan-miniprogram/sitemap.json","attributes":{"x":-48.414188385009766,"y":-3.0869784355163574,"size":5.82842712474619,"color":"#34d399","label":"sitemap.json","nodeType":"module","sourceFile":"jiayan-miniprogram/sitemap.json","community":23,"communityLabel":"Community 23","degree":2}},{"key":"jiayan-miniprogram/utils/data.js","attributes":{"x":13.556195259094238,"y":-11.507477760314941,"size":10.483314773547882,"color":"#2dd4bf","label":"data.js","nodeType":"module","sourceFile":"jiayan-miniprogram/utils/data.js","community":7,"communityLabel":"Community 7","degree":14}},{"key":"jiayan-tests/TEST-REPORT.md","attributes":{"x":0.7584984302520752,"y":-48.41438674926758,"size":8.291502622129181,"color":"#fbbf24","label":"TEST-REPORT.md","nodeType":"document","sourceFile":"jiayan-tests/TEST-REPORT.md","community":24,"communityLabel":"Community 24","degree":7}},{"key":"jiayan-tests/interface.test.js","attributes":{"x":26.41497802734375,"y":-5.1411261558532715,"size":5,"color":"#2dd4bf","label":"interface.test.js","nodeType":"module","sourceFile":"jiayan-tests/interface.test.js","community":7,"communityLabel":"Community 7","degree":1}},{"key":"jiayan-tests/package-lock.json","attributes":{"x":37.5486946105957,"y":-31.088348388671875,"size":7.47213595499958,"color":"#a78bfa","label":"package-lock.json","nodeType":"module","sourceFile":"jiayan-tests/package-lock.json","community":25,"communityLabel":"Community 25","degree":5}},{"key":"jiayan-tests/package.json","attributes":{"x":45.43231964111328,"y":-6.788809299468994,"size":7,"color":"#fb923c","label":"jiayan-tests","nodeType":"module","sourceFile":"jiayan-tests/package.json","community":26,"communityLabel":"Community 26","degree":4}},{"key":"jiayan-tests/unit.test.js","attributes":{"x":28.639616012573242,"y":-10.752896308898926,"size":5,"color":"#2dd4bf","label":"unit.test.js","nodeType":"module","sourceFile":"jiayan-tests/unit.test.js","community":7,"communityLabel":"Community 7","degree":1}},{"key":"jiayan-tests/wheel-spin.test.js","attributes":{"x":-30.188411712646484,"y":14.64165210723877,"size":5,"color":"#2dd4bf","label":"wheel-spin.test.js","nodeType":"module","sourceFile":"jiayan-tests/wheel-spin.test.js","community":7,"communityLabel":"Community 7","degree":1}},{"key":"jiayan-tests/wx-mock.js","attributes":{"x":-38.17170715332031,"y":38.46907424926758,"size":3,"color":"#2dd4bf","label":"wx-mock.js","nodeType":"module","sourceFile":"jiayan-tests/wx-mock.js","community":27,"communityLabel":"Community 27","degree":0}},{"key":"jiayan-tests/ui.test.js","attributes":{"x":39.3466796875,"y":17.919076919555664,"size":7.898979485566356,"color":"#f87171","label":"ui.test.js","nodeType":"module","sourceFile":"jiayan-tests/ui.test.js","community":28,"communityLabel":"Community 28","degree":6}},{"key":"jiayan-miniprogram.app.pages","attributes":{"x":10.358274459838867,"y":47.94382095336914,"size":5,"color":"#22d3ee","label":"pages","nodeType":"variable","sourceFile":"jiayan-miniprogram/app.json","community":1,"communityLabel":"Community 1","degree":1}},{"key":"jiayan-miniprogram.app.window","attributes":{"x":3.0082385540008545,"y":50.640159606933594,"size":5,"color":"#22d3ee","label":"window","nodeType":"variable","sourceFile":"jiayan-miniprogram/app.json","community":1,"communityLabel":"Community 1","degree":1}},{"key":"jiayan-miniprogram.app.tabBar","attributes":{"x":13.358707427978516,"y":39.6248893737793,"size":5,"color":"#22d3ee","label":"tabBar","nodeType":"variable","sourceFile":"jiayan-miniprogram/app.json","community":1,"communityLabel":"Community 1","degree":1}},{"key":"jiayan-miniprogram.app.style","attributes":{"x":-5.2186503410339355,"y":42.46364974975586,"size":5,"color":"#22d3ee","label":"style","nodeType":"variable","sourceFile":"jiayan-miniprogram/app.json","community":1,"communityLabel":"Community 1","degree":1}},{"key":"jiayan-miniprogram.app.sitemapLocation","attributes":{"x":7.028771877288818,"y":34.03012466430664,"size":5,"color":"#22d3ee","label":"sitemapLocation","nodeType":"variable","sourceFile":"jiayan-miniprogram/app.json","community":1,"communityLabel":"Community 1","degree":1}},{"key":"jiayan-miniprogram.app.lazyCodeLoading","attributes":{"x":-2.0810441970825195,"y":34.60490417480469,"size":5,"color":"#22d3ee","label":"lazyCodeLoading","nodeType":"variable","sourceFile":"jiayan-miniprogram/app.json","community":1,"communityLabel":"Community 1","degree":1}},{"key":"jiayan-miniprogram.pages.add.add.navigationBarTitleText","attributes":{"x":27.532011032104492,"y":38.70283508300781,"size":5,"color":"#fbbf24","label":"navigationBarTitleText","nodeType":"variable","sourceFile":"jiayan-miniprogram/pages/add/add.json","community":4,"communityLabel":"Community 4","degree":1}},{"key":"jiayan-miniprogram.pages.analysis.analysis.navigationBarTitleText","attributes":{"x":20.381397247314453,"y":45.60271072387695,"size":5,"color":"#fb923c","label":"navigationBarTitleText","nodeType":"variable","sourceFile":"jiayan-miniprogram/pages/analysis/analysis.json","community":6,"communityLabel":"Community 6","degree":1}},{"key":"jiayan-miniprogram.pages.dish.dish.navigationBarTitleText","attributes":{"x":7.84921932220459,"y":26.3226375579834,"size":5,"color":"#f87171","label":"navigationBarTitleText","nodeType":"variable","sourceFile":"jiayan-miniprogram/pages/dish/dish.json","community":8,"communityLabel":"Community 8","degree":1}},{"key":"jiayan-miniprogram.pages.guest-cart.guest-cart.navigationBarTitleText","attributes":{"x":22.250608444213867,"y":27.588361740112305,"size":5,"color":"#c084fc","label":"navigationBarTitleText","nodeType":"variable","sourceFile":"jiayan-miniprogram/pages/guest-cart/guest-cart.json","community":10,"communityLabel":"Community 10","degree":1}},{"key":"jiayan-miniprogram.pages.guest.guest.navigationBarTitleText","attributes":{"x":-9.97706413269043,"y":50.741634368896484,"size":5,"color":"#4ade80","label":"navigationBarTitleText","nodeType":"variable","sourceFile":"jiayan-miniprogram/pages/guest/guest.json","community":11,"communityLabel":"Community 11","degree":1}},{"key":"jiayan-miniprogram.pages.home.home.RECS","attributes":{"x":-18.803972244262695,"y":16.993515014648438,"size":5,"color":"#38bdf8","label":"RECS","nodeType":"constant","sourceFile":"jiayan-miniprogram/pages/home/home.js","community":9,"communityLabel":"Community 9","degree":1}},{"key":"jiayan-miniprogram.pages.home.home.navigationBarTitleText","attributes":{"x":-20.047500610351562,"y":45.4775276184082,"size":5,"color":"#e879f9","label":"navigationBarTitleText","nodeType":"variable","sourceFile":"jiayan-miniprogram/pages/home/home.json","community":12,"communityLabel":"Community 12","degree":1}},{"key":"jiayan-miniprogram.pages.host-order.host-order.ORDERS","attributes":{"x":-10.513129234313965,"y":30.250003814697266,"size":5,"color":"#facc15","label":"ORDERS","nodeType":"constant","sourceFile":"jiayan-miniprogram/pages/host-order/host-order.js","community":13,"communityLabel":"Community 13","degree":1}},{"key":"jiayan-miniprogram.pages.host-order.host-order.SHOPPING","attributes":{"x":-16.836360931396484,"y":38.24812316894531,"size":5,"color":"#facc15","label":"SHOPPING","nodeType":"constant","sourceFile":"jiayan-miniprogram/pages/host-order/host-order.js","community":13,"communityLabel":"Community 13","degree":1}},{"key":"jiayan-miniprogram.pages.host-order.host-order.navigationBarTitleText","attributes":{"x":-49.4361572265625,"y":19.213764190673828,"size":5,"color":"#67e8f9","label":"navigationBarTitleText","nodeType":"variable","sourceFile":"jiayan-miniprogram/pages/host-order/host-order.json","community":14,"communityLabel":"Community 14","degree":1}},{"key":"jiayan-miniprogram.pages.library.library.navigationBarTitleText","attributes":{"x":-31.642601013183594,"y":32.362979888916016,"size":5,"color":"#fb7185","label":"navigationBarTitleText","nodeType":"variable","sourceFile":"jiayan-miniprogram/pages/library/library.json","community":15,"communityLabel":"Community 15","degree":1}},{"key":"jiayan-miniprogram.pages.mood.mood.navigationBarTitleText","attributes":{"x":-31.546480178833008,"y":41.51294708251953,"size":5,"color":"#a3e635","label":"navigationBarTitleText","nodeType":"variable","sourceFile":"jiayan-miniprogram/pages/mood/mood.json","community":16,"communityLabel":"Community 16","degree":1}},{"key":"jiayan-miniprogram.pages.swipe.swipe.THRESHOLD","attributes":{"x":-29.697084426879883,"y":-6.767889022827148,"size":5,"color":"#38bdf8","label":"THRESHOLD","nodeType":"constant","sourceFile":"jiayan-miniprogram/pages/swipe/swipe.js","community":9,"communityLabel":"Community 9","degree":1}},{"key":"jiayan-miniprogram.pages.swipe.swipe.navigationBarTitleText","attributes":{"x":-27.53881072998047,"y":24.323322296142578,"size":5,"color":"#818cf8","label":"navigationBarTitleText","nodeType":"variable","sourceFile":"jiayan-miniprogram/pages/swipe/swipe.json","community":17,"communityLabel":"Community 17","degree":1}},{"key":"jiayan-miniprogram.pages.today.today.DEFAULT_MENU","attributes":{"x":-22.32417869567871,"y":-41.97639846801758,"size":5,"color":"#2dd4bf","label":"DEFAULT_MENU","nodeType":"constant","sourceFile":"jiayan-miniprogram/pages/today/today.js","community":7,"communityLabel":"Community 7","degree":1}},{"key":"jiayan-miniprogram.pages.today.today.navigationBarTitleText","attributes":{"x":-39.52606964111328,"y":19.177576065063477,"size":5,"color":"#f97316","label":"navigationBarTitleText","nodeType":"variable","sourceFile":"jiayan-miniprogram/pages/today/today.json","community":18,"communityLabel":"Community 18","degree":1}},{"key":"jiayan-miniprogram.pages.us.us.navigationBarTitleText","attributes":{"x":-52.22962188720703,"y":7.079575538635254,"size":5,"color":"#6366f1","label":"navigationBarTitleText","nodeType":"variable","sourceFile":"jiayan-miniprogram/pages/us/us.json","community":20,"communityLabel":"Community 20","degree":1}},{"key":"jiayan-miniprogram.pages.wheel.wheel.POOL","attributes":{"x":-35.19780349731445,"y":2.274414539337158,"size":5,"color":"#2dd4bf","label":"POOL","nodeType":"constant","sourceFile":"jiayan-miniprogram/pages/wheel/wheel.js","community":7,"communityLabel":"Community 7","degree":1}},{"key":"jiayan-miniprogram.pages.wheel.wheel.STEP","attributes":{"x":-36.00147247314453,"y":9.349325180053711,"size":5,"color":"#2dd4bf","label":"STEP","nodeType":"constant","sourceFile":"jiayan-miniprogram/pages/wheel/wheel.js","community":7,"communityLabel":"Community 7","degree":1}},{"key":"jiayan-miniprogram.pages.wheel.wheel.navigationBarTitleText","attributes":{"x":-44.61591339111328,"y":28.290252685546875,"size":5,"color":"#22d3ee","label":"navigationBarTitleText","nodeType":"variable","sourceFile":"jiayan-miniprogram/pages/wheel/wheel.json","community":21,"communityLabel":"Community 21","degree":1}},{"key":"jiayan-miniprogram.project.config.compileType","attributes":{"x":-45.71141815185547,"y":-16.078014373779297,"size":5,"color":"#f472b6","label":"compileType","nodeType":"variable","sourceFile":"jiayan-miniprogram/project.config.json","community":22,"communityLabel":"Community 22","degree":1}},{"key":"jiayan-miniprogram.project.config.packOptions","attributes":{"x":-47.74907302856445,"y":-22.23563003540039,"size":5,"color":"#f472b6","label":"packOptions","nodeType":"variable","sourceFile":"jiayan-miniprogram/project.config.json","community":22,"communityLabel":"Community 22","degree":1}},{"key":"jiayan-miniprogram.project.config.appid","attributes":{"x":-39.543479919433594,"y":-13.822456359863281,"size":5,"color":"#f472b6","label":"appid","nodeType":"variable","sourceFile":"jiayan-miniprogram/project.config.json","community":22,"communityLabel":"Community 22","degree":1}},{"key":"jiayan-miniprogram.project.config.projectname","attributes":{"x":-32.89627456665039,"y":-16.749704360961914,"size":5,"color":"#f472b6","label":"projectname","nodeType":"variable","sourceFile":"jiayan-miniprogram/project.config.json","community":22,"communityLabel":"Community 22","degree":1}},{"key":"jiayan-miniprogram.project.config.setting","attributes":{"x":-42.96619415283203,"y":-32.64311218261719,"size":5,"color":"#f472b6","label":"setting","nodeType":"variable","sourceFile":"jiayan-miniprogram/project.config.json","community":22,"communityLabel":"Community 22","degree":1}},{"key":"jiayan-miniprogram.project.config.libVersion","attributes":{"x":-30.76356315612793,"y":-35.490234375,"size":5,"color":"#f472b6","label":"libVersion","nodeType":"variable","sourceFile":"jiayan-miniprogram/project.config.json","community":22,"communityLabel":"Community 22","degree":1}},{"key":"jiayan-miniprogram.project.config.condition","attributes":{"x":-29.043228149414062,"y":-28.618770599365234,"size":5,"color":"#f472b6","label":"condition","nodeType":"variable","sourceFile":"jiayan-miniprogram/project.config.json","community":22,"communityLabel":"Community 22","degree":1}},{"key":"jiayan-miniprogram.project.config.editorSetting","attributes":{"x":-36.361698150634766,"y":-36.65637969970703,"size":5,"color":"#f472b6","label":"editorSetting","nodeType":"variable","sourceFile":"jiayan-miniprogram/project.config.json","community":22,"communityLabel":"Community 22","degree":1}},{"key":"jiayan-miniprogram.sitemap.desc","attributes":{"x":-42.81843185424805,"y":-2.488947629928589,"size":5,"color":"#34d399","label":"desc","nodeType":"variable","sourceFile":"jiayan-miniprogram/sitemap.json","community":23,"communityLabel":"Community 23","degree":1}},{"key":"jiayan-miniprogram.sitemap.rules","attributes":{"x":-52.72342300415039,"y":-6.549715042114258,"size":5,"color":"#34d399","label":"rules","nodeType":"variable","sourceFile":"jiayan-miniprogram/sitemap.json","community":23,"communityLabel":"Community 23","degree":1}},{"key":"jiayan-miniprogram.utils.data.DISHES","attributes":{"x":-2.787029981613159,"y":12.766928672790527,"size":8.291502622129181,"color":"#38bdf8","label":"DISHES","nodeType":"constant","sourceFile":"jiayan-miniprogram/utils/data.js","community":9,"communityLabel":"Community 9","degree":7}},{"key":"jiayan-miniprogram.utils.data.IMGS","attributes":{"x":26.83528709411621,"y":-16.58344268798828,"size":5,"color":"#2dd4bf","label":"IMGS","nodeType":"constant","sourceFile":"jiayan-miniprogram/utils/data.js","community":7,"communityLabel":"Community 7","degree":1}},{"key":"jiayan-miniprogram.utils.data.MOOD_MAP","attributes":{"x":2.6539223194122314,"y":-10.051884651184082,"size":5.82842712474619,"color":"#2dd4bf","label":"MOOD_MAP","nodeType":"constant","sourceFile":"jiayan-miniprogram/utils/data.js","community":7,"communityLabel":"Community 7","degree":2}},{"key":"jiayan-miniprogram.utils.data.starText","attributes":{"x":-3.484066963195801,"y":1.143394947052002,"size":7.898979485566356,"color":"#38bdf8","label":"starText","nodeType":"function","sourceFile":"jiayan-miniprogram/utils/data.js","community":9,"communityLabel":"Community 9","degree":6}},{"key":"jiayan-miniprogram.utils.data.findDish","attributes":{"x":2.8216745853424072,"y":-31.19801139831543,"size":7.47213595499958,"color":"#2dd4bf","label":"findDish","nodeType":"function","sourceFile":"jiayan-miniprogram/utils/data.js","community":7,"communityLabel":"Community 7","degree":5}},{"key":"jiayan-miniprogram.utils.data.getToday","attributes":{"x":-8.07088565826416,"y":-26.914840698242188,"size":6.464101615137754,"color":"#2dd4bf","label":"getToday","nodeType":"function","sourceFile":"jiayan-miniprogram/utils/data.js","community":7,"communityLabel":"Community 7","degree":3}},{"key":"jiayan-miniprogram.utils.data.setToday","attributes":{"x":-17.585485458374023,"y":-20.63899040222168,"size":7,"color":"#2dd4bf","label":"setToday","nodeType":"function","sourceFile":"jiayan-miniprogram/utils/data.js","community":7,"communityLabel":"Community 7","degree":4}},{"key":"jiayan-miniprogram.utils.data.addToday","attributes":{"x":-11.035247802734375,"y":-12.317505836486816,"size":8.291502622129181,"color":"#2dd4bf","label":"addToday","nodeType":"function","sourceFile":"jiayan-miniprogram/utils/data.js","community":7,"communityLabel":"Community 7","degree":7}},{"key":"jiayan-miniprogram.utils.data.getGuestCart","attributes":{"x":23.759504318237305,"y":6.213658332824707,"size":6.464101615137754,"color":"#38bdf8","label":"getGuestCart","nodeType":"function","sourceFile":"jiayan-miniprogram/utils/data.js","community":9,"communityLabel":"Community 9","degree":3}},{"key":"jiayan-miniprogram.utils.data.setGuestCart","attributes":{"x":16.40780258178711,"y":4.814541339874268,"size":6.464101615137754,"color":"#38bdf8","label":"setGuestCart","nodeType":"function","sourceFile":"jiayan-miniprogram/utils/data.js","community":9,"communityLabel":"Community 9","degree":3}},{"key":"jiayan-miniprogram.utils.data.getRating","attributes":{"x":18.167892456054688,"y":-32.95908737182617,"size":6.464101615137754,"color":"#2dd4bf","label":"getRating","nodeType":"function","sourceFile":"jiayan-miniprogram/utils/data.js","community":7,"communityLabel":"Community 7","degree":3}},{"key":"jiayan-miniprogram.utils.data.setRating","attributes":{"x":22.189790725708008,"y":-24.25905418395996,"size":5.82842712474619,"color":"#2dd4bf","label":"setRating","nodeType":"function","sourceFile":"jiayan-miniprogram/utils/data.js","community":7,"communityLabel":"Community 7","degree":2}},{"key":"jiayan-tests.TEST-REPORT.__","attributes":{"x":-13.470211029052734,"y":-48.7208251953125,"size":5,"color":"#fbbf24","label":"","nodeType":"section","sourceFile":"jiayan-tests/TEST-REPORT.md","community":24,"communityLabel":"Community 24","degree":1}},{"key":"jiayan-tests.TEST-REPORT.","attributes":{"x":-8.211080551147461,"y":-44.46479415893555,"size":5,"color":"#fbbf24","label":"","nodeType":"section","sourceFile":"jiayan-tests/TEST-REPORT.md","community":24,"communityLabel":"Community 24","degree":1}},{"key":"jiayan-tests.TEST-REPORT.7_nodetest","attributes":{"x":7.045825958251953,"y":-54.3492431640625,"size":5,"color":"#fbbf24","label":"7 nodetest","nodeType":"section","sourceFile":"jiayan-tests/TEST-REPORT.md","community":24,"communityLabel":"Community 24","degree":1}},{"key":"jiayan-tests.TEST-REPORT.5_nodetest__wx_storage_mock","attributes":{"x":-8.281713485717773,"y":-52.74090576171875,"size":5,"color":"#fbbf24","label":"5 nodetest  wx storage mock","nodeType":"section","sourceFile":"jiayan-tests/TEST-REPORT.md","community":24,"communityLabel":"Community 24","degree":1}},{"key":"jiayan-tests.TEST-REPORT.UI_13_miniprogram-automator_","attributes":{"x":12.504948616027832,"y":-50.582008361816406,"size":5,"color":"#fbbf24","label":"UI 13 miniprogram-automator","nodeType":"section","sourceFile":"jiayan-tests/TEST-REPORT.md","community":24,"communityLabel":"Community 24","degree":1}},{"key":"jiayan-tests.TEST-REPORT._2","attributes":{"x":9.196342468261719,"y":-44.06962966918945,"size":5,"color":"#fbbf24","label":"","nodeType":"section","sourceFile":"jiayan-tests/TEST-REPORT.md","community":24,"communityLabel":"Community 24","degree":1}},{"key":"jiayan-tests.TEST-REPORT._3","attributes":{"x":16.421733856201172,"y":-46.35897445678711,"size":5,"color":"#fbbf24","label":"","nodeType":"section","sourceFile":"jiayan-tests/TEST-REPORT.md","community":24,"communityLabel":"Community 24","degree":1}},{"key":"jiayan-tests.package-lock.name","attributes":{"x":30.176738739013672,"y":-37.53554153442383,"size":5,"color":"#a78bfa","label":"name","nodeType":"variable","sourceFile":"jiayan-tests/package-lock.json","community":25,"communityLabel":"Community 25","degree":1}},{"key":"jiayan-tests.package-lock.version","attributes":{"x":35.43484878540039,"y":-23.29035186767578,"size":5,"color":"#a78bfa","label":"version","nodeType":"variable","sourceFile":"jiayan-tests/package-lock.json","community":25,"communityLabel":"Community 25","degree":1}},{"key":"jiayan-tests.package-lock.lockfileVersion","attributes":{"x":35.81229019165039,"y":-39.48933029174805,"size":5,"color":"#a78bfa","label":"lockfileVersion","nodeType":"variable","sourceFile":"jiayan-tests/package-lock.json","community":25,"communityLabel":"Community 25","degree":1}},{"key":"jiayan-tests.package-lock.requires","attributes":{"x":45.58477020263672,"y":-27.958396911621094,"size":5,"color":"#a78bfa","label":"requires","nodeType":"variable","sourceFile":"jiayan-tests/package-lock.json","community":25,"communityLabel":"Community 25","degree":1}},{"key":"jiayan-tests.package-lock.packages","attributes":{"x":42.591087341308594,"y":-22.35728645324707,"size":5,"color":"#a78bfa","label":"packages","nodeType":"variable","sourceFile":"jiayan-tests/package-lock.json","community":25,"communityLabel":"Community 25","degree":1}},{"key":"jiayan-tests.package.scripts.test:unit","attributes":{"x":47.54285430908203,"y":0.35902655124664307,"size":5,"color":"#fb923c","label":"test:unit","nodeType":"function","sourceFile":"jiayan-tests/package.json","community":26,"communityLabel":"Community 26","degree":1}},{"key":"jiayan-tests.package.scripts.test:interface","attributes":{"x":41.03769302368164,"y":-12.459503173828125,"size":5,"color":"#fb923c","label":"test:interface","nodeType":"function","sourceFile":"jiayan-tests/package.json","community":26,"communityLabel":"Community 26","degree":1}},{"key":"jiayan-tests.package.scripts.test:ui","attributes":{"x":39.07723617553711,"y":-2.147977828979492,"size":5,"color":"#fb923c","label":"test:ui","nodeType":"function","sourceFile":"jiayan-tests/package.json","community":26,"communityLabel":"Community 26","degree":1}},{"key":"jiayan-tests.package.name","attributes":{"x":50.55939483642578,"y":-12.463543891906738,"size":5,"color":"#fb923c","label":"jiayan-tests","nodeType":"constant","sourceFile":"jiayan-tests/package.json","community":26,"communityLabel":"Community 26","degree":1}},{"key":"jiayan-tests.ui.test.CLI","attributes":{"x":45.92538833618164,"y":11.770075798034668,"size":5,"color":"#f87171","label":"CLI","nodeType":"constant","sourceFile":"jiayan-tests/ui.test.js","community":28,"communityLabel":"Community 28","degree":1}},{"key":"jiayan-tests.ui.test.PROJECT","attributes":{"x":38.19948196411133,"y":8.461413383483887,"size":5,"color":"#f87171","label":"PROJECT","nodeType":"constant","sourceFile":"jiayan-tests/ui.test.js","community":28,"communityLabel":"Community 28","degree":1}},{"key":"jiayan-tests.ui.test.ok","attributes":{"x":31.11808967590332,"y":15.490591049194336,"size":5,"color":"#f87171","label":"ok","nodeType":"function","sourceFile":"jiayan-tests/ui.test.js","community":28,"communityLabel":"Community 28","degree":1}},{"key":"jiayan-tests.ui.test.sleep","attributes":{"x":38.28242492675781,"y":31.830764770507812,"size":5.82842712474619,"color":"#f87171","label":"sleep","nodeType":"function","sourceFile":"jiayan-tests/ui.test.js","community":28,"communityLabel":"Community 28","degree":2}},{"key":"jiayan-tests.ui.test.getAvailablePort","attributes":{"x":43.84806823730469,"y":25.896703720092773,"size":5.82842712474619,"color":"#f87171","label":"getAvailablePort","nodeType":"function","sourceFile":"jiayan-tests/ui.test.js","community":28,"communityLabel":"Community 28","degree":2}},{"key":"jiayan-tests.ui.test.launchAutomator","attributes":{"x":34.00202941894531,"y":26.900142669677734,"size":6.464101615137754,"color":"#f87171","label":"launchAutomator","nodeType":"function","sourceFile":"jiayan-tests/ui.test.js","community":28,"communityLabel":"Community 28","degree":3}}],"edges":[{"source":"jiayan-miniprogram/app.json","target":"jiayan-miniprogram.app.pages","attributes":{"color":"rgba(148, 163, 184, 0.25)","size":0.5,"relation":"contains"}},{"source":"jiayan-miniprogram/app.json","target":"jiayan-miniprogram.app.window","attributes":{"color":"rgba(148, 163, 184, 0.25)","size":0.5,"relation":"contains"}},{"source":"jiayan-miniprogram/app.json","target":"jiayan-miniprogram.app.tabBar","attributes":{"color":"rgba(148, 163, 184, 0.25)","size":0.5,"relation":"contains"}},{"source":"jiayan-miniprogram/app.json","target":"jiayan-miniprogram.app.style","attributes":{"color":"rgba(148, 163, 184, 0.25)","size":0.5,"relation":"contains"}},{"source":"jiayan-miniprogram/app.json","target":"jiayan-miniprogram.app.sitemapLocation","attributes":{"color":"rgba(148, 163, 184, 0.25)","size":0.5,"relation":"contains"}},{"source":"jiayan-miniprogram/app.json","target":"jiayan-miniprogram.app.lazyCodeLoading","attributes":{"color":"rgba(148, 163, 184, 0.25)","size":0.5,"relation":"contains"}},{"source":"jiayan-miniprogram/pages/add/add.json","target":"jiayan-miniprogram.pages.add.add.navigationBarTitleText","attributes":{"color":"rgba(148, 163, 184, 0.25)","size":0.5,"relation":"contains"}},{"source":"jiayan-miniprogram/pages/analysis/analysis.json","target":"jiayan-miniprogram.pages.analysis.analysis.navigationBarTitleText","attributes":{"color":"rgba(148, 163, 184, 0.25)","size":0.5,"relation":"contains"}},{"source":"jiayan-miniprogram/pages/dish/dish.json","target":"jiayan-miniprogram.pages.dish.dish.navigationBarTitleText","attributes":{"color":"rgba(148, 163, 184, 0.25)","size":0.5,"relation":"contains"}},{"source":"jiayan-miniprogram/pages/guest-cart/guest-cart.json","target":"jiayan-miniprogram.pages.guest-cart.guest-cart.navigationBarTitleText","attributes":{"color":"rgba(148, 163, 184, 0.25)","size":0.5,"relation":"contains"}},{"source":"jiayan-miniprogram/pages/guest/guest.json","target":"jiayan-miniprogram.pages.guest.guest.navigationBarTitleText","attributes":{"color":"rgba(148, 163, 184, 0.25)","size":0.5,"relation":"contains"}},{"source":"jiayan-miniprogram/pages/home/home.js","target":"jiayan-miniprogram.pages.home.home.RECS","attributes":{"color":"rgba(148, 163, 184, 0.25)","size":0.5,"relation":"contains"}},{"source":"jiayan-miniprogram/pages/home/home.json","target":"jiayan-miniprogram.pages.home.home.navigationBarTitleText","attributes":{"color":"rgba(148, 163, 184, 0.25)","size":0.5,"relation":"contains"}},{"source":"jiayan-miniprogram/pages/host-order/host-order.js","target":"jiayan-miniprogram.pages.host-order.host-order.ORDERS","attributes":{"color":"rgba(148, 163, 184, 0.25)","size":0.5,"relation":"contains"}},{"source":"jiayan-miniprogram/pages/host-order/host-order.js","target":"jiayan-miniprogram.pages.host-order.host-order.SHOPPING","attributes":{"color":"rgba(148, 163, 184, 0.25)","size":0.5,"relation":"contains"}},{"source":"jiayan-miniprogram/pages/host-order/host-order.json","target":"jiayan-miniprogram.pages.host-order.host-order.navigationBarTitleText","attributes":{"color":"rgba(148, 163, 184, 0.25)","size":0.5,"relation":"contains"}},{"source":"jiayan-miniprogram/pages/library/library.json","target":"jiayan-miniprogram.pages.library.library.navigationBarTitleText","attributes":{"color":"rgba(148, 163, 184, 0.25)","size":0.5,"relation":"contains"}},{"source":"jiayan-miniprogram/pages/mood/mood.json","target":"jiayan-miniprogram.pages.mood.mood.navigationBarTitleText","attributes":{"color":"rgba(148, 163, 184, 0.25)","size":0.5,"relation":"contains"}},{"source":"jiayan-miniprogram/pages/swipe/swipe.js","target":"jiayan-miniprogram.pages.swipe.swipe.THRESHOLD","attributes":{"color":"rgba(148, 163, 184, 0.25)","size":0.5,"relation":"contains"}},{"source":"jiayan-miniprogram/pages/swipe/swipe.json","target":"jiayan-miniprogram.pages.swipe.swipe.navigationBarTitleText","attributes":{"color":"rgba(148, 163, 184, 0.25)","size":0.5,"relation":"contains"}},{"source":"jiayan-miniprogram/pages/today/today.js","target":"jiayan-miniprogram.pages.today.today.DEFAULT_MENU","attributes":{"color":"rgba(148, 163, 184, 0.25)","size":0.5,"relation":"contains"}},{"source":"jiayan-miniprogram/pages/today/today.json","target":"jiayan-miniprogram.pages.today.today.navigationBarTitleText","attributes":{"color":"rgba(148, 163, 184, 0.25)","size":0.5,"relation":"contains"}},{"source":"jiayan-miniprogram/pages/us/us.json","target":"jiayan-miniprogram.pages.us.us.navigationBarTitleText","attributes":{"color":"rgba(148, 163, 184, 0.25)","size":0.5,"relation":"contains"}},{"source":"jiayan-miniprogram/pages/wheel/wheel.js","target":"jiayan-miniprogram.pages.wheel.wheel.POOL","attributes":{"color":"rgba(148, 163, 184, 0.25)","size":0.5,"relation":"contains"}},{"source":"jiayan-miniprogram/pages/wheel/wheel.js","target":"jiayan-miniprogram.pages.wheel.wheel.STEP","attributes":{"color":"rgba(148, 163, 184, 0.25)","size":0.5,"relation":"contains"}},{"source":"jiayan-miniprogram/pages/wheel/wheel.json","target":"jiayan-miniprogram.pages.wheel.wheel.navigationBarTitleText","attributes":{"color":"rgba(148, 163, 184, 0.25)","size":0.5,"relation":"contains"}},{"source":"jiayan-miniprogram/project.config.json","target":"jiayan-miniprogram.project.config.compileType","attributes":{"color":"rgba(148, 163, 184, 0.25)","size":0.5,"relation":"contains"}},{"source":"jiayan-miniprogram/project.config.json","target":"jiayan-miniprogram.project.config.packOptions","attributes":{"color":"rgba(148, 163, 184, 0.25)","size":0.5,"relation":"contains"}},{"source":"jiayan-miniprogram/project.config.json","target":"jiayan-miniprogram.project.config.appid","attributes":{"color":"rgba(148, 163, 184, 0.25)","size":0.5,"relation":"contains"}},{"source":"jiayan-miniprogram/project.config.json","target":"jiayan-miniprogram.project.config.projectname","attributes":{"color":"rgba(148, 163, 184, 0.25)","size":0.5,"relation":"contains"}},{"source":"jiayan-miniprogram/project.config.json","target":"jiayan-miniprogram.project.config.setting","attributes":{"color":"rgba(148, 163, 184, 0.25)","size":0.5,"relation":"contains"}},{"source":"jiayan-miniprogram/project.config.json","target":"jiayan-miniprogram.project.config.libVersion","attributes":{"color":"rgba(148, 163, 184, 0.25)","size":0.5,"relation":"contains"}},{"source":"jiayan-miniprogram/project.config.json","target":"jiayan-miniprogram.project.config.condition","attributes":{"color":"rgba(148, 163, 184, 0.25)","size":0.5,"relation":"contains"}},{"source":"jiayan-miniprogram/project.config.json","target":"jiayan-miniprogram.project.config.editorSetting","attributes":{"color":"rgba(148, 163, 184, 0.25)","size":0.5,"relation":"contains"}},{"source":"jiayan-miniprogram/sitemap.json","target":"jiayan-miniprogram.sitemap.desc","attributes":{"color":"rgba(148, 163, 184, 0.25)","size":0.5,"relation":"contains"}},{"source":"jiayan-miniprogram/sitemap.json","target":"jiayan-miniprogram.sitemap.rules","attributes":{"color":"rgba(148, 163, 184, 0.25)","size":0.5,"relation":"contains"}},{"source":"jiayan-miniprogram/utils/data.js","target":"jiayan-miniprogram.utils.data.DISHES","attributes":{"color":"rgba(148, 163, 184, 0.25)","size":0.5,"relation":"contains"}},{"source":"jiayan-miniprogram/utils/data.js","target":"jiayan-miniprogram.utils.data.IMGS","attributes":{"color":"rgba(148, 163, 184, 0.25)","size":0.5,"relation":"contains"}},{"source":"jiayan-miniprogram/utils/data.js","target":"jiayan-miniprogram.utils.data.MOOD_MAP","attributes":{"color":"rgba(148, 163, 184, 0.25)","size":0.5,"relation":"contains"}},{"source":"jiayan-miniprogram/utils/data.js","target":"jiayan-miniprogram.utils.data.starText","attributes":{"color":"rgba(148, 163, 184, 0.25)","size":0.5,"relation":"contains"}},{"source":"jiayan-miniprogram/utils/data.js","target":"jiayan-miniprogram.utils.data.findDish","attributes":{"color":"rgba(148, 163, 184, 0.25)","size":0.5,"relation":"contains"}},{"source":"jiayan-miniprogram/utils/data.js","target":"jiayan-miniprogram.utils.data.getToday","attributes":{"color":"rgba(148, 163, 184, 0.25)","size":0.5,"relation":"contains"}},{"source":"jiayan-miniprogram/utils/data.js","target":"jiayan-miniprogram.utils.data.setToday","attributes":{"color":"rgba(148, 163, 184, 0.25)","size":0.5,"relation":"contains"}},{"source":"jiayan-miniprogram/utils/data.js","target":"jiayan-miniprogram.utils.data.addToday","attributes":{"color":"rgba(148, 163, 184, 0.25)","size":0.5,"relation":"contains"}},{"source":"jiayan-miniprogram/utils/data.js","target":"jiayan-miniprogram.utils.data.getGuestCart","attributes":{"color":"rgba(148, 163, 184, 0.25)","size":0.5,"relation":"contains"}},{"source":"jiayan-miniprogram/utils/data.js","target":"jiayan-miniprogram.utils.data.setGuestCart","attributes":{"color":"rgba(148, 163, 184, 0.25)","size":0.5,"relation":"contains"}},{"source":"jiayan-miniprogram/utils/data.js","target":"jiayan-miniprogram.utils.data.getRating","attributes":{"color":"rgba(148, 163, 184, 0.25)","size":0.5,"relation":"contains"}},{"source":"jiayan-miniprogram/utils/data.js","target":"jiayan-miniprogram.utils.data.setRating","attributes":{"color":"rgba(148, 163, 184, 0.25)","size":0.5,"relation":"contains"}},{"source":"jiayan-tests/TEST-REPORT.md","target":"jiayan-tests.TEST-REPORT.__","attributes":{"color":"rgba(148, 163, 184, 0.25)","size":0.5,"relation":"contains"}},{"source":"jiayan-tests/TEST-REPORT.md","target":"jiayan-tests.TEST-REPORT.","attributes":{"color":"rgba(148, 163, 184, 0.25)","size":0.5,"relation":"contains"}},{"source":"jiayan-tests/TEST-REPORT.md","target":"jiayan-tests.TEST-REPORT.7_nodetest","attributes":{"color":"rgba(148, 163, 184, 0.25)","size":0.5,"relation":"contains"}},{"source":"jiayan-tests/TEST-REPORT.md","target":"jiayan-tests.TEST-REPORT.5_nodetest__wx_storage_mock","attributes":{"color":"rgba(148, 163, 184, 0.25)","size":0.5,"relation":"contains"}},{"source":"jiayan-tests/TEST-REPORT.md","target":"jiayan-tests.TEST-REPORT.UI_13_miniprogram-automator_","attributes":{"color":"rgba(148, 163, 184, 0.25)","size":0.5,"relation":"contains"}},{"source":"jiayan-tests/TEST-REPORT.md","target":"jiayan-tests.TEST-REPORT._2","attributes":{"color":"rgba(148, 163, 184, 0.25)","size":0.5,"relation":"contains"}},{"source":"jiayan-tests/TEST-REPORT.md","target":"jiayan-tests.TEST-REPORT._3","attributes":{"color":"rgba(148, 163, 184, 0.25)","size":0.5,"relation":"contains"}},{"source":"jiayan-tests/package-lock.json","target":"jiayan-tests.package-lock.name","attributes":{"color":"rgba(148, 163, 184, 0.25)","size":0.5,"relation":"contains"}},{"source":"jiayan-tests/package-lock.json","target":"jiayan-tests.package-lock.version","attributes":{"color":"rgba(148, 163, 184, 0.25)","size":0.5,"relation":"contains"}},{"source":"jiayan-tests/package-lock.json","target":"jiayan-tests.package-lock.lockfileVersion","attributes":{"color":"rgba(148, 163, 184, 0.25)","size":0.5,"relation":"contains"}},{"source":"jiayan-tests/package-lock.json","target":"jiayan-tests.package-lock.requires","attributes":{"color":"rgba(148, 163, 184, 0.25)","size":0.5,"relation":"contains"}},{"source":"jiayan-tests/package-lock.json","target":"jiayan-tests.package-lock.packages","attributes":{"color":"rgba(148, 163, 184, 0.25)","size":0.5,"relation":"contains"}},{"source":"jiayan-tests/package.json","target":"jiayan-tests.package.scripts.test:unit","attributes":{"color":"rgba(148, 163, 184, 0.25)","size":0.5,"relation":"contains"}},{"source":"jiayan-tests/package.json","target":"jiayan-tests.package.scripts.test:interface","attributes":{"color":"rgba(148, 163, 184, 0.25)","size":0.5,"relation":"contains"}},{"source":"jiayan-tests/package.json","target":"jiayan-tests.package.scripts.test:ui","attributes":{"color":"rgba(148, 163, 184, 0.25)","size":0.5,"relation":"contains"}},{"source":"jiayan-tests/package.json","target":"jiayan-tests.package.name","attributes":{"color":"rgba(148, 163, 184, 0.25)","size":0.5,"relation":"contains"}},{"source":"jiayan-tests/ui.test.js","target":"jiayan-tests.ui.test.CLI","attributes":{"color":"rgba(148, 163, 184, 0.25)","size":0.5,"relation":"contains"}},{"source":"jiayan-tests/ui.test.js","target":"jiayan-tests.ui.test.PROJECT","attributes":{"color":"rgba(148, 163, 184, 0.25)","size":0.5,"relation":"contains"}},{"source":"jiayan-tests/ui.test.js","target":"jiayan-tests.ui.test.ok","attributes":{"color":"rgba(148, 163, 184, 0.25)","size":0.5,"relation":"contains"}},{"source":"jiayan-tests/ui.test.js","target":"jiayan-tests.ui.test.sleep","attributes":{"color":"rgba(148, 163, 184, 0.25)","size":0.5,"relation":"contains"}},{"source":"jiayan-tests/ui.test.js","target":"jiayan-tests.ui.test.getAvailablePort","attributes":{"color":"rgba(148, 163, 184, 0.25)","size":0.5,"relation":"contains"}},{"source":"jiayan-tests/ui.test.js","target":"jiayan-tests.ui.test.launchAutomator","attributes":{"color":"rgba(148, 163, 184, 0.25)","size":0.5,"relation":"contains"}},{"source":"jiayan-miniprogram/pages/dish/dish.js","target":"jiayan-miniprogram.utils.data.findDish","attributes":{"color":"rgba(45, 212, 191, 0.5)","size":0.5,"relation":"imports_from"}},{"source":"jiayan-miniprogram/pages/dish/dish.js","target":"jiayan-miniprogram.utils.data.getRating","attributes":{"color":"rgba(45, 212, 191, 0.5)","size":0.5,"relation":"imports_from"}},{"source":"jiayan-miniprogram/pages/dish/dish.js","target":"jiayan-miniprogram.utils.data.setRating","attributes":{"color":"rgba(45, 212, 191, 0.5)","size":0.5,"relation":"imports_from"}},{"source":"jiayan-miniprogram/pages/dish/dish.js","target":"jiayan-miniprogram.utils.data.addToday","attributes":{"color":"rgba(45, 212, 191, 0.5)","size":0.5,"relation":"imports_from"}},{"source":"jiayan-miniprogram/pages/guest-cart/guest-cart.js","target":"jiayan-miniprogram.utils.data.DISHES","attributes":{"color":"rgba(45, 212, 191, 0.5)","size":0.5,"relation":"imports_from"}},{"source":"jiayan-miniprogram/pages/guest-cart/guest-cart.js","target":"jiayan-miniprogram.utils.data.getGuestCart","attributes":{"color":"rgba(45, 212, 191, 0.5)","size":0.5,"relation":"imports_from"}},{"source":"jiayan-miniprogram/pages/guest-cart/guest-cart.js","target":"jiayan-miniprogram.utils.data.setGuestCart","attributes":{"color":"rgba(45, 212, 191, 0.5)","size":0.5,"relation":"imports_from"}},{"source":"jiayan-miniprogram/pages/guest/guest.js","target":"jiayan-miniprogram.utils.data.DISHES","attributes":{"color":"rgba(45, 212, 191, 0.5)","size":0.5,"relation":"imports_from"}},{"source":"jiayan-miniprogram/pages/guest/guest.js","target":"jiayan-miniprogram.utils.data.starText","attributes":{"color":"rgba(45, 212, 191, 0.5)","size":0.5,"relation":"imports_from"}},{"source":"jiayan-miniprogram/pages/guest/guest.js","target":"jiayan-miniprogram.utils.data.getGuestCart","attributes":{"color":"rgba(45, 212, 191, 0.5)","size":0.5,"relation":"imports_from"}},{"source":"jiayan-miniprogram/pages/guest/guest.js","target":"jiayan-miniprogram.utils.data.setGuestCart","attributes":{"color":"rgba(45, 212, 191, 0.5)","size":0.5,"relation":"imports_from"}},{"source":"jiayan-miniprogram/pages/home/home.js","target":"jiayan-miniprogram.utils.data.DISHES","attributes":{"color":"rgba(45, 212, 191, 0.5)","size":0.5,"relation":"imports_from"}},{"source":"jiayan-miniprogram/pages/home/home.js","target":"jiayan-miniprogram.utils.data.starText","attributes":{"color":"rgba(45, 212, 191, 0.5)","size":0.5,"relation":"imports_from"}},{"source":"jiayan-miniprogram/pages/home/home.js","target":"jiayan-miniprogram.utils.data.addToday","attributes":{"color":"rgba(45, 212, 191, 0.5)","size":0.5,"relation":"imports_from"}},{"source":"jiayan-miniprogram/pages/library/library.js","target":"jiayan-miniprogram.utils.data.DISHES","attributes":{"color":"rgba(45, 212, 191, 0.5)","size":0.5,"relation":"imports_from"}},{"source":"jiayan-miniprogram/pages/library/library.js","target":"jiayan-miniprogram.utils.data.starText","attributes":{"color":"rgba(45, 212, 191, 0.5)","size":0.5,"relation":"imports_from"}},{"source":"jiayan-miniprogram/pages/mood/mood.js","target":"jiayan-miniprogram.utils.data.MOOD_MAP","attributes":{"color":"rgba(45, 212, 191, 0.5)","size":0.5,"relation":"imports_from"}},{"source":"jiayan-miniprogram/pages/mood/mood.js","target":"jiayan-miniprogram.utils.data.findDish","attributes":{"color":"rgba(45, 212, 191, 0.5)","size":0.5,"relation":"imports_from"}},{"source":"jiayan-miniprogram/pages/mood/mood.js","target":"jiayan-miniprogram.utils.data.starText","attributes":{"color":"rgba(45, 212, 191, 0.5)","size":0.5,"relation":"imports_from"}},{"source":"jiayan-miniprogram/pages/mood/mood.js","target":"jiayan-miniprogram.utils.data.addToday","attributes":{"color":"rgba(45, 212, 191, 0.5)","size":0.5,"relation":"imports_from"}},{"source":"jiayan-miniprogram/pages/swipe/swipe.js","target":"jiayan-miniprogram.utils.data.DISHES","attributes":{"color":"rgba(45, 212, 191, 0.5)","size":0.5,"relation":"imports_from"}},{"source":"jiayan-miniprogram/pages/swipe/swipe.js","target":"jiayan-miniprogram.utils.data.starText","attributes":{"color":"rgba(45, 212, 191, 0.5)","size":0.5,"relation":"imports_from"}},{"source":"jiayan-miniprogram/pages/swipe/swipe.js","target":"jiayan-miniprogram.utils.data.setToday","attributes":{"color":"rgba(45, 212, 191, 0.5)","size":0.5,"relation":"imports_from"}},{"source":"jiayan-miniprogram/pages/today/today.js","target":"jiayan-miniprogram.utils.data.findDish","attributes":{"color":"rgba(45, 212, 191, 0.5)","size":0.5,"relation":"imports_from"}},{"source":"jiayan-miniprogram/pages/today/today.js","target":"jiayan-miniprogram.utils.data.getToday","attributes":{"color":"rgba(45, 212, 191, 0.5)","size":0.5,"relation":"imports_from"}},{"source":"jiayan-miniprogram/pages/today/today.js","target":"jiayan-miniprogram.utils.data.setToday","attributes":{"color":"rgba(45, 212, 191, 0.5)","size":0.5,"relation":"imports_from"}},{"source":"jiayan-miniprogram/pages/wheel/wheel.js","target":"jiayan-miniprogram.utils.data.DISHES","attributes":{"color":"rgba(45, 212, 191, 0.5)","size":0.5,"relation":"imports_from"}},{"source":"jiayan-miniprogram/pages/wheel/wheel.js","target":"jiayan-miniprogram.utils.data.addToday","attributes":{"color":"rgba(45, 212, 191, 0.5)","size":0.5,"relation":"imports_from"}},{"source":"jiayan-tests/interface.test.js","target":"jiayan-miniprogram/utils/data.js","attributes":{"color":"rgba(45, 212, 191, 0.5)","size":0.5,"relation":"imports"}},{"source":"jiayan-tests/unit.test.js","target":"jiayan-miniprogram/utils/data.js","attributes":{"color":"rgba(45, 212, 191, 0.5)","size":0.5,"relation":"imports"}},{"source":"jiayan-tests/wheel-spin.test.js","target":"jiayan-miniprogram/pages/wheel/wheel.js","attributes":{"color":"rgba(45, 212, 191, 0.5)","size":0.5,"relation":"imports"}},{"source":"jiayan-miniprogram.utils.data.addToday","target":"jiayan-miniprogram.utils.data.getToday","attributes":{"color":"rgba(251, 113, 133, 0.5)","size":0.5,"relation":"calls"}},{"source":"jiayan-miniprogram.utils.data.addToday","target":"jiayan-miniprogram.utils.data.setToday","attributes":{"color":"rgba(251, 113, 133, 0.5)","size":0.5,"relation":"calls"}},{"source":"jiayan-miniprogram.utils.data.getRating","target":"jiayan-miniprogram.utils.data.findDish","attributes":{"color":"rgba(251, 113, 133, 0.5)","size":0.5,"relation":"calls"}},{"source":"jiayan-tests.ui.test.launchAutomator","target":"jiayan-tests.ui.test.getAvailablePort","attributes":{"color":"rgba(251, 113, 133, 0.5)","size":0.5,"relation":"calls"}},{"source":"jiayan-tests.ui.test.launchAutomator","target":"jiayan-tests.ui.test.sleep","attributes":{"color":"rgba(251, 113, 133, 0.5)","size":0.5,"relation":"calls"}}]}</script>
+<script>
+(function() {
+  var data = JSON.parse(document.getElementById('graph-data').textContent);
+
+  // Build graphology graph — multi:true to support parallel edges
+  var graph = new graphology.Graph({ type: 'directed', multi: true, allowSelfLoops: false });
+  data.nodes.forEach(function(n) { graph.addNode(n.key, n.attributes); });
+  data.edges.forEach(function(e, i) {
+    try { graph.addEdgeWithKey('e' + i, e.source, e.target, e.attributes); } catch(err) {}
+  });
+
+  // Sigma renderer
+  var container = document.getElementById('sigma-container');
+  var state = {
+    searchTerm: '',
+    hoveredNode: null,
+    pinnedNode: null,
+    selectedType: 'all',
+    highlightedNodes: new Set(),
+    highlightedEdges: new Set(),
+    searchMatchNodes: new Set(),
+  };
+
+  var renderer = new Sigma(graph, container, {
+    renderLabels: true,
+    renderEdgeLabels: false,
+    labelSize: 12,
+    labelColor: { color: '#e6edf3' },
+    labelRenderedSizeThreshold: 6,
+    defaultNodeColor: '#6366f1',
+    defaultEdgeColor: 'rgba(148,163,184,0.3)',
+    minCameraRatio: 0.02,
+    maxCameraRatio: 20,
+    nodeReducer: function(node, data) {
+      var res = Object.assign({}, data);
+      var activeNode = state.hoveredNode || state.pinnedNode;
+      var typeMatch = state.selectedType === 'all' || data.nodeType === state.selectedType;
+
+      // Type filter
+      if (!typeMatch) {
+        res.color = '#21262d';
+        res.size = Math.max(1, data.size * 0.4);
+        res.label = '';
+        return res;
+      }
+
+      // Text search filter (independent — dims non-matching nodes even if highlighted)
+      if (state.searchTerm && !state.searchMatchNodes.has(node)) {
+        res.color = '#21262d';
+        res.size = Math.max(1, data.size * 0.5);
+        res.label = '';
+        return res;
+      }
+
+      // Pin/hover filter
+      if (activeNode && state.highlightedNodes.size > 0) {
+        if (state.highlightedNodes.has(node)) {
+          res.color = data.color;
+          res.size = data.size * 1.2;
+          res.zIndex = 10;
+          if (node === activeNode) { res.highlighted = true; }
+        } else {
+          res.color = '#21262d';
+          res.size = Math.max(1, data.size * 0.5);
+          res.label = '';
+        }
+      } else if (state.searchTerm && state.searchMatchNodes.has(node)) {
+        // Search match without pin/hover — highlight matched node
+        res.highlighted = true;
+        res.size = data.size * 1.2;
+      }
+
+      return res;
+    },
+    edgeReducer: function(edge, data) {
+      var res = Object.assign({}, data);
+      var src = graph.source(edge);
+      var tgt = graph.target(edge);
+
+      // Type filter: dim edges where either endpoint is filtered out
+      if (state.selectedType !== 'all') {
+        var srcType = graph.getNodeAttribute(src, 'nodeType');
+        var tgtType = graph.getNodeAttribute(tgt, 'nodeType');
+        if (srcType !== state.selectedType || tgtType !== state.selectedType) {
+          res.color = 'rgba(48,54,61,0.1)';
+          res.size = 0.1;
+          return res;
+        }
+      }
+
+      // Text search filter: dim edges where neither endpoint matches search
+      if (state.searchTerm) {
+        if (!state.searchMatchNodes.has(src) && !state.searchMatchNodes.has(tgt)) {
+          res.color = 'rgba(48,54,61,0.1)';
+          res.size = 0.1;
+          return res;
+        }
+      }
+
+      // Hover/pin: show only edges connected to active node
+      if (state.hoveredNode || state.pinnedNode) {
+        if (state.highlightedEdges.has(edge)) {
+          res.size = 1.5;
+        } else {
+          res.color = 'rgba(48,54,61,0.2)';
+          res.size = 0.2;
+        }
+      }
+
+      return res;
+    },
+    defaultDrawNodeHover: function(context, data, settings) {
+      var size = data.size;
+      var label = data.label;
+
+      // Highlight ring
+      context.beginPath();
+      context.arc(data.x, data.y, size + 3, 0, Math.PI * 2);
+      context.closePath();
+      context.lineWidth = 2;
+      context.strokeStyle = data.color || '#6366f1';
+      context.stroke();
+
+      if (!label) return;
+
+      var fontSize = settings.labelSize || 14;
+      context.font = (settings.labelWeight || 'bold') + ' ' + fontSize + 'px ' + (settings.labelFont || 'sans-serif');
+      var textWidth = context.measureText(label).width;
+      var pad = 6;
+      var lx = Math.round(data.x + size + 6);
+      var ly = Math.round(data.y + fontSize / 3);
+
+      // Dark background with rounded rect
+      var bx = lx - pad, by = ly - fontSize, bw = textWidth + pad * 2, bh = fontSize + pad + 2, br = 4;
+      context.fillStyle = '#161b22';
+      context.beginPath();
+      context.moveTo(bx + br, by);
+      context.lineTo(bx + bw - br, by);
+      context.quadraticCurveTo(bx + bw, by, bx + bw, by + br);
+      context.lineTo(bx + bw, by + bh - br);
+      context.quadraticCurveTo(bx + bw, by + bh, bx + bw - br, by + bh);
+      context.lineTo(bx + br, by + bh);
+      context.quadraticCurveTo(bx, by + bh, bx, by + bh - br);
+      context.lineTo(bx, by + br);
+      context.quadraticCurveTo(bx, by, bx + br, by);
+      context.closePath();
+      context.fill();
+      context.strokeStyle = '#30363d';
+      context.lineWidth = 1;
+      context.stroke();
+
+      // Label text
+      context.fillStyle = '#e6edf3';
+      context.fillText(label, lx, ly);
+    },
+  });
+
+  function updateHighlights() {
+    state.highlightedNodes.clear();
+    state.highlightedEdges.clear();
+    state.searchMatchNodes.clear();
+
+    if (state.searchTerm) {
+      var term = state.searchTerm.toLowerCase();
+      graph.forEachNode(function(node, attrs) {
+        if (attrs.label && attrs.label.toLowerCase().includes(term)) {
+          state.searchMatchNodes.add(node);
+        }
+      });
+    }
+
+    var activeNode = state.hoveredNode || state.pinnedNode;
+    if (activeNode) {
+      state.highlightedNodes.add(activeNode);
+      graph.forEachNeighbor(activeNode, function(neighbor) {
+        state.highlightedNodes.add(neighbor);
+      });
+      graph.forEachEdge(activeNode, function(edge) {
+        state.highlightedEdges.add(edge);
+      });
+    }
+
+    renderer.refresh();
+  }
+
+  // ─── Search ───
+  var searchInput = document.getElementById('search');
+  var searchTimeout;
+  searchInput.addEventListener('input', function(ev) {
+    clearTimeout(searchTimeout);
+    searchTimeout = setTimeout(function() {
+      state.searchTerm = ev.target.value.trim();
+      updateHighlights();
+      if (state.searchMatchNodes.size === 1) {
+        var nodeId = state.searchMatchNodes.values().next().value;
+        var pos = graph.getNodeAttributes(nodeId);
+        renderer.getCamera().animate({ x: pos.x, y: pos.y, ratio: 0.5 }, { duration: 300 });
+      }
+    }, 150);
+  });
+
+  // ─── Type Filter ───
+  var chips = document.querySelectorAll('.chip[data-type]');
+  chips.forEach(function(chip) {
+    chip.addEventListener('click', function() {
+      chips.forEach(function(c) { c.classList.remove('active'); });
+      chip.classList.add('active');
+      state.selectedType = chip.dataset.type;
+      renderer.refresh();
+    });
+  });
+
+  // ─── Info Panel ───
+  var infoPanel = document.getElementById('info-panel');
+  var infoLabel = document.getElementById('info-label');
+  var infoDetails = document.getElementById('info-details');
+
+  function showNodeInfo(nodeId) {
+    var attrs = graph.getNodeAttributes(nodeId);
+    infoLabel.textContent = attrs.label || nodeId;
+    infoDetails.innerHTML =
+      row('Type', attrs.nodeType) +
+      row('File', attrs.sourceFile || '-') +
+      row('Community', attrs.communityLabel) +
+      row('Degree', attrs.degree);
+    infoPanel.classList.add('visible');
+  }
+
+  renderer.on('enterNode', function(e) {
+    state.hoveredNode = e.node;
+    showNodeInfo(e.node);
+    updateHighlights();
+    container.style.cursor = 'pointer';
+  });
+
+  renderer.on('leaveNode', function() {
+    state.hoveredNode = null;
+    if (state.pinnedNode) {
+      showNodeInfo(state.pinnedNode);
+    } else {
+      infoPanel.classList.remove('visible');
+    }
+    updateHighlights();
+    container.style.cursor = 'default';
+  });
+
+  renderer.on('clickNode', function(e) {
+    if (state.pinnedNode === e.node) {
+      state.pinnedNode = null;
+      if (!state.hoveredNode) {
+        infoPanel.classList.remove('visible');
+      }
+    } else {
+      state.pinnedNode = e.node;
+      showNodeInfo(e.node);
+    }
+    updateHighlights();
+  });
+
+  renderer.on('clickStage', function() {
+    if (state.pinnedNode) {
+      state.pinnedNode = null;
+      if (!state.hoveredNode) {
+        infoPanel.classList.remove('visible');
+      }
+      updateHighlights();
+    }
+  });
+
+  function row(label, value) {
+    return '<div class="detail-row"><span class="label">' + esc(label) + '</span><span class="value">' + esc(String(value != null ? value : '-')) + '</span></div>';
+  }
+  function esc(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+{
+  "file_path": "jiayan-tests/unit.test.js",
+  "line_count": 60,
+  "imports": [
+    {
+      "module": "node:assert",
+      "names": [
+        "assert"
+      ],
+      "line": 2
+    },
+    {
+      "module": "node:test",
+      "names": [
+        "test",
+        "beforeEach"
+      ],
+      "line": 3
+    },
+    {
+      "module": "../jiayan-miniprogram/utils/data",
+      "names": [
+        "data"
+      ],
+      "line": 6
+    }
+  ],
+  "functions": [],
+  "classes": []
+}

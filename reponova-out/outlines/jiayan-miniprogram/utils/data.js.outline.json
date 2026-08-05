@@ -1,0 +1,104 @@
+{
+  "file_path": "jiayan-miniprogram/utils/data.js",
+  "line_count": 89,
+  "imports": [],
+  "functions": [
+    {
+      "name": "starText",
+      "signature": "starText(n)",
+      "decorators": [],
+      "start_line": 44,
+      "end_line": 47,
+      "calls": [
+        "'★★★★★'.slice",
+        "'☆☆☆☆☆'.slice"
+      ]
+    },
+    {
+      "name": "findDish",
+      "signature": "findDish(name)",
+      "decorators": [],
+      "start_line": 49,
+      "end_line": 51,
+      "calls": [
+        "DISHES.find"
+      ]
+    },
+    {
+      "name": "getToday",
+      "signature": "getToday()",
+      "decorators": [],
+      "start_line": 54,
+      "end_line": 56,
+      "calls": [
+        "wx.getStorageSync"
+      ]
+    },
+    {
+      "name": "setToday",
+      "signature": "setToday(names)",
+      "decorators": [],
+      "start_line": 57,
+      "end_line": 59,
+      "calls": [
+        "wx.setStorageSync"
+      ]
+    },
+    {
+      "name": "addToday",
+      "signature": "addToday(name)",
+      "decorators": [],
+      "start_line": 60,
+      "end_line": 64,
+      "calls": [
+        "getToday",
+        "t.includes",
+        "t.push",
+        "setToday"
+      ]
+    },
+    {
+      "name": "getGuestCart",
+      "signature": "getGuestCart()",
+      "decorators": [],
+      "start_line": 67,
+      "end_line": 70,
+      "calls": [
+        "wx.getStorageSync"
+      ]
+    },
+    {
+      "name": "setGuestCart",
+      "signature": "setGuestCart(names)",
+      "decorators": [],
+      "start_line": 71,
+      "end_line": 73,
+      "calls": [
+        "wx.setStorageSync"
+      ]
+    },
+    {
+      "name": "getRating",
+      "signature": "getRating(name)",
+      "decorators": [],
+      "start_line": 76,
+      "end_line": 81,
+      "calls": [
+        "wx.getStorageSync",
+        "findDish"
+      ]
+    },
+    {
+      "name": "setRating",
+      "signature": "setRating(name, n)",
+      "decorators": [],
+      "start_line": 82,
+      "end_line": 86,
+      "calls": [
+        "wx.getStorageSync",
+        "wx.setStorageSync"
+      ]
+    }
+  ],
+  "classes": []
+}

@@ -1,0 +1,16 @@
+{
+  "file_path": "jiayan-miniprogram/pages/wheel/wheel.js",
+  "line_count": 71,
+  "imports": [
+    {
+      "module": "../../utils/data",
+      "names": [
+        "DISHES",
+        "addToday"
+      ],
+      "line": 1
+    }
+  ],
+  "functions": [],
+  "classes": []
+}

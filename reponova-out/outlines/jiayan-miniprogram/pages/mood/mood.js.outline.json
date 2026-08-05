@@ -1,0 +1,18 @@
+{
+  "file_path": "jiayan-miniprogram/pages/mood/mood.js",
+  "line_count": 25,
+  "imports": [
+    {
+      "module": "../../utils/data",
+      "names": [
+        "MOOD_MAP",
+        "findDish",
+        "starText",
+        "addToday"
+      ],
+      "line": 1
+    }
+  ],
+  "functions": [],
+  "classes": []
+}

@@ -1,0 +1,17 @@
+{
+  "file_path": "jiayan-miniprogram/pages/today/today.js",
+  "line_count": 35,
+  "imports": [
+    {
+      "module": "../../utils/data",
+      "names": [
+        "findDish",
+        "getToday",
+        "setToday"
+      ],
+      "line": 1
+    }
+  ],
+  "functions": [],
+  "classes": []
+}

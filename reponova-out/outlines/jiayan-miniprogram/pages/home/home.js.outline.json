@@ -1,0 +1,17 @@
+{
+  "file_path": "jiayan-miniprogram/pages/home/home.js",
+  "line_count": 49,
+  "imports": [
+    {
+      "module": "../../utils/data",
+      "names": [
+        "DISHES",
+        "starText",
+        "addToday"
+      ],
+      "line": 1
+    }
+  ],
+  "functions": [],
+  "classes": []
+}

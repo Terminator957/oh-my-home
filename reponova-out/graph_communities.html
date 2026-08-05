@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Code Knowledge Graph — Communities</title>
+<script src="https://cdn.jsdelivr.net/npm/graphology@0.25.4/dist/graphology.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sigma@3.0.3/dist/sigma.min.js"></script>
+<style>
+  :root {
+    --bg-primary: #0d1117;
+    --bg-secondary: #161b22;
+    --bg-tertiary: #21262d;
+    --border: #30363d;
+    --text-primary: #e6edf3;
+    --text-secondary: #8b949e;
+    --text-muted: #484f58;
+    --accent: #6366f1;
+    --accent-glow: rgba(99, 102, 241, 0.15);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--bg-primary); color: var(--text-primary);
+    overflow: hidden; height: 100vh;
+  }
+  #toolbar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    height: 52px; background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; padding: 0 16px; gap: 12px;
+  }
+  #toolbar .logo { font-weight: 600; font-size: 14px; white-space: nowrap; }
+  #search-box { position: relative; flex: 0 1 280px; }
+  #search-box input {
+    width: 100%; padding: 6px 12px 6px 32px;
+    border-radius: 6px; border: 1px solid var(--border);
+    background: var(--bg-primary); color: var(--text-primary);
+    font-size: 13px; outline: none; transition: border-color 0.15s;
+  }
+  #search-box input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-glow); }
+  #search-box::before {
+    content: '\1F50D'; position: absolute; left: 10px; top: 50%;
+    transform: translateY(-50%); font-size: 12px; pointer-events: none;
+  }
+  .stats { margin-left: auto; font-size: 12px; color: var(--text-muted); white-space: nowrap; }
+  #sigma-container { position: fixed; top: 52px; left: 0; right: 0; bottom: 0; }
+  #info-panel {
+    position: fixed; bottom: 16px; left: 16px; z-index: 100;
+    max-width: 380px; min-width: 260px;
+    background: var(--bg-secondary); border: 1px solid var(--border);
+    border-radius: 10px; padding: 14px 16px;
+    font-size: 12px; line-height: 1.7;
+    opacity: 0; transform: translateY(8px);
+    transition: opacity 0.2s, transform 0.2s;
+    pointer-events: none;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+  }
+  #info-panel.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+  #info-panel .node-label {
+    font-size: 14px; font-weight: 600; margin-bottom: 8px;
+    word-break: break-word;
+  }
+  #info-panel .summary {
+    color: var(--text-secondary); font-style: italic;
+    margin-bottom: 6px;
+  }
+  #info-panel .detail-row {
+    display: flex; justify-content: space-between; gap: 8px;
+    color: var(--text-secondary); padding: 2px 0;
+  }
+  #info-panel .detail-row .label { color: var(--text-muted); }
+  #info-panel .detail-row .value { color: var(--text-primary); }
+  #legend {
+    position: fixed; bottom: 16px; right: 16px; z-index: 100;
+    background: var(--bg-secondary); border: 1px solid var(--border);
+    border-radius: 10px; padding: 12px 14px;
+    font-size: 11px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+  }
+  #legend h4 { font-size: 11px; color: var(--text-muted); margin-bottom: 6px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; }
+  .legend-item { display: flex; align-items: center; gap: 6px; padding: 2px 0; color: var(--text-secondary); }
+  .legend-dot { width: 10px; height: 3px; border-radius: 2px; }
+</style>
+</head>
+<body>
+<div id="toolbar">
+  <div class="logo">Code Knowledge Graph — Communities</div>
+  <div id="search-box"><input type="text" id="search" placeholder="Search communities..." autocomplete="off" /></div>
+  <div class="stats">29 communities &middot; 2 cross-community edges</div>
+</div>
+<div id="sigma-container"></div>
+<div id="info-panel">
+  <div class="node-label" id="info-label"></div>
+  <div class="summary" id="info-summary"></div>
+  <div id="info-details"></div>
+</div>
+<div id="legend">
+  <h4>Edges</h4>
+  <div class="legend-item"><div class="legend-dot" style="background:rgba(148,163,184,0.8)"></div>cross-community connections</div>
+  <div class="legend-item" style="margin-top:8px; font-size:10px; color:var(--text-muted)">Edge width = connection count</div>
+  <div class="legend-item" style="font-size:10px; color:var(--text-muted)">Node size = member count</div>
+</div>
+<script id="graph-data" type="application/json">{"nodes":[{"key":"0","attributes":{"x":6.479173183441162,"y":1.3660318851470947,"size":14,"color":"#6366f1","label":"Community 0","nodeType":"community","sourceFile":"","community":0,"degree":1}},{"key":"1","attributes":{"x":4.0834879875183105,"y":2.164444923400879,"size":20.583005244258363,"color":"#22d3ee","label":"Community 1","nodeType":"community","sourceFile":"","community":1,"degree":7}},{"key":"2","attributes":{"x":6.017334461212158,"y":3.989429235458374,"size":14,"color":"#f472b6","label":"Community 2","nodeType":"community","sourceFile":"","community":2,"degree":1}},{"key":"3","attributes":{"x":3.8213088512420654,"y":4.763286113739014,"size":14,"color":"#34d399","label":"Community 3","nodeType":"community","sourceFile":"","community":3,"degree":1}},{"key":"4","attributes":{"x":2.5363950729370117,"y":6.6476311683654785,"size":15.65685424949238,"color":"#fbbf24","label":"Community 4","nodeType":"community","sourceFile":"","community":4,"degree":2}},{"key":"5","attributes":{"x":1.4354431629180908,"y":4.084667205810547,"size":14,"color":"#a78bfa","label":"Community 5","nodeType":"community","sourceFile":"","community":5,"degree":1}},{"key":"6","attributes":{"x":0.04788493365049362,"y":6.749574661254883,"size":15.65685424949238,"color":"#fb923c","label":"Community 6","nodeType":"community","sourceFile":"","community":6,"degree":2}},{"key":"7","attributes":{"x":1.7730507850646973,"y":-0.24811969697475433,"size":27.435595774162696,"color":"#2dd4bf","label":"Community 7","nodeType":"community","sourceFile":"","community":7,"degree":19}},{"key":"8","attributes":{"x":-0.5538631081581116,"y":3.392390251159668,"size":15.65685424949238,"color":"#f87171","label":"Community 8","nodeType":"community","sourceFile":"","community":8,"degree":2}},{"key":"9","attributes":{"x":-1.5346510410308838,"y":-0.6855254769325256,"size":23.2664991614216,"color":"#38bdf8","label":"Community 9","nodeType":"community","sourceFile":"","community":9,"degree":11}},{"key":"10","attributes":{"x":-2.188199996948242,"y":6.3930535316467285,"size":15.65685424949238,"color":"#c084fc","label":"Community 10","nodeType":"community","sourceFile":"","community":10,"degree":2}},{"key":"11","attributes":{"x":-2.650228500366211,"y":3.4654078483581543,"size":15.65685424949238,"color":"#4ade80","label":"Community 11","nodeType":"community","sourceFile":"","community":11,"degree":2}},{"key":"12","attributes":{"x":-4.523550987243652,"y":5.500540733337402,"size":15.65685424949238,"color":"#e879f9","label":"Community 12","nodeType":"community","sourceFile":"","community":12,"degree":2}},{"key":"13","attributes":{"x":-5.1239542961120605,"y":3.293372631072998,"size":16.928203230275507,"color":"#facc15","label":"Community 13","nodeType":"community","sourceFile":"","community":13,"degree":3}},{"key":"14","attributes":{"x":-6.978296756744385,"y":1.8766580820083618,"size":15.65685424949238,"color":"#67e8f9","label":"Community 14","nodeType":"community","sourceFile":"","community":14,"degree":2}},{"key":"15","attributes":{"x":-4.581235408782959,"y":0.7484374642372131,"size":15.65685424949238,"color":"#fb7185","label":"Community 15","nodeType":"community","sourceFile":"","community":15,"degree":2}},{"key":"16","attributes":{"x":-6.589130401611328,"y":-0.7797152400016785,"size":15.65685424949238,"color":"#a3e635","label":"Community 16","nodeType":"community","sourceFile":"","community":16,"degree":2}},{"key":"17","attributes":{"x":-6.361872673034668,"y":-3.182072639465332,"size":15.65685424949238,"color":"#818cf8","label":"Community 17","nodeType":"community","sourceFile":"","community":17,"degree":2}},{"key":"18","attributes":{"x":-4.052247524261475,"y":-2.8560893535614014,"size":15.65685424949238,"color":"#f97316","label":"Community 18","nodeType":"community","sourceFile":"","community":18,"degree":2}},{"key":"19","attributes":{"x":-4.489638805389404,"y":-5.537003040313721,"size":14,"color":"#14b8a6","label":"Community 19","nodeType":"community","sourceFile":"","community":19,"degree":1}},{"key":"20","attributes":{"x":-2.1841089725494385,"y":-4.922209739685059,"size":15.65685424949238,"color":"#6366f1","label":"Community 20","nodeType":"community","sourceFile":"","community":20,"degree":2}},{"key":"21","attributes":{"x":-1.2099062204360962,"y":-7.056177616119385,"size":15.65685424949238,"color":"#22d3ee","label":"Community 21","nodeType":"community","sourceFile":"","community":21,"degree":2}},{"key":"22","attributes":{"x":0.2947966754436493,"y":-4.208152770996094,"size":22,"color":"#f472b6","label":"Community 22","nodeType":"community","sourceFile":"","community":22,"degree":9}},{"key":"23","attributes":{"x":1.2621816396713257,"y":-6.514018535614014,"size":16.928203230275507,"color":"#34d399","label":"Community 23","nodeType":"community","sourceFile":"","community":23,"degree":3}},{"key":"24","attributes":{"x":3.713357925415039,"y":-6.090576171875,"size":21.31370849898476,"color":"#fbbf24","label":"Community 24","nodeType":"community","sourceFile":"","community":24,"degree":8}},{"key":"25","attributes":{"x":3.1168406009674072,"y":-3.850957155227661,"size":19.79795897113271,"color":"#a78bfa","label":"Community 25","nodeType":"community","sourceFile":"","community":25,"degree":6}},{"key":"26","attributes":{"x":5.893300533294678,"y":-3.8915116786956787,"size":18.94427190999916,"color":"#fb923c","label":"Community 26","nodeType":"community","sourceFile":"","community":26,"degree":5}},{"key":"27","attributes":{"x":4.850635528564453,"y":-1.5700072050094604,"size":14,"color":"#2dd4bf","label":"Community 27","nodeType":"community","sourceFile":"","community":27,"degree":1}},{"key":"28","attributes":{"x":7.045278072357178,"y":-0.9741706848144531,"size":20.583005244258363,"color":"#f87171","label":"Community 28","nodeType":"community","sourceFile":"","community":28,"degree":7}}],"edges":[{"source":"7","target":"9","attributes":{"color":"rgba(148, 163, 184, 0.6)","size":3.807354922057604,"relation":"6 connections"}},{"source":"9","target":"7","attributes":{"color":"rgba(148, 163, 184, 0.6)","size":2.584962500721156,"relation":"2 connections"}}]}</script>
+<script>
+(function() {
+  var data = JSON.parse(document.getElementById('graph-data').textContent);
+
+  // Build graphology graph — multi:true for parallel edges
+  var graph = new graphology.Graph({ type: 'directed', multi: true, allowSelfLoops: false });
+  data.nodes.forEach(function(n) { graph.addNode(n.key, n.attributes); });
+  data.edges.forEach(function(e, i) {
+    try { graph.addEdgeWithKey('e' + i, e.source, e.target, e.attributes); } catch(err) {}
+  });
+
+  var container = document.getElementById('sigma-container');
+  var hoveredNode = null;
+  var pinnedNode = null;
+  var searchTerm = '';
+  var highlightedNodes = new Set();
+  var neighbors = new Set();
+  var hoveredEdges = new Set();
+
+  var renderer = new Sigma(graph, container, {
+    renderLabels: true,
+    renderEdgeLabels: true,
+    labelSize: 13,
+    labelColor: { color: '#e6edf3' },
+    labelRenderedSizeThreshold: 0,
+    edgeLabelSize: 10,
+    defaultEdgeColor: 'rgba(148,163,184,0.4)',
+    minCameraRatio: 0.1,
+    maxCameraRatio: 10,
+    nodeReducer: function(node, data) {
+      var res = Object.assign({}, data);
+      var dimmed = false;
+
+      // Text search filter (independent — dims non-matching nodes)
+      if (searchTerm && !highlightedNodes.has(node)) {
+        dimmed = true;
+      }
+      // Hover/pin filter
+      var activeNode = hoveredNode || pinnedNode;
+      if (activeNode && activeNode !== node && !neighbors.has(node)) {
+        dimmed = true;
+      }
+
+      if (dimmed) {
+        res.color = '#21262d';
+        res.label = '';
+        res.size = Math.max(3, data.size * 0.5);
+      }
+      if (!dimmed && (activeNode === node || (searchTerm && highlightedNodes.has(node)))) {
+        res.highlighted = true;
+        res.size = data.size * 1.2;
+      }
+      return res;
+    },
+    edgeReducer: function(edge, data) {
+      var res = Object.assign({}, data);
+      var src = graph.source(edge);
+      var tgt = graph.target(edge);
+
+      // Text search filter: dim edges where neither endpoint matches
+      if (searchTerm) {
+        if (!highlightedNodes.has(src) && !highlightedNodes.has(tgt)) {
+          res.color = 'rgba(48,54,61,0.1)';
+          res.size = 0.1;
+          return res;
+        }
+      }
+
+      // Hover/pin: dim edges not connected to active node
+      var activeNode = hoveredNode || pinnedNode;
+      if (activeNode) {
+        if (!hoveredEdges.has(edge)) {
+          res.color = 'rgba(48,54,61,0.15)';
+          res.size = 0.3;
+        }
+      }
+
+      return res;
+    },
+    defaultDrawNodeHover: function(context, data, settings) {
+      var size = data.size;
+      var label = data.label;
+
+      // Highlight ring
+      context.beginPath();
+      context.arc(data.x, data.y, size + 3, 0, Math.PI * 2);
+      context.closePath();
+      context.lineWidth = 2;
+      context.strokeStyle = data.color || '#6366f1';
+      context.stroke();
+
+      if (!label) return;
+
+      var fontSize = settings.labelSize || 14;
+      context.font = (settings.labelWeight || 'bold') + ' ' + fontSize + 'px ' + (settings.labelFont || 'sans-serif');
+      var textWidth = context.measureText(label).width;
+      var pad = 6;
+      var lx = Math.round(data.x + size + 6);
+      var ly = Math.round(data.y + fontSize / 3);
+
+      // Dark background with rounded rect
+      var bx = lx - pad, by = ly - fontSize, bw = textWidth + pad * 2, bh = fontSize + pad + 2, br = 4;
+      context.fillStyle = '#161b22';
+      context.beginPath();
+      context.moveTo(bx + br, by);
+      context.lineTo(bx + bw - br, by);
+      context.quadraticCurveTo(bx + bw, by, bx + bw, by + br);
+      context.lineTo(bx + bw, by + bh - br);
+      context.quadraticCurveTo(bx + bw, by + bh, bx + bw - br, by + bh);
+      context.lineTo(bx + br, by + bh);
+      context.quadraticCurveTo(bx, by + bh, bx, by + bh - br);
+      context.lineTo(bx, by + br);
+      context.quadraticCurveTo(bx, by, bx + br, by);
+      context.closePath();
+      context.fill();
+      context.strokeStyle = '#30363d';
+      context.lineWidth = 1;
+      context.stroke();
+
+      // Label text
+      context.fillStyle = '#e6edf3';
+      context.fillText(label, lx, ly);
+    },
+  });
+
+  // ─── Search ───
+  var searchInput = document.getElementById('search');
+  var searchTimeout;
+  searchInput.addEventListener('input', function(ev) {
+    clearTimeout(searchTimeout);
+    searchTimeout = setTimeout(function() {
+      searchTerm = ev.target.value.trim().toLowerCase();
+      highlightedNodes.clear();
+      if (searchTerm) {
+        graph.forEachNode(function(node, attrs) {
+          if (attrs.label && attrs.label.toLowerCase().includes(searchTerm)) {
+            highlightedNodes.add(node);
+          }
+        });
+      }
+      renderer.refresh();
+      if (highlightedNodes.size === 1) {
+        var nid = highlightedNodes.values().next().value;
+        var pos = graph.getNodeAttributes(nid);
+        renderer.getCamera().animate({ x: pos.x, y: pos.y, ratio: 0.8 }, { duration: 300 });
+      }
+    }, 150);
+  });
+
+  // ─── Info Panel ───
+  var infoPanel = document.getElementById('info-panel');
+  var infoLabel = document.getElementById('info-label');
+  var infoSummary = document.getElementById('info-summary');
+  var infoDetails = document.getElementById('info-details');
+
+  function setActiveNeighbors(node) {
+    neighbors.clear();
+    hoveredEdges.clear();
+    if (node) {
+      graph.forEachNeighbor(node, function(n) { neighbors.add(n); });
+      graph.forEachEdge(node, function(edge) { hoveredEdges.add(edge); });
+    }
+  }
+
+  function showCommunityInfo(nodeId) {
+    var attrs = graph.getNodeAttributes(nodeId);
+    infoLabel.textContent = attrs.label;
+    infoSummary.textContent = '';
+    infoDetails.innerHTML = '<div class="detail-row"><span class="label">Members</span><span class="value">' + attrs.degree + '</span></div>';
+    infoPanel.classList.add('visible');
+  }
+
+  renderer.on('enterNode', function(e) {
+    hoveredNode = e.node;
+    setActiveNeighbors(e.node);
+    showCommunityInfo(e.node);
+    renderer.refresh();
+    container.style.cursor = 'pointer';
+  });
+
+  renderer.on('leaveNode', function() {
+    hoveredNode = null;
+    if (pinnedNode) {
+      setActiveNeighbors(pinnedNode);
+      showCommunityInfo(pinnedNode);
+    } else {
+      setActiveNeighbors(null);
+      infoPanel.classList.remove('visible');
+    }
+    renderer.refresh();
+    container.style.cursor = 'default';
+  });
+
+  renderer.on('clickNode', function(e) {
+    if (pinnedNode === e.node) {
+      pinnedNode = null;
+      if (!hoveredNode) {
+        setActiveNeighbors(null);
+        infoPanel.classList.remove('visible');
+      }
+    } else {
+      pinnedNode = e.node;
+      setActiveNeighbors(e.node);
+      showCommunityInfo(e.node);
+    }
+    renderer.refresh();
+  });
+
+  renderer.on('clickStage', function() {
+    if (pinnedNode) {
+      pinnedNode = null;
+      if (!hoveredNode) {
+        setActiveNeighbors(null);
+        infoPanel.classList.remove('visible');
+      }
+      renderer.refresh();
+    }
+  });
+})();
+</script>
+</body>
+</html>

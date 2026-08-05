@@ -1,0 +1,14 @@
+output: reponova-out
+
+repos:
+  - name: jiayan-miniprogram
+    path: ./jiayan-miniprogram
+  - name: jiayan-tests
+    path: ./jiayan-tests
+
+plugins:
+  json:
+    maxGenericKeys: 200
+    enabled: true
+  javascript:
+    enabled: true

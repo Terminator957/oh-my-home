@@ -1,0 +1,18 @@
+{
+  "file_path": "jiayan-miniprogram/pages/dish/dish.js",
+  "line_count": 36,
+  "imports": [
+    {
+      "module": "../../utils/data",
+      "names": [
+        "findDish",
+        "getRating",
+        "setRating",
+        "addToday"
+      ],
+      "line": 1
+    }
+  ],
+  "functions": [],
+  "classes": []
+}

@@ -1,0 +1,17 @@
+{
+  "file_path": "jiayan-miniprogram/pages/swipe/swipe.js",
+  "line_count": 56,
+  "imports": [
+    {
+      "module": "../../utils/data",
+      "names": [
+        "DISHES",
+        "starText",
+        "setToday"
+      ],
+      "line": 1
+    }
+  ],
+  "functions": [],
+  "classes": []
+}

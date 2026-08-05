@@ -1,0 +1,18 @@
+{
+  "file_path": "jiayan-miniprogram/pages/guest/guest.js",
+  "line_count": 36,
+  "imports": [
+    {
+      "module": "../../utils/data",
+      "names": [
+        "DISHES",
+        "starText",
+        "getGuestCart",
+        "setGuestCart"
+      ],
+      "line": 1
+    }
+  ],
+  "functions": [],
+  "classes": []
+}

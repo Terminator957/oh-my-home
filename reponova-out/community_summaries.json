@@ -1,0 +1,169 @@
+[
+  {
+    "id": "7",
+    "label": "Community 7",
+    "nodeCount": 19,
+    "summary": "19 nodes cluster. Centered around dish.js, mood.js, today.js in jiayan-miniprogram/utils. Spans jiayan-miniprogram, jiayan-tests.",
+    "hub_nodes": [
+      "dish.js",
+      "mood.js",
+      "today.js",
+      "wheel.js",
+      "data.js"
+    ],
+    "primary_path": "jiayan-miniprogram/utils",
+    "repos": [
+      "jiayan-miniprogram",
+      "jiayan-tests"
+    ]
+  },
+  {
+    "id": "9",
+    "label": "Community 9",
+    "nodeCount": 11,
+    "summary": "11 nodes cluster. Centered around guest-cart.js, guest.js, home.js in jiayan-miniprogram/utils. Spans jiayan-miniprogram.",
+    "hub_nodes": [
+      "guest-cart.js",
+      "guest.js",
+      "home.js",
+      "library.js",
+      "swipe.js"
+    ],
+    "primary_path": "jiayan-miniprogram/utils",
+    "repos": [
+      "jiayan-miniprogram"
+    ]
+  },
+  {
+    "id": "22",
+    "label": "Community 22",
+    "nodeCount": 9,
+    "summary": "9 nodes cluster. Centered around project.config.json, compileType, packOptions in jiayan-miniprogram. Spans jiayan-miniprogram.",
+    "hub_nodes": [
+      "project.config.json",
+      "compileType",
+      "packOptions",
+      "appid",
+      "projectname"
+    ],
+    "primary_path": "jiayan-miniprogram",
+    "repos": [
+      "jiayan-miniprogram"
+    ]
+  },
+  {
+    "id": "24",
+    "label": "Community 24",
+    "nodeCount": 8,
+    "summary": "8 nodes cluster. Centered around TEST-REPORT.md, ,  in jiayan-tests. Spans jiayan-tests.",
+    "hub_nodes": [
+      "TEST-REPORT.md",
+      "",
+      "",
+      "7 nodetest",
+      "5 nodetest  wx storage mock"
+    ],
+    "primary_path": "jiayan-tests",
+    "repos": [
+      "jiayan-tests"
+    ]
+  },
+  {
+    "id": "1",
+    "label": "Community 1",
+    "nodeCount": 7,
+    "summary": "7 nodes cluster. Centered around app.json, pages, window in jiayan-miniprogram. Spans jiayan-miniprogram.",
+    "hub_nodes": [
+      "app.json",
+      "pages",
+      "window",
+      "tabBar",
+      "style"
+    ],
+    "primary_path": "jiayan-miniprogram",
+    "repos": [
+      "jiayan-miniprogram"
+    ]
+  },
+  {
+    "id": "28",
+    "label": "Community 28",
+    "nodeCount": 7,
+    "summary": "7 nodes cluster. Centered around ui.test.js, ok, sleep in jiayan-tests. Spans jiayan-tests.",
+    "hub_nodes": [
+      "ui.test.js",
+      "ok",
+      "sleep",
+      "getAvailablePort",
+      "launchAutomator"
+    ],
+    "primary_path": "jiayan-tests",
+    "repos": [
+      "jiayan-tests"
+    ]
+  },
+  {
+    "id": "25",
+    "label": "Community 25",
+    "nodeCount": 6,
+    "summary": "6 nodes cluster. Centered around package-lock.json, name, version in jiayan-tests. Spans jiayan-tests.",
+    "hub_nodes": [
+      "package-lock.json",
+      "name",
+      "version",
+      "lockfileVersion",
+      "requires"
+    ],
+    "primary_path": "jiayan-tests",
+    "repos": [
+      "jiayan-tests"
+    ]
+  },
+  {
+    "id": "26",
+    "label": "Community 26",
+    "nodeCount": 5,
+    "summary": "5 nodes cluster. Centered around jiayan-tests, test:unit, test:interface in jiayan-tests. Spans jiayan-tests.",
+    "hub_nodes": [
+      "jiayan-tests",
+      "test:unit",
+      "test:interface",
+      "test:ui",
+      "jiayan-tests"
+    ],
+    "primary_path": "jiayan-tests",
+    "repos": [
+      "jiayan-tests"
+    ]
+  },
+  {
+    "id": "13",
+    "label": "Community 13",
+    "nodeCount": 3,
+    "summary": "3 nodes cluster. Centered around host-order.js, ORDERS, SHOPPING in jiayan-miniprogram/pages/host-order. Spans jiayan-miniprogram.",
+    "hub_nodes": [
+      "host-order.js",
+      "ORDERS",
+      "SHOPPING"
+    ],
+    "primary_path": "jiayan-miniprogram/pages/host-order",
+    "repos": [
+      "jiayan-miniprogram"
+    ]
+  },
+  {
+    "id": "23",
+    "label": "Community 23",
+    "nodeCount": 3,
+    "summary": "3 nodes cluster. Centered around sitemap.json, desc, rules in jiayan-miniprogram. Spans jiayan-miniprogram.",
+    "hub_nodes": [
+      "sitemap.json",
+      "desc",
+      "rules"
+    ],
+    "primary_path": "jiayan-miniprogram",
+    "repos": [
+      "jiayan-miniprogram"
+    ]
+  }
+]

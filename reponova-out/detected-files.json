@@ -1,0 +1,51 @@
+{
+  "workspace": "/var/folders/th/qdbbd6j16g38kmqtlkj07dkm0000gn/T/rn-build-1785898505614/workspace",
+  "files": {
+    "document": [
+      "jiayan-miniprogram/images/dishes/CREDITS.md",
+      "jiayan-tests/TEST-REPORT.md"
+    ],
+    "json": [
+      "jiayan-miniprogram/app.json",
+      "jiayan-miniprogram/pages/add/add.json",
+      "jiayan-miniprogram/pages/analysis/analysis.json",
+      "jiayan-miniprogram/pages/dish/dish.json",
+      "jiayan-miniprogram/pages/guest-cart/guest-cart.json",
+      "jiayan-miniprogram/pages/guest/guest.json",
+      "jiayan-miniprogram/pages/home/home.json",
+      "jiayan-miniprogram/pages/host-order/host-order.json",
+      "jiayan-miniprogram/pages/library/library.json",
+      "jiayan-miniprogram/pages/mood/mood.json",
+      "jiayan-miniprogram/pages/swipe/swipe.json",
+      "jiayan-miniprogram/pages/today/today.json",
+      "jiayan-miniprogram/pages/us/us.json",
+      "jiayan-miniprogram/pages/wheel/wheel.json",
+      "jiayan-miniprogram/project.config.json",
+      "jiayan-miniprogram/sitemap.json",
+      "jiayan-tests/package-lock.json",
+      "jiayan-tests/package.json"
+    ],
+    "javascript": [
+      "jiayan-miniprogram/app.js",
+      "jiayan-miniprogram/pages/add/add.js",
+      "jiayan-miniprogram/pages/analysis/analysis.js",
+      "jiayan-miniprogram/pages/dish/dish.js",
+      "jiayan-miniprogram/pages/guest-cart/guest-cart.js",
+      "jiayan-miniprogram/pages/guest/guest.js",
+      "jiayan-miniprogram/pages/home/home.js",
+      "jiayan-miniprogram/pages/host-order/host-order.js",
+      "jiayan-miniprogram/pages/library/library.js",
+      "jiayan-miniprogram/pages/mood/mood.js",
+      "jiayan-miniprogram/pages/swipe/swipe.js",
+      "jiayan-miniprogram/pages/today/today.js",
+      "jiayan-miniprogram/pages/us/us.js",
+      "jiayan-miniprogram/pages/wheel/wheel.js",
+      "jiayan-miniprogram/utils/data.js",
+      "jiayan-tests/interface.test.js",
+      "jiayan-tests/ui.test.js",
+      "jiayan-tests/unit.test.js",
+      "jiayan-tests/wheel-spin.test.js",
+      "jiayan-tests/wx-mock.js"
+    ]
+  }
+}
