@@ -44,8 +44,8 @@ Page({
 
     const animation = wx.createAnimation({ duration: dur1, timingFunction: 'ease-in' });
     animation.rotate(d1).step();
-    animation.rotate(d2 - d1).step({ duration: dur2, timingFunction: 'linear' });
-    animation.rotate(totalDelta - d2).step({ duration: dur3, timingFunction: 'ease-out' });
+    animation.rotate(d2).step({ duration: dur2, timingFunction: 'linear' });
+    animation.rotate(totalDelta).step({ duration: dur3, timingFunction: 'ease-out' });
 
     this.setData({ animationData: animation.export() });
 

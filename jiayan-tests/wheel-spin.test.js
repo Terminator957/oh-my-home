@@ -3,7 +3,14 @@ const assert = require('node:assert');
 const { test, beforeEach } = require('node:test');
 require('./wx-mock');
 // mock for testing animation export
-wx.createAnimation = function(){ return { rotate:function(){return this}, step:function(){return this}, export:function(){return {}} } };
+let animationCalls = [];
+wx.createAnimation = function(){
+  return {
+    rotate(angle) { animationCalls.push({ type: 'rotate', angle }); return this; },
+    step(options) { animationCalls.push({ type: 'step', options }); return this; },
+    export() { return {}; }
+  };
+};
 
 // 模拟微信 Page 注册与 setData
 let pageData = {};
@@ -32,9 +39,25 @@ const wheelMod = require('../jiayan-miniprogram/pages/wheel/wheel');
 
 beforeEach(() => {
   wx._reset();
+  animationCalls = [];
   // 重新加载以重置状态
   delete require.cache[require.resolve('../jiayan-miniprogram/pages/wheel/wheel')];
   const m = require('../jiayan-miniprogram/pages/wheel/wheel');
+});
+
+test('spin 三段动画使用递增的累计顺时针角度', () => {
+  const inst = pageInstance;
+  inst.data.spinning = false;
+  inst.data.angle = 0;
+
+  inst.spin();
+
+  const rotateAngles = animationCalls.filter(call => call.type === 'rotate').map(call => call.angle);
+  assert.strictEqual(rotateAngles.length, 3, '应创建三段旋转动画');
+  assert.ok(rotateAngles[0] < rotateAngles[1] && rotateAngles[1] < rotateAngles[2],
+    '三段 rotate 目标角度必须严格递增，避免动画回转');
+  assert.strictEqual(rotateAngles[0], rotateAngles[2] * 0.15, '第一段应为总角度的 15%');
+  assert.strictEqual(rotateAngles[1], rotateAngles[2] * 0.75, '第二段应为总角度的 75%');
 });
 
 test('候选池 = 想吃 + 常做，排除仅做过', () => {
