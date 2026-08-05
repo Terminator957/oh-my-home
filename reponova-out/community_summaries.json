@@ -86,8 +86,8 @@
     ]
   },
   {
-    "id": "28",
-    "label": "Community 28",
+    "id": "27",
+    "label": "Community 27",
     "nodeCount": 7,
     "summary": "7 nodes cluster. Centered around ui.test.js, ok, sleep in jiayan-tests. Spans jiayan-tests.",
     "hub_nodes": [

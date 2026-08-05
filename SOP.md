@@ -1,13 +1,13 @@
 # oh-my-home - repository-baseline-release SOP
 
-- Version: 1.2.1
+- Version: 1.3.0
 - Status: approved
 - Effective date: 2026-08-05
 - Owner: ict
 
 ## Purpose
 
-将已验证的小程序修复、可复现的项目基线和 RepoNova 项目全视图提交并推送至 origin/main，同时提供简洁使用说明。
+维护可复现的项目基线和 RepoNova 项目全视图，并明确新成员每次提交源码后必须刷新并提交图谱。
 
 ## Subject
 
@@ -66,7 +66,7 @@
 
 ## Requirements
 
-- **REQ-001** README 必须给出小程序打开方式、三类测试命令、RepoNova 构建与查看方式，以及不提交缓存和临时状态的边界。
+- **REQ-001** README 必须给出小程序打开方式、三类测试命令、RepoNova 构建与查看方式，并明确新成员每次完成新增或修改源码的提交后，必须运行 RepoNova 刷新并审查、提交版本化图谱产物；缓存和临时状态不得提交。
 - **REQ-002** 版本库必须纳入 reponova.yml 及可离线查看的图谱、报告、索引、节点概要和向量产物；reponova-out/.cache 必须被忽略。
 - **REQ-003** 既有修复和新基线必须通过适用的 Node 测试、RepoNova build/check 与 Git 差异检查；UI 测试必须使用 CLI 自动化端口而非普通 IDE HTTP 端口。
 - **REQ-004** 只提交用户授权的任务文件，保留三个任务前 DeepSeek 临时状态文件未跟踪，并将完成结果推送到 origin/main。
@@ -93,11 +93,11 @@
 ### FLOW-R-001 刷新图谱
 
 - Actor: ROLE-001
-- Precondition: 源码有更新
-- Input: 运行 reponova build
-- Action: 使用 reponova.yml 重建 reponova-out
-- Data changes: 更新图谱产物，忽略 .cache
-- Output: 新的项目视图可被复核后提交
+- Precondition: 新成员已完成新增或修改源码的提交
+- Input: 在项目根运行 reponova build 和 reponova check
+- Action: 使用 reponova.yml 重建 reponova-out，审查版本化产物并将其与源码变更一并提交
+- Data changes: 更新版本化图谱产物，忽略 .cache
+- Output: 每个源码提交后的项目全视图均可复核
 - Next state: GRAPH_REFRESHED
 - Acceptance: ACC-002, ACC-003
 
@@ -115,7 +115,7 @@
 
 ## Acceptance
 
-- **ACC-001** 根目录 README 的命令和路径覆盖打开小程序、安装测试依赖、三类测试与 RepoNova 图谱查看。
+- **ACC-001** 根目录 README 的命令和路径覆盖打开小程序、安装测试依赖、三类测试、RepoNova 图谱查看，以及每次新增或修改源码的提交后刷新、审查并提交版本化图谱产物的固定流程。
 - **ACC-002** RepoNova 输出包含配置、图谱、报告、社区视图、搜索索引、节点概要与 outlines，且 .cache 被忽略。
 - **ACC-003** 单元、接口、真实模拟器 UI 测试，以及 RepoNova check 全部通过；UI 测试能通过 CLI 自动化端口启动并执行页面断言。
 - **ACC-004** git diff --check 无错误；暂存区仅含既有修复、README、RepoNova 配置和非缓存产物、SOP 派生文档与 .gitignore。
@@ -169,3 +169,4 @@
 
 - **** V1.2.0：依据任务 codex-20260805-093938-147c739e 的明确请求，发布已验证修复、项目基线和 RepoNova 图谱；替代此前仅覆盖 WXML 压缩修复的 SOP。
 - **** V1.2.1：运行时证据显示 ui.test.js 错将普通 IDE HTTP 端口用作自动化 WebSocket；纳入仅限启动/端口兼容性的测试修复，保留全部页面断言。
+- **** V1.3.0：依据任务 codex-20260805-143958-3a2e9d62 的明确请求，新增新成员每次源码提交后必须刷新、审查并提交 RepoNova 版本化图谱产物的基线。

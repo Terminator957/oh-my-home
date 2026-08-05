@@ -1,6 +1,6 @@
 # Graph Architecture Report
 
-Generated: 2026-08-05T02:55:05.859Z
+Generated: 2026-08-05T06:50:48.052Z
 
 ## Overall Stats
 
@@ -63,7 +63,7 @@ Generated: 2026-08-05T02:55:05.859Z
 - Repos: jiayan-miniprogram
 - Key members: app.json (6), lazyCodeLoading (1), pages (1), sitemapLocation (1), style (1)
 
-### Community 28
+### Community 27
 
 - Size: 7
 - Repos: jiayan-tests

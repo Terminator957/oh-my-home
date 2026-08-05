@@ -19,14 +19,14 @@
 
 3. 查看项目全视图：在项目根目录运行 `reponova check`；直接在浏览器打开 `reponova-out/graph.html`，社区视图位于 `reponova-out/graph_communities.html`，架构摘要位于 `reponova-out/report.md`。
 
-4. 源码变更后刷新图谱：
+4. 每次完成新增或修改源码的提交后，必须刷新图谱：
 
    ```bash
    reponova build
    reponova check
    ```
 
-   本仓库使用 `reponova.yml`，覆盖 `jiayan-miniprogram` 和 `jiayan-tests`。提交生成的图谱、报告、索引、节点概要和 outlines；`reponova-out/.cache/` 是本地缓存，不提交。
+   本仓库使用 `reponova.yml`，覆盖 `jiayan-miniprogram` 和 `jiayan-tests`。新成员每次源码提交后都必须运行上述命令，审查并提交生成的图谱、报告、索引、节点概要和 outlines；`reponova-out/.cache/` 是本地缓存，不提交。
 
 ## 项目结构与关键路径
 

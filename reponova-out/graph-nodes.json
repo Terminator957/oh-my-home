@@ -399,6 +399,17 @@
       "start_line": 1
     },
     {
+      "id": "jiayan-tests/ui.test.js",
+      "label": "ui.test.js",
+      "type": "module",
+      "file_type": "code",
+      "source_file": "jiayan-tests/ui.test.js",
+      "community": "0",
+      "norm_label": "ui.test.js",
+      "repo": "jiayan-tests",
+      "start_line": 1
+    },
+    {
       "id": "jiayan-tests/unit.test.js",
       "label": "unit.test.js",
       "type": "module",
@@ -428,17 +439,6 @@
       "source_file": "jiayan-tests/wx-mock.js",
       "community": "0",
       "norm_label": "wx-mock.js",
-      "repo": "jiayan-tests",
-      "start_line": 1
-    },
-    {
-      "id": "jiayan-tests/ui.test.js",
-      "label": "ui.test.js",
-      "type": "module",
-      "file_type": "code",
-      "source_file": "jiayan-tests/ui.test.js",
-      "community": "0",
-      "norm_label": "ui.test.js",
       "repo": "jiayan-tests",
       "start_line": 1
     },
@@ -2229,7 +2229,7 @@
   ],
   "metadata": {
     "reponova_version": "0.7.1",
-    "built_at": "2026-08-05T02:55:05.745Z",
+    "built_at": "2026-08-05T06:50:47.945Z",
     "config_dir": "..",
     "repos": [
       {

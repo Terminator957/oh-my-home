@@ -1,7 +1,7 @@
 {
-  "objective": "将已验证的小程序修复、可复现的项目基线和 RepoNova 项目全视图提交并推送至 origin/main，同时提供简洁使用说明。",
+  "objective": "维护可复现的项目基线和 RepoNova 项目全视图，并明确新成员每次提交源码后必须刷新并提交图谱。",
   "expected_behavior": [
-    "REQ-001: README 必须给出小程序打开方式、三类测试命令、RepoNova 构建与查看方式，以及不提交缓存和临时状态的边界。",
+    "REQ-001: README 必须给出小程序打开方式、三类测试命令、RepoNova 构建与查看方式，并明确新成员每次完成新增或修改源码的提交后，必须运行 RepoNova 刷新并审查、提交版本化图谱产物；缓存和临时状态不得提交。",
     "REQ-002: 版本库必须纳入 reponova.yml 及可离线查看的图谱、报告、索引、节点概要和向量产物；reponova-out/.cache 必须被忽略。",
     "REQ-003: 既有修复和新基线必须通过适用的 Node 测试、RepoNova build/check 与 Git 差异检查；UI 测试必须使用 CLI 自动化端口而非普通 IDE HTTP 端口。",
     "REQ-004: 只提交用户授权的任务文件，保留三个任务前 DeepSeek 临时状态文件未跟踪，并将完成结果推送到 origin/main。"
@@ -41,7 +41,7 @@
     "criteria": [
       {
         "id": "ACC-001",
-        "text": "根目录 README 的命令和路径覆盖打开小程序、安装测试依赖、三类测试与 RepoNova 图谱查看。",
+        "text": "根目录 README 的命令和路径覆盖打开小程序、安装测试依赖、三类测试、RepoNova 图谱查看，以及每次新增或修改源码的提交后刷新、审查并提交版本化图谱产物的固定流程。",
         "method": "文档静态审查",
         "evidence": "README.md",
         "requirement_ids": [
@@ -159,7 +159,7 @@
   "source": {
     "project": "oh-my-home",
     "feature": "repository-baseline-release",
-    "sop_version": "1.2.1",
+    "sop_version": "1.3.0",
     "sop_status": "approved",
     "risk_level": "low"
   }
