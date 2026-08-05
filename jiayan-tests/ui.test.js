@@ -8,8 +8,8 @@ try {
   if (cls && cls.prototype) cls.prototype.checkVersion = async () => {};
 } catch (e) {}
 
-const CLI = 'C:\\Program Files (x86)\\Tencent\\微信web开发者工具\\cli.bat';
-const PROJECT = 'D:\\Coding\\workplace\\Claude\\jiayan-miniprogram';
+const CLI = '/Applications/wechatwebdevtools.app/Contents/MacOS/cli';
+const PROJECT = '/Users/ict/Documents/oh-my-home/jiayan-miniprogram';
 
 let passed = 0, failed = 0;
 function ok(name, cond) {
@@ -51,10 +51,13 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
     // ---------- 菜谱库筛选 ----------
     page = await mini.reLaunch('/pages/library/library');
     await sleep(600);
+    page = await mini.currentPage();
     const allCount = (await page.data()).list.length;
     const chips = await page.$$('view.chip');
     for (const c of chips) { if ((await c.text()).startsWith('想吃')) { await c.tap(); break; } }
     await sleep(400);
+    // 筛选后重新获取当前页面引用，避免访问已失效的页面节点
+    page = await mini.currentPage();
     const wantList = (await page.data()).list;
     ok('菜谱库「想吃」筛选生效 (' + allCount + ' → ' + wantList.length + ' 道)', wantList.length < allCount && wantList.every(d => d.status === '想吃'));
 

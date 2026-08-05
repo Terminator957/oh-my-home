@@ -1,100 +1,144 @@
 {
-  "objective": "优化抽一道页面的转盘反馈，使抽取过程有清晰的加速、匀速和减速节奏，并在停下后突出展示已抽中的菜品。",
+  "objective": "恢复微信开发者工具模拟器中菜谱库页面的组件解析能力，排除新增 WXML 压缩配置造成的空白页和 wx://not-found 风险。",
   "expected_behavior": [
-    "REQ-001: 用户点击中心转盘按钮后，盘面必须有可见的完整旋转并在选中扇区正对固定指针时停止；旋转期间不得重复触发新的抽取。",
-    "REQ-002: 旋转期间必须给出进行中反馈；停止后必须以视觉动画突出选中菜名和结果区域。",
-    "REQ-003: 动画只能使用 transform、opacity 等合成属性；系统设置 prefers-reduced-motion 时必须缩短或取消装饰性动画，同时保持结果正确可用。",
-    "REQ-004: 原有随机范围、候选池、确认写入今日菜单、未抽取时确认提示和重新抽取能力必须保持。"
+    "REQ-001: setting.minifyWXML 必须被移除或显式设为 false，且 JSON 保持可被微信开发者工具读取。",
+    "REQ-002: 不得改变 app.json 页面路由、菜谱库业务源码、appid 或其他构建设置。",
+    "REQ-003: 单元、接口和真实模拟器 UI 全量测试必须通过；菜谱库的想吃筛选必须仍可运行。",
+    "REQ-004: 验收通过后必须上传体验版，并仅提交本任务修改与任务文档后推送 origin/main。"
   ],
   "scope": {
     "allowed": [
-      "wheel 页面及独立新增的转盘回归测试文件"
+      "jiayan-miniprogram/project.config.json",
+      "jiayan-tests/ui.test.js",
+      "SOP.json",
+      "SOP.md",
+      "development-contract.json"
     ],
     "forbidden": [
-      "候选菜品池、随机选择规则和今日菜单存储逻辑",
-      "页面导航、全局主题、任务开始前已修改的 project.config.json 与 ui.test.js",
-      "新增第三方动画依赖或改变其他页面"
+      "业务页面 WXML、JS、WXSS 与菜品数据修改",
+      "新增依赖、页面路由或项目 appid 修改",
+      "未授权的任务前脏文件与 RepoNova 产物提交"
     ]
   },
   "constraints": [
-    "不得编辑任务基线脏文件",
-    "不得新增第三方依赖",
-    "不得改变业务随机与存储逻辑",
-    "使用原生微信小程序能力"
+    "仅允许关闭 minifyWXML",
+    "ui.test.js 仅允许在 reLaunch 后刷新 automator 当前页面引用",
+    "不得新增依赖",
+    "不得提交 reponova.yml 或 reponova-out"
   ],
   "acceptance": {
     "ids": [
       "ACC-001",
       "ACC-002",
-      "ACC-003"
+      "ACC-003",
+      "ACC-004",
+      "ACC-005"
     ],
     "criteria": [
       {
         "id": "ACC-001",
-        "text": "转盘可启动、旋转时锁定、停止后给出有效结果，且目标角度仍与随机索引匹配。",
-        "method": "独立小程序自动化和人工源码检查",
-        "evidence": "wheel-spin.test.js、微信开发者工具运行时数据与截图",
+        "text": "配置是有效 JSON，minifyWXML 未开启，且配置差异只包含本项开关的关闭。",
+        "method": "Node JSON 解析和 Git diff 检查",
+        "evidence": "node -e 配置断言与 git diff 输出",
         "requirement_ids": [
           "REQ-001",
-          "REQ-004"
+          "REQ-002"
         ],
-        "evidence_level": "e2e",
+        "evidence_level": "static",
         "required_artifacts": [
-          "wheel-spin.test.js 输出",
-          "微信开发者工具转盘运行时数据"
+          "配置断言输出",
+          "Git diff"
         ],
         "substitution": "forbidden",
         "critical": true,
-        "status": "passed"
+        "status": "not_run"
       },
       {
         "id": "ACC-002",
-        "text": "进行中、结果揭示和减少动态效果规则均存在，且动画只使用合成属性。",
-        "method": "WXSS/WXML 静态检查与微信模拟器截图",
-        "evidence": "源码定位和 375px 微信模拟器截图",
+        "text": "npm run test:unit 与 npm run test:interface 均通过。",
+        "method": "Node 测试",
+        "evidence": "测试命令输出",
         "requirement_ids": [
-          "REQ-002",
+          "REQ-003"
+        ],
+        "evidence_level": "unit",
+        "required_artifacts": [
+          "unit 输出",
+          "interface 输出"
+        ],
+        "substitution": "forbidden",
+        "critical": true,
+        "status": "not_run"
+      },
+      {
+        "id": "ACC-003",
+        "text": "npm run test:ui 连接真实微信开发者工具模拟器，菜谱库筛选和全套 UI 用例通过。",
+        "method": "miniprogram-automator 真实模拟器测试",
+        "evidence": "UI 测试输出与模拟器运行时状态",
+        "requirement_ids": [
+          "REQ-003"
+        ],
+        "evidence_level": "e2e",
+        "required_artifacts": [
+          "UI 测试输出"
+        ],
+        "substitution": "forbidden",
+        "critical": true,
+        "status": "not_run"
+      },
+      {
+        "id": "ACC-004",
+        "text": "真实微信开发者工具模拟器中菜谱库页面有可见内容，想吃筛选后的列表可见且无 wx://not-found 组件错误。",
+        "method": "模拟器截图与运行时检查",
+        "evidence": "菜谱库筛选后截图和模拟器控制台检查",
+        "requirement_ids": [
           "REQ-003"
         ],
         "evidence_level": "visual",
         "required_artifacts": [
-          "375px 空闲、旋转和结果截图"
+          "菜谱库截图"
         ],
         "substitution": "forbidden",
         "critical": true,
-        "status": "passed"
+        "status": "not_run"
       },
       {
-        "id": "ACC-003",
-        "text": "单元和接口回归通过，且未抽取确认不写入今日菜单。",
-        "method": "Node 测试",
-        "evidence": "npm run test:unit 与 npm run test:interface 输出",
+        "id": "ACC-005",
+        "text": "体验版上传成功；RepoNova 图谱刷新成功；经独立 diff 审查后任务文件已提交并推送 origin/main。",
+        "method": "微信 CLI、RepoNova build、Git",
+        "evidence": "上传输出、reponova-out/build-manifest.json、commit SHA 与 push 输出",
         "requirement_ids": [
+          "REQ-002",
           "REQ-004"
         ],
-        "evidence_level": "unit",
+        "evidence_level": "runtime",
         "required_artifacts": [
-          "测试输出"
+          "上传输出",
+          "RepoNova 构建输出",
+          "Git 提交和推送输出"
         ],
         "substitution": "forbidden",
         "critical": true,
-        "status": "passed"
+        "status": "not_run"
       }
     ],
     "commands": [
       "cd jiayan-tests && npm run test:unit",
       "cd jiayan-tests && npm run test:interface",
-      "cd jiayan-tests && npm run test:ui"
+      "cd jiayan-tests && npm run test:ui",
+      "/Users/ict/.hermes/node/bin/reponova build"
     ]
   },
   "governance": {
     "subject": {
-      "type": "feature",
-      "target": "微信小程序 pages/wheel 的抽菜转盘交互",
-      "boundary": "仅负责从点击“转”到结果可确认的前端呈现；随机结果和 addToday 持久化保持现有契约。"
+      "type": "defect",
+      "target": "微信小程序 project.config.json 中 WXML 压缩开关",
+      "boundary": "只改变开发者工具构建期的 WXML 压缩行为；菜谱库的页面路由、数据与业务交互保持不变。"
     },
     "authority": true,
-    "supersedes": [],
+    "supersedes": [
+      "wheel-spin-animation SOP 1.0.2"
+    ],
     "derived_contracts": [
       "development-contract.json"
     ],
@@ -109,8 +153,8 @@
   },
   "source": {
     "project": "oh-my-home",
-    "feature": "wheel-spin-animation",
-    "sop_version": "1.0.2",
+    "feature": "minify-wxml-library-recovery",
+    "sop_version": "1.0.0",
     "sop_status": "approved",
     "risk_level": "medium"
   }

@@ -19,7 +19,8 @@
       "ignore": [],
       "disablePlugins": [],
       "outputPath": ""
-    }
+    },
+    "minifyWXML": false
   },
   "libVersion": "latest",
   "condition": {},
