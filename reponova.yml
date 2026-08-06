@@ -5,6 +5,8 @@ repos:
     path: ./jiayan-miniprogram
   - name: jiayan-tests
     path: ./jiayan-tests
+  - name: server
+    path: ./server
 
 plugins:
   json:

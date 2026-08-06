@@ -1,55 +1,50 @@
 {
-  "objective": "维护可复现的项目基线和 RepoNova 项目全视图，并明确新成员每次提交源码后必须刷新并提交图谱。",
+  "objective": "为当前仅使用 wx.setStorageSync 的家宴小本子提供可自托管的轻量服务端，使经微信登录认证的用户可跨设备保存家用级菜品与菜单数据，并提供受控菜品、统计和可分享直达菜单。",
   "expected_behavior": [
-    "REQ-001: README 必须给出小程序打开方式、三类测试命令、RepoNova 构建与查看方式，并明确新成员每次完成新增或修改源码的提交后，必须运行 RepoNova 刷新并审查、提交版本化图谱产物；缓存和临时状态不得提交。",
-    "REQ-002: 版本库必须纳入 reponova.yml 及可离线查看的图谱、报告、索引、节点概要和向量产物；reponova-out/.cache 必须被忽略。",
-    "REQ-003: 既有修复和新基线必须通过适用的 Node 测试、RepoNova build/check 与 Git 差异检查；UI 测试必须使用 CLI 自动化端口而非普通 IDE HTTP 端口。",
-    "REQ-004: 只提交用户授权的任务文件，保留三个任务前 DeepSeek 临时状态文件未跟踪，并将完成结果推送到 origin/main。"
+    "REQ-001: 服务端提供基于微信 code2session 的登录端点，在测试模式允许显式 mock code，且不得将 AppSecret 返回给客户端。",
+    "REQ-002: 服务端使用 Bearer 令牌保护除健康检查和登录外的业务端点，并按用户隔离数据。",
+    "REQ-003: 服务端支持 customDishes、ratings、todayMenu、guestCart 的全量读取和幂等替换式同步。",
+    "REQ-004: 服务端提供内置受控菜品查询及用户自定义菜品创建、读取、更新、删除。",
+    "REQ-005: 服务端提供用户统计和分享直达菜单：创建分享、匿名读取有效分享、过期或撤销后拒绝访问。",
+    "REQ-006: 服务端提供可复现的本地测试、健康检查、环境变量样例和可在常见 Linux/麒麟发行版执行的部署命令。"
   ],
   "scope": {
     "allowed": [
-      "README.md",
-      ".gitignore",
-      "reponova.yml",
-      "reponova-out 非缓存产物",
-      "jiayan-tests/ui.test.js",
-      "SOP.json",
-      "SOP.md",
-      "development-contract.json"
+      "新增 server/ 及其测试、部署资料",
+      "新增 SOP.json、SOP.md、development-contract.json"
     ],
     "forbidden": [
-      "DeepSeek 临时状态文件",
-      "reponova-out/.cache 中的可再生缓存",
-      "新的业务功能、依赖、页面路由、appid 或数据模型变更"
+      "修改小程序页面、wx.request 接入或现有本地 storage 行为",
+      "微信开放平台资质配置、真实 AppSecret 提供和生产 code2session 联调",
+      "在未提供 SSH 地址、账号、域名与 DNS 控制权时连接或修改用户云服务器",
+      "云开发、云函数、支付、多人协作权限和通用后台管理界面"
     ]
   },
   "constraints": [
-    "ui.test.js 仅可修复自动化启动/端口兼容性，不得弱化页面断言",
-    "不修改三个 DeepSeek 临时状态文件",
-    "不提交 reponova-out/.cache",
-    "不改变小程序业务源码",
-    "只在 ACCEPT 后提交并推送"
+    "Node.js + Express + SQLite",
+    "无云函数/云开发",
+    "只修改本任务新增文件",
+    "不得提交现有脏的 reponova-out 或 .deepseek 状态文件"
   ],
   "acceptance": {
     "ids": [
       "ACC-001",
       "ACC-002",
       "ACC-003",
-      "ACC-004",
-      "ACC-005"
+      "ACC-004"
     ],
     "criteria": [
       {
         "id": "ACC-001",
-        "text": "根目录 README 的命令和路径覆盖打开小程序、安装测试依赖、三类测试、RepoNova 图谱查看，以及每次新增或修改源码的提交后刷新、审查并提交版本化图谱产物的固定流程。",
-        "method": "文档静态审查",
-        "evidence": "README.md",
+        "text": "服务端可用 npm start 启动，GET /health 返回 200 与数据库就绪信息。",
+        "method": "启动真实服务后 HTTP 请求",
+        "evidence": "PORT=3101、临时 SQLite 数据库的 /health 返回 200、status ok、db connected。",
         "requirement_ids": [
-          "REQ-001"
+          "REQ-006"
         ],
-        "evidence_level": "static",
+        "evidence_level": "runtime",
         "required_artifacts": [
-          "README.md"
+          "server/test"
         ],
         "substitution": "forbidden",
         "critical": true,
@@ -57,17 +52,19 @@
       },
       {
         "id": "ACC-002",
-        "text": "RepoNova 输出包含配置、图谱、报告、社区视图、搜索索引、节点概要与 outlines，且 .cache 被忽略。",
-        "method": "reponova build 与 Git 追踪检查",
-        "evidence": "reponova-out/build-manifest.json、git check-ignore",
+        "text": "接口测试覆盖登录、认证拒绝、四类同步、用户隔离、菜品 CRUD、统计和分享创建/读取/撤销。",
+        "method": "node:test + supertest",
+        "evidence": "cd server && npm test：44 项通过，0 失败。",
         "requirement_ids": [
           "REQ-001",
-          "REQ-002"
+          "REQ-002",
+          "REQ-003",
+          "REQ-004",
+          "REQ-005"
         ],
         "evidence_level": "integration",
         "required_artifacts": [
-          "RepoNova build 输出",
-          "Git 状态"
+          "server/test/api.test.js"
         ],
         "substitution": "forbidden",
         "critical": true,
@@ -75,17 +72,17 @@
       },
       {
         "id": "ACC-003",
-        "text": "单元、接口、真实模拟器 UI 测试，以及 RepoNova check 全部通过；UI 测试能通过 CLI 自动化端口启动并执行页面断言。",
-        "method": "项目命令",
-        "evidence": "npm 测试和 RepoNova 命令输出",
+        "text": "配置和部署文档不含真实密钥，提供 env 示例与 Linux systemd/Nginx 部署流程或等价一键脚本。",
+        "method": "静态审查与脚本语法检查",
+        "evidence": "已审查环境变量样例、部署文档，并通过 bash -n server/deploy.sh。",
         "requirement_ids": [
-          "REQ-002",
-          "REQ-003"
+          "REQ-006"
         ],
-        "evidence_level": "e2e",
+        "evidence_level": "static",
         "required_artifacts": [
-          "测试输出",
-          "RepoNova check 输出"
+          "server/.env.example",
+          "server/deploy.sh",
+          "server/README.md"
         ],
         "substitution": "forbidden",
         "critical": true,
@@ -93,57 +90,37 @@
       },
       {
         "id": "ACC-004",
-        "text": "git diff --check 无错误；暂存区仅含既有修复、README、RepoNova 配置和非缓存产物、SOP 派生文档与 .gitignore。",
-        "method": "独立 Git 审查",
-        "evidence": "git diff --cached --check 与 git diff --cached --name-status",
+        "text": "RepoNova 在服务端新增后成功重建，图谱反映 server 节点与测试。",
+        "method": "reponova build",
+        "evidence": "build 成功：171 节点、175 边、52 文件、3 仓库；报告包含 server、openDb 与 api.test.js。",
         "requirement_ids": [
-          "REQ-003",
-          "REQ-004"
+          "REQ-006"
         ],
-        "evidence_level": "static",
+        "evidence_level": "runtime",
         "required_artifacts": [
-          "暂存差异"
+          "reponova-out/report.md"
         ],
         "substitution": "forbidden",
         "critical": true,
         "status": "passed"
-      },
-      {
-        "id": "ACC-005",
-        "text": "新提交已创建并被 origin/main 接收。",
-        "method": "Git commit/push",
-        "evidence": "commit SHA 与 git ls-remote 输出",
-        "requirement_ids": [
-          "REQ-004"
-        ],
-        "evidence_level": "runtime",
-        "required_artifacts": [
-          "commit SHA",
-          "push 输出"
-        ],
-        "substitution": "forbidden",
-        "critical": true,
-        "status": "not_run"
       }
     ],
     "commands": [
-      "cd jiayan-tests && npm run test:unit",
-      "cd jiayan-tests && npm run test:interface",
-      "cd jiayan-tests && npm run test:ui",
-      "/Users/ict/.hermes/node/bin/reponova build",
-      "/Users/ict/.hermes/node/bin/reponova check"
+      "cd server && npm ci && npm test",
+      "cd server && npm start",
+      "curl -fsS http://127.0.0.1:3000/health",
+      "bash -n server/deploy.sh",
+      "/Users/ict/.hermes/node/bin/reponova build"
     ]
   },
   "governance": {
     "subject": {
-      "type": "tooling",
-      "target": "oh-my-home 的版本化项目基线与 RepoNova 图谱发布",
-      "boundary": "仅整理已存在且经验证的修复、项目说明和图谱产物；不改变小程序运行时业务行为。"
+      "type": "feature",
+      "target": "jiayan-miniprogram 的独立 server/ 服务端",
+      "boundary": "HTTP JSON API、SQLite 数据文件和部署脚本；客户端保持未改，所有持久化数据必须通过认证用户隔离。"
     },
     "authority": true,
-    "supersedes": [
-      "minify-wxml-library-recovery SOP 1.1"
-    ],
+    "supersedes": [],
     "derived_contracts": [
       "development-contract.json"
     ],
@@ -157,10 +134,10 @@
     }
   },
   "source": {
-    "project": "oh-my-home",
-    "feature": "repository-baseline-release",
-    "sop_version": "1.3.0",
+    "project": "oh-my-home / jiayan-miniprogram",
+    "feature": "家宴小本子服务端",
+    "sop_version": "1.0.0",
     "sop_status": "approved",
-    "risk_level": "low"
+    "risk_level": "medium"
   }
 }

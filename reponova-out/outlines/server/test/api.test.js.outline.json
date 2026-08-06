@@ -1,0 +1,79 @@
+{
+  "file_path": "server/test/api.test.js",
+  "line_count": 622,
+  "imports": [
+    {
+      "module": "node:test",
+      "names": [
+        "describe",
+        "it",
+        "before",
+        "after"
+      ],
+      "line": 3
+    },
+    {
+      "module": "node:assert",
+      "names": [
+        "assert"
+      ],
+      "line": 4
+    },
+    {
+      "module": "path",
+      "names": [
+        "path"
+      ],
+      "line": 5
+    },
+    {
+      "module": "fs",
+      "names": [
+        "fs"
+      ],
+      "line": 6
+    },
+    {
+      "module": "../db",
+      "names": [
+        "initDb",
+        "closeDb",
+        "openDb"
+      ],
+      "line": 19
+    },
+    {
+      "module": "../server",
+      "names": [
+        "app"
+      ],
+      "line": 20
+    }
+  ],
+  "functions": [
+    {
+      "name": "getRequest",
+      "signature": "getRequest()",
+      "decorators": [],
+      "start_line": 24,
+      "end_line": 30,
+      "calls": [
+        "require",
+        "supertest"
+      ]
+    },
+    {
+      "name": "login",
+      "signature": "login(openid = 'test_user_a')",
+      "decorators": [],
+      "start_line": 41,
+      "end_line": 45,
+      "calls": [
+        "getRequest",
+        "req.post('/api/auth/wechat').send",
+        "req.post"
+      ]
+    }
+  ],
+  "classes": []
+}

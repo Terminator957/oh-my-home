@@ -2,14 +2,14 @@
   {
     "id": "7",
     "label": "Community 7",
-    "nodeCount": 19,
-    "summary": "19 nodes cluster. Centered around dish.js, mood.js, today.js in jiayan-miniprogram/utils. Spans jiayan-miniprogram, jiayan-tests.",
+    "nodeCount": 30,
+    "summary": "30 nodes cluster. Centered around dish.js, guest-cart.js, guest.js in jiayan-miniprogram/utils. Spans jiayan-miniprogram, jiayan-tests.",
     "hub_nodes": [
       "dish.js",
-      "mood.js",
-      "today.js",
-      "wheel.js",
-      "data.js"
+      "guest-cart.js",
+      "guest.js",
+      "home.js",
+      "library.js"
     ],
     "primary_path": "jiayan-miniprogram/utils",
     "repos": [
@@ -18,25 +18,42 @@
     ]
   },
   {
-    "id": "9",
-    "label": "Community 9",
-    "nodeCount": 11,
-    "summary": "11 nodes cluster. Centered around guest-cart.js, guest.js, home.js in jiayan-miniprogram/utils. Spans jiayan-miniprogram.",
+    "id": "28",
+    "label": "Community 28",
+    "nodeCount": 29,
+    "summary": "29 nodes cluster. Centered around README.md, ,  in server. Spans server.",
     "hub_nodes": [
-      "guest-cart.js",
-      "guest.js",
-      "home.js",
-      "library.js",
-      "swipe.js"
+      "README.md",
+      "",
+      "",
+      "",
+      ""
     ],
-    "primary_path": "jiayan-miniprogram/utils",
+    "primary_path": "server",
     "repos": [
-      "jiayan-miniprogram"
+      "server"
     ]
   },
   {
-    "id": "22",
-    "label": "Community 22",
+    "id": "29",
+    "label": "Community 29",
+    "nodeCount": 22,
+    "summary": "22 nodes cluster. Centered around db.js, auth.js, auth.js in server. Spans server.",
+    "hub_nodes": [
+      "db.js",
+      "auth.js",
+      "auth.js",
+      "dishes.js",
+      "shares.js"
+    ],
+    "primary_path": "server",
+    "repos": [
+      "server"
+    ]
+  },
+  {
+    "id": "21",
+    "label": "Community 21",
     "nodeCount": 9,
     "summary": "9 nodes cluster. Centered around project.config.json, compileType, packOptions in jiayan-miniprogram. Spans jiayan-miniprogram.",
     "hub_nodes": [
@@ -52,8 +69,8 @@
     ]
   },
   {
-    "id": "24",
-    "label": "Community 24",
+    "id": "23",
+    "label": "Community 23",
     "nodeCount": 8,
     "summary": "8 nodes cluster. Centered around TEST-REPORT.md, ,  in jiayan-tests. Spans jiayan-tests.",
     "hub_nodes": [
@@ -86,8 +103,8 @@
     ]
   },
   {
-    "id": "27",
-    "label": "Community 27",
+    "id": "26",
+    "label": "Community 26",
     "nodeCount": 7,
     "summary": "7 nodes cluster. Centered around ui.test.js, ok, sleep in jiayan-tests. Spans jiayan-tests.",
     "hub_nodes": [
@@ -103,8 +120,8 @@
     ]
   },
   {
-    "id": "25",
-    "label": "Community 25",
+    "id": "24",
+    "label": "Community 24",
     "nodeCount": 6,
     "summary": "6 nodes cluster. Centered around package-lock.json, name, version in jiayan-tests. Spans jiayan-tests.",
     "hub_nodes": [
@@ -120,8 +137,25 @@
     ]
   },
   {
-    "id": "26",
-    "label": "Community 26",
+    "id": "30",
+    "label": "Community 30",
+    "nodeCount": 6,
+    "summary": "6 nodes cluster. Centered around package-lock.json, name, version in server. Spans server.",
+    "hub_nodes": [
+      "package-lock.json",
+      "name",
+      "version",
+      "lockfileVersion",
+      "requires"
+    ],
+    "primary_path": "server",
+    "repos": [
+      "server"
+    ]
+  },
+  {
+    "id": "25",
+    "label": "Community 25",
     "nodeCount": 5,
     "summary": "5 nodes cluster. Centered around jiayan-tests, test:unit, test:interface in jiayan-tests. Spans jiayan-tests.",
     "hub_nodes": [
@@ -137,8 +171,24 @@
     ]
   },
   {
-    "id": "13",
-    "label": "Community 13",
+    "id": "31",
+    "label": "Community 31",
+    "nodeCount": 4,
+    "summary": "4 nodes cluster. Centered around jiayan-server, start, test in server. Spans server.",
+    "hub_nodes": [
+      "jiayan-server",
+      "start",
+      "test",
+      "jiayan-server"
+    ],
+    "primary_path": "server",
+    "repos": [
+      "server"
+    ]
+  },
+  {
+    "id": "12",
+    "label": "Community 12",
     "nodeCount": 3,
     "summary": "3 nodes cluster. Centered around host-order.js, ORDERS, SHOPPING in jiayan-miniprogram/pages/host-order. Spans jiayan-miniprogram.",
     "hub_nodes": [
@@ -152,8 +202,8 @@
     ]
   },
   {
-    "id": "23",
-    "label": "Community 23",
+    "id": "22",
+    "label": "Community 22",
     "nodeCount": 3,
     "summary": "3 nodes cluster. Centered around sitemap.json, desc, rules in jiayan-miniprogram. Spans jiayan-miniprogram.",
     "hub_nodes": [

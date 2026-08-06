@@ -443,6 +443,140 @@
       "start_line": 1
     },
     {
+      "id": "server/README.md",
+      "label": "README.md",
+      "type": "document",
+      "file_type": "doc",
+      "source_file": "server/README.md",
+      "community": "0",
+      "norm_label": "readme.md",
+      "repo": "server",
+      "start_line": 1,
+      "docstring": "为「家宴小本子」微信小程序提供的自托管轻量服务端，基于 Node.js + Express + SQLite。"
+    },
+    {
+      "id": "server/db.js",
+      "label": "db.js",
+      "type": "module",
+      "file_type": "code",
+      "source_file": "server/db.js",
+      "community": "0",
+      "norm_label": "db.js",
+      "repo": "server",
+      "start_line": 1
+    },
+    {
+      "id": "server/middleware/auth.js",
+      "label": "auth.js",
+      "type": "module",
+      "file_type": "code",
+      "source_file": "server/middleware/auth.js",
+      "community": "0",
+      "norm_label": "auth.js",
+      "repo": "server",
+      "start_line": 1
+    },
+    {
+      "id": "server/package-lock.json",
+      "label": "package-lock.json",
+      "type": "module",
+      "file_type": "code",
+      "source_file": "server/package-lock.json",
+      "community": "0",
+      "norm_label": "package-lock.json",
+      "repo": "server",
+      "start_line": 1
+    },
+    {
+      "id": "server/package.json",
+      "label": "jiayan-server",
+      "type": "module",
+      "file_type": "code",
+      "source_file": "server/package.json",
+      "community": "0",
+      "norm_label": "jiayan-server",
+      "repo": "server",
+      "start_line": 1,
+      "docstring": "家宴小本子 — 自托管轻量服务端"
+    },
+    {
+      "id": "server/routes/auth.js",
+      "label": "auth.js",
+      "type": "module",
+      "file_type": "code",
+      "source_file": "server/routes/auth.js",
+      "community": "0",
+      "norm_label": "auth.js",
+      "repo": "server",
+      "start_line": 1
+    },
+    {
+      "id": "server/routes/dishes.js",
+      "label": "dishes.js",
+      "type": "module",
+      "file_type": "code",
+      "source_file": "server/routes/dishes.js",
+      "community": "0",
+      "norm_label": "dishes.js",
+      "repo": "server",
+      "start_line": 1
+    },
+    {
+      "id": "server/routes/shares.js",
+      "label": "shares.js",
+      "type": "module",
+      "file_type": "code",
+      "source_file": "server/routes/shares.js",
+      "community": "0",
+      "norm_label": "shares.js",
+      "repo": "server",
+      "start_line": 1
+    },
+    {
+      "id": "server/routes/stats.js",
+      "label": "stats.js",
+      "type": "module",
+      "file_type": "code",
+      "source_file": "server/routes/stats.js",
+      "community": "0",
+      "norm_label": "stats.js",
+      "repo": "server",
+      "start_line": 1
+    },
+    {
+      "id": "server/routes/sync.js",
+      "label": "sync.js",
+      "type": "module",
+      "file_type": "code",
+      "source_file": "server/routes/sync.js",
+      "community": "0",
+      "norm_label": "sync.js",
+      "repo": "server",
+      "start_line": 1
+    },
+    {
+      "id": "server/server.js",
+      "label": "server.js",
+      "type": "module",
+      "file_type": "code",
+      "source_file": "server/server.js",
+      "community": "0",
+      "norm_label": "server.js",
+      "repo": "server",
+      "start_line": 1
+    },
+    {
+      "id": "server/test/api.test.js",
+      "label": "api.test.js",
+      "type": "module",
+      "file_type": "code",
+      "source_file": "server/test/api.test.js",
+      "community": "0",
+      "norm_label": "api.test.js",
+      "repo": "server",
+      "start_line": 1
+    },
+    {
       "id": "jiayan-miniprogram.app.pages",
       "label": "pages",
       "type": "variable",
@@ -1375,6 +1509,684 @@
       "start_line": 34,
       "end_line": 48,
       "signature": "launchAutomator()"
+    },
+    {
+      "id": "server.README.",
+      "label": "",
+      "type": "section",
+      "file_type": "doc",
+      "source_file": "server/README.md",
+      "community": "0",
+      "norm_label": "",
+      "source_location": "L1-L174",
+      "repo": "server",
+      "start_line": 1,
+      "end_line": 174,
+      "docstring": "家宴小本子服务端"
+    },
+    {
+      "id": "server.README._2",
+      "label": "",
+      "type": "section",
+      "file_type": "doc",
+      "source_file": "server/README.md",
+      "community": "0",
+      "norm_label": "",
+      "source_location": "L5-L174",
+      "repo": "server",
+      "start_line": 5,
+      "end_line": 174,
+      "docstring": "功能"
+    },
+    {
+      "id": "server.README._3",
+      "label": "",
+      "type": "section",
+      "file_type": "doc",
+      "source_file": "server/README.md",
+      "community": "0",
+      "norm_label": "",
+      "source_location": "L13-L174",
+      "repo": "server",
+      "start_line": 13,
+      "end_line": 174,
+      "docstring": "快速开始"
+    },
+    {
+      "id": "server.README._4",
+      "label": "",
+      "type": "section",
+      "file_type": "doc",
+      "source_file": "server/README.md",
+      "community": "0",
+      "norm_label": "",
+      "source_location": "L15-L174",
+      "repo": "server",
+      "start_line": 15,
+      "end_line": 174,
+      "docstring": "本地开发"
+    },
+    {
+      "id": "server.README.1_",
+      "label": "1",
+      "type": "section",
+      "file_type": "doc",
+      "source_file": "server/README.md",
+      "community": "0",
+      "norm_label": "1",
+      "source_location": "L20-L21",
+      "repo": "server",
+      "start_line": 20,
+      "end_line": 21,
+      "docstring": "1. 配置环境变量"
+    },
+    {
+      "id": "server.README._env_WECHATTESTMODEtrue",
+      "label": "env WECHATTESTMODEtrue",
+      "type": "section",
+      "file_type": "doc",
+      "source_file": "server/README.md",
+      "community": "0",
+      "norm_label": "env wechattestmodetrue",
+      "source_location": "L22-L23",
+      "repo": "server",
+      "start_line": 22,
+      "end_line": 23,
+      "docstring": "编辑 .env，测试模式设置 WECHAT_TEST_MODE=true"
+    },
+    {
+      "id": "server.README.2_",
+      "label": "2",
+      "type": "section",
+      "file_type": "doc",
+      "source_file": "server/README.md",
+      "community": "0",
+      "norm_label": "2",
+      "source_location": "L24-L26",
+      "repo": "server",
+      "start_line": 24,
+      "end_line": 26,
+      "docstring": "2. 安装依赖"
+    },
+    {
+      "id": "server.README.3_",
+      "label": "3",
+      "type": "section",
+      "file_type": "doc",
+      "source_file": "server/README.md",
+      "community": "0",
+      "norm_label": "3",
+      "source_location": "L27-L29",
+      "repo": "server",
+      "start_line": 27,
+      "end_line": 29,
+      "docstring": "3. 启动服务"
+    },
+    {
+      "id": "server.README.4_",
+      "label": "4",
+      "type": "section",
+      "file_type": "doc",
+      "source_file": "server/README.md",
+      "community": "0",
+      "norm_label": "4",
+      "source_location": "L30-L33",
+      "repo": "server",
+      "start_line": 30,
+      "end_line": 33,
+      "docstring": "4. 健康检查"
+    },
+    {
+      "id": "server.README._5",
+      "label": "",
+      "type": "section",
+      "file_type": "doc",
+      "source_file": "server/README.md",
+      "community": "0",
+      "norm_label": "",
+      "source_location": "L34-L174",
+      "repo": "server",
+      "start_line": 34,
+      "end_line": 174,
+      "docstring": "运行测试"
+    },
+    {
+      "id": "server.README._6",
+      "label": "",
+      "type": "section",
+      "file_type": "doc",
+      "source_file": "server/README.md",
+      "community": "0",
+      "norm_label": "",
+      "source_location": "L42-L174",
+      "repo": "server",
+      "start_line": 42,
+      "end_line": 174,
+      "docstring": "环境变量"
+    },
+    {
+      "id": "server.README._7",
+      "label": "",
+      "type": "section",
+      "file_type": "doc",
+      "source_file": "server/README.md",
+      "community": "0",
+      "norm_label": "",
+      "source_location": "L55-L174",
+      "repo": "server",
+      "start_line": 55,
+      "end_line": 174,
+      "docstring": "测试模式"
+    },
+    {
+      "id": "server.README.API_",
+      "label": "API",
+      "type": "section",
+      "file_type": "doc",
+      "source_file": "server/README.md",
+      "community": "0",
+      "norm_label": "api",
+      "source_location": "L66-L67",
+      "repo": "server",
+      "start_line": 66,
+      "end_line": 67,
+      "docstring": "API 文档"
+    },
+    {
+      "id": "server.README._8",
+      "label": "",
+      "type": "section",
+      "file_type": "doc",
+      "source_file": "server/README.md",
+      "community": "0",
+      "norm_label": "",
+      "source_location": "L68-L174",
+      "repo": "server",
+      "start_line": 68,
+      "end_line": 174,
+      "docstring": "无需认证"
+    },
+    {
+      "id": "server.README._Bearer_",
+      "label": "Bearer",
+      "type": "section",
+      "file_type": "doc",
+      "source_file": "server/README.md",
+      "community": "0",
+      "norm_label": "bearer",
+      "source_location": "L76-L90",
+      "repo": "server",
+      "start_line": 76,
+      "end_line": 90,
+      "docstring": "需 Bearer 认证"
+    },
+    {
+      "id": "server.README._9",
+      "label": "",
+      "type": "section",
+      "file_type": "doc",
+      "source_file": "server/README.md",
+      "community": "0",
+      "norm_label": "",
+      "source_location": "L91-L174",
+      "repo": "server",
+      "start_line": 91,
+      "end_line": 174,
+      "docstring": "同步资源类型"
+    },
+    {
+      "id": "server.README._10",
+      "label": "",
+      "type": "section",
+      "file_type": "doc",
+      "source_file": "server/README.md",
+      "community": "0",
+      "norm_label": "",
+      "source_location": "L98-L174",
+      "repo": "server",
+      "start_line": 98,
+      "end_line": 174,
+      "docstring": "部署"
+    },
+    {
+      "id": "server.README.Linux",
+      "label": "Linux",
+      "type": "section",
+      "file_type": "doc",
+      "source_file": "server/README.md",
+      "community": "0",
+      "norm_label": "linux",
+      "source_location": "L100-L102",
+      "repo": "server",
+      "start_line": 100,
+      "end_line": 102,
+      "docstring": "一键部署（Linux）"
+    },
+    {
+      "id": "server.README.1__env_envexample_",
+      "label": "1  env envexample",
+      "type": "section",
+      "file_type": "doc",
+      "source_file": "server/README.md",
+      "community": "0",
+      "norm_label": "1  env envexample",
+      "source_location": "L103-L106",
+      "repo": "server",
+      "start_line": 103,
+      "end_line": 106,
+      "docstring": "1. 配置 .env（从 .env.example 复制并填写）"
+    },
+    {
+      "id": "server.README.2__2",
+      "label": "2",
+      "type": "section",
+      "file_type": "doc",
+      "source_file": "server/README.md",
+      "community": "0",
+      "norm_label": "2",
+      "source_location": "L107-L117",
+      "repo": "server",
+      "start_line": 107,
+      "end_line": 117,
+      "docstring": "2. 执行部署脚本"
+    },
+    {
+      "id": "server.README._11",
+      "label": "",
+      "type": "section",
+      "file_type": "doc",
+      "source_file": "server/README.md",
+      "community": "0",
+      "norm_label": "",
+      "source_location": "L118-L174",
+      "repo": "server",
+      "start_line": 118,
+      "end_line": 174,
+      "docstring": "手动部署"
+    },
+    {
+      "id": "server.README._12",
+      "label": "",
+      "type": "section",
+      "file_type": "doc",
+      "source_file": "server/README.md",
+      "community": "0",
+      "norm_label": "",
+      "source_location": "L121-L174",
+      "repo": "server",
+      "start_line": 121,
+      "end_line": 174,
+      "docstring": "安装依赖"
+    },
+    {
+      "id": "server.README._systemd_",
+      "label": "systemd",
+      "type": "section",
+      "file_type": "doc",
+      "source_file": "server/README.md",
+      "community": "0",
+      "norm_label": "systemd",
+      "source_location": "L124-L128",
+      "repo": "server",
+      "start_line": 124,
+      "end_line": 128,
+      "docstring": "创建 systemd 服务"
+    },
+    {
+      "id": "server.README._Nginx__deploysh_",
+      "label": "Nginx  deploysh",
+      "type": "section",
+      "file_type": "doc",
+      "source_file": "server/README.md",
+      "community": "0",
+      "norm_label": "nginx  deploysh",
+      "source_location": "L129-L131",
+      "repo": "server",
+      "start_line": 129,
+      "end_line": 131,
+      "docstring": "配置 Nginx 反向代理（参考 deploy.sh 中的模板）"
+    },
+    {
+      "id": "server.README._13",
+      "label": "",
+      "type": "section",
+      "file_type": "doc",
+      "source_file": "server/README.md",
+      "community": "0",
+      "norm_label": "",
+      "source_location": "L132-L174",
+      "repo": "server",
+      "start_line": 132,
+      "end_line": 174,
+      "docstring": "技术栈"
+    },
+    {
+      "id": "server.README._14",
+      "label": "",
+      "type": "section",
+      "file_type": "doc",
+      "source_file": "server/README.md",
+      "community": "0",
+      "norm_label": "",
+      "source_location": "L140-L174",
+      "repo": "server",
+      "start_line": 140,
+      "end_line": 174,
+      "docstring": "文件结构"
+    },
+    {
+      "id": "server.README._15",
+      "label": "",
+      "type": "section",
+      "file_type": "doc",
+      "source_file": "server/README.md",
+      "community": "0",
+      "norm_label": "",
+      "source_location": "L163-L174",
+      "repo": "server",
+      "start_line": 163,
+      "end_line": 174,
+      "docstring": "安全说明"
+    },
+    {
+      "id": "server.README._16",
+      "label": "",
+      "type": "section",
+      "file_type": "doc",
+      "source_file": "server/README.md",
+      "community": "0",
+      "norm_label": "",
+      "source_location": "L171-L174",
+      "repo": "server",
+      "start_line": 171,
+      "end_line": 174,
+      "docstring": "许可证"
+    },
+    {
+      "id": "server.db.BUILTIN_DISHES",
+      "label": "BUILTIN_DISHES",
+      "type": "constant",
+      "file_type": "code",
+      "source_file": "server/db.js",
+      "community": "0",
+      "norm_label": "builtin_dishes",
+      "source_location": "L6-L19",
+      "repo": "server",
+      "start_line": 6,
+      "end_line": 19
+    },
+    {
+      "id": "server.db.getDbPath",
+      "label": "getDbPath",
+      "type": "function",
+      "file_type": "code",
+      "source_file": "server/db.js",
+      "community": "0",
+      "norm_label": "getdbpath",
+      "source_location": "L24-L29",
+      "repo": "server",
+      "start_line": 24,
+      "end_line": 29,
+      "signature": "getDbPath()"
+    },
+    {
+      "id": "server.db.openDb",
+      "label": "openDb",
+      "type": "function",
+      "file_type": "code",
+      "source_file": "server/db.js",
+      "community": "0",
+      "norm_label": "opendb",
+      "source_location": "L31-L38",
+      "repo": "server",
+      "start_line": 31,
+      "end_line": 38,
+      "signature": "openDb()"
+    },
+    {
+      "id": "server.db.initDb",
+      "label": "initDb",
+      "type": "function",
+      "file_type": "code",
+      "source_file": "server/db.js",
+      "community": "0",
+      "norm_label": "initdb",
+      "source_location": "L40-L123",
+      "repo": "server",
+      "start_line": 40,
+      "end_line": 123,
+      "signature": "initDb()"
+    },
+    {
+      "id": "server.db.closeDb",
+      "label": "closeDb",
+      "type": "function",
+      "file_type": "code",
+      "source_file": "server/db.js",
+      "community": "0",
+      "norm_label": "closedb",
+      "source_location": "L125-L127",
+      "repo": "server",
+      "start_line": 125,
+      "end_line": 127,
+      "signature": "closeDb()"
+    },
+    {
+      "id": "server.middleware.auth.JWT_SECRET",
+      "label": "JWT_SECRET",
+      "type": "constant",
+      "file_type": "code",
+      "source_file": "server/middleware/auth.js",
+      "community": "0",
+      "norm_label": "jwt_secret",
+      "source_location": "L4-L4",
+      "repo": "server",
+      "start_line": 4,
+      "end_line": 4
+    },
+    {
+      "id": "server.middleware.auth.authMiddleware",
+      "label": "authMiddleware",
+      "type": "function",
+      "file_type": "code",
+      "source_file": "server/middleware/auth.js",
+      "community": "0",
+      "norm_label": "authmiddleware",
+      "source_location": "L7-L29",
+      "repo": "server",
+      "start_line": 7,
+      "end_line": 29,
+      "docstring": "Express 中间件：验证 Bearer JWT 并注入 req.user",
+      "signature": "authMiddleware(req, res, next)"
+    },
+    {
+      "id": "server.middleware.auth.signToken",
+      "label": "signToken",
+      "type": "function",
+      "file_type": "code",
+      "source_file": "server/middleware/auth.js",
+      "community": "0",
+      "norm_label": "signtoken",
+      "source_location": "L32-L38",
+      "repo": "server",
+      "start_line": 32,
+      "end_line": 38,
+      "docstring": "签发 JWT",
+      "signature": "signToken(user)"
+    },
+    {
+      "id": "server.package-lock.name",
+      "label": "name",
+      "type": "variable",
+      "file_type": "code",
+      "source_file": "server/package-lock.json",
+      "community": "0",
+      "norm_label": "name",
+      "source_location": "L2-L2",
+      "repo": "server",
+      "start_line": 2,
+      "end_line": 2
+    },
+    {
+      "id": "server.package-lock.version",
+      "label": "version",
+      "type": "variable",
+      "file_type": "code",
+      "source_file": "server/package-lock.json",
+      "community": "0",
+      "norm_label": "version",
+      "source_location": "L3-L3",
+      "repo": "server",
+      "start_line": 3,
+      "end_line": 3
+    },
+    {
+      "id": "server.package-lock.lockfileVersion",
+      "label": "lockfileVersion",
+      "type": "variable",
+      "file_type": "code",
+      "source_file": "server/package-lock.json",
+      "community": "0",
+      "norm_label": "lockfileversion",
+      "source_location": "L4-L4",
+      "repo": "server",
+      "start_line": 4,
+      "end_line": 4
+    },
+    {
+      "id": "server.package-lock.requires",
+      "label": "requires",
+      "type": "variable",
+      "file_type": "code",
+      "source_file": "server/package-lock.json",
+      "community": "0",
+      "norm_label": "requires",
+      "source_location": "L5-L5",
+      "repo": "server",
+      "start_line": 5,
+      "end_line": 5
+    },
+    {
+      "id": "server.package-lock.packages",
+      "label": "packages",
+      "type": "variable",
+      "file_type": "code",
+      "source_file": "server/package-lock.json",
+      "community": "0",
+      "norm_label": "packages",
+      "source_location": "L6-L1647",
+      "repo": "server",
+      "start_line": 6,
+      "end_line": 1647
+    },
+    {
+      "id": "server.package.scripts.start",
+      "label": "start",
+      "type": "function",
+      "file_type": "code",
+      "source_file": "server/package.json",
+      "community": "0",
+      "norm_label": "start",
+      "source_location": "L8-L8",
+      "repo": "server",
+      "start_line": 8,
+      "end_line": 8,
+      "docstring": "node server.js"
+    },
+    {
+      "id": "server.package.scripts.test",
+      "label": "test",
+      "type": "function",
+      "file_type": "code",
+      "source_file": "server/package.json",
+      "community": "0",
+      "norm_label": "test",
+      "source_location": "L9-L9",
+      "repo": "server",
+      "start_line": 9,
+      "end_line": 9,
+      "docstring": "node --test --env-file .env.test test/api.test.js"
+    },
+    {
+      "id": "server.package.name",
+      "label": "jiayan-server",
+      "type": "constant",
+      "file_type": "code",
+      "source_file": "server/package.json",
+      "community": "0",
+      "norm_label": "jiayan-server",
+      "source_location": "L2-L2",
+      "repo": "server",
+      "start_line": 2,
+      "end_line": 2,
+      "docstring": "jiayan-server@1.0.0"
+    },
+    {
+      "id": "server.routes.sync.VALID_RESOURCES",
+      "label": "VALID_RESOURCES",
+      "type": "constant",
+      "file_type": "code",
+      "source_file": "server/routes/sync.js",
+      "community": "0",
+      "norm_label": "valid_resources",
+      "source_location": "L10-L10",
+      "repo": "server",
+      "start_line": 10,
+      "end_line": 10
+    },
+    {
+      "id": "server.server.PORT",
+      "label": "PORT",
+      "type": "constant",
+      "file_type": "code",
+      "source_file": "server/server.js",
+      "community": "0",
+      "norm_label": "port",
+      "source_location": "L47-L47",
+      "repo": "server",
+      "start_line": 47,
+      "end_line": 47
+    },
+    {
+      "id": "server.test.api.test.TEST_DB",
+      "label": "TEST_DB",
+      "type": "constant",
+      "file_type": "code",
+      "source_file": "server/test/api.test.js",
+      "community": "0",
+      "norm_label": "test_db",
+      "source_location": "L9-L9",
+      "repo": "server",
+      "start_line": 9,
+      "end_line": 9
+    },
+    {
+      "id": "server.test.api.test.getRequest",
+      "label": "getRequest",
+      "type": "function",
+      "file_type": "code",
+      "source_file": "server/test/api.test.js",
+      "community": "0",
+      "norm_label": "getrequest",
+      "source_location": "L24-L30",
+      "repo": "server",
+      "start_line": 24,
+      "end_line": 30,
+      "signature": "getRequest()"
+    },
+    {
+      "id": "server.test.api.test.login",
+      "label": "login",
+      "type": "function",
+      "file_type": "code",
+      "source_file": "server/test/api.test.js",
+      "community": "0",
+      "norm_label": "login",
+      "source_location": "L41-L45",
+      "repo": "server",
+      "start_line": 41,
+      "end_line": 45,
+      "signature": "login(openid = 'test_user_a')"
     }
   ],
   "edges": [
@@ -1939,6 +2751,398 @@
       "weight": 1
     },
     {
+      "source": "server/README.md",
+      "target": "server.README.",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "server/README.md",
+      "target": "server.README._2",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "server/README.md",
+      "target": "server.README._3",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "server/README.md",
+      "target": "server.README._4",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "server/README.md",
+      "target": "server.README.1_",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "server/README.md",
+      "target": "server.README._env_WECHATTESTMODEtrue",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "server/README.md",
+      "target": "server.README.2_",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "server/README.md",
+      "target": "server.README.3_",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "server/README.md",
+      "target": "server.README.4_",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "server/README.md",
+      "target": "server.README._5",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "server/README.md",
+      "target": "server.README._6",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "server/README.md",
+      "target": "server.README._7",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "server/README.md",
+      "target": "server.README.API_",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "server/README.md",
+      "target": "server.README._8",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "server/README.md",
+      "target": "server.README._Bearer_",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "server/README.md",
+      "target": "server.README._9",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "server/README.md",
+      "target": "server.README._10",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "server/README.md",
+      "target": "server.README.Linux",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "server/README.md",
+      "target": "server.README.1__env_envexample_",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "server/README.md",
+      "target": "server.README.2__2",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "server/README.md",
+      "target": "server.README._11",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "server/README.md",
+      "target": "server.README._12",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "server/README.md",
+      "target": "server.README._systemd_",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "server/README.md",
+      "target": "server.README._Nginx__deploysh_",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "server/README.md",
+      "target": "server.README._13",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "server/README.md",
+      "target": "server.README._14",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "server/README.md",
+      "target": "server.README._15",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "server/README.md",
+      "target": "server.README._16",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "server/db.js",
+      "target": "server.db.BUILTIN_DISHES",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "server/db.js",
+      "target": "server.db.getDbPath",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "server/db.js",
+      "target": "server.db.openDb",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "server/db.js",
+      "target": "server.db.initDb",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "server/db.js",
+      "target": "server.db.closeDb",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "server/middleware/auth.js",
+      "target": "server.middleware.auth.JWT_SECRET",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "server/middleware/auth.js",
+      "target": "server.middleware.auth.authMiddleware",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "server/middleware/auth.js",
+      "target": "server.middleware.auth.signToken",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "server/package-lock.json",
+      "target": "server.package-lock.name",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "server/package-lock.json",
+      "target": "server.package-lock.version",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "server/package-lock.json",
+      "target": "server.package-lock.lockfileVersion",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "server/package-lock.json",
+      "target": "server.package-lock.requires",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "server/package-lock.json",
+      "target": "server.package-lock.packages",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "server/package.json",
+      "target": "server.package.scripts.start",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "server/package.json",
+      "target": "server.package.scripts.test",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "server/package.json",
+      "target": "server.package.name",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "server/routes/sync.js",
+      "target": "server.routes.sync.VALID_RESOURCES",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "server/server.js",
+      "target": "server.server.PORT",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "server/test/api.test.js",
+      "target": "server.test.api.test.TEST_DB",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "server/test/api.test.js",
+      "target": "server.test.api.test.getRequest",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "server/test/api.test.js",
+      "target": "server.test.api.test.login",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
       "source": "jiayan-miniprogram/pages/dish/dish.js",
       "target": "jiayan-miniprogram.utils.data.findDish",
       "relation": "imports_from",
@@ -2187,6 +3391,134 @@
       "weight": 1
     },
     {
+      "source": "server/middleware/auth.js",
+      "target": "server.db.openDb",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "server/routes/auth.js",
+      "target": "server.db.openDb",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "server/routes/auth.js",
+      "target": "server.middleware.auth.signToken",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "server/routes/dishes.js",
+      "target": "server.db.openDb",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "server/routes/dishes.js",
+      "target": "server.middleware.auth.authMiddleware",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "server/routes/shares.js",
+      "target": "server.db.openDb",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "server/routes/shares.js",
+      "target": "server.middleware.auth.authMiddleware",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "server/routes/stats.js",
+      "target": "server.db.openDb",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "server/routes/stats.js",
+      "target": "server.middleware.auth.authMiddleware",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "server/routes/sync.js",
+      "target": "server.db.openDb",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "server/routes/sync.js",
+      "target": "server.middleware.auth.authMiddleware",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "server/server.js",
+      "target": "server.db.initDb",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "server/test/api.test.js",
+      "target": "server.db.initDb",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "server/test/api.test.js",
+      "target": "server.db.closeDb",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "server/test/api.test.js",
+      "target": "server.db.openDb",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "server/test/api.test.js",
+      "target": "server/server.js",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
       "source": "jiayan-miniprogram.utils.data.addToday",
       "target": "jiayan-miniprogram.utils.data.getToday",
       "relation": "calls",
@@ -2225,11 +3557,43 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1,
       "weight": 1
+    },
+    {
+      "source": "server.db.openDb",
+      "target": "server.db.getDbPath",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "server.db.initDb",
+      "target": "server.db.openDb",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "server.middleware.auth.authMiddleware",
+      "target": "server.db.openDb",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "server.test.api.test.login",
+      "target": "server.test.api.test.getRequest",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
     }
   ],
   "metadata": {
     "reponova_version": "0.7.1",
-    "built_at": "2026-08-05T06:50:47.945Z",
+    "built_at": "2026-08-06T12:15:08.620Z",
     "config_dir": "..",
     "repos": [
       {
@@ -2239,6 +3603,10 @@
       {
         "name": "jiayan-tests",
         "path": "./jiayan-tests"
+      },
+      {
+        "name": "server",
+        "path": "./server"
       }
     ],
     "mode": "multi",

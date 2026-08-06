@@ -1,0 +1,29 @@
+{
+  "file_path": "server/server.js",
+  "line_count": 58,
+  "imports": [
+    {
+      "module": "express",
+      "names": [
+        "express"
+      ],
+      "line": 1
+    },
+    {
+      "module": "cors",
+      "names": [
+        "cors"
+      ],
+      "line": 2
+    },
+    {
+      "module": "./db",
+      "names": [
+        "initDb"
+      ],
+      "line": 3
+    }
+  ],
+  "functions": [],
+  "classes": []
+}

@@ -1,6 +1,6 @@
 {
   "file_path": "jiayan-tests/wheel-spin.test.js",
-  "line_count": 187,
+  "line_count": 210,
   "imports": [
     {
       "module": "node:assert",
@@ -22,7 +22,7 @@
       "names": [
         "wheelMod"
       ],
-      "line": 31
+      "line": 38
     }
   ],
   "functions": [],

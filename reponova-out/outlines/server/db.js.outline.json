@@ -1,0 +1,80 @@
+{
+  "file_path": "server/db.js",
+  "line_count": 130,
+  "imports": [
+    {
+      "module": "better-sqlite3",
+      "names": [
+        "Database"
+      ],
+      "line": 1
+    },
+    {
+      "module": "path",
+      "names": [
+        "path"
+      ],
+      "line": 2
+    },
+    {
+      "module": "fs",
+      "names": [
+        "fs"
+      ],
+      "line": 3
+    }
+  ],
+  "functions": [
+    {
+      "name": "getDbPath",
+      "signature": "getDbPath()",
+      "decorators": [],
+      "start_line": 24,
+      "end_line": 29,
+      "calls": [
+        "path.dirname",
+        "fs.existsSync",
+        "fs.mkdirSync"
+      ]
+    },
+    {
+      "name": "openDb",
+      "signature": "openDb()",
+      "decorators": [],
+      "start_line": 31,
+      "end_line": 38,
+      "calls": [
+        "getDbPath",
+        "Database",
+        "db.pragma"
+      ]
+    },
+    {
+      "name": "initDb",
+      "signature": "initDb()",
+      "decorators": [],
+      "start_line": 40,
+      "end_line": 123,
+      "calls": [
+        "openDb",
+        "d.exec",
+        "d.prepare",
+        "d.transaction",
+        "insert.run",
+        "JSON.stringify",
+        "seedMany"
+      ]
+    },
+    {
+      "name": "closeDb",
+      "signature": "closeDb()",
+      "decorators": [],
+      "start_line": 125,
+      "end_line": 127,
+      "calls": [
+        "db.close"
+      ]
+    }
+  ],
+  "classes": []
+}

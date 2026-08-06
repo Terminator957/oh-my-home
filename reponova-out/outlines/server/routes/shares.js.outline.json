@@ -1,0 +1,36 @@
+{
+  "file_path": "server/routes/shares.js",
+  "line_count": 112,
+  "imports": [
+    {
+      "module": "express",
+      "names": [
+        "express"
+      ],
+      "line": 1
+    },
+    {
+      "module": "uuid",
+      "names": [
+        "v4"
+      ],
+      "line": 2
+    },
+    {
+      "module": "../db",
+      "names": [
+        "openDb"
+      ],
+      "line": 3
+    },
+    {
+      "module": "../middleware/auth",
+      "names": [
+        "authMiddleware"
+      ],
+      "line": 4
+    }
+  ],
+  "functions": [],
+  "classes": []
+}

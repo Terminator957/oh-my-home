@@ -1,0 +1,51 @@
+{
+  "file_path": "server/middleware/auth.js",
+  "line_count": 41,
+  "imports": [
+    {
+      "module": "jsonwebtoken",
+      "names": [
+        "jwt"
+      ],
+      "line": 1
+    },
+    {
+      "module": "../db",
+      "names": [
+        "openDb"
+      ],
+      "line": 2
+    }
+  ],
+  "functions": [
+    {
+      "name": "authMiddleware",
+      "signature": "authMiddleware(req, res, next)",
+      "decorators": [],
+      "start_line": 7,
+      "end_line": 29,
+      "calls": [
+        "header.startsWith",
+        "res.status(401).json",
+        "res.status",
+        "header.slice",
+        "jwt.verify",
+        "openDb",
+        "db.prepare('SELECT id, openid, nickname FROM users WHERE id = ?').get",
+        "db.prepare",
+        "next"
+      ]
+    },
+    {
+      "name": "signToken",
+      "signature": "signToken(user)",
+      "decorators": [],
+      "start_line": 32,
+      "end_line": 38,
+      "calls": [
+        "jwt.sign"
+      ]
+    }
+  ],
+  "classes": []
+}

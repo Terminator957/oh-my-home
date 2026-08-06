@@ -1,0 +1,29 @@
+{
+  "file_path": "server/routes/auth.js",
+  "line_count": 92,
+  "imports": [
+    {
+      "module": "express",
+      "names": [
+        "express"
+      ],
+      "line": 1
+    },
+    {
+      "module": "../db",
+      "names": [
+        "openDb"
+      ],
+      "line": 2
+    },
+    {
+      "module": "../middleware/auth",
+      "names": [
+        "signToken"
+      ],
+      "line": 3
+    }
+  ],
+  "functions": [],
+  "classes": []
+}

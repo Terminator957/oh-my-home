@@ -56,6 +56,30 @@
     "description": "Module with 6 connections in jiayan-tests/ui.test.js."
   },
   {
+    "id": "server/README.md",
+    "description": "Document with 28 connections in server/README.md."
+  },
+  {
+    "id": "server/db.js",
+    "description": "Module with 5 connections in server/db.js."
+  },
+  {
+    "id": "server/middleware/auth.js",
+    "description": "Module with 4 connections in server/middleware/auth.js."
+  },
+  {
+    "id": "server/package-lock.json",
+    "description": "Module with 5 connections in server/package-lock.json."
+  },
+  {
+    "id": "server/package.json",
+    "description": "Module with 3 connections in server/package.json."
+  },
+  {
+    "id": "server/test/api.test.js",
+    "description": "Module with 7 connections in server/test/api.test.js."
+  },
+  {
     "id": "jiayan-miniprogram.utils.data.DISHES",
     "description": "Constant with 7 connections in jiayan-miniprogram/utils/data.js."
   },
@@ -82,5 +106,29 @@
   {
     "id": "jiayan-miniprogram.utils.data.getGuestCart",
     "description": "Function with 3 connections in jiayan-miniprogram/utils/data.js."
+  },
+  {
+    "id": "jiayan-miniprogram.utils.data.setGuestCart",
+    "description": "Function with 3 connections in jiayan-miniprogram/utils/data.js."
+  },
+  {
+    "id": "jiayan-miniprogram.utils.data.getRating",
+    "description": "Function with 3 connections in jiayan-miniprogram/utils/data.js."
+  },
+  {
+    "id": "jiayan-tests.ui.test.launchAutomator",
+    "description": "Function with 3 connections in jiayan-tests/ui.test.js."
+  },
+  {
+    "id": "server.db.openDb",
+    "description": "Function with 11 connections in server/db.js."
+  },
+  {
+    "id": "server.db.initDb",
+    "description": "Function with 4 connections in server/db.js."
+  },
+  {
+    "id": "server.middleware.auth.authMiddleware",
+    "description": "Function with 6 connections in server/middleware/auth.js."
   }
 ]
