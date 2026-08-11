@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="392" height="196" viewBox="0 0 196 98" role="img" aria-label="GitHub contribution snake">
+  <title>GitHub Contribution Snake (demo)</title>
+  <style>
+    .cell { fill:#ebedf0; }
+    /* 每个格子的动画延迟由 --i 控制，产生“蛇”遍历效果 */
+    .cell {
+      animation-name: snake;
+      animation-duration: 4s;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+      animation-fill-mode: both;
+      animation-delay: calc(var(--i) * 0.03s);
+    }
+    @keyframes snake {
+      0%   { fill: #216e39; } /* high */
+      10%  { fill: #216e39; }
+      30%  { fill: #7bc96f; } /* mid */
+      50%  { fill: #c6e48b; } /* low */
+      70%  { fill: #ebedf0; } /* empty */
+      100% { fill: #ebedf0; }
+    }
+    /* 可选：在鼠标悬停时加速动画，便于交互查看 */
+    svg:hover .cell { animation-duration: 2s; }
+  </style>
+
+  <!-- 14 列 × 7 行，单元格大小 12，间距 2 -->
+  <!-- 行优先（从上到下），列从左到右，--i 按顺序递增以产生“蛇”扫描延迟 -->
+  <!-- row 0 -->
+  <rect x="0"   y="0"  width="12" height="12" class="cell" style="--i:0"/>
+  <rect x="14"  y="0"  width="12" height="12" class="cell" style="--i:1"/>
+  <rect x="28"  y="0"  width="12" height="12" class="cell" style="--i:2"/>
+  <rect x="42"  y="0"  width="12" height="12" class="cell" style="--i:3"/>
+  <rect x="56"  y="0"  width="12" height="12" class="cell" style="--i:4"/>
+  <rect x="70"  y="0"  width="12" height="12" class="cell" style="--i:5"/>
+  <rect x="84"  y="0"  width="12" height="12" class="cell" style="--i:6"/>
+  <rect x="98"  y="0"  width="12" height="12" class="cell" style="--i:7"/>
+  <rect x="112" y="0"  width="12" height="12" class="cell" style="--i:8"/>
+  <rect x="126" y="0"  width="12" height="12" class="cell" style="--i:9"/>
+  <rect x="140" y="0"  width="12" height="12" class="cell" style="--i:10"/>
+  <rect x="154" y="0"  width="12" height="12" class="cell" style="--i:11"/>
+  <rect x="168" y="0"  width="12" height="12" class="cell" style="--i:12"/>
+  <rect x="182" y="0"  width="12" height="12" class="cell" style="--i:13"/>
+
+  <!-- row 1 -->
+  <rect x="0"   y="14" width="12" height="12" class="cell" style="--i:14"/>
+  <rect x="14"  y="14" width="12" height="12" class="cell" style="--i:15"/>
+  <rect x="28"  y="14" width="12" height="12" class="cell" style="--i:16"/>
+  <rect x="42"  y="14" width="12" height="12" class="cell" style="--i:17"/>
+  <rect x="56"  y="14" width="12" height="12" class="cell" style="--i:18"/>
+  <rect x="70"  y="14" width="12" height="12" class="cell" style="--i:19"/>
+  <rect x="84"  y="14" width="12" height="12" class="cell" style="--i:20"/>
+  <rect x="98"  y="14" width="12" height="12" class="cell" style="--i:21"/>
+  <rect x="112" y="14" width="12" height="12" class="cell" style="--i:22"/>
+  <rect x="126" y="14" width="12" height="12" class="cell" style="--i:23"/>
+  <rect x="140" y="14" width="12" height="12" class="cell" style="--i:24"/>
+  <rect x="154" y="14" width="12" height="12" class="cell" style="--i:25"/>
+  <rect x="168" y="14" width="12" height="12" class="cell" style="--i:26"/>
+  <rect x="182" y="14" width="12" height="12" class="cell" style="--i:27"/>
+
+  <!-- row 2 -->
+  <rect x="0"   y="28" width="12" height="12" class="cell" style="--i:28"/>
+  <rect x="14"  y="28" width="12" height="12" class="cell" style="--i:29"/>
+  <rect x="28"  y="28" width="12" height="12" class="cell" style="--i:30"/>
+  <rect x="42"  y="28" width="12" height="12" class="cell" style="--i:31"/>
+  <rect x="56"  y="28" width="12" height="12" class="cell" style="--i:32"/>
+  <rect x="70"  y="28" width="12" height="12" class="cell" style="--i:33"/>
+  <rect x="84"  y="28" width="12" height="12" class="cell" style="--i:34"/>
+  <rect x="98"  y="28" width="12" height="12" class="cell" style="--i:35"/>
+  <rect x="112" y="28" width="12" height="12" class="cell" style="--i:36"/>
+  <rect x="126" y="28" width="12" height="12" class="cell" style="--i:37"/>
+  <rect x="140" y="28" width="12" height="12" class="cell" style="--i:38"/>
+  <rect x="154" y="28" width="12" height="12" class="cell" style="--i:39"/>
+  <rect x="168" y="28" width="12" height="12" class="cell" style="--i:40"/>
+  <rect x="182" y="28" width="12" height="12" class="cell" style="--i:41"/>
+
+  <!-- row 3 -->
+  <rect x="0"   y="42" width="12" height="12" class="cell" style="--i:42"/>
+  <rect x="14"  y="42" width="12" height="12" class="cell" style="--i:43"/>
+  <rect x="28"  y="42" width="12" height="12" class="cell" style="--i:44"/>
+  <rect x="42"  y="42" width="12" height="12" class="cell" style="--i:45"/>
+  <rect x="56"  y="42" width="12" height="12" class="cell" style="--i:46"/>
+  <rect x="70"  y="42" width="12" height="12" class="cell" style="--i:47"/>
+  <rect x="84"  y="42" width="12" height="12" class="cell" style="--i:48"/>
+  <rect x="98"  y="42" width="12" height="12" class="cell" style="--i:49"/>
+  <rect x="112" y="42" width="12" height="12" class="cell" style="--i:50"/>
+  <rect x="126" y="42" width="12" height="12" class="cell" style="--i:51"/>
+  <rect x="140" y="42" width="12" height="12" class="cell" style="--i:52"/>
+  <rect x="154" y="42" width="12" height="12" class="cell" style="--i:53"/>
+  <rect x="168" y="42" width="12" height="12" class="cell" style="--i:54"/>
+  <rect x="182" y="42" width="12" height="12" class="cell" style="--i:55"/>
+
+  <!-- row 4 -->
+  <rect x="0"   y="56" width="12" height="12" class="cell" style="--i:56"/>
+  <rect x="14"  y="56" width="12" height="12" class="cell" style="--i:57"/>
+  <rect x="28"  y="56" width="12" height="12" class="cell" style="--i:58"/>
+  <rect x="42"  y="56" width="12" height="12" class="cell" style="--i:59"/>
+  <rect x="56"  y="56" width="12" height="12" class="cell" style="--i:60"/>
+  <rect x="70"  y="56" width="12" height="12" class="cell" style="--i:61"/>
+  <rect x="84"  y="56" width="12" height="12" class="cell" style="--i:62"/>
+  <rect x="98"  y="56" width="12" height="12" class="cell" style="--i:63"/>
+  <rect x="112" y="56" width="12" height="12" class="cell" style="--i:64"/>
+  <rect x="126" y="56" width="12" height="12" class="cell" style="--i:65"/>
+  <rect x="140" y="56" width="12" height="12" class="cell" style="--i:66"/>
+  <rect x="154" y="56" width="12" height="12" class="cell" style="--i:67"/>
+  <rect x="168" y="56" width="12" height="12" class="cell" style="--i:68"/>
+  <rect x="182" y="56" width="12" height="12" class="cell" style="--i:69"/>
+
+  <!-- row 5 -->
+  <rect x="0"   y="70" width="12" height="12" class="cell" style="--i:70"/>
+  <rect x="14"  y="70" width="12" height="12" class="cell" style="--i:71"/>
+  <rect x="28"  y="70" width="12" height="12" class="cell" style="--i:72"/>
+  <rect x="42"  y="70" width="12" height="12" class="cell" style="--i:73"/>
+  <rect x="56"  y="70" width="12" height="12" class="cell" style="--i:74"/>
+  <rect x="70"  y="70" width="12" height="12" class="cell" style="--i:75"/>
+  <rect x="84"  y="70" width="12" height="12" class="cell" style="--i:76"/>
+  <rect x="98"  y="70" width="12" height="12" class="cell" style="--i:77"/>
+  <rect x="112" y="70" width="12" height="12" class="cell" style="--i:78"/>
+  <rect x="126" y="70" width="12" height="12" class="cell" style="--i:79"/>
+  <rect x="140" y="70" width="12" height="12" class="cell" style="--i:80"/>
+  <rect x="154" y="70" width="12" height="12" class="cell" style="--i:81"/>
+  <rect x="168" y="70" width="12" height="12" class="cell" style="--i:82"/>
+  <rect x="182" y="70" width="12" height="12" class="cell" style="--i:83"/>
+
+  <!-- row 6 -->
+  <rect x="0"   y="84" width="12" height="12" class="cell" style="--i:84"/>
+  <rect x="14"  y="84" width="12" height="12" class="cell" style="--i:85"/>
+  <rect x="28"  y="84" width="12" height="12" class="cell" style="--i:86"/>
+  <rect x="42"  y="84" width="12" height="12" class="cell" style="--i:87"/>
+  <rect x="56"  y="84" width="12" height="12" class="cell" style="--i:88"/>
+  <rect x="70"  y="84" width="12" height="12" class="cell" style="--i:89"/>
+  <rect x="84"  y="84" width="12" height="12" class="cell" style="--i:90"/>
+  <rect x="98"  y="84" width="12" height="12" class="cell" style="--i:91"/>
+  <rect x="112" y="84" width="12" height="12" class="cell" style="--i:92"/>
+  <rect x="126" y="84" width="12" height="12" class="cell" style="--i:93"/>
+  <rect x="140" y="84" width="12" height="12" class="cell" style="--i:94"/>
+  <rect x="154" y="84" width="12" height="12" class="cell" style="--i:95"/>
+  <rect x="168" y="84" width="12" height="12" class="cell" style="--i:96"/>
+  <rect x="182" y="84" width="12" height="12" class="cell" style="--i:97"/>
+</svg>
