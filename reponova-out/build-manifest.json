@@ -1,56 +1,56 @@
 {
   "file-detection": {
     "status": "completed",
-    "startedAt": "2026-08-06T12:15:08.386Z",
-    "finishedAt": "2026-08-06T12:15:08.406Z",
-    "durationMs": 20
+    "startedAt": "2026-08-13T21:04:29.706Z",
+    "finishedAt": "2026-08-13T21:04:29.727Z",
+    "durationMs": 21
   },
   "graph": {
     "status": "completed",
-    "startedAt": "2026-08-06T12:15:08.409Z",
-    "finishedAt": "2026-08-06T12:15:08.623Z",
-    "durationMs": 214
+    "startedAt": "2026-08-13T21:04:29.729Z",
+    "finishedAt": "2026-08-13T21:04:29.860Z",
+    "durationMs": 131
   },
   "outlines": {
     "status": "completed",
-    "startedAt": "2026-08-06T12:15:08.427Z",
-    "finishedAt": "2026-08-06T12:15:08.639Z",
-    "durationMs": 212
+    "startedAt": "2026-08-13T21:04:29.737Z",
+    "finishedAt": "2026-08-13T21:04:29.870Z",
+    "durationMs": 133
   },
   "communities": {
     "status": "completed",
-    "startedAt": "2026-08-06T12:15:08.641Z",
-    "finishedAt": "2026-08-06T12:15:08.654Z",
-    "durationMs": 13
+    "startedAt": "2026-08-13T21:04:29.873Z",
+    "finishedAt": "2026-08-13T21:04:29.887Z",
+    "durationMs": 14
   },
   "enrich": {
     "status": "completed",
-    "startedAt": "2026-08-06T12:15:08.657Z",
-    "finishedAt": "2026-08-06T12:15:08.662Z",
+    "startedAt": "2026-08-13T21:04:29.889Z",
+    "finishedAt": "2026-08-13T21:04:29.894Z",
     "durationMs": 5
   },
   "embeddings": {
     "status": "completed",
-    "startedAt": "2026-08-06T12:15:08.664Z",
-    "finishedAt": "2026-08-06T12:15:08.950Z",
-    "durationMs": 286
+    "startedAt": "2026-08-13T21:04:29.897Z",
+    "finishedAt": "2026-08-13T21:04:30.218Z",
+    "durationMs": 321
   },
   "html": {
     "status": "completed",
-    "startedAt": "2026-08-06T12:15:08.669Z",
-    "finishedAt": "2026-08-06T12:15:08.829Z",
-    "durationMs": 160
+    "startedAt": "2026-08-13T21:04:29.902Z",
+    "finishedAt": "2026-08-13T21:04:30.093Z",
+    "durationMs": 191
   },
   "index": {
     "status": "completed",
-    "startedAt": "2026-08-06T12:15:08.816Z",
-    "finishedAt": "2026-08-06T12:15:09.108Z",
-    "durationMs": 292
+    "startedAt": "2026-08-13T21:04:30.080Z",
+    "finishedAt": "2026-08-13T21:04:30.391Z",
+    "durationMs": 311
   },
   "report": {
     "status": "completed",
-    "startedAt": "2026-08-06T12:15:08.822Z",
-    "finishedAt": "2026-08-06T12:15:08.831Z",
-    "durationMs": 9
+    "startedAt": "2026-08-13T21:04:30.087Z",
+    "finishedAt": "2026-08-13T21:04:30.095Z",
+    "durationMs": 8
   }
 }

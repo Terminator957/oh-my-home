@@ -1,6 +1,6 @@
 {
   "file_path": "server/server.js",
-  "line_count": 58,
+  "line_count": 59,
   "imports": [
     {
       "module": "express",
@@ -21,7 +21,7 @@
       "names": [
         "initDb"
       ],
-      "line": 3
+      "line": 4
     }
   ],
   "functions": [],

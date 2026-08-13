@@ -36,20 +36,12 @@
     "description": "Module with 8 connections in jiayan-miniprogram/project.config.json."
   },
   {
-    "id": "jiayan-miniprogram/utils/data.js",
-    "description": "Module with 14 connections in jiayan-miniprogram/utils/data.js."
-  },
-  {
     "id": "jiayan-tests/TEST-REPORT.md",
     "description": "Document with 7 connections in jiayan-tests/TEST-REPORT.md."
   },
   {
     "id": "jiayan-tests/package-lock.json",
     "description": "Module with 5 connections in jiayan-tests/package-lock.json."
-  },
-  {
-    "id": "jiayan-tests/package.json",
-    "description": "Module with 4 connections in jiayan-tests/package.json."
   },
   {
     "id": "jiayan-tests/ui.test.js",
@@ -76,44 +68,24 @@
     "description": "Module with 3 connections in server/package.json."
   },
   {
+    "id": "server/routes/sync.js",
+    "description": "Module with 3 connections in server/routes/sync.js."
+  },
+  {
+    "id": "server/server.js",
+    "description": "Module with 3 connections in server/server.js."
+  },
+  {
     "id": "server/test/api.test.js",
     "description": "Module with 7 connections in server/test/api.test.js."
   },
   {
-    "id": "jiayan-miniprogram.utils.data.DISHES",
-    "description": "Constant with 7 connections in jiayan-miniprogram/utils/data.js."
+    "id": "jiayan-miniprogram/utils/data.js",
+    "description": "Module with 28 connections in jiayan-miniprogram/utils/data.js."
   },
   {
-    "id": "jiayan-miniprogram.utils.data.starText",
-    "description": "Function with 6 connections in jiayan-miniprogram/utils/data.js."
-  },
-  {
-    "id": "jiayan-miniprogram.utils.data.findDish",
-    "description": "Function with 5 connections in jiayan-miniprogram/utils/data.js."
-  },
-  {
-    "id": "jiayan-miniprogram.utils.data.getToday",
-    "description": "Function with 3 connections in jiayan-miniprogram/utils/data.js."
-  },
-  {
-    "id": "jiayan-miniprogram.utils.data.setToday",
-    "description": "Function with 4 connections in jiayan-miniprogram/utils/data.js."
-  },
-  {
-    "id": "jiayan-miniprogram.utils.data.addToday",
-    "description": "Function with 7 connections in jiayan-miniprogram/utils/data.js."
-  },
-  {
-    "id": "jiayan-miniprogram.utils.data.getGuestCart",
-    "description": "Function with 3 connections in jiayan-miniprogram/utils/data.js."
-  },
-  {
-    "id": "jiayan-miniprogram.utils.data.setGuestCart",
-    "description": "Function with 3 connections in jiayan-miniprogram/utils/data.js."
-  },
-  {
-    "id": "jiayan-miniprogram.utils.data.getRating",
-    "description": "Function with 3 connections in jiayan-miniprogram/utils/data.js."
+    "id": "jiayan-tests/package.json",
+    "description": "Module with 5 connections in jiayan-tests/package.json."
   },
   {
     "id": "jiayan-tests.ui.test.launchAutomator",
@@ -130,5 +102,49 @@
   {
     "id": "server.middleware.auth.authMiddleware",
     "description": "Function with 6 connections in server/middleware/auth.js."
+  },
+  {
+    "id": "jiayan-miniprogram.utils.data.DISHES",
+    "description": "Constant with 7 connections in jiayan-miniprogram/utils/data.js."
+  },
+  {
+    "id": "jiayan-miniprogram.utils.data.starText",
+    "description": "Function with 6 connections in jiayan-miniprogram/utils/data.js."
+  },
+  {
+    "id": "jiayan-miniprogram.utils.data.findDish",
+    "description": "Function with 5 connections in jiayan-miniprogram/utils/data.js."
+  },
+  {
+    "id": "jiayan-miniprogram.utils.data.getSyncBaseUrl",
+    "description": "Function with 3 connections in jiayan-miniprogram/utils/data.js."
+  },
+  {
+    "id": "jiayan-miniprogram.utils.data.request",
+    "description": "Function with 3 connections in jiayan-miniprogram/utils/data.js."
+  },
+  {
+    "id": "jiayan-miniprogram.utils.data.mergeRemoteData",
+    "description": "Function with 3 connections in jiayan-miniprogram/utils/data.js."
+  },
+  {
+    "id": "jiayan-miniprogram.utils.data.initSync",
+    "description": "Function with 6 connections in jiayan-miniprogram/utils/data.js."
+  },
+  {
+    "id": "jiayan-miniprogram.utils.data.syncResource",
+    "description": "Function with 7 connections in jiayan-miniprogram/utils/data.js."
+  },
+  {
+    "id": "jiayan-miniprogram.utils.data.setToday",
+    "description": "Function with 5 connections in jiayan-miniprogram/utils/data.js."
+  },
+  {
+    "id": "jiayan-miniprogram.utils.data.addToday",
+    "description": "Function with 7 connections in jiayan-miniprogram/utils/data.js."
+  },
+  {
+    "id": "jiayan-miniprogram.utils.data.setGuestCart",
+    "description": "Function with 4 connections in jiayan-miniprogram/utils/data.js."
   }
 ]

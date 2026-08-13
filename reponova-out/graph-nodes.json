@@ -1,17 +1,6 @@
 {
   "nodes": [
     {
-      "id": "jiayan-miniprogram/app.js",
-      "label": "app.js",
-      "type": "module",
-      "file_type": "code",
-      "source_file": "jiayan-miniprogram/app.js",
-      "community": "0",
-      "norm_label": "app.js",
-      "repo": "jiayan-miniprogram",
-      "start_line": 1
-    },
-    {
       "id": "jiayan-miniprogram/app.json",
       "label": "app.json",
       "type": "module",
@@ -53,17 +42,6 @@
       "source_file": "jiayan-miniprogram/pages/add/add.json",
       "community": "0",
       "norm_label": "add.json",
-      "repo": "jiayan-miniprogram",
-      "start_line": 1
-    },
-    {
-      "id": "jiayan-miniprogram/pages/analysis/analysis.js",
-      "label": "analysis.js",
-      "type": "module",
-      "file_type": "code",
-      "source_file": "jiayan-miniprogram/pages/analysis/analysis.js",
-      "community": "0",
-      "norm_label": "analysis.js",
       "repo": "jiayan-miniprogram",
       "start_line": 1
     },
@@ -185,17 +163,6 @@
       "source_file": "jiayan-miniprogram/pages/host-order/host-order.json",
       "community": "0",
       "norm_label": "host-order.json",
-      "repo": "jiayan-miniprogram",
-      "start_line": 1
-    },
-    {
-      "id": "jiayan-miniprogram/pages/library/library.js",
-      "label": "library.js",
-      "type": "module",
-      "file_type": "code",
-      "source_file": "jiayan-miniprogram/pages/library/library.js",
-      "community": "0",
-      "norm_label": "library.js",
       "repo": "jiayan-miniprogram",
       "start_line": 1
     },
@@ -343,17 +310,6 @@
       "start_line": 1
     },
     {
-      "id": "jiayan-miniprogram/utils/data.js",
-      "label": "data.js",
-      "type": "module",
-      "file_type": "code",
-      "source_file": "jiayan-miniprogram/utils/data.js",
-      "community": "0",
-      "norm_label": "data.js",
-      "repo": "jiayan-miniprogram",
-      "start_line": 1
-    },
-    {
       "id": "jiayan-tests/TEST-REPORT.md",
       "label": "TEST-REPORT.md",
       "type": "document",
@@ -384,17 +340,6 @@
       "source_file": "jiayan-tests/package-lock.json",
       "community": "0",
       "norm_label": "package-lock.json",
-      "repo": "jiayan-tests",
-      "start_line": 1
-    },
-    {
-      "id": "jiayan-tests/package.json",
-      "label": "jiayan-tests",
-      "type": "module",
-      "file_type": "code",
-      "source_file": "jiayan-tests/package.json",
-      "community": "0",
-      "norm_label": "jiayan-tests",
       "repo": "jiayan-tests",
       "start_line": 1
     },
@@ -574,6 +519,72 @@
       "community": "0",
       "norm_label": "api.test.js",
       "repo": "server",
+      "start_line": 1
+    },
+    {
+      "id": "jiayan-miniprogram/app.js",
+      "label": "app.js",
+      "type": "module",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/app.js",
+      "community": "0",
+      "norm_label": "app.js",
+      "repo": "jiayan-miniprogram",
+      "start_line": 1
+    },
+    {
+      "id": "jiayan-miniprogram/pages/analysis/analysis.js",
+      "label": "analysis.js",
+      "type": "module",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/pages/analysis/analysis.js",
+      "community": "0",
+      "norm_label": "analysis.js",
+      "repo": "jiayan-miniprogram",
+      "start_line": 1
+    },
+    {
+      "id": "jiayan-miniprogram/pages/library/library.js",
+      "label": "library.js",
+      "type": "module",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/pages/library/library.js",
+      "community": "0",
+      "norm_label": "library.js",
+      "repo": "jiayan-miniprogram",
+      "start_line": 1
+    },
+    {
+      "id": "jiayan-miniprogram/utils/data.js",
+      "label": "data.js",
+      "type": "module",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/utils/data.js",
+      "community": "0",
+      "norm_label": "data.js",
+      "repo": "jiayan-miniprogram",
+      "start_line": 1
+    },
+    {
+      "id": "jiayan-tests/data-sync.test.js",
+      "label": "data-sync.test.js",
+      "type": "module",
+      "file_type": "code",
+      "source_file": "jiayan-tests/data-sync.test.js",
+      "community": "0",
+      "norm_label": "data-sync.test.js",
+      "repo": "jiayan-tests",
+      "start_line": 1
+    },
+    {
+      "id": "jiayan-tests/package.json",
+      "label": "jiayan-tests",
+      "type": "module",
+      "file_type": "code",
+      "source_file": "jiayan-tests/package.json",
+      "community": "0",
+      "norm_label": "jiayan-tests",
+      "repo": "jiayan-tests",
       "start_line": 1
     },
     {
@@ -1045,171 +1056,6 @@
       "end_line": 3
     },
     {
-      "id": "jiayan-miniprogram.utils.data.DISHES",
-      "label": "DISHES",
-      "type": "constant",
-      "file_type": "code",
-      "source_file": "jiayan-miniprogram/utils/data.js",
-      "community": "0",
-      "norm_label": "dishes",
-      "source_location": "L2-L16",
-      "repo": "jiayan-miniprogram",
-      "start_line": 2,
-      "end_line": 16
-    },
-    {
-      "id": "jiayan-miniprogram.utils.data.IMGS",
-      "label": "IMGS",
-      "type": "constant",
-      "file_type": "code",
-      "source_file": "jiayan-miniprogram/utils/data.js",
-      "community": "0",
-      "norm_label": "imgs",
-      "source_location": "L19-L32",
-      "repo": "jiayan-miniprogram",
-      "start_line": 19,
-      "end_line": 32
-    },
-    {
-      "id": "jiayan-miniprogram.utils.data.MOOD_MAP",
-      "label": "MOOD_MAP",
-      "type": "constant",
-      "file_type": "code",
-      "source_file": "jiayan-miniprogram/utils/data.js",
-      "community": "0",
-      "norm_label": "mood_map",
-      "source_location": "L35-L42",
-      "repo": "jiayan-miniprogram",
-      "start_line": 35,
-      "end_line": 42
-    },
-    {
-      "id": "jiayan-miniprogram.utils.data.starText",
-      "label": "starText",
-      "type": "function",
-      "file_type": "code",
-      "source_file": "jiayan-miniprogram/utils/data.js",
-      "community": "0",
-      "norm_label": "startext",
-      "source_location": "L44-L47",
-      "repo": "jiayan-miniprogram",
-      "start_line": 44,
-      "end_line": 47,
-      "signature": "starText(n)"
-    },
-    {
-      "id": "jiayan-miniprogram.utils.data.findDish",
-      "label": "findDish",
-      "type": "function",
-      "file_type": "code",
-      "source_file": "jiayan-miniprogram/utils/data.js",
-      "community": "0",
-      "norm_label": "finddish",
-      "source_location": "L49-L51",
-      "repo": "jiayan-miniprogram",
-      "start_line": 49,
-      "end_line": 51,
-      "signature": "findDish(name)"
-    },
-    {
-      "id": "jiayan-miniprogram.utils.data.getToday",
-      "label": "getToday",
-      "type": "function",
-      "file_type": "code",
-      "source_file": "jiayan-miniprogram/utils/data.js",
-      "community": "0",
-      "norm_label": "gettoday",
-      "source_location": "L54-L56",
-      "repo": "jiayan-miniprogram",
-      "start_line": 54,
-      "end_line": 56,
-      "signature": "getToday()"
-    },
-    {
-      "id": "jiayan-miniprogram.utils.data.setToday",
-      "label": "setToday",
-      "type": "function",
-      "file_type": "code",
-      "source_file": "jiayan-miniprogram/utils/data.js",
-      "community": "0",
-      "norm_label": "settoday",
-      "source_location": "L57-L59",
-      "repo": "jiayan-miniprogram",
-      "start_line": 57,
-      "end_line": 59,
-      "signature": "setToday(names)"
-    },
-    {
-      "id": "jiayan-miniprogram.utils.data.addToday",
-      "label": "addToday",
-      "type": "function",
-      "file_type": "code",
-      "source_file": "jiayan-miniprogram/utils/data.js",
-      "community": "0",
-      "norm_label": "addtoday",
-      "source_location": "L60-L64",
-      "repo": "jiayan-miniprogram",
-      "start_line": 60,
-      "end_line": 64,
-      "signature": "addToday(name)"
-    },
-    {
-      "id": "jiayan-miniprogram.utils.data.getGuestCart",
-      "label": "getGuestCart",
-      "type": "function",
-      "file_type": "code",
-      "source_file": "jiayan-miniprogram/utils/data.js",
-      "community": "0",
-      "norm_label": "getguestcart",
-      "source_location": "L67-L70",
-      "repo": "jiayan-miniprogram",
-      "start_line": 67,
-      "end_line": 70,
-      "signature": "getGuestCart()"
-    },
-    {
-      "id": "jiayan-miniprogram.utils.data.setGuestCart",
-      "label": "setGuestCart",
-      "type": "function",
-      "file_type": "code",
-      "source_file": "jiayan-miniprogram/utils/data.js",
-      "community": "0",
-      "norm_label": "setguestcart",
-      "source_location": "L71-L73",
-      "repo": "jiayan-miniprogram",
-      "start_line": 71,
-      "end_line": 73,
-      "signature": "setGuestCart(names)"
-    },
-    {
-      "id": "jiayan-miniprogram.utils.data.getRating",
-      "label": "getRating",
-      "type": "function",
-      "file_type": "code",
-      "source_file": "jiayan-miniprogram/utils/data.js",
-      "community": "0",
-      "norm_label": "getrating",
-      "source_location": "L76-L81",
-      "repo": "jiayan-miniprogram",
-      "start_line": 76,
-      "end_line": 81,
-      "signature": "getRating(name)"
-    },
-    {
-      "id": "jiayan-miniprogram.utils.data.setRating",
-      "label": "setRating",
-      "type": "function",
-      "file_type": "code",
-      "source_file": "jiayan-miniprogram/utils/data.js",
-      "community": "0",
-      "norm_label": "setrating",
-      "source_location": "L82-L86",
-      "repo": "jiayan-miniprogram",
-      "start_line": 82,
-      "end_line": 86,
-      "signature": "setRating(name, n)"
-    },
-    {
       "id": "jiayan-tests.TEST-REPORT.__",
       "label": "",
       "type": "section",
@@ -1371,62 +1217,6 @@
       "repo": "jiayan-tests",
       "start_line": 6,
       "end_line": 883
-    },
-    {
-      "id": "jiayan-tests.package.scripts.test:unit",
-      "label": "test:unit",
-      "type": "function",
-      "file_type": "code",
-      "source_file": "jiayan-tests/package.json",
-      "community": "0",
-      "norm_label": "test:unit",
-      "source_location": "L6-L6",
-      "repo": "jiayan-tests",
-      "start_line": 6,
-      "end_line": 6,
-      "docstring": "node --test unit.test.js"
-    },
-    {
-      "id": "jiayan-tests.package.scripts.test:interface",
-      "label": "test:interface",
-      "type": "function",
-      "file_type": "code",
-      "source_file": "jiayan-tests/package.json",
-      "community": "0",
-      "norm_label": "test:interface",
-      "source_location": "L7-L7",
-      "repo": "jiayan-tests",
-      "start_line": 7,
-      "end_line": 7,
-      "docstring": "node --test interface.test.js"
-    },
-    {
-      "id": "jiayan-tests.package.scripts.test:ui",
-      "label": "test:ui",
-      "type": "function",
-      "file_type": "code",
-      "source_file": "jiayan-tests/package.json",
-      "community": "0",
-      "norm_label": "test:ui",
-      "source_location": "L8-L8",
-      "repo": "jiayan-tests",
-      "start_line": 8,
-      "end_line": 8,
-      "docstring": "node ui.test.js"
-    },
-    {
-      "id": "jiayan-tests.package.name",
-      "label": "jiayan-tests",
-      "type": "constant",
-      "file_type": "code",
-      "source_file": "jiayan-tests/package.json",
-      "community": "0",
-      "norm_label": "jiayan-tests",
-      "source_location": "L2-L2",
-      "repo": "jiayan-tests",
-      "start_line": 2,
-      "end_line": 2,
-      "docstring": "jiayan-tests@1.0.0"
     },
     {
       "id": "jiayan-tests.ui.test.CLI",
@@ -2074,10 +1864,10 @@
       "source_file": "server/package-lock.json",
       "community": "0",
       "norm_label": "packages",
-      "source_location": "L6-L1647",
+      "source_location": "L6-L1660",
       "repo": "server",
       "start_line": 6,
-      "end_line": 1647
+      "end_line": 1660
     },
     {
       "id": "server.package.scripts.start",
@@ -2142,10 +1932,10 @@
       "source_file": "server/server.js",
       "community": "0",
       "norm_label": "port",
-      "source_location": "L47-L47",
+      "source_location": "L48-L48",
       "repo": "server",
-      "start_line": 47,
-      "end_line": 47
+      "start_line": 48,
+      "end_line": 48
     },
     {
       "id": "server.test.api.test.TEST_DB",
@@ -2187,6 +1977,447 @@
       "start_line": 41,
       "end_line": 45,
       "signature": "login(openid = 'test_user_a')"
+    },
+    {
+      "id": "jiayan-miniprogram.utils.data.DISHES",
+      "label": "DISHES",
+      "type": "constant",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/utils/data.js",
+      "community": "0",
+      "norm_label": "dishes",
+      "source_location": "L2-L16",
+      "repo": "jiayan-miniprogram",
+      "start_line": 2,
+      "end_line": 16
+    },
+    {
+      "id": "jiayan-miniprogram.utils.data.IMGS",
+      "label": "IMGS",
+      "type": "constant",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/utils/data.js",
+      "community": "0",
+      "norm_label": "imgs",
+      "source_location": "L19-L32",
+      "repo": "jiayan-miniprogram",
+      "start_line": 19,
+      "end_line": 32
+    },
+    {
+      "id": "jiayan-miniprogram.utils.data.MOOD_MAP",
+      "label": "MOOD_MAP",
+      "type": "constant",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/utils/data.js",
+      "community": "0",
+      "norm_label": "mood_map",
+      "source_location": "L35-L42",
+      "repo": "jiayan-miniprogram",
+      "start_line": 35,
+      "end_line": 42
+    },
+    {
+      "id": "jiayan-miniprogram.utils.data.starText",
+      "label": "starText",
+      "type": "function",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/utils/data.js",
+      "community": "0",
+      "norm_label": "startext",
+      "source_location": "L44-L47",
+      "repo": "jiayan-miniprogram",
+      "start_line": 44,
+      "end_line": 47,
+      "signature": "starText(n)"
+    },
+    {
+      "id": "jiayan-miniprogram.utils.data.findDish",
+      "label": "findDish",
+      "type": "function",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/utils/data.js",
+      "community": "0",
+      "norm_label": "finddish",
+      "source_location": "L49-L51",
+      "repo": "jiayan-miniprogram",
+      "start_line": 49,
+      "end_line": 51,
+      "signature": "findDish(name)"
+    },
+    {
+      "id": "jiayan-miniprogram.utils.data.SYNC_RESOURCES",
+      "label": "SYNC_RESOURCES",
+      "type": "constant",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/utils/data.js",
+      "community": "0",
+      "norm_label": "sync_resources",
+      "source_location": "L53-L53",
+      "repo": "jiayan-miniprogram",
+      "start_line": 53,
+      "end_line": 53
+    },
+    {
+      "id": "jiayan-miniprogram.utils.data.SYNC_TOKEN_KEY",
+      "label": "SYNC_TOKEN_KEY",
+      "type": "constant",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/utils/data.js",
+      "community": "0",
+      "norm_label": "sync_token_key",
+      "source_location": "L54-L54",
+      "repo": "jiayan-miniprogram",
+      "start_line": 54,
+      "end_line": 54
+    },
+    {
+      "id": "jiayan-miniprogram.utils.data.SYNC_API_BASE_KEY",
+      "label": "SYNC_API_BASE_KEY",
+      "type": "constant",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/utils/data.js",
+      "community": "0",
+      "norm_label": "sync_api_base_key",
+      "source_location": "L55-L55",
+      "repo": "jiayan-miniprogram",
+      "start_line": 55,
+      "end_line": 55
+    },
+    {
+      "id": "jiayan-miniprogram.utils.data.SYNC_TEST_MODE_KEY",
+      "label": "SYNC_TEST_MODE_KEY",
+      "type": "constant",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/utils/data.js",
+      "community": "0",
+      "norm_label": "sync_test_mode_key",
+      "source_location": "L56-L56",
+      "repo": "jiayan-miniprogram",
+      "start_line": 56,
+      "end_line": 56
+    },
+    {
+      "id": "jiayan-miniprogram.utils.data.getSyncBaseUrl",
+      "label": "getSyncBaseUrl",
+      "type": "function",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/utils/data.js",
+      "community": "0",
+      "norm_label": "getsyncbaseurl",
+      "source_location": "L58-L61",
+      "repo": "jiayan-miniprogram",
+      "start_line": 58,
+      "end_line": 61,
+      "signature": "getSyncBaseUrl()"
+    },
+    {
+      "id": "jiayan-miniprogram.utils.data.request",
+      "label": "request",
+      "type": "function",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/utils/data.js",
+      "community": "0",
+      "norm_label": "request",
+      "source_location": "L63-L75",
+      "repo": "jiayan-miniprogram",
+      "start_line": 63,
+      "end_line": 75,
+      "signature": "request(options)"
+    },
+    {
+      "id": "jiayan-miniprogram.utils.data.isNonEmpty",
+      "label": "isNonEmpty",
+      "type": "function",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/utils/data.js",
+      "community": "0",
+      "norm_label": "isnonempty",
+      "source_location": "L77-L79",
+      "repo": "jiayan-miniprogram",
+      "start_line": 77,
+      "end_line": 79,
+      "signature": "isNonEmpty(value)"
+    },
+    {
+      "id": "jiayan-miniprogram.utils.data.mergeRemoteData",
+      "label": "mergeRemoteData",
+      "type": "function",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/utils/data.js",
+      "community": "0",
+      "norm_label": "mergeremotedata",
+      "source_location": "L81-L101",
+      "repo": "jiayan-miniprogram",
+      "start_line": 81,
+      "end_line": 101,
+      "signature": "mergeRemoteData(remote)"
+    },
+    {
+      "id": "jiayan-miniprogram.utils.data.getLoginCode",
+      "label": "getLoginCode",
+      "type": "function",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/utils/data.js",
+      "community": "0",
+      "norm_label": "getlogincode",
+      "source_location": "L103-L107",
+      "repo": "jiayan-miniprogram",
+      "start_line": 103,
+      "end_line": 107,
+      "signature": "getLoginCode()"
+    },
+    {
+      "id": "jiayan-miniprogram.utils.data.initSync",
+      "label": "initSync",
+      "type": "function",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/utils/data.js",
+      "community": "0",
+      "norm_label": "initsync",
+      "source_location": "L109-L125",
+      "repo": "jiayan-miniprogram",
+      "start_line": 109,
+      "end_line": 125,
+      "signature": "initSync()"
+    },
+    {
+      "id": "jiayan-miniprogram.utils.data.syncResource",
+      "label": "syncResource",
+      "type": "function",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/utils/data.js",
+      "community": "0",
+      "norm_label": "syncresource",
+      "source_location": "L127-L139",
+      "repo": "jiayan-miniprogram",
+      "start_line": 127,
+      "end_line": 139,
+      "signature": "syncResource(resource, value)"
+    },
+    {
+      "id": "jiayan-miniprogram.utils.data.getToday",
+      "label": "getToday",
+      "type": "function",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/utils/data.js",
+      "community": "0",
+      "norm_label": "gettoday",
+      "source_location": "L142-L144",
+      "repo": "jiayan-miniprogram",
+      "start_line": 142,
+      "end_line": 144,
+      "signature": "getToday()"
+    },
+    {
+      "id": "jiayan-miniprogram.utils.data.setToday",
+      "label": "setToday",
+      "type": "function",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/utils/data.js",
+      "community": "0",
+      "norm_label": "settoday",
+      "source_location": "L145-L148",
+      "repo": "jiayan-miniprogram",
+      "start_line": 145,
+      "end_line": 148,
+      "signature": "setToday(names)"
+    },
+    {
+      "id": "jiayan-miniprogram.utils.data.addToday",
+      "label": "addToday",
+      "type": "function",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/utils/data.js",
+      "community": "0",
+      "norm_label": "addtoday",
+      "source_location": "L149-L153",
+      "repo": "jiayan-miniprogram",
+      "start_line": 149,
+      "end_line": 153,
+      "signature": "addToday(name)"
+    },
+    {
+      "id": "jiayan-miniprogram.utils.data.getGuestCart",
+      "label": "getGuestCart",
+      "type": "function",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/utils/data.js",
+      "community": "0",
+      "norm_label": "getguestcart",
+      "source_location": "L156-L159",
+      "repo": "jiayan-miniprogram",
+      "start_line": 156,
+      "end_line": 159,
+      "signature": "getGuestCart()"
+    },
+    {
+      "id": "jiayan-miniprogram.utils.data.setGuestCart",
+      "label": "setGuestCart",
+      "type": "function",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/utils/data.js",
+      "community": "0",
+      "norm_label": "setguestcart",
+      "source_location": "L160-L163",
+      "repo": "jiayan-miniprogram",
+      "start_line": 160,
+      "end_line": 163,
+      "signature": "setGuestCart(names)"
+    },
+    {
+      "id": "jiayan-miniprogram.utils.data.getCustomDishes",
+      "label": "getCustomDishes",
+      "type": "function",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/utils/data.js",
+      "community": "0",
+      "norm_label": "getcustomdishes",
+      "source_location": "L165-L167",
+      "repo": "jiayan-miniprogram",
+      "start_line": 165,
+      "end_line": 167,
+      "signature": "getCustomDishes()"
+    },
+    {
+      "id": "jiayan-miniprogram.utils.data.setCustomDishes",
+      "label": "setCustomDishes",
+      "type": "function",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/utils/data.js",
+      "community": "0",
+      "norm_label": "setcustomdishes",
+      "source_location": "L168-L171",
+      "repo": "jiayan-miniprogram",
+      "start_line": 168,
+      "end_line": 171,
+      "signature": "setCustomDishes(dishes)"
+    },
+    {
+      "id": "jiayan-miniprogram.utils.data.getRating",
+      "label": "getRating",
+      "type": "function",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/utils/data.js",
+      "community": "0",
+      "norm_label": "getrating",
+      "source_location": "L174-L179",
+      "repo": "jiayan-miniprogram",
+      "start_line": 174,
+      "end_line": 179,
+      "signature": "getRating(name)"
+    },
+    {
+      "id": "jiayan-miniprogram.utils.data.setRating",
+      "label": "setRating",
+      "type": "function",
+      "file_type": "code",
+      "source_file": "jiayan-miniprogram/utils/data.js",
+      "community": "0",
+      "norm_label": "setrating",
+      "source_location": "L180-L185",
+      "repo": "jiayan-miniprogram",
+      "start_line": 180,
+      "end_line": 185,
+      "signature": "setRating(name, n)"
+    },
+    {
+      "id": "jiayan-tests.data-sync.test.flush",
+      "label": "flush",
+      "type": "function",
+      "file_type": "code",
+      "source_file": "jiayan-tests/data-sync.test.js",
+      "community": "0",
+      "norm_label": "flush",
+      "source_location": "L6-L6",
+      "repo": "jiayan-tests",
+      "start_line": 6,
+      "end_line": 6,
+      "signature": "flush()"
+    },
+    {
+      "id": "jiayan-tests.data-sync.test.enableNetwork",
+      "label": "enableNetwork",
+      "type": "function",
+      "file_type": "code",
+      "source_file": "jiayan-tests/data-sync.test.js",
+      "community": "0",
+      "norm_label": "enablenetwork",
+      "source_location": "L9-L15",
+      "repo": "jiayan-tests",
+      "start_line": 9,
+      "end_line": 15,
+      "signature": "enableNetwork(responder)"
+    },
+    {
+      "id": "jiayan-tests.package.scripts.test",
+      "label": "test",
+      "type": "function",
+      "file_type": "code",
+      "source_file": "jiayan-tests/package.json",
+      "community": "0",
+      "norm_label": "test",
+      "source_location": "L6-L6",
+      "repo": "jiayan-tests",
+      "start_line": 6,
+      "end_line": 6,
+      "docstring": "node --test unit.test.js interface.test.js data-sync.test.js"
+    },
+    {
+      "id": "jiayan-tests.package.scripts.test:unit",
+      "label": "test:unit",
+      "type": "function",
+      "file_type": "code",
+      "source_file": "jiayan-tests/package.json",
+      "community": "0",
+      "norm_label": "test:unit",
+      "source_location": "L7-L7",
+      "repo": "jiayan-tests",
+      "start_line": 7,
+      "end_line": 7,
+      "docstring": "node --test unit.test.js"
+    },
+    {
+      "id": "jiayan-tests.package.scripts.test:interface",
+      "label": "test:interface",
+      "type": "function",
+      "file_type": "code",
+      "source_file": "jiayan-tests/package.json",
+      "community": "0",
+      "norm_label": "test:interface",
+      "source_location": "L8-L8",
+      "repo": "jiayan-tests",
+      "start_line": 8,
+      "end_line": 8,
+      "docstring": "node --test interface.test.js"
+    },
+    {
+      "id": "jiayan-tests.package.scripts.test:ui",
+      "label": "test:ui",
+      "type": "function",
+      "file_type": "code",
+      "source_file": "jiayan-tests/package.json",
+      "community": "0",
+      "norm_label": "test:ui",
+      "source_location": "L9-L9",
+      "repo": "jiayan-tests",
+      "start_line": 9,
+      "end_line": 9,
+      "docstring": "node ui.test.js"
+    },
+    {
+      "id": "jiayan-tests.package.name",
+      "label": "jiayan-tests",
+      "type": "constant",
+      "file_type": "code",
+      "source_file": "jiayan-tests/package.json",
+      "community": "0",
+      "norm_label": "jiayan-tests",
+      "source_location": "L2-L2",
+      "repo": "jiayan-tests",
+      "start_line": 2,
+      "end_line": 2,
+      "docstring": "jiayan-tests@1.0.0"
     }
   ],
   "edges": [
@@ -2479,102 +2710,6 @@
       "weight": 1
     },
     {
-      "source": "jiayan-miniprogram/utils/data.js",
-      "target": "jiayan-miniprogram.utils.data.DISHES",
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1,
-      "weight": 1
-    },
-    {
-      "source": "jiayan-miniprogram/utils/data.js",
-      "target": "jiayan-miniprogram.utils.data.IMGS",
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1,
-      "weight": 1
-    },
-    {
-      "source": "jiayan-miniprogram/utils/data.js",
-      "target": "jiayan-miniprogram.utils.data.MOOD_MAP",
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1,
-      "weight": 1
-    },
-    {
-      "source": "jiayan-miniprogram/utils/data.js",
-      "target": "jiayan-miniprogram.utils.data.starText",
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1,
-      "weight": 1
-    },
-    {
-      "source": "jiayan-miniprogram/utils/data.js",
-      "target": "jiayan-miniprogram.utils.data.findDish",
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1,
-      "weight": 1
-    },
-    {
-      "source": "jiayan-miniprogram/utils/data.js",
-      "target": "jiayan-miniprogram.utils.data.getToday",
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1,
-      "weight": 1
-    },
-    {
-      "source": "jiayan-miniprogram/utils/data.js",
-      "target": "jiayan-miniprogram.utils.data.setToday",
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1,
-      "weight": 1
-    },
-    {
-      "source": "jiayan-miniprogram/utils/data.js",
-      "target": "jiayan-miniprogram.utils.data.addToday",
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1,
-      "weight": 1
-    },
-    {
-      "source": "jiayan-miniprogram/utils/data.js",
-      "target": "jiayan-miniprogram.utils.data.getGuestCart",
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1,
-      "weight": 1
-    },
-    {
-      "source": "jiayan-miniprogram/utils/data.js",
-      "target": "jiayan-miniprogram.utils.data.setGuestCart",
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1,
-      "weight": 1
-    },
-    {
-      "source": "jiayan-miniprogram/utils/data.js",
-      "target": "jiayan-miniprogram.utils.data.getRating",
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1,
-      "weight": 1
-    },
-    {
-      "source": "jiayan-miniprogram/utils/data.js",
-      "target": "jiayan-miniprogram.utils.data.setRating",
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1,
-      "weight": 1
-    },
-    {
       "source": "jiayan-tests/TEST-REPORT.md",
       "target": "jiayan-tests.TEST-REPORT.__",
       "relation": "contains",
@@ -2665,38 +2800,6 @@
     {
       "source": "jiayan-tests/package-lock.json",
       "target": "jiayan-tests.package-lock.packages",
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1,
-      "weight": 1
-    },
-    {
-      "source": "jiayan-tests/package.json",
-      "target": "jiayan-tests.package.scripts.test:unit",
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1,
-      "weight": 1
-    },
-    {
-      "source": "jiayan-tests/package.json",
-      "target": "jiayan-tests.package.scripts.test:interface",
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1,
-      "weight": 1
-    },
-    {
-      "source": "jiayan-tests/package.json",
-      "target": "jiayan-tests.package.scripts.test:ui",
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1,
-      "weight": 1
-    },
-    {
-      "source": "jiayan-tests/package.json",
-      "target": "jiayan-tests.package.name",
       "relation": "contains",
       "confidence": "EXTRACTED",
       "confidence_score": 1,
@@ -3143,6 +3246,262 @@
       "weight": 1
     },
     {
+      "source": "jiayan-miniprogram/utils/data.js",
+      "target": "jiayan-miniprogram.utils.data.DISHES",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/utils/data.js",
+      "target": "jiayan-miniprogram.utils.data.IMGS",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/utils/data.js",
+      "target": "jiayan-miniprogram.utils.data.MOOD_MAP",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/utils/data.js",
+      "target": "jiayan-miniprogram.utils.data.starText",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/utils/data.js",
+      "target": "jiayan-miniprogram.utils.data.findDish",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/utils/data.js",
+      "target": "jiayan-miniprogram.utils.data.SYNC_RESOURCES",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/utils/data.js",
+      "target": "jiayan-miniprogram.utils.data.SYNC_TOKEN_KEY",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/utils/data.js",
+      "target": "jiayan-miniprogram.utils.data.SYNC_API_BASE_KEY",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/utils/data.js",
+      "target": "jiayan-miniprogram.utils.data.SYNC_TEST_MODE_KEY",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/utils/data.js",
+      "target": "jiayan-miniprogram.utils.data.getSyncBaseUrl",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/utils/data.js",
+      "target": "jiayan-miniprogram.utils.data.request",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/utils/data.js",
+      "target": "jiayan-miniprogram.utils.data.isNonEmpty",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/utils/data.js",
+      "target": "jiayan-miniprogram.utils.data.mergeRemoteData",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/utils/data.js",
+      "target": "jiayan-miniprogram.utils.data.getLoginCode",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/utils/data.js",
+      "target": "jiayan-miniprogram.utils.data.initSync",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/utils/data.js",
+      "target": "jiayan-miniprogram.utils.data.syncResource",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/utils/data.js",
+      "target": "jiayan-miniprogram.utils.data.getToday",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/utils/data.js",
+      "target": "jiayan-miniprogram.utils.data.setToday",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/utils/data.js",
+      "target": "jiayan-miniprogram.utils.data.addToday",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/utils/data.js",
+      "target": "jiayan-miniprogram.utils.data.getGuestCart",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/utils/data.js",
+      "target": "jiayan-miniprogram.utils.data.setGuestCart",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/utils/data.js",
+      "target": "jiayan-miniprogram.utils.data.getCustomDishes",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/utils/data.js",
+      "target": "jiayan-miniprogram.utils.data.setCustomDishes",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/utils/data.js",
+      "target": "jiayan-miniprogram.utils.data.getRating",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/utils/data.js",
+      "target": "jiayan-miniprogram.utils.data.setRating",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-tests/data-sync.test.js",
+      "target": "jiayan-tests.data-sync.test.flush",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-tests/data-sync.test.js",
+      "target": "jiayan-tests.data-sync.test.enableNetwork",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-tests/package.json",
+      "target": "jiayan-tests.package.scripts.test",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-tests/package.json",
+      "target": "jiayan-tests.package.scripts.test:unit",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-tests/package.json",
+      "target": "jiayan-tests.package.scripts.test:interface",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-tests/package.json",
+      "target": "jiayan-tests.package.scripts.test:ui",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-tests/package.json",
+      "target": "jiayan-tests.package.name",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
       "source": "jiayan-miniprogram/pages/dish/dish.js",
       "target": "jiayan-miniprogram.utils.data.findDish",
       "relation": "imports_from",
@@ -3249,22 +3608,6 @@
     {
       "source": "jiayan-miniprogram/pages/home/home.js",
       "target": "jiayan-miniprogram.utils.data.addToday",
-      "relation": "imports_from",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1,
-      "weight": 1
-    },
-    {
-      "source": "jiayan-miniprogram/pages/library/library.js",
-      "target": "jiayan-miniprogram.utils.data.DISHES",
-      "relation": "imports_from",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1,
-      "weight": 1
-    },
-    {
-      "source": "jiayan-miniprogram/pages/library/library.js",
-      "target": "jiayan-miniprogram.utils.data.starText",
       "relation": "imports_from",
       "confidence": "EXTRACTED",
       "confidence_score": 1,
@@ -3519,25 +3862,57 @@
       "weight": 1
     },
     {
-      "source": "jiayan-miniprogram.utils.data.addToday",
-      "target": "jiayan-miniprogram.utils.data.getToday",
-      "relation": "calls",
+      "source": "jiayan-miniprogram/app.js",
+      "target": "jiayan-miniprogram.utils.data.initSync",
+      "relation": "imports_from",
       "confidence": "EXTRACTED",
       "confidence_score": 1,
       "weight": 1
     },
     {
-      "source": "jiayan-miniprogram.utils.data.addToday",
-      "target": "jiayan-miniprogram.utils.data.setToday",
-      "relation": "calls",
+      "source": "jiayan-miniprogram/pages/analysis/analysis.js",
+      "target": "jiayan-miniprogram.utils.data.getCustomDishes",
+      "relation": "imports_from",
       "confidence": "EXTRACTED",
       "confidence_score": 1,
       "weight": 1
     },
     {
-      "source": "jiayan-miniprogram.utils.data.getRating",
-      "target": "jiayan-miniprogram.utils.data.findDish",
-      "relation": "calls",
+      "source": "jiayan-miniprogram/pages/analysis/analysis.js",
+      "target": "jiayan-miniprogram.utils.data.setCustomDishes",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/pages/library/library.js",
+      "target": "jiayan-miniprogram.utils.data.DISHES",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/pages/library/library.js",
+      "target": "jiayan-miniprogram.utils.data.starText",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram/pages/library/library.js",
+      "target": "jiayan-miniprogram.utils.data.getCustomDishes",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-tests/data-sync.test.js",
+      "target": "jiayan-miniprogram/utils/data.js",
+      "relation": "imports",
       "confidence": "EXTRACTED",
       "confidence_score": 1,
       "weight": 1
@@ -3589,11 +3964,123 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1,
       "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram.utils.data.mergeRemoteData",
+      "target": "jiayan-miniprogram.utils.data.isNonEmpty",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram.utils.data.initSync",
+      "target": "jiayan-miniprogram.utils.data.getSyncBaseUrl",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram.utils.data.initSync",
+      "target": "jiayan-miniprogram.utils.data.request",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram.utils.data.initSync",
+      "target": "jiayan-miniprogram.utils.data.getLoginCode",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram.utils.data.initSync",
+      "target": "jiayan-miniprogram.utils.data.mergeRemoteData",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram.utils.data.syncResource",
+      "target": "jiayan-miniprogram.utils.data.getSyncBaseUrl",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram.utils.data.syncResource",
+      "target": "jiayan-miniprogram.utils.data.request",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram.utils.data.setToday",
+      "target": "jiayan-miniprogram.utils.data.syncResource",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram.utils.data.addToday",
+      "target": "jiayan-miniprogram.utils.data.getToday",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram.utils.data.addToday",
+      "target": "jiayan-miniprogram.utils.data.setToday",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram.utils.data.setGuestCart",
+      "target": "jiayan-miniprogram.utils.data.syncResource",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram.utils.data.setCustomDishes",
+      "target": "jiayan-miniprogram.utils.data.syncResource",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram.utils.data.getRating",
+      "target": "jiayan-miniprogram.utils.data.findDish",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
+    },
+    {
+      "source": "jiayan-miniprogram.utils.data.setRating",
+      "target": "jiayan-miniprogram.utils.data.syncResource",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "weight": 1
     }
   ],
   "metadata": {
     "reponova_version": "0.7.1",
-    "built_at": "2026-08-06T12:15:08.620Z",
+    "built_at": "2026-08-13T21:04:29.855Z",
     "config_dir": "..",
     "repos": [
       {

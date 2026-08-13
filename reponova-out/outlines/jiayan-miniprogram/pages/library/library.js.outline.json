@@ -6,7 +6,8 @@
       "module": "../../utils/data",
       "names": [
         "DISHES",
-        "starText"
+        "starText",
+        "getCustomDishes"
       ],
       "line": 1
     }

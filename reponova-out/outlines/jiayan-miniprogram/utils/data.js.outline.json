@@ -1,6 +1,6 @@
 {
   "file_path": "jiayan-miniprogram/utils/data.js",
-  "line_count": 89,
+  "line_count": 188,
   "imports": [],
   "functions": [
     {
@@ -25,11 +25,107 @@
       ]
     },
     {
+      "name": "getSyncBaseUrl",
+      "signature": "getSyncBaseUrl()",
+      "decorators": [],
+      "start_line": 58,
+      "end_line": 61,
+      "calls": [
+        "wx.getStorageSync",
+        "baseUrl.replace"
+      ]
+    },
+    {
+      "name": "request",
+      "signature": "request(options)",
+      "decorators": [],
+      "start_line": 63,
+      "end_line": 75,
+      "calls": [
+        "Promise",
+        "reject",
+        "Error",
+        "wx.request",
+        "resolve"
+      ]
+    },
+    {
+      "name": "isNonEmpty",
+      "signature": "isNonEmpty(value)",
+      "decorators": [],
+      "start_line": 77,
+      "end_line": 79,
+      "calls": [
+        "Array.isArray",
+        "Object.keys"
+      ]
+    },
+    {
+      "name": "mergeRemoteData",
+      "signature": "mergeRemoteData(remote)",
+      "decorators": [],
+      "start_line": 81,
+      "end_line": 101,
+      "calls": [
+        "wx.getStorageSync",
+        "SYNC_RESOURCES.forEach",
+        "isNonEmpty",
+        "wx.setStorageSync"
+      ]
+    },
+    {
+      "name": "getLoginCode",
+      "signature": "getLoginCode()",
+      "decorators": [],
+      "start_line": 103,
+      "end_line": 107,
+      "calls": [
+        "wx.getStorageSync",
+        "Date.now",
+        "Math.random().toString(36).slice",
+        "Math.random().toString",
+        "Math.random",
+        "Error",
+        "Promise",
+        "wx.login",
+        "resolve",
+        "reject"
+      ]
+    },
+    {
+      "name": "initSync",
+      "signature": "initSync()",
+      "decorators": [],
+      "start_line": 109,
+      "end_line": 125,
+      "calls": [
+        "getSyncBaseUrl",
+        "wx.getStorageSync",
+        "request",
+        "getLoginCode",
+        "wx.setStorageSync",
+        "mergeRemoteData"
+      ]
+    },
+    {
+      "name": "syncResource",
+      "signature": "syncResource(resource, value)",
+      "decorators": [],
+      "start_line": 127,
+      "end_line": 139,
+      "calls": [
+        "getSyncBaseUrl",
+        "wx.getStorageSync",
+        "request(options).catch",
+        "request"
+      ]
+    },
+    {
       "name": "getToday",
       "signature": "getToday()",
       "decorators": [],
-      "start_line": 54,
-      "end_line": 56,
+      "start_line": 142,
+      "end_line": 144,
       "calls": [
         "wx.getStorageSync"
       ]
@@ -38,18 +134,19 @@
       "name": "setToday",
       "signature": "setToday(names)",
       "decorators": [],
-      "start_line": 57,
-      "end_line": 59,
+      "start_line": 145,
+      "end_line": 148,
       "calls": [
-        "wx.setStorageSync"
+        "wx.setStorageSync",
+        "syncResource"
       ]
     },
     {
       "name": "addToday",
       "signature": "addToday(name)",
       "decorators": [],
-      "start_line": 60,
-      "end_line": 64,
+      "start_line": 149,
+      "end_line": 153,
       "calls": [
         "getToday",
         "t.includes",
@@ -61,8 +158,8 @@
       "name": "getGuestCart",
       "signature": "getGuestCart()",
       "decorators": [],
-      "start_line": 67,
-      "end_line": 70,
+      "start_line": 156,
+      "end_line": 159,
       "calls": [
         "wx.getStorageSync"
       ]
@@ -71,18 +168,40 @@
       "name": "setGuestCart",
       "signature": "setGuestCart(names)",
       "decorators": [],
-      "start_line": 71,
-      "end_line": 73,
+      "start_line": 160,
+      "end_line": 163,
       "calls": [
-        "wx.setStorageSync"
+        "wx.setStorageSync",
+        "syncResource"
+      ]
+    },
+    {
+      "name": "getCustomDishes",
+      "signature": "getCustomDishes()",
+      "decorators": [],
+      "start_line": 165,
+      "end_line": 167,
+      "calls": [
+        "wx.getStorageSync"
+      ]
+    },
+    {
+      "name": "setCustomDishes",
+      "signature": "setCustomDishes(dishes)",
+      "decorators": [],
+      "start_line": 168,
+      "end_line": 171,
+      "calls": [
+        "wx.setStorageSync",
+        "syncResource"
       ]
     },
     {
       "name": "getRating",
       "signature": "getRating(name)",
       "decorators": [],
-      "start_line": 76,
-      "end_line": 81,
+      "start_line": 174,
+      "end_line": 179,
       "calls": [
         "wx.getStorageSync",
         "findDish"
@@ -92,11 +211,12 @@
       "name": "setRating",
       "signature": "setRating(name, n)",
       "decorators": [],
-      "start_line": 82,
-      "end_line": 86,
+      "start_line": 180,
+      "end_line": 185,
       "calls": [
         "wx.getStorageSync",
-        "wx.setStorageSync"
+        "wx.setStorageSync",
+        "syncResource"
       ]
     }
   ],

@@ -1,5 +1,5 @@
 {
-  "workspace": "/var/folders/th/qdbbd6j16g38kmqtlkj07dkm0000gn/T/rn-build-1786018508370/workspace",
+  "workspace": "/var/folders/th/qdbbd6j16g38kmqtlkj07dkm0000gn/T/rn-build-1786655069690/workspace",
   "files": {
     "document": [
       "jiayan-miniprogram/images/dishes/CREDITS.md",
@@ -44,6 +44,7 @@
       "jiayan-miniprogram/pages/us/us.js",
       "jiayan-miniprogram/pages/wheel/wheel.js",
       "jiayan-miniprogram/utils/data.js",
+      "jiayan-tests/data-sync.test.js",
       "jiayan-tests/interface.test.js",
       "jiayan-tests/ui.test.js",
       "jiayan-tests/unit.test.js",

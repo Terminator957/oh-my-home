@@ -1,7 +1,15 @@
 {
   "file_path": "jiayan-miniprogram/app.js",
-  "line_count": 4,
-  "imports": [],
+  "line_count": 6,
+  "imports": [
+    {
+      "module": "./utils/data",
+      "names": [
+        "initSync"
+      ],
+      "line": 1
+    }
+  ],
   "functions": [],
   "classes": []
 }

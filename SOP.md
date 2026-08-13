@@ -1,21 +1,21 @@
-# oh-my-home / jiayan-miniprogram - 家宴小本子服务端 SOP
+# oh-my-home / jiayan-miniprogram - 小程序本地数据迁移至自托管服务端 SOP
 
-- Version: 1.0.0
+- Version: 1.1.0
 - Status: approved
-- Effective date: 2026-08-06
-- Owner: ict（需求授权）/ Codex（交付负责人）
+- Effective date: 2026-08-14
+- Owner: Codex
 
 ## Purpose
 
-为当前仅使用 wx.setStorageSync 的家宴小本子提供可自托管的轻量服务端，使经微信登录认证的用户可跨设备保存家用级菜品与菜单数据，并提供受控菜品、统计和可分享直达菜单。
+在不改变小程序页面 UI 或既有 data.js 调用语义的前提下，将四类现有本地 Storage 数据增量接入已部署的 Node、Express、SQLite 服务端；网络、认证或同步失败时必须保持原有离线本地可用行为。
 
 ## Subject
 
 ```json
 {
-  "type": "feature",
-  "target": "jiayan-miniprogram 的独立 server/ 服务端",
-  "boundary": "HTTP JSON API、SQLite 数据文件和部署脚本；客户端保持未改，所有持久化数据必须通过认证用户隔离。"
+  "type": "migration",
+  "target": "jiayan-miniprogram 的四类 Storage 数据与 server /api/auth/wechat、/api/sync 之间的离线优先同步适配层",
+  "boundary": "客户端 utils、启动入口、customDishes 调用接线和 Node mock 测试；服务端仅作为既有 HTTP JSON 契约进行验证，不改变其实现。"
 }
 ```
 
@@ -24,7 +24,9 @@
 ```json
 {
   "authority": true,
-  "supersedes": [],
+  "supersedes": [
+    "SOP.json 1.0.0 服务端单独交付范围"
+  ],
   "derived_contracts": [
     "development-contract.json"
   ],
@@ -36,126 +38,102 @@
 ## Scope
 
 ### Included
-- server/ 下 Node.js、Express 与 SQLite 服务端及数据库初始化
-- 微信 wx.login code 到 code2session 的服务端交换、用户创建和 Bearer 令牌鉴权
-- customDishes、ratings、todayMenu、guestCart 的按用户云同步
-- 受控菜品查询、用户自定义菜品写入、统计分析和分享令牌接口
-- 本地自动化接口测试、健康检查和 Linux 云服务器一键部署脚本
+- jiayan-miniprogram/utils/data.js 的登录、令牌缓存、启动拉取、合并与异步同步层
+- 启动时调用数据层初始化，正式 wx.login 与 WECHAT_TEST_MODE 测试 code 均可用
+- 保持既有页面行为，仅将 customDishes 的直接 Storage 读写改接到同名 data.js 接口
+- jiayan-tests 中基于 wx mock 与 wx.request mock 的 utils 层回归测试
+- 现有 server/ API 的回归验证和 RepoNova 项目图谱刷新
 
 ### Excluded
-- 修改小程序页面、wx.request 接入或现有本地 storage 行为
-- 微信开放平台资质配置、真实 AppSecret 提供和生产 code2session 联调
-- 在未提供 SSH 地址、账号、域名与 DNS 控制权时连接或修改用户云服务器
-- 云开发、云函数、支付、多人协作权限和通用后台管理界面
+- 页面 UI、WXML、WXSS、交互流程或现有 data.js 导出接口签名的变更
+- 服务端 API、数据库结构、云服务器部署、真实微信 AppSecret 或生产 code2session 联调
+- analysisData、libTab 等不在服务端 sync API 中的本地状态同步
+- 冲突版本控制、后台同步队列、跨设备实时合并或多用户协作
 
 ## Evidence and Open Items
 
 ### Evidence
-- **EVID-001** 现有 data.js 将 todayMenu、guestCart 与 ratings 写入 wx storage；analysis.js 写入 customDishes。
-- **EVID-002** 现有 app.json 有 13 个小程序页面；guest.js 已提供页面直达分享。
-- **EVID-003** RepoNova 2026-08-05 图谱包含 110 节点、106 边；utils/data.js 为最高耦合数据模块，图谱尚无服务端节点。
+- **EVID-001** RepoNova 2026-08-14 build 成功：52 文件、171 节点、175 边、48 跨文件边；data.js 是 14 度中心节点。
+- **EVID-002** 实时源码确认 server POST /api/auth/wechat 在 WECHAT_TEST_MODE 接受 test_ 前缀 code 并返回 token；GET /api/sync 与 PUT /api/sync/:resource 已保护四类资源。
+- **EVID-003** 实时源码确认 todayMenu、guestCart、ratings 已通过 data.js 写入；customDishes 仅由 library/analysis 页面直接 Storage 读写，需最小接线。
 
 ### Open Items
-- **TBD-001** 实际部署需用户在目标 Linux 主机提供 SSH 可达性、域名 DNS、微信小程序 AppID/AppSecret；实现仅提供安全的环境变量入口与部署脚本。
+- N/A
 
 ## Roles
 
-- **ROLE-001** {"id": "ROLE-001", "name": "登录用户", "responsibility": "只能访问自己的同步数据、统计和分享资源。"}
-- **ROLE-002** {"id": "ROLE-002", "name": "服务端", "responsibility": "验证令牌、持久化数据、校验输入、生成分享令牌并记录受控菜品。"}
+- **ROLE-001** 小程序用户：离线或在线使用菜单、购物车、评分与自定义菜品。
+- **ROLE-002** 自托管服务：验证 token 并保存按用户隔离的同步资源。
 
 ## Requirements
 
-- **REQ-001** 服务端提供基于微信 code2session 的登录端点，在测试模式允许显式 mock code，且不得将 AppSecret 返回给客户端。
-- **REQ-002** 服务端使用 Bearer 令牌保护除健康检查和登录外的业务端点，并按用户隔离数据。
-- **REQ-003** 服务端支持 customDishes、ratings、todayMenu、guestCart 的全量读取和幂等替换式同步。
-- **REQ-004** 服务端提供内置受控菜品查询及用户自定义菜品创建、读取、更新、删除。
-- **REQ-005** 服务端提供用户统计和分享直达菜单：创建分享、匿名读取有效分享、过期或撤销后拒绝访问。
-- **REQ-006** 服务端提供可复现的本地测试、健康检查、环境变量样例和可在常见 Linux/麒麟发行版执行的部署命令。
+- **REQ-007** 数据层初始化时，在已有有效 token 可复用时先获取四类服务端数据；无 token 时使用测试模式随机 test_openid_ code 或 wx.login code 登录，成功后缓存 token。
+- **REQ-008** 首次拉取采用本地优先合并：本地已有的非空资源不得被服务端默认空值覆盖；本地空资源可采用服务端值，并将合并结果保留到现有 Storage。
+- **REQ-009** setToday、setGuestCart、setRating、setCustomDishes 等写操作须先同步写本地 Storage，再异步 PUT 对应全量资源；失败静默重试恰好一次，绝不阻塞 UI 或抛出给页面。
+- **REQ-010** 无 wx.request、网络失败、登录失败或服务端未配置时，所有读取和写入必须保持纯本地 Storage 的原有语义与默认值。
+- **REQ-011** 不得修改页面 UI、WXML、WXSS，且既有 data.js 导出函数的参数、返回同步性和调用方式不得被破坏。
+- **REQ-012** utils mock 测试必须覆盖无网络本地回退、登录并缓存 token、写后同步、失败重试一次；现有服务端接口测试必须回归通过。
+- **REQ-013** 任何源代码或运行时拓扑改动后必须重新执行 RepoNova build，提交仅包含本任务受控文件，不纳入基线未跟踪状态文件和 docs。
 
 ## Data Rules
 
-- **DATA-001** {"id": "DATA-001", "source": "REQ-001", "assertion": "users 以微信 openid 唯一；只保存 openid、会话键加密摘要或空值、昵称、创建与更新时间，不保存客户端 AppSecret。"}
-- **DATA-002** {"id": "DATA-002", "source": "REQ-003", "assertion": "user_sync 以每用户每资源键保存 JSON、版本和更新时间；PUT 完整替换同一资源是幂等的。"}
-- **DATA-003** {"id": "DATA-003", "source": "REQ-003", "assertion": "同步结构与查询均按 user_id 过滤，任一用户不能读取或写入另一个用户的数据。"}
-- **DATA-004** {"id": "DATA-004", "source": "REQ-004", "assertion": "dishes 为服务端受控内置菜品，用户自定义菜品不允许覆盖内置菜品。"}
-- **DATA-005** {"id": "DATA-005", "source": "REQ-005", "assertion": "shares 使用不可预测令牌、可选过期时间和撤销状态；匿名只可读取创建时的菜单快照。"}
+- **DATA-006** {"id": "DATA-006", "source": "REQ-008", "assertion": "同步资源限定为 customDishes、ratings、todayMenu、guestCart；本地数据优先，服务端只补充本地空值，ratings 合并以本地条目覆盖同名服务端条目。"}
+- **DATA-007** {"id": "DATA-007", "source": "REQ-009", "assertion": "写入先持久化本地再发起非阻塞请求；每次请求失败最多追加一次同 payload 重试，不改变已经写入的本地值。"}
+- **DATA-008** {"id": "DATA-008", "source": "REQ-007", "assertion": "JWT 仅缓存于小程序 Storage 并仅以 Authorization Bearer header 发送；不得记录或硬编码真实密钥。"}
 
 ## Forward Flow
 
-### FLOW-F-001 微信登录
+### FLOW-F-005 启动认证并拉取
 
 - Actor: ROLE-001
-- Precondition: 客户端已取得 wx.login code
-- Input: 微信登录 code
-- Action: POST /api/auth/wechat，服务端 code2session 后创建或更新用户并签发 JWT。
-- Data changes: 创建或更新 users 记录
-- Output: 不含密钥的令牌与用户摘要
-- Next state: authenticated
-- Acceptance: ACC-002
+- Precondition: 小程序启动且 wx.request 可用
+- Input: 已缓存 token 或 wx.login/test code
+- Action: 登录或复用 token，GET /api/sync，并按本地优先规则合并四类资源。
+- Data changes: 仅更新既有本地 Storage 和 token 缓存
+- Output: 在线数据补充到离线可用本地状态
+- Next state: synchronized-or-local
+- Acceptance: ACC-005, ACC-006
 
-### FLOW-F-002 同步资源
-
-- Actor: ROLE-001
-- Precondition: Bearer JWT 有效
-- Input: 四类同步资源的完整 JSON
-- Action: GET /api/sync 获取四类数据，PUT /api/sync/:resource 原子替换校验后的资源。
-- Data changes: 写入当前用户对应 user_sync 资源与版本
-- Output: 按当前用户隔离的数据与版本
-- Next state: synchronized
-- Acceptance: ACC-002
-
-### FLOW-F-003 管理菜品与查看统计
+### FLOW-F-006 本地写后异步同步
 
 - Actor: ROLE-001
-- Precondition: Bearer JWT 有效
-- Input: 菜品属性或统计查询
-- Action: 读取内置菜品，管理个人菜品，读取统计聚合。
-- Data changes: 仅创建或更新当前用户 custom_dishes
-- Output: 受控菜品、个人菜品和统计结果
-- Next state: data-managed
-- Acceptance: ACC-002
-
-### FLOW-F-004 创建分享
-
-- Actor: ROLE-001
-- Precondition: Bearer JWT 有效且存在菜单
-- Input: 可选的分享有效期
-- Action: POST /api/shares 保存 todayMenu 快照；访客按 token 读取。
-- Data changes: 写入当前用户的不可预测分享令牌与菜单快照
-- Output: 可直达的分享令牌和菜单快照
-- Next state: shared
-- Acceptance: ACC-002
+- Precondition: 页面调用既有 data.js setter
+- Input: 完整资源的新值
+- Action: 同步写 Storage，随后以 token PUT /api/sync/:resource。
+- Data changes: 本地立即持久化，远端最终替换式写入
+- Output: 页面无等待地完成既有操作
+- Next state: sync-pending-or-complete
+- Acceptance: ACC-007, ACC-009
 
 ## Reverse Flow
 
-### FLOW-R-001 删除个人菜品
+### FLOW-R-003 离线回退
 
 - Actor: ROLE-001
-- Precondition: Bearer JWT 有效且目标菜品属于该用户
-- Input: 当前用户的菜品 ID
-- Action: DELETE /api/custom-dishes/:id。
-- Data changes: 删除当前用户的 custom_dishes 记录
-- Output: 204；不存在或跨用户 ID 返回 404
-- Next state: custom-dish-deleted
-- Acceptance: ACC-002
+- Precondition: 无网络、缺 request、登录失败或同步失败
+- Input: 任意数据层读取或写入
+- Action: 吞掉网络层错误并保留本地数据；失败的 PUT 使用原 payload 再尝试一次。
+- Data changes: 只改变本地 Storage，远端失败不回滚
+- Output: 原有页面行为和离线数据继续可用
+- Next state: local-only
+- Acceptance: ACC-008
 
-### FLOW-R-002 撤销分享
+### FLOW-R-004 重新初始化
 
 - Actor: ROLE-001
-- Precondition: Bearer JWT 有效且目标分享属于该用户
-- Input: 当前用户的分享 ID
-- Action: DELETE /api/shares/:id。
-- Data changes: 将当前用户 shares 记录置为 revoked
-- Output: 204；匿名读取随即返回 404
-- Next state: share-revoked
-- Acceptance: ACC-002
+- Precondition: 后续启动时网络恢复
+- Input: 本地存量与有效或新 token
+- Action: 重新执行启动同步；本地数据仍优先于服务端默认或同名值。
+- Data changes: 合并后的本地 Storage 可再次上送
+- Output: 离线期间的数据不因失败丢失
+- Next state: synchronized-or-local
+- Acceptance: ACC-005, ACC-008
 
 ## Exceptions
 
-- **EXC-001** {"id": "EXC-001", "trigger": "缺失或无效 Authorization，或资源不属于当前用户", "handling": "分别返回 401 或 404", "final_state": "request-rejected", "assertion": "不泄露其他用户存在或数据", "acceptance_ids": ["ACC-002"]}
-- **EXC-002** {"id": "EXC-002", "trigger": "微信网络、微信响应错误或生产配置缺失", "handling": "返回 502 或配置错误，不创建用户", "final_state": "login-failed", "assertion": "不返回 AppSecret", "acceptance_ids": ["ACC-002"]}
-- **EXC-003** {"id": "EXC-003", "trigger": "非法 JSON、未知同步资源、过大数组或无效菜品字段", "handling": "返回 400；内部数据库错误返回通用 500", "final_state": "validation-failed", "assertion": "不会写入部分或未校验的数据", "acceptance_ids": ["ACC-002"]}
-- **EXC-004** {"id": "EXC-004", "trigger": "客户端重试相同完整同步请求", "handling": "在 SQLite 事务中替换同一用户同一资源", "final_state": "synchronized", "assertion": "不产生重复记录", "acceptance_ids": ["ACC-002"]}
+- **EXC-005** {"id": "EXC-005", "trigger": "wx.request 不存在或请求失败", "handling": "静默回退；setter 的 PUT 仅重试一次且不等待。", "final_state": "local-only", "assertion": "读取默认值和本地写入与改造前一致。", "acceptance_ids": ["ACC-008"]}
+- **EXC-006** {"id": "EXC-006", "trigger": "登录响应缺 token、wx.login 失败或 GET /api/sync 非 2xx", "handling": "不写坏 token，不清除本地资源，不阻塞启动。", "final_state": "local-only", "assertion": "未认证请求不会导致页面异常。", "acceptance_ids": ["ACC-006", "ACC-008"]}
+- **EXC-007** {"id": "EXC-007", "trigger": "PUT /api/sync/:resource 首次失败", "handling": "对同一 URL、token 和 payload 异步重试一次；第二次结果静默结束。", "final_state": "local-only-or-complete", "assertion": "请求总数恰为两次且 Storage 保持新值。", "acceptance_ids": ["ACC-007"]}
 
 ## UI Rules
 
@@ -163,47 +141,63 @@
 
 ## Integrations
 
-- **API-001** 小程序以 wx.request 调用 HTTPS API；本任务仅交付服务端契约，客户端接线后续进行。
-- **API-002** 微信 code2session URL 由服务端通过 WECHAT_APP_ID 和 WECHAT_APP_SECRET 配置，不硬编码密钥。
+- **API-003** 客户端使用 wx.request 调用可配置的 HTTP(S) 基地址；测试模式发 test_openid_<随机>，正式模式使用 wx.login 返回的 code。
+- **API-004** Authorization 头为 Bearer JWT；GET /api/sync 返回四类资源，PUT /api/sync/:resource body 为资源本体。
 
 ## Acceptance
 
-- **ACC-001** 服务端可用 npm start 启动，GET /health 返回 200 与数据库就绪信息。
-- **ACC-002** 接口测试覆盖登录、认证拒绝、四类同步、用户隔离、菜品 CRUD、统计和分享创建/读取/撤销。
-- **ACC-003** 配置和部署文档不含真实密钥，提供 env 示例与 Linux systemd/Nginx 部署流程或等价一键脚本。
-- **ACC-004** RepoNova 在服务端新增后成功重建，图谱反映 server 节点与测试。
+- **ACC-005** 启动同步获得 token 并合并四类数据，本地既有非空值优先且服务端值补充本地空值。
+- **ACC-006** 测试和正式登录路径及初始化错误均不破坏本地数据。
+- **ACC-007** 四类 setter 本地写后发送带 Bearer token 的 PUT，首个失败后恰好重试一次。
+- **ACC-008** 无网络时读取默认值并完成写入，不抛错、不等待且不改坏 Storage。
+- **ACC-009** 既有 data.js 导出及同步返回语义保留，页面只有 customDishes 必要接线，未改 UI 资产。
+- **ACC-010** utils 层 mock 测试完整通过。
+- **ACC-011** 既有 server API 集成测试回归通过。
+- **ACC-012** 实现后 RepoNova 图谱成功重建且提交隔离基线脏文件。
 
 ## Risks
 
-- **RISK-001** 真实微信 code2session 和生产部署依赖外部密钥、域名、DNS 与服务器访问；本地 mock 测试不能替代真实联调。
-- **RISK-002** SQLite 适合家用级单实例；多实例扩展需改用共享数据库。
-- **RISK-003** 旧客户端继续写本地 storage，须在后续小程序改造中显式处理首次上传、冲突策略和离线重试。
+- **RISK-004** 小程序开发工具必须关闭合法域名校验或配置实际服务端域名；本地单测不能替代真实设备域名/HTTPS 联调。
+- **RISK-005** 本地优先策略有意避免离线数据被服务端空值覆盖，但不解决两台设备同时改同一资源的冲突。
+- **RISK-006** 服务端当前 JWT 有效期与线上可达性由已部署系统控制；本任务只验证已声明 API 契约的客户端适配。
 
 ## Development Handoff
 
 ```json
 {
   "scope": [
-    "新增 server/ 及其测试、部署资料",
-    "新增 SOP.json、SOP.md、development-contract.json"
+    "SOP.json、SOP.md、development-contract.json",
+    "jiayan-miniprogram/app.js",
+    "jiayan-miniprogram/utils/data.js",
+    "jiayan-miniprogram/pages/library/library.js",
+    "jiayan-miniprogram/pages/analysis/analysis.js",
+    "jiayan-tests/data-sync.test.js",
+    "jiayan-tests/package.json（仅必要时增加测试脚本）"
   ],
   "constraints": [
-    "Node.js + Express + SQLite",
-    "无云函数/云开发",
-    "只修改本任务新增文件",
-    "不得提交现有脏的 reponova-out 或 .deepseek 状态文件"
+    "本地 Storage 优先且同步 API 失败不影响 UI",
+    "所有既有 data.js 导出签名与同步调用方式不变",
+    "使用 wx.request，不新增网络依赖",
+    "每次 PUT 失败最多重试一次",
+    "不得修改 server/、WXML、WXSS、docs/、reponova-out/ 或基线 .deepseek 状态文件",
+    "只允许 DeepSeek 在批准后编辑，GPT 负责独立验收"
   ],
   "acceptance_ids": [
-    "ACC-001",
-    "ACC-002",
-    "ACC-003",
-    "ACC-004"
+    "ACC-005",
+    "ACC-006",
+    "ACC-007",
+    "ACC-008",
+    "ACC-009",
+    "ACC-010",
+    "ACC-011",
+    "ACC-012"
   ],
   "validation_commands": [
-    "cd server && npm ci && npm test",
-    "cd server && npm start",
-    "curl -fsS http://127.0.0.1:3000/health",
-    "bash -n server/deploy.sh",
+    "cd jiayan-tests && npm test",
+    "cd server && npm test",
+    "git diff --check",
+    "git diff --stat",
+    "git diff --numstat",
     "/Users/ict/.hermes/node/bin/reponova build"
   ],
   "risk_level": "medium"
@@ -212,4 +206,5 @@
 
 ## Revision History
 
-- **** {"version": "1.0.0", "date": "2026-08-06", "change": "由用户明确服务端需求、技术约束及交付授权创建。"}
+- **** {"version": "1.0.0", "date": "2026-08-06", "change": "服务端独立交付 SOP。"}
+- **** {"version": "1.1.0", "date": "2026-08-14", "change": "根据用户明确需求将范围扩展为小程序离线优先同步迁移；保留既有服务端并新增客户端验收。"}

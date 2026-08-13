@@ -1,0 +1,54 @@
+{
+  "file_path": "jiayan-tests/data-sync.test.js",
+  "line_count": 92,
+  "imports": [
+    {
+      "module": "node:assert",
+      "names": [
+        "assert"
+      ],
+      "line": 1
+    },
+    {
+      "module": "node:test",
+      "names": [
+        "afterEach",
+        "beforeEach",
+        "test"
+      ],
+      "line": 2
+    },
+    {
+      "module": "../jiayan-miniprogram/utils/data",
+      "names": [
+        "data"
+      ],
+      "line": 5
+    }
+  ],
+  "functions": [
+    {
+      "name": "flush",
+      "signature": "flush()",
+      "decorators": [],
+      "start_line": 6,
+      "end_line": 6,
+      "calls": [
+        "Promise",
+        "setImmediate"
+      ]
+    },
+    {
+      "name": "enableNetwork",
+      "signature": "enableNetwork(responder)",
+      "decorators": [],
+      "start_line": 9,
+      "end_line": 15,
+      "calls": [
+        "requests.push",
+        "responder"
+      ]
+    }
+  ],
+  "classes": []
+}

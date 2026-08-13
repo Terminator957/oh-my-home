@@ -1,7 +1,16 @@
 {
   "file_path": "jiayan-miniprogram/pages/analysis/analysis.js",
-  "line_count": 37,
-  "imports": [],
+  "line_count": 39,
+  "imports": [
+    {
+      "module": "../../utils/data",
+      "names": [
+        "getCustomDishes",
+        "setCustomDishes"
+      ],
+      "line": 1
+    }
+  ],
   "functions": [],
   "classes": []
 }

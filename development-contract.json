@@ -1,66 +1,157 @@
 {
-  "objective": "为当前仅使用 wx.setStorageSync 的家宴小本子提供可自托管的轻量服务端，使经微信登录认证的用户可跨设备保存家用级菜品与菜单数据，并提供受控菜品、统计和可分享直达菜单。",
+  "objective": "在不改变小程序页面 UI 或既有 data.js 调用语义的前提下，将四类现有本地 Storage 数据增量接入已部署的 Node、Express、SQLite 服务端；网络、认证或同步失败时必须保持原有离线本地可用行为。",
   "expected_behavior": [
-    "REQ-001: 服务端提供基于微信 code2session 的登录端点，在测试模式允许显式 mock code，且不得将 AppSecret 返回给客户端。",
-    "REQ-002: 服务端使用 Bearer 令牌保护除健康检查和登录外的业务端点，并按用户隔离数据。",
-    "REQ-003: 服务端支持 customDishes、ratings、todayMenu、guestCart 的全量读取和幂等替换式同步。",
-    "REQ-004: 服务端提供内置受控菜品查询及用户自定义菜品创建、读取、更新、删除。",
-    "REQ-005: 服务端提供用户统计和分享直达菜单：创建分享、匿名读取有效分享、过期或撤销后拒绝访问。",
-    "REQ-006: 服务端提供可复现的本地测试、健康检查、环境变量样例和可在常见 Linux/麒麟发行版执行的部署命令。"
+    "REQ-007: 数据层初始化时，在已有有效 token 可复用时先获取四类服务端数据；无 token 时使用测试模式随机 test_openid_ code 或 wx.login code 登录，成功后缓存 token。",
+    "REQ-008: 首次拉取采用本地优先合并：本地已有的非空资源不得被服务端默认空值覆盖；本地空资源可采用服务端值，并将合并结果保留到现有 Storage。",
+    "REQ-009: setToday、setGuestCart、setRating、setCustomDishes 等写操作须先同步写本地 Storage，再异步 PUT 对应全量资源；失败静默重试恰好一次，绝不阻塞 UI 或抛出给页面。",
+    "REQ-010: 无 wx.request、网络失败、登录失败或服务端未配置时，所有读取和写入必须保持纯本地 Storage 的原有语义与默认值。",
+    "REQ-011: 不得修改页面 UI、WXML、WXSS，且既有 data.js 导出函数的参数、返回同步性和调用方式不得被破坏。",
+    "REQ-012: utils mock 测试必须覆盖无网络本地回退、登录并缓存 token、写后同步、失败重试一次；现有服务端接口测试必须回归通过。",
+    "REQ-013: 任何源代码或运行时拓扑改动后必须重新执行 RepoNova build，提交仅包含本任务受控文件，不纳入基线未跟踪状态文件和 docs。"
   ],
   "scope": {
     "allowed": [
-      "新增 server/ 及其测试、部署资料",
-      "新增 SOP.json、SOP.md、development-contract.json"
+      "SOP.json、SOP.md、development-contract.json",
+      "jiayan-miniprogram/app.js",
+      "jiayan-miniprogram/utils/data.js",
+      "jiayan-miniprogram/pages/library/library.js",
+      "jiayan-miniprogram/pages/analysis/analysis.js",
+      "jiayan-tests/data-sync.test.js",
+      "jiayan-tests/package.json（仅必要时增加测试脚本）"
     ],
     "forbidden": [
-      "修改小程序页面、wx.request 接入或现有本地 storage 行为",
-      "微信开放平台资质配置、真实 AppSecret 提供和生产 code2session 联调",
-      "在未提供 SSH 地址、账号、域名与 DNS 控制权时连接或修改用户云服务器",
-      "云开发、云函数、支付、多人协作权限和通用后台管理界面"
+      "页面 UI、WXML、WXSS、交互流程或现有 data.js 导出接口签名的变更",
+      "服务端 API、数据库结构、云服务器部署、真实微信 AppSecret 或生产 code2session 联调",
+      "analysisData、libTab 等不在服务端 sync API 中的本地状态同步",
+      "冲突版本控制、后台同步队列、跨设备实时合并或多用户协作"
     ]
   },
   "constraints": [
-    "Node.js + Express + SQLite",
-    "无云函数/云开发",
-    "只修改本任务新增文件",
-    "不得提交现有脏的 reponova-out 或 .deepseek 状态文件"
+    "本地 Storage 优先且同步 API 失败不影响 UI",
+    "所有既有 data.js 导出签名与同步调用方式不变",
+    "使用 wx.request，不新增网络依赖",
+    "每次 PUT 失败最多重试一次",
+    "不得修改 server/、WXML、WXSS、docs/、reponova-out/ 或基线 .deepseek 状态文件",
+    "只允许 DeepSeek 在批准后编辑，GPT 负责独立验收"
   ],
   "acceptance": {
     "ids": [
-      "ACC-001",
-      "ACC-002",
-      "ACC-003",
-      "ACC-004"
+      "ACC-005",
+      "ACC-006",
+      "ACC-007",
+      "ACC-008",
+      "ACC-009",
+      "ACC-010",
+      "ACC-011",
+      "ACC-012"
     ],
     "criteria": [
       {
-        "id": "ACC-001",
-        "text": "服务端可用 npm start 启动，GET /health 返回 200 与数据库就绪信息。",
-        "method": "启动真实服务后 HTTP 请求",
-        "evidence": "PORT=3101、临时 SQLite 数据库的 /health 返回 200、status ok、db connected。",
+        "id": "ACC-005",
+        "text": "启动同步获得 token 并合并四类数据，本地既有非空值优先且服务端值补充本地空值。",
+        "method": "Node wx mock 单元测试",
+        "evidence": "测试断言登录、Bearer GET、token 缓存及各资源合并结果。",
         "requirement_ids": [
-          "REQ-006"
+          "REQ-007",
+          "REQ-008"
         ],
-        "evidence_level": "runtime",
+        "evidence_level": "unit",
         "required_artifacts": [
-          "server/test"
+          "jiayan-tests/data-sync.test.js"
         ],
         "substitution": "forbidden",
         "critical": true,
-        "status": "passed"
+        "status": "not_run"
       },
       {
-        "id": "ACC-002",
-        "text": "接口测试覆盖登录、认证拒绝、四类同步、用户隔离、菜品 CRUD、统计和分享创建/读取/撤销。",
-        "method": "node:test + supertest",
-        "evidence": "cd server && npm test：44 项通过，0 失败。",
+        "id": "ACC-006",
+        "text": "测试和正式登录路径及初始化错误均不破坏本地数据。",
+        "method": "Node wx mock 单元测试",
+        "evidence": "测试 test_openid 随机 code、wx.login code 与无 token/失败回退。",
         "requirement_ids": [
-          "REQ-001",
-          "REQ-002",
-          "REQ-003",
-          "REQ-004",
-          "REQ-005"
+          "REQ-007",
+          "REQ-010"
+        ],
+        "evidence_level": "unit",
+        "required_artifacts": [
+          "jiayan-tests/data-sync.test.js"
+        ],
+        "substitution": "forbidden",
+        "critical": true,
+        "status": "not_run"
+      },
+      {
+        "id": "ACC-007",
+        "text": "四类 setter 本地写后发送带 Bearer token 的 PUT，首个失败后恰好重试一次。",
+        "method": "Node wx mock 单元测试",
+        "evidence": "测试请求 URL、payload、header、非阻塞本地写入和两次失败/成功序列。",
+        "requirement_ids": [
+          "REQ-009"
+        ],
+        "evidence_level": "unit",
+        "required_artifacts": [
+          "jiayan-tests/data-sync.test.js"
+        ],
+        "substitution": "forbidden",
+        "critical": true,
+        "status": "not_run"
+      },
+      {
+        "id": "ACC-008",
+        "text": "无网络时读取默认值并完成写入，不抛错、不等待且不改坏 Storage。",
+        "method": "Node wx mock 单元测试",
+        "evidence": "删除 request 或模拟失败，断言 getter/setter 原语义和静默重试边界。",
+        "requirement_ids": [
+          "REQ-009",
+          "REQ-010"
+        ],
+        "evidence_level": "unit",
+        "required_artifacts": [
+          "jiayan-tests/data-sync.test.js"
+        ],
+        "substitution": "forbidden",
+        "critical": true,
+        "status": "not_run"
+      },
+      {
+        "id": "ACC-009",
+        "text": "既有 data.js 导出及同步返回语义保留，页面只有 customDishes 必要接线，未改 UI 资产。",
+        "method": "静态 diff 审查与既有测试",
+        "evidence": "导出快照、页面 diff、WXML/WXSS 无差异和测试通过。",
+        "requirement_ids": [
+          "REQ-011"
+        ],
+        "evidence_level": "static",
+        "required_artifacts": [
+          "jiayan-miniprogram/utils/data.js"
+        ],
+        "substitution": "forbidden",
+        "critical": true,
+        "status": "not_run"
+      },
+      {
+        "id": "ACC-010",
+        "text": "utils 层 mock 测试完整通过。",
+        "method": "node --test",
+        "evidence": "cd jiayan-tests && npm test 或等价测试命令 0 失败。",
+        "requirement_ids": [
+          "REQ-012"
+        ],
+        "evidence_level": "unit",
+        "required_artifacts": [
+          "jiayan-tests/data-sync.test.js"
+        ],
+        "substitution": "forbidden",
+        "critical": true,
+        "status": "not_run"
+      },
+      {
+        "id": "ACC-011",
+        "text": "既有 server API 集成测试回归通过。",
+        "method": "node:test + supertest",
+        "evidence": "cd server && npm test 0 失败。",
+        "requirement_ids": [
+          "REQ-012"
         ],
         "evidence_level": "integration",
         "required_artifacts": [
@@ -68,33 +159,15 @@
         ],
         "substitution": "forbidden",
         "critical": true,
-        "status": "passed"
+        "status": "not_run"
       },
       {
-        "id": "ACC-003",
-        "text": "配置和部署文档不含真实密钥，提供 env 示例与 Linux systemd/Nginx 部署流程或等价一键脚本。",
-        "method": "静态审查与脚本语法检查",
-        "evidence": "已审查环境变量样例、部署文档，并通过 bash -n server/deploy.sh。",
+        "id": "ACC-012",
+        "text": "实现后 RepoNova 图谱成功重建且提交隔离基线脏文件。",
+        "method": "reponova build 与 git status",
+        "evidence": "build 成功并记录节点边数；暂存清单不含 docs、.deepseek 状态和 reponova-out。",
         "requirement_ids": [
-          "REQ-006"
-        ],
-        "evidence_level": "static",
-        "required_artifacts": [
-          "server/.env.example",
-          "server/deploy.sh",
-          "server/README.md"
-        ],
-        "substitution": "forbidden",
-        "critical": true,
-        "status": "passed"
-      },
-      {
-        "id": "ACC-004",
-        "text": "RepoNova 在服务端新增后成功重建，图谱反映 server 节点与测试。",
-        "method": "reponova build",
-        "evidence": "build 成功：171 节点、175 边、52 文件、3 仓库；报告包含 server、openDb 与 api.test.js。",
-        "requirement_ids": [
-          "REQ-006"
+          "REQ-013"
         ],
         "evidence_level": "runtime",
         "required_artifacts": [
@@ -102,25 +175,28 @@
         ],
         "substitution": "forbidden",
         "critical": true,
-        "status": "passed"
+        "status": "not_run"
       }
     ],
     "commands": [
-      "cd server && npm ci && npm test",
-      "cd server && npm start",
-      "curl -fsS http://127.0.0.1:3000/health",
-      "bash -n server/deploy.sh",
+      "cd jiayan-tests && npm test",
+      "cd server && npm test",
+      "git diff --check",
+      "git diff --stat",
+      "git diff --numstat",
       "/Users/ict/.hermes/node/bin/reponova build"
     ]
   },
   "governance": {
     "subject": {
-      "type": "feature",
-      "target": "jiayan-miniprogram 的独立 server/ 服务端",
-      "boundary": "HTTP JSON API、SQLite 数据文件和部署脚本；客户端保持未改，所有持久化数据必须通过认证用户隔离。"
+      "type": "migration",
+      "target": "jiayan-miniprogram 的四类 Storage 数据与 server /api/auth/wechat、/api/sync 之间的离线优先同步适配层",
+      "boundary": "客户端 utils、启动入口、customDishes 调用接线和 Node mock 测试；服务端仅作为既有 HTTP JSON 契约进行验证，不改变其实现。"
     },
     "authority": true,
-    "supersedes": [],
+    "supersedes": [
+      "SOP.json 1.0.0 服务端单独交付范围"
+    ],
     "derived_contracts": [
       "development-contract.json"
     ],
@@ -135,8 +211,8 @@
   },
   "source": {
     "project": "oh-my-home / jiayan-miniprogram",
-    "feature": "家宴小本子服务端",
-    "sop_version": "1.0.0",
+    "feature": "小程序本地数据迁移至自托管服务端",
+    "sop_version": "1.1.0",
     "sop_status": "approved",
     "risk_level": "medium"
   }
