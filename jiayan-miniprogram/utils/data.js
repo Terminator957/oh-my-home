@@ -50,12 +50,101 @@ function findDish(name) {
   return DISHES.find(d => d.name === name);
 }
 
+const SYNC_RESOURCES = ['customDishes', 'ratings', 'todayMenu', 'guestCart'];
+const SYNC_TOKEN_KEY = 'syncToken';
+const SYNC_API_BASE_KEY = 'apiBaseUrl';
+const SYNC_TEST_MODE_KEY = 'syncTestMode';
+
+function getSyncBaseUrl() {
+  const baseUrl = wx.getStorageSync(SYNC_API_BASE_KEY);
+  return typeof baseUrl === 'string' ? baseUrl.replace(/\/$/, '') : '';
+}
+
+function request(options) {
+  return new Promise((resolve, reject) => {
+    if (!wx.request) return reject(new Error('wx.request is unavailable'));
+    wx.request({
+      ...options,
+      success(response) {
+        if (response.statusCode >= 200 && response.statusCode < 300) resolve(response.data);
+        else reject(new Error(`HTTP ${response.statusCode}`));
+      },
+      fail: reject
+    });
+  });
+}
+
+function isNonEmpty(value) {
+  return Array.isArray(value) ? value.length > 0 : value && Object.keys(value).length > 0;
+}
+
+function mergeRemoteData(remote) {
+  const local = {
+    customDishes: wx.getStorageSync('customDishes') || [],
+    ratings: wx.getStorageSync('ratings') || {},
+    todayMenu: wx.getStorageSync('todayMenu') || [],
+    guestCart: wx.getStorageSync('guestCart') || []
+  };
+  const merged = {};
+
+  SYNC_RESOURCES.forEach(resource => {
+    const remoteValue = remote && remote[resource];
+    if (resource === 'ratings') {
+      merged[resource] = { ...(remoteValue || {}), ...local[resource] };
+    } else {
+      merged[resource] = isNonEmpty(local[resource]) ? local[resource] : (remoteValue || local[resource]);
+    }
+    wx.setStorageSync(resource, merged[resource]);
+  });
+
+  return merged;
+}
+
+async function getLoginCode() {
+  if (wx.getStorageSync(SYNC_TEST_MODE_KEY) === true) return `test_openid_${Date.now()}_${Math.random().toString(36).slice(2)}`;
+  if (!wx.login) throw new Error('wx.login is unavailable');
+  return new Promise((resolve, reject) => wx.login({ success: result => result.code ? resolve(result.code) : reject(new Error('wx.login returned no code')), fail: reject }));
+}
+
+async function initSync() {
+  const baseUrl = getSyncBaseUrl();
+  if (!baseUrl || !wx.request) return;
+
+  try {
+    let token = wx.getStorageSync(SYNC_TOKEN_KEY);
+    if (!token) {
+      const login = await request({ url: `${baseUrl}/api/auth/wechat`, method: 'POST', data: { code: await getLoginCode() } });
+      if (!login || !login.token) return;
+      token = login.token;
+      wx.setStorageSync(SYNC_TOKEN_KEY, token);
+    }
+    mergeRemoteData(await request({ url: `${baseUrl}/api/sync`, method: 'GET', header: { Authorization: `Bearer ${token}` } }));
+  } catch (_) {
+    // Initialization is best-effort: existing local Storage remains authoritative offline.
+  }
+}
+
+function syncResource(resource, value) {
+  const baseUrl = getSyncBaseUrl();
+  const token = wx.getStorageSync(SYNC_TOKEN_KEY);
+  if (!baseUrl || !token || !wx.request) return;
+
+  const options = {
+    url: `${baseUrl}/api/sync/${resource}`,
+    method: 'PUT',
+    data: value,
+    header: { Authorization: `Bearer ${token}` }
+  };
+  request(options).catch(() => request(options).catch(() => {}));
+}
+
 // 今天的菜单（storage 持久化）
 function getToday() {
   return wx.getStorageSync('todayMenu') || [];
 }
 function setToday(names) {
   wx.setStorageSync('todayMenu', names);
+  syncResource('todayMenu', names);
 }
 function addToday(name) {
   const t = getToday();
@@ -70,6 +159,15 @@ function getGuestCart() {
 }
 function setGuestCart(names) {
   wx.setStorageSync('guestCart', names);
+  syncResource('guestCart', names);
+}
+
+function getCustomDishes() {
+  return wx.getStorageSync('customDishes') || [];
+}
+function setCustomDishes(dishes) {
+  wx.setStorageSync('customDishes', dishes);
+  syncResource('customDishes', dishes);
 }
 
 // 评分（按菜名覆盖默认星级）
@@ -83,6 +181,7 @@ function setRating(name, n) {
   const map = wx.getStorageSync('ratings') || {};
   map[name] = n;
   wx.setStorageSync('ratings', map);
+  syncResource('ratings', map);
 }
 
-module.exports = { DISHES, MOOD_MAP, starText, findDish, getToday, setToday, addToday, getGuestCart, setGuestCart, getRating, setRating };
+module.exports = { DISHES, MOOD_MAP, starText, findDish, getToday, setToday, addToday, getGuestCart, setGuestCart, getCustomDishes, setCustomDishes, getRating, setRating, initSync };

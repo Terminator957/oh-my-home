@@ -1,3 +1,5 @@
+const { initSync } = require('./utils/data');
+
 App({
-  onLaunch() {}
+  onLaunch() { initSync(); }
 })

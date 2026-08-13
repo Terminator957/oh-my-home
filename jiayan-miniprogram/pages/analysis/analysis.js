@@ -1,3 +1,5 @@
+const { getCustomDishes, setCustomDishes } = require('../../utils/data');
+
 Page({
   data: {
     name: '香菇滑鸡', ingCount: 6, kcal: 386,
@@ -18,7 +20,7 @@ Page({
   save() {
     const a = wx.getStorageSync('analysisData');
     if (a) {
-      const custom = wx.getStorageSync('customDishes') || [];
+      const custom = getCustomDishes();
       if (!custom.find(d => d.name === a.name)) {
         custom.push({
           name: a.name, status: a.status, cat: '荤菜',
@@ -27,7 +29,7 @@ Page({
           time: '30 分钟', level: '简单', made: '刚记下 · 还没做过',
           stars: 0, kcal: a.kcal, flavor: a.flavors[0] || '咸鲜', log: []
         });
-        wx.setStorageSync('customDishes', custom);
+        setCustomDishes(custom);
       }
     }
     wx.showToast({ title: '已存进小本子', icon: 'none' });

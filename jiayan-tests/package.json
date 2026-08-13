@@ -3,6 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
+    "test": "node --test unit.test.js interface.test.js data-sync.test.js",
     "test:unit": "node --test unit.test.js",
     "test:interface": "node --test interface.test.js",
     "test:ui": "node ui.test.js"

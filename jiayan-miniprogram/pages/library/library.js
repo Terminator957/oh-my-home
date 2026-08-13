@@ -1,4 +1,4 @@
-const { DISHES, starText } = require('../../utils/data');
+const { DISHES, starText, getCustomDishes } = require('../../utils/data');
 
 Page({
   data: { tab: '全部', query: '', tabs: [], list: [] },
@@ -8,7 +8,7 @@ Page({
     this.refresh();
   },
   refresh() {
-    const custom = wx.getStorageSync('customDishes') || [];
+    const custom = getCustomDishes();
     const all = DISHES.concat(custom);
     const counts = { '全部': all.length + 69, '想吃': all.filter(d => d.status === '想吃').length + 14, '做过': all.filter(d => d.status !== '想吃').length + 55, '常做': all.filter(d => d.status === '常做').length + 9 };
     const tabs = ['全部', '想吃', '做过', '常做'].map(k => ({ key: k, label: k + ' ' + counts[k] }));
